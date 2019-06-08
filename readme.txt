@@ -4,3 +4,4 @@ learn github git is a version control system
    tianyaming 
     add a new line
         add a new line "  my boss is stupid"
+ creating a new branch is quick AND simple
