@@ -7,3 +7,4 @@ add a new master branch***
 add a new branch
         add a new line "  my boss is stupid"
  creating a new branch is quick AND simple
+  # creatiing a new branch is bug
