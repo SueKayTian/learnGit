@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10732914.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Scyther tools 协议形式化分析帮助文档翻译 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、Scyther软件作者网站的整理 Scyther工具的网站主页：https://people.cispa.io/cas.cremers/index.html 首先 对Scyther软件的资料进行整" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10732914.html">Scyther tools 协议形式化分析帮助文档翻译</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、Scyther软件作者网站的整理</p>
+<p>&nbsp;&nbsp; Scyther工具的网站主页：https://people.cispa.io/cas.cremers/index.html</p>
+<p>&nbsp; 首先 对Scyther软件的资料进行整理，作者的很多关于Scyther的资料都是公开在自己的官网上的。</p>
+<p>&nbsp; 协议使用角色序列作为参数，然后在体内进行定义：</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429084516984-885548447.png" alt="" /></p>
+<p>3、对称角色协议：</p>
+<p>&nbsp; 一些对手妥协模型规则，像SKR、LKR （aftercorrect），依靠合作关系。对这种协议在角色和算法上都对称，（像HMQV），这不是适当的合作关系，使用正确的合作关系，协议需要使用说明作为一个对称协议，指导Scyther使用适当的合作。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429093105967-1486062203.png" alt="" /></p>
+<p>4、全局声明</p>
+<p>在很多应用中使用全局常量，这包括字符串常量，标签、或者协议的定义。他们的建模和使用方法如下：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429093504639-1019004548.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429094440326-431338434.png" alt="" /></p>
+<p>5.7 Miscellaneous 混杂的</p>
+<p>5.7.1 Macro&nbsp; 宏定义</p>
+<p>&nbsp; 使用宏定义是允许的，是对特殊术语的缩写，其语法的使用方法如下：</p>
+<p>&nbsp;&nbsp; macro MyShortCut= LargeTerm ;</p>
+<p>&nbsp;像下面这样的，协议包含了复杂的消息或者重复的元素，宏定义可以简化协议的描述（规范）</p>
+<p>&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429095501080-305323020.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429100736917-920840907.png" alt="" /></p>
+<p>注意的是 宏定义有全局性，可以处理同层语法层面 ，者允许协议消息的全局缩写</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429101824388-770711996.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190429103108290-1502786067.png" alt="" /></p>
+<p>&nbsp;&nbsp; 5.7.2 导入文件</p>
+<p>&nbsp; 在一个协议描述中可能导入其他文件&nbsp; ，使用&nbsp; include&nbsp; 导入相关的协议描述文件</p>
+<p>&nbsp;&nbsp; 5.7.3 one-role-pre-agent</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 操作语义允许代理执行任何角色，甚至是不同的角色在同步。这种建模使用在最糟糕的场景中，敌手可以有很多种利用。但是在具体的设置中代理只执行一个角色，列如服务器和客户端集不相交，或者RFID标签和Reads 标签不相交，在这种情况下，我们不考虑领代理可以执行多个角色的攻击，可以通过下面的方式建模</p>
+<p>&nbsp;&nbsp; option "--one-role-per-agent";&nbsp; //允许代理在多个角色中。&nbsp;&nbsp; 这将引起Scyther 忽略 多个</p>
+<p>5.8 输入语言BNF语法的介绍</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 下面给出了全部的输入语言BNF语法的介绍： 在严格的语法定义中，不存在的像这样的声称的术语 (Niagree&nbsp; 或者&nbsp;&nbsp; Nisynch ),也没有像之前使用预定义的了预定义的类型 像 Agent ,取而代之的是他们在Scyther工具自身定义常量。&nbsp;&nbsp;</p>
+<p>第六章 建立安全模型&nbsp; Modeling security&nbsp; protocols</p>
+<p>6.1 Introduction</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用 Scyther软件对安全协议进行形式化的安全分析之前必须掌握 基本的符号模型。这些模型在 参考文献中有有详细的说明。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 粗略的说，符号分析侧重于以下几个方面：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 逻辑消息组件和协议预期的功能（公共秘钥和每次生成的或者不变的）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 消息结构（配对，加密、签名、哈希加密）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 消息流 （顺序、涉及到的参加的角色）</p>
+<p>6.2 举例&nbsp;&nbsp; Needham-Schroeder public key</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 正如下面的例子&nbsp; ， 我么使用的协议模型 ,</p>
+<p>&nbsp; SCyther使用基于角色描述的协议，最后添加对协议的安全要求，假设没有这种要求，Scyther不知道检查什么项目内容，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190430094625997-73276109.png" alt="" /></p>
+<p>&nbsp;&nbsp; 在这我们会检查生成和接受的变量的安全性，将会检查费内射性协议和协议的同步性。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190430101918641-1862575049.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp; 像上面这样就完成了发起者的在协议中定义。在这个简单协议中，响应者角色和发起者角色非常的类似。事实上，仅仅存在一点差别。如下：</p>
+<p>&nbsp;&nbsp;&nbsp; 关键词&nbsp; fresh 和 var 交换了位置，在发起者角色中 ni 是被 I创建，是一个新的生成的值，但是对 响应者 R 角色来书&nbsp; ni&nbsp; 是一个接受到的值，是一个变量。发送事假和接受事件的声明也交换位置，声明使用唯一的标签，所以在接受事件R中已经改变，在执行声明的角色是由 I&nbsp; 转换成 R 。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190430102711418-981408700.png" alt="" /> <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190430105151178-1096641902.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190430105749862-615722341.png" alt="" /></p>
+<p>下面是完整的&nbsp; Needham-Schroeder protocol 形式化的SPDL描述语言</p>
+<p>/*<br />* Needham-Schroeder protocol<br />*/<br />// The protocol description<br />protocol ns3(I,R)<br />{<br />role I<br />{<br />fresh ni: Nonce;<br />var nr: Nonce;<br />send_1(I,R, {I,ni}pk(R) );<br />recv_2(R,I, {ni,nr}pk(I) );<br />claim(I,Running,R,ni,nr);<br />send_3(I,R, {nr}pk(R) );<br />claim_i1(I,Secret,ni);<br />claim_i2(I,Secret,nr);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ////**从左面的安全声明中可以看出，claim 可以在在发送事件和接受事件的声明中出现<br />claim_i3(I,Alive);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ///也可以在事件声明之后，claim可以是多个。声称安全的<br />claim_i4(I,Weakagree);<br />claim_i5(I,Commit,R,ni,nr);<br />claim_i6(I,Niagree);<br />claim_i7(I,Nisynch);<br />}</p>
+<p>role R<br />{<br />var ni: Nonce;<br />fresh nr: Nonce;<br />recv_1(I,R, {I,ni}pk(R) );</p>
+<p>claim(R,Running,I,ni,nr);<br />send_2(R,I, {ni,nr}pk(I) );<br />recv_3(I,R, {nr}pk(R) );<br />claim_r1(R,Secret,ni);<br />claim_r2(R,Secret,nr);<br />claim_r3(R,Alive);<br />claim_r4(R,Weakagree);<br />claim_r5(R,Commit,I,ni,nr);<br />claim_r6(R,Niagree);<br />claim_r7(R,Nisynch);<br />}<br />}&nbsp;</p>
+<p>7.2.1&nbsp; 指定安全属性</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 为了说明安全属性，角色 I 在术语上和角色 R 一致，变量&nbsp; ni&nbsp; 和&nbsp; nr ,想下面这样的插入声明：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在角色 I 的结尾，插入一个声明 claim （I&nbsp; ，Commit ，R，ni , nr）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 参考的例子可以 看 ns3.Spdl&nbsp; 整个代码在&nbsp; Scyther工具中的描述。正规的输出可以看参考文献4 </p>
+<p>8.使用&nbsp; Scyther的 GUI 环境 或者&nbsp; 命令输出</p>
+<p>&nbsp;&nbsp;&nbsp; Scyher&nbsp; 工具可以使用两种主要的方式，一种是基于图形的使用GUI ，第二种是使用基于命令的接口，对于大多数用户来说使用第一种是最佳的选择，在这节当中我们详细的说明使用GUI作为输出。</p>
+<p>&nbsp; 8.1 输出结果</p>
+<p>&nbsp;&nbsp;&nbsp; 如下面所示，验证 Needham -Schroeder公钥协议输出结果。解释如下：在 ns3 协议中所有的初始化角色，I 是正确的对一个无界限的运行，不幸的是。所有声称响应的角色都是假的，Scyther工具报告发现的至少一个错误对四个声明中的。我们可以显示这些错误，在结果输出的窗口中，Scyther工具为每个声明显示单独的一行，每一行又分成几列，第一列显示声明发生的协议，第二列显示的是角色，第三列知名协议和标签，第四例显示声明的类型和参数，</p>
+<p>8.2&nbsp; 状态空间绑定</p>
+<p>&nbsp;&nbsp;&nbsp; 在验证过程中，Scyther工具探索所有可能协议行为的证据树，在墓中成都上，默认设置是绑定树的大小，确保验证程序的终止，然而，重要的是即使证明书的大小是绑定限制的，但是可以实现无界限的验证，在大多数情况下，验证程序在达到界限之前返回验证结果，然而，如果验证进程到达界限，将会在窗口中显示如下结果：&nbsp; NO attacks within bounds &nbsp; ，这种清空可以解释为Scyther工具没有发现任何攻击，因为到达界限，没有 探索完整个树，很可能任然存在协议的攻击。</p>
+<p>&nbsp; 默认的界限最大运行次数，或者协议的例子可以通过主界面的设置改变，如果设置最大运行次数是5 ，这时候Scyther 报告在界限中没有发现攻击，这就意味着在涉及运行次数为5 或者更小的时候没有攻击，但是当运行次数为6或者更多的时候将会 存在攻击。对于某些协议来说增加运行的次数可能会出现更加完整的结果，但是对于某些协议来说，任然是攻击次数不会增加的。 注意的是验证次数的增加必然会导致验证时间的消耗越大。如果计算机CPU和内存不够使用会死机。</p>
+<p>8.3 攻击图输出</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 输出图的基本元素是箭头和几种方框，图中的箭头表示排序约束（是由于协议角色事件的前缀封闭性引起的，或者取决于入侵者的知识），方框表示运行的创建和运行通信事件和声明事件。</p>
+<p>8.3.1 运行 （Runs）</p>
+<p>&nbsp;&nbsp; 每一个垂直轴代表一个运行（协议角色的实例），如此在这个攻击中我们可以看到两个运行，么一个运行的开始都是从一个菱形，这表示创建一个运行，并提供有关运行的信息，</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505091313622-1253041889.png" alt="" /></p>
+<p>&nbsp;对于攻击左侧的运行我们有如下的信息：（运行 Run 1 ）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505091833400-1104122888.png" alt="" /></p>
+<p>可以看到每一个运行都会分配一个运行的标识符，可以是任意的数字，为了表示区别不同的运行，次运行执行协议中的R 角色，由一个代理名为 Agent1 的代理执行，认为正在和代理 Agent2 进行通信，但是值得注意的是，虽然运行 2 （Run 2）由 Agent2 代理执行，但是这个代理并不认为他正和Agent1 进行通信。下面是运行2 的信息 （Run 2）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505092852434-488545545.png" alt="" /></p>
+<p>在运行的右侧我们看到这个运行代表角色的一个实例，从第二行里可以看出哪个代理正在执行，和正在进行通信的代理，在上图单位例子中，运行被代理角色 Agent2 代理执行，认为响应者是不受信任的角色代理 Eve , </p>
+<p>除此之外，运 行的头部包含新生成的变量和常量信息，（例如 Run 1 中的是 nr#1） ,和有关局部变量实例化的信息。（Run1 使用随机变量 ni#2 或者 run 2 实例化变量 ni ） &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;8.3.2 通信事件 （Communication event）</p>
+<p>&nbsp; 发送事件指明发送一个消息，在运行 2 中（Run 2 ）第一次发送发生在这次攻击中是第一次发送事件，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505100956608-486156623.png" alt="" /></p>
+<p>每一次消息发送，攻击者可以高效的获得，在这种情况下，因为攻击者知道代理 Eve的公共秘钥 sk (Eve)&nbsp; 他可以解密消息和获得随机变量的的实例化的值 ni#2 </p>
+<p>接受事件对应着事件的成功接受，在运行 Run 0 第一次接受事件发生在这次攻击中是第一次接受到的事件，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505102547887-373530401.png" alt="" /></p>
+<p>着告诉我们代理执行运行， Agent 1 接受一条信息显然来自 Agent1 ，接受到的信息是 {Agent#0 ，ni#2}pk(Agent#1)&nbsp; ,认为与之通信的消息 随机变量 ni#2 被公钥加密，</p>
+<p>传入箭头并不表示直接发送消息，相反，它表明约束顺序，只有在发生其他事件之后才能收到此消息，在这个例子中，我么可以看到仅仅当 Run 2 发送初始化消息之后才能被接受，原因是随机变量的实例化 ni#2 （攻击者不能够预测这个变量）如此必须等待 直到 Run 2 产生它。</p>
+<p>在输出图中连接箭头为红色并有标签&nbsp; &ldquo;construct&rdquo; 是由发送事件和接受事件不匹配引起的（没有接受事件），我们知道攻击者只能在发送的消息之后构造要接受的消息，因此必须攻击者使用自己发送的消息构造消息的接受情况，其他可能的情况包括绿色和黄色的箭头，黄色的箭头表示一个消息发送，接受者以完全相同的形式接受，然而，代理不同意任何消息的发送和任意消息的接受，这是因为重定向标签&ldquo;redirect&rdquo;&nbsp; 因为攻击者必须重定向消息，一个绿色的箭头表示（不在上面的输出图中）收到的和发送的消息是一致的。表示两个代理之间的正常的通信关系。</p>
+<p>要注意的是，接受事件没有传入箭头表示接受的术语可以通过攻击者初始知识生成。列如一个角色阅读到一个原文信息包括一个代理的名字，攻击者可以生成术语根据自己的初始知识。</p>
+<p>8.3.3 声明</p>
+<p>第九章&nbsp; 使用Scyther 的命令行工具</p>
+<p>&nbsp;所有的Scyther GUI 工具提供的功能在 命令行工具下都是支持的，除此之外，命令行工具还具有GUI不具有的功能，&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp; 依靠不同的操作系统的平台，Scyther 目录包含下面的执行文件</p>
+<ul>
+<li>&nbsp;&nbsp;&nbsp; Scyther/scyther-linux&nbsp;&nbsp; </li>
+<li>&nbsp;&nbsp;&nbsp; Scyther/scyther-w32</li>
+<li>&nbsp;&nbsp;&nbsp; Scyther/scyther-mac</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p>在下面我们假设，我么使用的Linux版本的操作系统，如果你使用的是不同的版本，在你的操作系统上替换 下面的Scyther-linux </p>
+<p>获得某些命令行的选项的参数列表&nbsp; 使切换&nbsp; --help&nbsp; 运行可执行文件&nbsp; ：&nbsp;&nbsp; Scyther-linux --help </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505135017993-1843154947.png" alt="" /></p>
+<p>现在分析 NeedHam-Schroeder 协议，生成一个&nbsp; .dot文件 （输入语言为 Graphviz工具）为攻击使用 。使用命令：&nbsp; Scyther-linux --dot-output --output=tls1-attacks.dot TLS_1.spdl</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505142221708-1864901538.png" alt="" /></p>
+<p>下面使用 Graphviz工具进行输出结果文件 ：dot -Tpdf -O tls1-attacks.dot 但是执行发现出现dot文件执行错误。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505142728107-150566820.png" alt="" /></p>
+<p>根据错误提示调试之后，输出的结果 ，发现输出的结果并没有使用 Graphviz 工具画出工具图（这部分原因之后说明）</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505144420293-1251412013.png" alt="" /></p>
+<p>为了得到更加详细的命令行的选项参数列表 可以使用命令：&nbsp; scysther -linux --expert --help </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505144925802-698156913.png" alt="" /></p>
+<p>第十章 高级主题</p>
+<p>&nbsp;10.1&nbsp; 建模多个非对称秘钥对</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 非对称秘钥通常被建模成两个函数，其中一个函数将代理映射到其公钥函数，另一个函数将代理映射到其私钥。在默认的情况下没哟个代理 x 均有一对秘钥&nbsp; 公钥/私钥&nbsp;&nbsp; (pk(x), sk(x)) </p>
+<p>建模其他的非对称秘钥，首先定义两个函数，例如用名字&nbsp; pk2 表示公钥函数&nbsp;&nbsp;&nbsp; ，使用 sk2 表示私钥函数&nbsp; ： </p>
+<p>&nbsp;&nbsp; const pk2:&nbsp;&nbsp; Function ;</p>
+<p>&nbsp;&nbsp; secret sk2: Function ;</p>
+<p>我们也可以申明 表示非对称密钥对表示方法如下：</p>
+<p>&nbsp;inversekeys (pk2 ,sk2);</p>
+<p>如果按照上面的额定义，那么如果一个术语加密使用 pk2(x)&nbsp; 只能使用 sk2(x)&nbsp; 进行解密。反之亦然。</p>
+<p>10.2 近似等式理论</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Scyther工具底层操作语法目前只在语法上考虑对等，当两个术语相等当且仅当语法上相等的时候，然而，存在几种常见的加密结构，更加自然的使用确定的等式。例如：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505152222558-1624927741.png" alt="" /></p>
+<p>显然 Scyther 工具不能为这种等式理论提供直接的支持，但是存在一种直截了当的近似的方式，核心思想是替代平等术语建模，如果敌手掌握了等价类中的一个元素，我们提供敌手所有的等价类中的术语。例如，等价类 {k(A,B),&nbsp;&nbsp; k(B, A)} 我们提供敌手同 k(A,B),学习 k(B,A) 的能力，反之亦然。 我么可以适当的引入帮助器来建模协议&nbsp; （定义 通过&nbsp; 前缀 @）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505153200337-718231751.png" alt="" /></p>
+<p>&nbsp;因为角色可以被任何代理X或者Y 进行实例化，这包括所有的组合代理。上述可以近似等到完善，一个明显的实际相关的漏洞是敌手可学习加密的消息，但是不秘钥，在这种情况下，我们任然想模拟等式：</p>
+<p>{M}k(A,B)={M}k(B,A)&nbsp; ，因此我们调整我们的帮助协议如下：</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505154508248-1491468896.png" alt="" /></p>
+<p>入股协议包含的非对称秘钥术语出现在其他位置，列如嵌套加密或哈希中，我们会添加更多的角色，但是在实际中并不是经常有效果，我们可以使用辅助协议规则更加紧密的提高性能。通过利用更多协议类型的信息，如果协议传输两种类型的加密消息：</p>
+<p>{I , nI, nR }k(I, R)&nbsp; 和&nbsp;&nbsp; {nI&nbsp;&nbsp; }k(I, R)&nbsp;&nbsp; 这时候这样修改辅助协议：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505160102549-1066558629.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505160107489-389568943.png" alt="" /></p>
+<p>总的来说，手动检查协议并提取所有的位置，其中来自等价类的术语作为子项，对于这些位置中的每一个，建立一个适当的角色在辅助协议中。这也用来建模，像 Diffe-Hellman 幂，对于幂我们引入一个抽象的函数符号，列如 exp 和一个公共不变的 常量 g&nbsp;&nbsp; ，我们可以介绍一个辅助协议角色：&nbsp; exp（exp（g,X）,Y）=exp(exp(g,Y),X) </p>
+<p>事实上这种近似类型的证明极其有效。从这一点上讲 ，从现实世界上协议所有已知的攻击都可以使用&ldquo;real&rdquo;相等理论来建模。当使用近似相等的时候在Scyther下。</p>
+<p>需要注意的是虽然这种近似适用于保密和数据协议，他可以导致基于消息的洗衣失败（比如说同步），因为消息等价检查是语法上的，这种检查不能影响引入的辅助协议。</p>
+<p>10.3 建模时间戳和全局计数器</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Scyther工具底层模型当前不提供代理程序之间共享的变量，每一个运行开始都以 clean&nbsp; slate ,独立于先前执行的任何运行。换句话说，全局更新状态不能直接建模。在下面的章节中我们将提供适当的模型为常见的问题。</p>
+<p>10.3.1 建模全局时间计数器</p>
+<p>&nbsp;使用新生成的值对全局递增的计数器进行建模，这样确保每一个运行使用不同的值，但是这种计数器是粗略的，计数器接受者不能检查他是技术器先前的值还是后继的值。</p>
+<p>10.3.2&nbsp; 使用随机数建模时间戳</p>
+<p>&nbsp;至少存在两种方式来建模时间戳，第一种模型适用于两次运行接受给定时间戳值得概率非常接近的协议，当时间戳很高或两次运行按照顺序发生时，可能会发生时间上的延迟。在这种情况下，可以将时间戳建模成新生成的值，列如&nbsp; ; nonces&nbsp;&nbsp; ,为了迎合敌手通常知道时间的实事（因此也可以预测时间戳），我们将一个发送事件添加到角色，该角色为对手提供将使用的时间戳的值。我们在发送 send 前置标签 ！ T1 为时间戳 T1 ：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505163656821-281035627.png" alt="" /></p>
+<p>10.3.3 使用变量建模时间戳</p>
+<p>&nbsp;当两个运行可以接受相同的时间戳值得时候，第二个模型更适用，这对于粗略的时间戳或通常以高并行性执行的角色（列如服务器角色）是常见的，在这种情况下，可以改为将时间戳加密为由对手确定的值，与之前的解决方案相比， 这是通过预先接事假完成的</p>
+<p>&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505164557633-1920417996.png" alt="" /></p>
+<p>10.4 多协议攻击</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Scyther 工具可以使用在多协议攻击的检测中，（密切相关的协议使交叉协议攻击和选择协议的攻击）这些攻击取决于不同子协议之间的相互作用，有时候，攻击者可以使用来自一个协议的消息或者消息组件来攻击另一个协议，</p>
+<p>&nbsp;&nbsp; 最简单的检查多协攻击的方法是结合两个协议的形式化描述在一个文件中实现，创建一个新的 .spdl 文件 在Scyther 工具下进行检测，</p>
+<p>参考引文：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190505165743594-685506147.png" alt="" /></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-04-29 16:54</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10732914" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10732914);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10732914,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/4/29 16:54:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10732914.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+</html>

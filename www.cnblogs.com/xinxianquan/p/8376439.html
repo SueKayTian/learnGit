@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8376439.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>电脑常见问题解决思路总结 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="，关闭 1、显示器显示“”无信号“” no signal 分析思路 一般排除显示屏有问题，先看看接口是否插稳，换一个显示屏如果任然不能显示，再看看网卡（网卡一般是主机自带的），排线是否插稳。 最后如果" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="8376439.html">电脑常见问题解决思路总结</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>，关闭 1、显示器显示&ldquo;&rdquo;无信号&ldquo;&rdquo; &nbsp;no signal</p>
+<p>&nbsp; &nbsp; &nbsp; 分析思路 一般排除显示屏有问题，先看看接口是否插稳，换一个显示屏如果任然不能显示，再看看网卡（网卡一般是主机自带的），排线是否插稳。</p>
+<p>最后如果电脑长期没有清灰，打开主机看看内存条上金把手是不是有灰。清理一下（这种情况一般是No Signal&rdquo;字样只是显示几秒钟即消失，那么就很有可能是内存条特性不良</p>
+<p>，上面有灰）。</p>
+<p>&nbsp; 另外显卡主控芯片特性不良，或与显卡槽接触不紧密，或显卡槽内灰尘太多，更严重的就是板载功率电路耗散功率下降，使得显卡供电不足，板载功率电路中的滤波电容严重漏电，导致相应电源电路的电压降低</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180129101814343-1552506588.png" alt="" />&nbsp; &nbsp;</p>
+<p>&nbsp; 2、win7提高速度</p>
+<p>&nbsp; &nbsp; &nbsp;最有效的方式加硬盘，插内存条。</p>
+<p>&nbsp; &nbsp; 加快窗口的切换速度，关闭窗口的动画效果</p>
+<p>&nbsp; &nbsp; 在控制台输入 &nbsp;如下指令 systempropertiesperformance调出性能选项，点击视觉效果。不建议调整到最佳性能，那样很单调。选择第一个就可以。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180129103241984-1011490378.png" alt="" width="1366" height="528" /></p>
+<p>&nbsp; &nbsp; 其次设置关闭电脑的启动项</p>
+<p>&nbsp; &nbsp;控制台输入 MSConfig ，关闭没有用的启动项。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180129104709875-1459239875.png" alt="" width="1366" height="598" /></p>
+<p>&nbsp; &nbsp;3、提高关机速度</p>
+<p>&nbsp; &nbsp; 控制台输入regedit 启动注册表，依次进入到注册表的的选项，修改退出时间为最小值即可。我的是1</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180129105152531-1153236431.png" alt="" /></p>
+<p>&nbsp; &nbsp; &nbsp; 3、删除不用的Windows默认字体，或者卸载不用的字体保存。在控制面板中搜索字体。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180129105612125-755378498.png" alt="" /></p>
+<p>&nbsp; 5、关闭搜索功能（这个还是建议大家留着吧，毕竟不是那么整齐的人）</p>
+<p>&nbsp; 6、关闭系统声音，</p>
+<p>&nbsp; &nbsp; &nbsp;控制台输入 mmsys.cpl,点击声音选择无声即可。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180129110447953-2010890072.png" alt="" /></p>
+<p>&nbsp; 7、电脑开机一直停留在光标闪烁界面 进入不了系统。</p>
+<p>&nbsp; &nbsp; 1、有可能是电脑用U盘装系统之后将BIOS设置有误，第一启动项设置改一下，改成从硬盘启动即可。</p>
+<p>&nbsp; &nbsp; &nbsp;2、硬盘的主引导区破坏，分区表损坏，解决方法是使用分区软件像DiskGenius重建引导分区和分区表，然后重新启动电脑。</p>
+<p>8、电脑回收站清空之后恢复</p>
+<p>&nbsp; &nbsp; &nbsp;需要修改注册表，但是我之前修改过一次，没有成功。估计这个是没有用的，还是看看我之前写的一篇关于winhex数据恢复的。或者直接用数据恢复软件进行恢复吧，像都教授啥的，数据恢复大师。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180129112121062-424781985.png" alt="" /></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-01-29 11:27</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=8376439" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(8376439);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=8376439,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/1/29 11:27:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8376439.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:48 GMT -->
+</html>

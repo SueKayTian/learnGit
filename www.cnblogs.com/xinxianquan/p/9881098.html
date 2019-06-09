@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9881098.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>工业以太网EtherNet/IP协议安全分析整理 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、 EtherNet/IP : 设备可以用户数据报协议（UDP）的隐式报文传送基于IO的资料 ，用户传输控制协议（TCP）显示报文上传和下参数，设定值，程式 ，用户主站的轮询 从站周期性的更新或是改" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9881098.html">工业以太网EtherNet/IP协议安全分析整理</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、 &nbsp; &nbsp; EtherNet/IP :</p>
+<p>&nbsp;&nbsp;&nbsp; 设备可以用户数据报协议（UDP）的隐式报文传送基于IO的资料 ，用户传输控制协议（TCP）显示报文上传和下参数，设定值，程式 ，用户主站的轮询 从站周期性的更新或是改变状态COS，方便主站监控从站的状态，讯息会使用UDP的报文发送出去</p>
+<p>&nbsp;&nbsp;&nbsp; 特性：&nbsp; EnterNet/IP 工业以太网组成的系统具有兼容性和互操作性，资源共享能力强和传输距离远，传输速率高优势</p>
+<p>&nbsp;&nbsp;&nbsp; EtherNetIP在物理层和数据链路层采用以太网，可以与标准的以太网设备透明衔接，并保证随着以太网的发展，EtherNetIP也可以进一步扩展。EtherNetIP的网络层和传输层采用UDP协议传送实时性要求高的隐式报文，如面向控制的实时I/O数据，优先级较高；用TCP协议的流量控制和点对点特性通过TCP通道传输非实时性的显示报文，优先级较低</p>
+<p>&nbsp;&nbsp;&nbsp; 工作模式：</p>
+<p>EtherNet/IP采用生产/消费模式，它允许网络上的节点同时存取同一个源的数据。在生产/消费模式中，数据被分配一个唯一的标识，每一个数据源一次性的将数据发送到网络上，其他节点选择性的读取这些数据，从而提高了系统的通信效率</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp; EnterNet/IP存在的漏洞</p>
+<p>&nbsp; 2012年2月14日，Basecamp计划的安全研究者提出了一个针对<a href="https://baike.baidu.com/item/洛克威尔" target="_blank">洛克威尔</a>的ControlLogix<a href="https://baike.baidu.com/item/PLC" target="_blank">PLC</a>，EtherNet/IP通讯缺陷的<a href="https://baike.baidu.com/item/Metasploit" target="_blank">Metasploit</a>攻击。此安全性漏洞若没处理，可以允许远端攻击者破坏设备或使设备在未预期的情形下重新开机，而这些设备往往也是工业系统上的关键设备或元件</p>
+<p>&nbsp;&nbsp;&nbsp; EthernetIP是实时以太网协议，容易受到以太网漏洞的影响，由于UDP之上的EthernetIP是无法连接的，因此没有内在网络层机制来保证可靠性、顺序性或进行数据完整性检查。CIP协议是一个端到端的面向对象并提供了工业设备和高级设备之间连接的一种协议，EtherNetIP协</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; CIP协议是一个端到端的面向对象并提供了工业设备和高级设备之间连接的一种协议，EtherNetIP协议在基于传统TCP/IP协议的基础上嵌入了CIP协议，CIP协议的对象模型也存在如下的安全问题：</p>
+<p>&nbsp; CIP未定义任何显式或隐式的安全机制；使用通用工业协议必须对对象进行设备标识，为攻击者进行设备识别与枚举创造条件；使用通用应用对象进行设备信息交换与控制，可能扩大遭受工业攻击的范围，令攻击者可以操纵更多的工业设备；EthernetIP使用UDP与广播数据进行实时传输，两者都缺少传输控制，攻击者易于注入伪造数据或使用注入IGMP控制报文操纵传输途径</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181031102937441-2045612098.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181113092951610-775047176.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; EnterNet/IP上使用TCP/IP 和UDP /IP lai 封装数据包。包括显示连接隐式连接（注&nbsp;&nbsp; ====摘自&nbsp; 工业以太网协议Ethernet/IP&nbsp; 吴爱国 李长滨）</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 如下的显示请求很隐式请求摘自&nbsp; EtherNet/IP：industrial protocol paper</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 显示报文： 显示报文适用于两个设备多用途的点对点报文传递，是典型的请求-响应网络通信方式。常用于节点配置 问题诊断 等，显示报文通常使用优先级较低的连接ID，并且该报文的相关报文包含在显示报文数据帧的数据区中。包括要执行的对象属性移机地址，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 隐式报文：&nbsp; 隐式报文适用于对实时性要求较高和面向控制的数据I/O数据等，IO报文使用优先级较高的连接ID 。在IO报文利用ID发送报文之前，报文的发送和设备必须先进行配置，配置的内容包括原地址，目的的对象说属性。以及数据生产者和消费者的地址。</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181031104310847-688733557.png" alt="" /></p>
+<p>EnterNet/IP 实现了通过以太网提供控制，配置和数据的采集服务。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 优势：&nbsp; 大多数用户可以利用现用的 以太网技术知识和网络设施，发挥最大的作用。EtherEnt/IP和现在的TCP/IP协议能够共存。</p>
+<p>&nbsp;博客摘要：每个CIP节点被模拟炒年糕一组对象的集合，CIP对象由class&nbsp;&nbsp; 实例 instance&nbsp;&nbsp; 属性 attribute&nbsp; 服务service 和行为 behavior 构成。</p>
+<p>&nbsp;EtherNet/IP和ControlNet和DeviceNet 都是用相同的应用层协议，所以之间能够共享对象和设备描述信息，这些数据和描述信息可以让不同的厂家的复杂的设备 实现即插即用和互操作。在同一网络中可以完成实时I/O信息。配置信息以及诊断信息的传递，无需编辑特制的软件，便可以将这种复杂的设备，变频器机器人控制器，条形码，称重器导尿管设备连接在一起，这样一来不仅能够快速的搭建一个控制系统，还能方便对设备的控制和维护。</p>
+<p>&nbsp;&nbsp;&nbsp; EtherNet/ip对用户提供显示和隐式的信息报文传输服务，这样EtherNet/IP 网络能够实现利用轮询，周期循环 状态改变等触发机制，进行点对点的数据传输，从而满足控制，设备网络的各种需要。</p>
+<p>&nbsp;</p>
+<p>目前国际上流行的工业以太网&nbsp; Modbus/TCP &nbsp; EtherNet/IP Profinet&nbsp; HSE等。</p>
+<p>&nbsp;</p>
+<p>引用：</p>
+<p>工业以太网协议Ethernet/IP&nbsp; 吴爱国 李长滨</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181031160121558-1715504235.png" alt="" /></p>
+<p>&nbsp;安全实验室资料整理&nbsp; http://plcscan.org&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 关于工控设备的蜜罐日志（about ICS/SCADA Honeypot log）设备协议仿真部署在网上抓取的日志记录详见wooyun社区的讨论</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 数据分析一栏中统计了按照协议分类使用的工控设备的暴露数据的统计表&nbsp;&nbsp; 统计数据来源于 shodan</p>
+<p>&nbsp;&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181031203307590-1383656148.png" alt="" /></p>
+<p>OPC（OLength forProcess Control 用于过程控制的OLE）协议概念介绍：</p>
+<p>&nbsp;&nbsp; 是一个标准的工业标准，管理这个保准的国际组织是OPC基金会，OPC包括一整套接口，属性和方法标准集，用于过程控制和制造自动化系统</p>
+<p>DNP3（Distributed Network Protocol分布式网络规约）是一种应用于自动化组件之间的通讯协议，SCADA可以使用DNP协议与主站 RTU 以及IED进行通讯。该协议有IEEE提出，参考而来IEC850-5以及其他一些IEC协议，为了解决SCADA行业中协议的混杂，没有够个人的标准的问题。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DNP协议有一定的可靠性，这种可靠性可以用来对抗恶劣环境中的电磁干扰，元件老化，行行好失真，但是不保证在黑客的攻击下，或者恶意破坏者控制系统的清空下的可靠性。</p>
+<p>&nbsp;EtherNet/IPd的特点之一是在TCP/IP/UDP的基础上附加了CIP，正是这个公共应用层的存在使得EtherNet/IP获得了广泛的支持，</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181101132701678-497373202.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181101132817836-1596441166.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181101133515547-1182469907.png" alt="" /></p>
+<p>博客摘要： 工控安全之门&nbsp; https://www.cnblogs.com/blacksunny/p/7202815.html</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181101134152512-717909525.png" alt="" /></p>
+<p>EtherNetIP是为了在以太网中使用CIP协议进行的封装，EtherNet/IP 的CIP帧分装了命令，数据点和消息，CIP帧包括CIP设备配置文件，应用层，表示层，会话层，数据的其余部分书EtherNet/IP帧，</p>
+<p>&nbsp;&nbsp; CIP协议字段的含义： command 两个字节的整数，对应一个CIP命令，设备必须能过接收无法是被的命令字段，处理这些异常。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; length:&nbsp; l两个字节的整数，代表数据包中的数据部分 的长度，对没有数据部分的请求报文，该字段是0、</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Session handle 会话句柄（session handle）由目标设备生成，并返回给会话的发起者。该句柄将用于后续与目标设备的通信。</p>
+<ul class="list-paddingleft-2">
+<li>
+<h4>Status</h4>
+<p>Status字段存储了目标设备执行命令返回的状态码。状态码&ldquo;0&rdquo;代表命令执行成功。所有的请求报文中，状态码被置为&ldquo;0&rdquo;。其它的状态码还包括：</p>
+</li>
+</ul>
+<p>- 0x0001无效或不受支持的命令</p>
+<p>- 0x0002目标设备资源不足，无法处理命令</p>
+<p>- 0x0003数据格式不正确或数据不正确</p>
+<p>- 0x0065接收到无效的数据长度</p>
+<h4>Sender Context</h4>
+<p>命令的发送者生成这六字节值，接收方将原封不动的返回该值。</p>
+<h4>Options</h4>
+<p>该值必须始终为0，如果不为零，数据包将被丢弃。</p>
+<p>&nbsp;Session Handle即可轻松攻击Ethernet/IP</p>
+<p>工业协议安全书籍</p>
+<h1 class="entry-title">Books</h1>
+<div class="entry-content">
+<h1>中文读物</h1>
+<table style="width: 1404px;">
+<tbody>
+<tr>
+<td width="68"><strong>序号</strong></td>
+<td width="146"><strong>名称</strong></td>
+<td width="156"><strong>作者</strong></td>
+<td width="147"><strong>出版信息</strong></td>
+<td width="760"><strong>内容简介</strong></td>
+<td width="128"><strong>阅读参考</strong></td>
+</tr>
+<tr>
+<td width="68">1</td>
+<td width="146">《工业SCADA系统信息安全技术》</td>
+<td width="156">饶志宏 (作者), 兰昆 (作者), 蒲石 (作者)</td>
+<td width="147">出版社: 国防工业出版社; 第1版 (2014年5月1日)</td>
+<td width="760">《工业SCADA系统信息安全技术》讲述了工业监视控制与数据采集（SCADA）系统基本概念，系统地分析工业SCADA系统存在的脆弱点和面临的信息安全威胁，阐述了工业SCADA系统信息安全体系，论述其相应的关键技术；介绍了典型电力SCADA系统信息安全实际工程应用案例，并对国内外工业控制系统信息安全的发展趋势进行了分析。读者对象：政府、军队、高校、科研机构等从事工业控制系统信息安全研究的科研人员，以及相关企业进行工业控制系统信息安全开发、建设和应用的技术人员。</td>
+<td width="128">非工控行业专业级，推荐阅读指读：
+<p>★★★★☆</p>
+</td>
+</tr>
+<tr>
+<td width="68">2</td>
+<td width="146">《工业控制系统信息安全》</td>
+<td width="156">肖建荣 (作者)</td>
+<td width="147">出版社: 电子工业出版社; 第1版 (2015年9月1日)</td>
+<td width="760">本书简洁、全面地介绍了工业控制系统信息安全概念和标准体系，系统地介绍了工业控制系统架构和漏洞分析，系统地阐述了工业控制系统信息安全技术与方案部署、风险评估、生命周期、管理体系、项目工程、产品认证、工业控制系统入侵检测与入侵防护、工业控制系统补丁管理。</td>
+<td width="128">入门级，推荐阅读指读：
+<p>★★★☆☆</p>
+</td>
+</tr>
+<tr>
+<td width="68">3</td>
+<td width="146">《工业控制系统安全等级保护方案与应用》</td>
+<td width="156">蔡皖东 (作者)</td>
+<td width="147">出版社: 国防工业出版社; 第1版 (2015年3月1日)</td>
+<td width="760">《工业控制系统安全等级保护方案与应用》分为7章，分别介绍了工业控制系统信息安全概论、工业控制系统安全等级保护定级、工业控制系统安全等级保护要求、工业控制系统等级保护安全设计、工业控制系统安全等级保护实施、工业控制系统安全等级保护测评和工业控制系统安全等级保护方案应用。</td>
+<td width="128">入门级，推荐阅读指读：
+<p>★★☆☆☆</p>
+</td>
+</tr>
+<tr>
+<td width="68">4</td>
+<td width="146">《工业网络安全&mdash;智能电网，SCADA和其他工业控制系统等关键基础设施的网络安全》</td>
+<td width="156">[美] Eric D.Knapp 著；周秦，郭冰逸，贺惠民 等 译</td>
+<td width="147">出版社： 国防工业出版社<br />出版时间：2014-06-01</td>
+<td width="760">近年来，经常听闻同一件事：我们国家的关键基础设施是脆弱的，需要得到应有的安全防护。纳普所著的《工业网络安全》一书向您解释了作为工业控制系统基础的特定协议和应用，并且为您提供了对它们进行保护的一些非常容易理解的指南。除了阐述合规指南、攻击与攻击面，甚至是一些不断改进的安全工具外，本书还为您提供了关于SCADA、控制系统协议及其如何运作的一个清晰理解。</td>
+<td width="128">信息安全领域专业级，推荐阅读指读：★★★☆☆</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="68">5</td>
+<td width="146">《智能电网安全:下一代电网安全》</td>
+<td width="156">托尼&bull;弗里克 (Tony Flick) (作者), 贾斯汀&bull;莫尔豪斯 (Justin Morehouse) (作者), 徐震 (译者), 于爱民 (译者), 刘韧 (译者)</td>
+<td width="147">出版社: 国防工业出版社; 第1版 (2013年1月1日)</td>
+<td width="760">《智能电网安全:下一代电网安全》着眼于当前智能电网的安全以及它是如何被开发和部署到全球千万家庭中的。《智能电网安全:下一代电网安全》详细讨论了针对智能仪表和智能设备的直接攻击以及针对配套网络和应用程序的攻击，并给出如何防御这些攻击的建议。《智能电网安全:下一代电网安全》给出了一个针对成长中的系统如何实现安全性的框架，用来指导安全顾问与系统和网络架构师如何防范大大小小的攻击者，从而保证智能电网的稳健运行。《智能电网安全:下一代电网安全》详细介绍了如何使用新旧黑客技术来攻击智能电网以及如何防御它们。讨论当前的安全举措。以及它们达不成所需目标的原因。找出黑客是如何利用新的基础设施攻击基础设施。</td>
+<td width="128">专业级，推荐阅读指读：★★★★☆</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="68">6</td>
+<td width="146">《智能电网信息安全指南(第1卷):智能电网信息安全战略架构和高层要求》</td>
+<td width="156">美国国家标准和技术研究院 (编者), 中国电力科学研究院 (译者)</td>
+<td width="147">出版社: 中国电力出版社; 第1版 (2013年1月1日)</td>
+<td width="760">《智能电网信息安全指南(第1卷):智能电网信息安全战略架构和高层要求》由美国国家标准和技术研究院所著，提出了美国针对智能电网信息安全的分析框架，供相关组织根据智能电网业务特性、安全风险和漏洞制定有效的信息安全战略参考使用。主要内容包括信息安全战略、智能电网的逻辑架构和接口、高层安全要求、密码和密钥管理等，可供相关读者阅读学习。</td>
+<td width="128">专业级，推荐阅读指读：★★★★★</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="68">7</td>
+<td width="146">《智能电网信息安全指南:美国国家标准和技术研究院7628号报告(第二、第三卷)》</td>
+<td width="156">美国国家标准和技术研究院 (作者), 中国电力科学研究院 (译者)</td>
+<td width="147">出版社: 中国电力出版社; 第1版 (2014年6月1日)</td>
+<td width="760">本书为《智能电网信息安全指南 美国国家标准和技术研究院7628号报告》第二、第三卷，内容包括隐私和智能电网、脆弱性类别、智能电网的自下而上安全分析、智能电网信息安全的研究与开发主题、标准审阅综述、关键电力系统安全要求用例。该报告提出了美国针对智能电网信息安全的分析框架，供相关组织根据智能电网业务特性、安全风险和漏洞制定有效的信息安全战略参考使用。</td>
+<td width="128">专业级，推荐阅读指读：★★★★★</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+<h1>外语读物</h1>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<td width="4%"><strong>序号</strong></td>
+<td width="46%"><strong>名称</strong></td>
+<td width="24%"><strong>作者</strong></td>
+<td width="24%"><strong>出版信息</strong></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">1</td>
+<td width="46%">《Robust Control System Networks: How To Achieve Reliable Control After Stuxnet》</td>
+<td width="24%">Ralph Langner</td>
+<td width="24%">Published by Momentum Press, 2011, 198-pages</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">2</td>
+<td width="46%">《Cybersecurity for Industrial Control Systems》</td>
+<td width="24%">Tyson McCauley and Bryan Singer</td>
+<td width="24%">Published by Auerbach Publications, 203 Pages</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">3</td>
+<td width="46%">《Industrial Network Security》</td>
+<td width="24%">Dave Teumim</td>
+<td width="24%">Syngress; 2 (2014.12.29)</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">4</td>
+<td width="46%">《Protecting Industrial Control Systems From Electronic Threats》</td>
+<td width="24%">Joseph Weiss</td>
+<td width="24%">Published by Momentum Press, 2010, 310 Pages</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">5</td>
+<td width="46%">《TechnoSecurity&rsquo;s Guide To Securing SCADA》</td>
+<td width="24%">Jack Wiles et al.</td>
+<td width="24%">Published by Syngress, 2008, 352-pages</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">6</td>
+<td width="46%">《Cybersecurity for SCADA Systems》</td>
+<td width="24%">William Shaw</td>
+<td width="24%">Published by Pennwell Corp, 2006, 299 pages</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">7</td>
+<td width="46%">《Securing SCADA Systems》</td>
+<td width="24%">Ronald Krutz</td>
+<td width="24%">Published by Wiley Press, 2005, 218 pages</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">8</td>
+<td width="46%">《Securing the Smart Grid》</td>
+<td width="24%">Tony Flick and Justin Morehouse</td>
+<td width="24%">Published by Syngress, 2010, 320 pages</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">9</td>
+<td width="46%">《Optimized Robust Adaptive Networks in Supervisory Control and Data Acquisition Systems》</td>
+<td width="24%">Luis A Oquendo Class</td>
+<td width="24%">&nbsp;</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td width="4%">10</td>
+<td width="46%">《Handbook of SCADA/Control Systems, Second Edition 2nd Edition》</td>
+<td width="24%">Robert Radvanovsky (Editor), Jacob Brodsky (Editor)</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181102153023129-457158444.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181102153040106-1220940521.png" alt="" /></p>
+<p>&nbsp;</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181105134609674-740197812.png" alt="" /></p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181113085932230-1948440151.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181113090012584-1691405065.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181113092252428-1616732188.png" alt="" /></p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181113093548191-1885990402.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181113141433286-638666230.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181113141953853-944190502.png" alt="" /></p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201811/1276904-20181129151052328-265875190.png" alt="" /></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-11-03 21:33</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9881098" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9881098);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9881098,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/11/3 21:33:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9881098.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:37 GMT -->
+</html>

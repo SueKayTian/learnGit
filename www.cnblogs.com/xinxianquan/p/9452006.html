@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9452006.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Android手机流量分析工具介绍 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="一、20 Best Android Hacking Apps And Tools Of 2018 首先罗列常见的Android手机hacking的工具 #1&#160;The Android Netw" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9452006.html">Android手机流量分析工具介绍</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h1 class="title single-title entry-title"><span style="font-size: 18px;">一、20 Best Android Hacking Apps And Tools Of 2018</span></h1>
+<p><span style="font-size: 16px;">首先罗列常见的Android手机hacking的工具</span></p>
+<h3><span id="1The_Android_Network_Hacking_Toolkit"><strong>#1<a href="https://m.downloadatoz.com/anti-android-network-toolkit/anti.network.toolkit/" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">&nbsp;The Android Network Hacking Toolkit</a></strong></span></h3>
+<div id="attachment_38382" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/android-network-toolkit-by-zimperium.jpg" data-wpel-link="internal"><img class="size-full wp-image-38382" src="https://techviral.net/wp-content/uploads/2016/01/android-network-toolkit-by-zimperium.jpg" alt="15+ Best Android Hacking Apps And Tools" width="600" height="500" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/android-network-toolkit-by-zimperium.jpg 600w, https://techviral.net/wp-content/uploads/2016/01/android-network-toolkit-by-zimperium-300x250.jpg 300w, https://techviral.net/wp-content/uploads/2016/01/android-network-toolkit-by-zimperium-504x420.jpg 504w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>In the last Defcon conference, a new tool has been released by a security researcher and the tool is called &ldquo;The Android network toolkit&rdquo;. This tool has been developed for penetration tester and ethical hackers to test any network and vulnerabilities by using their mobile phones. This toolkit contains different apps that will help any hacker to find vulnerabilities and possibly exploit it. The company behind the app is an Israeli security firm called Zimperium.</p>
+<h3><span id="2Nmap_for_Android"><strong>#2&nbsp;<a href="https://code.google.com/p/anmap/downloads/detail?name=anmap.apk" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">Nmap for Android</a></strong></span></h3>
+<div id="attachment_38391" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/Nmap-for-Android.jpg" data-wpel-link="internal"><img class="size-full wp-image-38391" src="https://techviral.net/wp-content/uploads/2016/01/Nmap-for-Android.jpg" alt="15+ Best Android Hacking Apps And Tools" width="600" height="355" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/Nmap-for-Android.jpg 600w, https://techviral.net/wp-content/uploads/2016/01/Nmap-for-Android-300x178.jpg 300w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>Nmap (network mapper) is one the best among different network scanner (port finder) tool, Nmap was initially developed for Unix OS but now it is available on Windows and Android as well. Nmap for Android is a Nmap app for your phone! Once your scan finishes, you can e-mail the results. This application is not an official app but it looks good.</p>
+<blockquote class="td_quote_box td_box_center">
+<p>Also Read:&nbsp;<a href="https://techviral.net/amazing-things-you-can-do-after-rooting-android/" target="_blank" data-wpel-link="internal">25+ Amazing Things You Can Do After Rooting Your Android</a></p>
+</blockquote>
+<h3><span id="3FaceNiff_24_Final-_Session_Hijacker_for_Android"><strong>#3&nbsp;<a href="http://faceniff.ponury.net/download.php" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">FaceNiff 2.4 Final- Session Hijacker for Android</a></strong></span></h3>
+<div id="attachment_38389" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/faceniff-penetration-app.jpeg" data-wpel-link="internal"><img class="size-full wp-image-38389" src="https://techviral.net/wp-content/uploads/2016/01/faceniff-penetration-app.jpeg" alt="15+ Best Android Hacking Apps And Tools" width="650" height="311" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/faceniff-penetration-app.jpeg 650w, https://techviral.net/wp-content/uploads/2016/01/faceniff-penetration-app-300x144.jpeg 300w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>Your Facebook account is at risk, just like a Firesheep (for Firefox hacking) there is a FaceNiff for hijacking the session of famous social networking websites includes facebook and twitter. FaceNiff is developed by Bartosz Ponurkiewicz who created Firesheep before but faceniff is for Android OS.</p>
+<h3><span id="4_AnDOSid-_DOS_Tool_for_Android"><strong>#4&nbsp;<a href="https://www.google.com/search?q=AnDOSid-+DOS+Tool+for+Android" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">AnDOSid- DOS Tool for Android</a></strong></span></h3>
+<div id="attachment_38381" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android.jpg" data-wpel-link="internal"><img class="size-large wp-image-38381" src="https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android-1024x576.jpg" alt="15+ Best Android Hacking Apps And Tools" width="640" height="360" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android-1024x576.jpg 1024w, https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android-300x169.jpg 300w, https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android-768x432.jpg 768w, https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android-696x392.jpg 696w, https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android-1068x601.jpg 1068w, https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android-747x420.jpg 747w, https://techviral.net/wp-content/uploads/2016/01/AnDOSid-DOS-Tool-for-Android.jpg 1600w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>DOS or denial of service attack is the very dangerous attack because it takes down the server&nbsp;(computer). AnDOSid allows security professionals to simulate a DOS attack (An HTTP post-flood attack to be exact) and of course a DDoS on a web server, from mobile phones. AnDOSid is designed for security professionals only!</p>
+<h3><span id="5SSHDroid-_Android_Secure_Shell"><strong>#5&nbsp;<a href="https://play.google.com/store/apps/details?id=berserker.android.apps.sshdroid&amp;hl=en" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">SSHDroid- Android Secure Shell</a></strong></span></h3>
+<div id="attachment_38393" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell.png" data-wpel-link="internal"><img class="size-large wp-image-38393" src="https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell-1024x640.png" alt="15+ Best Android Hacking Apps And Tools" width="640" height="400" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell-1024x640.png 1024w, https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell-300x188.png 300w, https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell-768x480.png 768w, https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell-696x435.png 696w, https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell-1068x668.png 1068w, https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell-672x420.png 672w, https://techviral.net/wp-content/uploads/2016/01/SSHDroid-Android-Secure-Shell.png 1280w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>Secure Shell or SSH is the best protocol that provides an extra layer of security while you are connecting to your remote machine. SSHDroid is an SSH server implementation for Android.&nbsp;This application will let you connect to your device from a PC and execute commands (like &ldquo;terminal&rdquo; and &ldquo;ADB shell&rdquo;).</p>
+<blockquote class="td_quote_box td_box_center">
+<p>Also Read:&nbsp;<a href="https://techviral.net/how-to-browse-securely-in-android/" target="_blank" data-wpel-link="internal">Top 10 Best Secure Android Browsers To Browse Web Securely</a></p>
+</blockquote>
+<h3><span id="6_Hack_code"><strong>#6&nbsp;<a href="https://play.google.com/store/apps/details?id=com.techfond.hackode&amp;hl=en" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">Hack code</a></strong></span></h3>
+<div id="attachment_38390" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/Hackode.jpg" data-wpel-link="internal"><img class="size-large wp-image-38390" src="https://techviral.net/wp-content/uploads/2016/01/Hackode-1024x576.jpg" alt="15+ Best Android Hacking Apps And Tools" width="640" height="360" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/Hackode-1024x576.jpg 1024w, https://techviral.net/wp-content/uploads/2016/01/Hackode-300x169.jpg 300w, https://techviral.net/wp-content/uploads/2016/01/Hackode-768x432.jpg 768w, https://techviral.net/wp-content/uploads/2016/01/Hackode-696x392.jpg 696w, https://techviral.net/wp-content/uploads/2016/01/Hackode-1068x601.jpg 1068w, https://techviral.net/wp-content/uploads/2016/01/Hackode-747x420.jpg 747w, https://techviral.net/wp-content/uploads/2016/01/Hackode.jpg 1280w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>It is the best Hacker&rsquo;s Toolbox is an application for penetration tester, Ethical hackers, IT administrator and Cyber security professional to perform different tasks like reconnaissance, scanning performing exploits etc. This app contains different tools like Google Hacking, Google Dorks, Whois, Scanning etc.</p>
+<h3><span id="7_AndroRAT"><strong>#7&nbsp;<a href="https://github.com/wszf/androrat" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">AndroRAT</a></strong></span></h3>
+<div id="attachment_38383" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/AndroRAT.jpg" data-wpel-link="internal"><img class="size-large wp-image-38383" src="https://techviral.net/wp-content/uploads/2016/01/AndroRAT-1024x577.jpg" alt="15+ Best Android Hacking Apps And Tools" width="640" height="361" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/AndroRAT-1024x577.jpg 1024w, https://techviral.net/wp-content/uploads/2016/01/AndroRAT-300x169.jpg 300w, https://techviral.net/wp-content/uploads/2016/01/AndroRAT-768x432.jpg 768w, https://techviral.net/wp-content/uploads/2016/01/AndroRAT-696x392.jpg 696w, https://techviral.net/wp-content/uploads/2016/01/AndroRAT-1068x601.jpg 1068w, https://techviral.net/wp-content/uploads/2016/01/AndroRAT-746x420.jpg 746w, https://techviral.net/wp-content/uploads/2016/01/AndroRAT.jpg 1364w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>AndroRAT &ndash; Remote Administration Tool for Android is a client/server application developed in Java Android for the client side and in Java/Swing for the Server. The goal of the application is to give the control of the Android system remotely and retrieve information from it.</p>
+<blockquote class="td_quote_box td_box_center">
+<p>Also Read:&nbsp;<a href="https://techviral.net/secure-pc-by-blocking-dangerous-ips/" target="_blank" data-wpel-link="internal">How To Secure Your Computer By Automatically Blocking Dangerous IP&rsquo;s</a></p>
+</blockquote>
+<h3><span id="8_SpoofApp"><strong>#8&nbsp;<a href="http://m.shivup.store.aptoide.com/app/market/com.spoofapp.spoofapp2/29/287476/SpoofApp+-+2.7.1" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">SpoofApp</a></strong></span></h3>
+<div id="attachment_38392" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/SpoofApp.jpg" data-wpel-link="internal"><img class="size-full wp-image-38392" src="https://techviral.net/wp-content/uploads/2016/01/SpoofApp.jpg" alt="15+ Best Android Hacking Apps And Tools" width="320" height="455" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/SpoofApp.jpg 320w, https://techviral.net/wp-content/uploads/2016/01/SpoofApp-211x300.jpg 211w, https://techviral.net/wp-content/uploads/2016/01/SpoofApp-295x420.jpg 295w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>This app simply allows users to Spoof (Place) calls with any called ID number. You can manipulate what number shows up on the person&rsquo;s phone when you call. This is the app used for fun. It also includes several other features like voice changer and calls recorder too.</p>
+<h3><span id="9_WhatsApp_Sniffer"><strong>#9&nbsp;<a href="http://softstribe.com/apk/download-whatsapp-sniffer-apk-file-android" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">WhatsApp Sniffer</a></strong></span></h3>
+<div id="attachment_38394" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/WhatsApp-sniffer.jpg" data-wpel-link="internal"><img class="size-full wp-image-38394" src="https://techviral.net/wp-content/uploads/2016/01/WhatsApp-sniffer.jpg" alt="15+ Best Android Hacking Apps And Tools" width="800" height="373" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/WhatsApp-sniffer.jpg 800w, https://techviral.net/wp-content/uploads/2016/01/WhatsApp-sniffer-300x140.jpg 300w, https://techviral.net/wp-content/uploads/2016/01/WhatsApp-sniffer-768x358.jpg 768w, https://techviral.net/wp-content/uploads/2016/01/WhatsApp-sniffer-696x325.jpg 696w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>WhatsApp Sniffer Android app allows Android users to receive the text messages from WhatsApp application from phones that uses the same WiFi with you (WhatsApp is totally different from WhatsApp Sniffer). It is easily detected by antivirus so better is to disable it before using this app.</p>
+<h3><span id="10_APK_Inspector"><strong>#10&nbsp;<a href="https://github.com/honeynet/apkinspector" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">APK Inspector</a></strong></span></h3>
+<div id="attachment_38384" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/APKInspector-1.png" data-wpel-link="internal"><img class="size-full wp-image-38384" src="https://techviral.net/wp-content/uploads/2016/01/APKInspector-1.png" alt="15+ Best Android Hacking Apps And Tools" width="776" height="487" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/APKInspector-1.png 776w, https://techviral.net/wp-content/uploads/2016/01/APKInspector-1-300x188.png 300w, https://techviral.net/wp-content/uploads/2016/01/APKInspector-1-768x482.png 768w, https://techviral.net/wp-content/uploads/2016/01/APKInspector-1-696x437.png 696w, https://techviral.net/wp-content/uploads/2016/01/APKInspector-1-669x420.png 669w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>It is the perfect GUI tool for analysts to analyze the Android applications. You can use this app to get the source code of any Android app and can edit it to remove license and credits. This app will help you a lot if you need to learn and understand the coding behind apps.</p>
+<blockquote class="td_quote_box td_box_center">
+<p>Also Read:&nbsp;<a href="https://techviral.net/how-to-secure-your-android-from-being-hacked/" target="_blank" data-wpel-link="internal">How To Secure Your Android Smartphone From Being Hacked</a></p>
+</blockquote>
+<h3><span id="11_Evil_Operator"><strong>#11&nbsp;<a href="http://android.appaix.com/download/evil-operator-1252-83295.html" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">Evil Operator</a></strong></span></h3>
+<div id="attachment_38388" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/Evil-Operator.jpg" data-wpel-link="internal"><img class="size-full wp-image-38388" src="https://techviral.net/wp-content/uploads/2016/01/Evil-Operator.jpg" alt="15+ Best Android Hacking Apps And Tools" width="307" height="512" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/Evil-Operator.jpg 307w, https://techviral.net/wp-content/uploads/2016/01/Evil-Operator-180x300.jpg 180w, https://techviral.net/wp-content/uploads/2016/01/Evil-Operator-252x420.jpg 252w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>As it, names suggest it is an app which has lots of evil powers. The main purpose of this app to connect two people in a phone call making them feel that they called each other. The best part is it can record and save the entire conversation.</p>
+<h3><span id="12_WifiKill"><strong>#12&nbsp;<a href="http://forum.xda-developers.com/showthread.php?t=1282900" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">WifiKill</a></strong></span></h3>
+<div id="attachment_38395" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/WifiKill.jpg" data-wpel-link="internal"><img class="size-full wp-image-38395" src="https://techviral.net/wp-content/uploads/2016/01/WifiKill.jpg" alt="15+ Best Android Hacking Apps And Tools" width="636" height="358" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/WifiKill.jpg 636w, https://techviral.net/wp-content/uploads/2016/01/WifiKill-300x169.jpg 300w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>With this app, you can disable internet connection for a device on the same network. So if someone (anyone) is abusing the internet wasting precious bandwidths, you could just kill their connection and stay happy with a full bandwidth just for yourself.</p>
+<h3><span id="13_DroidSheep"><strong>#13 DroidSheep</strong></span></h3>
+<div id="attachment_38386" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/droidsheep-apk.jpg" data-wpel-link="internal"><img class="size-full wp-image-38386" src="https://techviral.net/wp-content/uploads/2016/01/droidsheep-apk.jpg" alt="15+ Best Android Hacking Apps And Tools" width="705" height="344" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/droidsheep-apk.jpg 705w, https://techviral.net/wp-content/uploads/2016/01/droidsheep-apk-300x146.jpg 300w, https://techviral.net/wp-content/uploads/2016/01/droidsheep-apk-533x261.jpg 533w, https://techviral.net/wp-content/uploads/2016/01/droidsheep-apk-696x340.jpg 696w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>Droidsheep is developed as a tool for testing the security of your accounts. DroidSheep is an Android app for Security analysis in wireless networks and capturing facebook, twitter, LinkedIn and other accounts.</p>
+<h3><span id="14_Burp_Suite"><strong>#14&nbsp;<a href="https://portswigger.net/burp/download.html" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">Burp Suite</a></strong></span></h3>
+<div id="attachment_38385" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/Burp-Suite.png" data-wpel-link="internal"><img class="size-full wp-image-38385" src="https://techviral.net/wp-content/uploads/2016/01/Burp-Suite.png" alt="15+ Best Android Hacking Apps And Tools" width="853" height="437" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/Burp-Suite.png 853w, https://techviral.net/wp-content/uploads/2016/01/Burp-Suite-300x154.png 300w, https://techviral.net/wp-content/uploads/2016/01/Burp-Suite-768x393.png 768w, https://techviral.net/wp-content/uploads/2016/01/Burp-Suite-696x357.png 696w, https://techviral.net/wp-content/uploads/2016/01/Burp-Suite-820x420.png 820w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>Burp Suite is an integrated platform for performing security testing of web applications. Its various tools work seamlessly together to support the entire testing process, from initial mapping and analysis of an application&rsquo;s attack surface, through to finding and exploiting security vulnerabilities.</p>
+<blockquote class="td_quote_box td_box_center">
+<p>Also Read:&nbsp;<a href="https://techviral.net/secure-rooted-android-from-security-threats/" target="_blank" data-wpel-link="internal">How To Secure Rooted Android From Security Threats</a></p>
+</blockquote>
+<h3><span id="15_dSploit"><strong>#15&nbsp;<a href="http://forum.xda-developers.com/showthread.php?t=1914699" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">dSploit</a></strong></span></h3>
+<div id="attachment_38387" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/dSploit-672x420.jpg" data-wpel-link="internal"><img class="size-full wp-image-38387" src="https://techviral.net/wp-content/uploads/2016/01/dSploit-672x420.jpg" alt="15+ Best Android Hacking Apps And Tools" width="672" height="420" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/dSploit-672x420.jpg 672w, https://techviral.net/wp-content/uploads/2016/01/dSploit-672x420-300x188.jpg 300w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>dSploit is an Android network analysis and penetration suite which aims to offer to IT security experts/geeks the most complete and advanced professional toolkit to perform network security assessments on a mobile device.</p>
+<h3><span id="16_zANTI"><strong>#16&nbsp;<a href="https://www.zimperium.com/zanti-mobile-penetration-testing" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">zANTI</a></strong></span></h3>
+<div id="attachment_38396" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2016/01/zANTI.png" data-wpel-link="internal"><img class="size-full wp-image-38396" src="https://techviral.net/wp-content/uploads/2016/01/zANTI.png" alt="15+ Best Android Hacking Apps And Tools" width="696" height="414" data-layzr-srcset="https://techviral.net/wp-content/uploads/2016/01/zANTI.png 696w, https://techviral.net/wp-content/uploads/2016/01/zANTI-300x178.png 300w" /></a>
+<p class="wp-caption-text">15+ Best Android Hacking Apps And Tools</p>
+</div>
+<p>zANTI is a mobile penetration testing toolkit that lets security managers assess the risk level of a network with the push of a button. This easy to use mobile toolkit enables IT Security Administrators to simulate an advanced attacker to identify the malicious techniques they use in the wild to compromise the corporate network.</p>
+<blockquote class="td_quote_box td_box_center">
+<p>Also Read:&nbsp;<strong><a href="https://techviral.net/download-best-android-hacking-tools/" target="_blank" data-wpel-link="internal">Best Android Hacking Tools of 2018</a></strong></p>
+</blockquote>
+<h3><span id="17_cSploit"><strong>#17&nbsp;<a href="http://www.csploit.org/downloads/" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">cSploit</a></strong></span></h3>
+<div id="attachment_66471" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2017/06/cSploit.jpg" data-wpel-link="internal"><img class="size-full wp-image-66471" src="https://techviral.net/wp-content/uploads/2017/06/cSploit.jpg" alt="cSploit" width="1280" height="720" data-layzr-srcset="https://techviral.net/wp-content/uploads/2017/06/cSploit.jpg 1280w, https://techviral.net/wp-content/uploads/2017/06/cSploit-300x169.jpg 300w, https://techviral.net/wp-content/uploads/2017/06/cSploit-768x432.jpg 768w, https://techviral.net/wp-content/uploads/2017/06/cSploit-1024x576.jpg 1024w" /></a>
+<p class="wp-caption-text">cSploit</p>
+</div>
+<p>cSploit is one of the advanced security tools which you can have on your Android operating system. cSploit is basically a complete collection of IT security tools that can be used on Android platform. With this app, you can find vulnerabilities, exploits and crack WiFi passwords etc.</p>
+<h3><span id="18_Shark_for_Root"><strong>#18&nbsp;<a href="http://www.mediafire.com/download/c654s093zk4898m/Shark-lv.n3o.shark-102-v1.0.2.apk" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">Shark for Root</a></strong></span></h3>
+<div id="attachment_66473" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2017/06/Shark-for-Root.jpg" data-wpel-link="internal"><img class="size-full wp-image-66473" src="https://techviral.net/wp-content/uploads/2017/06/Shark-for-Root.jpg" alt=" Shark for Root" width="1024" height="768" data-layzr-srcset="https://techviral.net/wp-content/uploads/2017/06/Shark-for-Root.jpg 1024w, https://techviral.net/wp-content/uploads/2017/06/Shark-for-Root-300x225.jpg 300w, https://techviral.net/wp-content/uploads/2017/06/Shark-for-Root-768x576.jpg 768w, https://techviral.net/wp-content/uploads/2017/06/Shark-for-Root-320x240.jpg 320w" /></a>
+<p class="wp-caption-text">Shark for Root</p>
+</div>
+<p>This is another most used Android app for security experts and Hackers. Shark for Root basically works as a traffic snipper and also works on WiFi. FroYo, 3G tethered mode. With Shark for Root you can also use tcpdump command on rooted Android devices.</p>
+<h3><span id="19_DroidBox"><strong>#19&nbsp;<a href="https://code.google.com/p/droidbox/" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">DroidBox</a></strong></span></h3>
+<div id="attachment_66472" class="wp-caption aligncenter"><a href="https://techviral.net/wp-content/uploads/2017/06/DroidBox.jpg" data-wpel-link="internal"><img class="size-full wp-image-66472" src="https://techviral.net/wp-content/uploads/2017/06/DroidBox.jpg" alt="DroidBox" width="728" height="546" data-layzr-srcset="https://techviral.net/wp-content/uploads/2017/06/DroidBox.jpg 728w, https://techviral.net/wp-content/uploads/2017/06/DroidBox-300x225.jpg 300w, https://techviral.net/wp-content/uploads/2017/06/DroidBox-320x240.jpg 320w" /></a>
+<p class="wp-caption-text">DroidBox</p>
+</div>
+<p>This is another app which offers dynamic analysis of Android apps. If you need to find out the hashes for the APK package, DroidBox is the perfect app for you. You can also get results regarding network traffic, SMS and Phone calls, information leaks and more using DroidBox.</p>
+<h3><span id="20_SSHDroid"><strong>#20&nbsp;<a href="https://play.google.com/store/apps/details?id=berserker.android.apps.sshdroid&amp;hl=en" rel="nofollow external noopener noreferrer" target="_blank" data-wpel-link="external">SSHDroid</a></strong></span></h3>
+<div id="attachment_66474" class="wp-caption aligncenter"><img class="size-full wp-image-66474" src="https://techviral.net/wp-content/uploads/2017/06/SSHDroid.jpg" alt="SSHDroid" width="618" height="348" data-layzr-srcset="https://techviral.net/wp-content/uploads/2017/06/SSHDroid.jpg 618w, https://techviral.net/wp-content/uploads/2017/06/SSHDroid-300x169.jpg 300w" />
+<p class="wp-caption-text">SSHDroid</p>
+<p class="wp-caption-text">学习网络安全渗透&nbsp;通过下面的hacking&nbsp;路径学习&nbsp; &nbsp;：</p>
+<p class="wp-caption-text">二、<span id="Main_Aspects_the_Your_Heard_in_Hacking_is_Listed_Below">Main Aspects the Your Heard in Hacking is Listed Below:</span></p>
+<ul>
+<li>Linux</li>
+<li>BackTrack (Kali Linux)</li>
+<li>AirCrack</li>
+<li>SQLi</li>
+<li>Pishing</li>
+<li>Zero Day Exploit</li>
+<li>Information Gathering</li>
+<li>DDOS Attack</li>
+<li>Social Engg.</li>
+<li>Black Hat and White Hat Hackers.</li>
+<li>Wireless Hacking</li>
+<li>IP Spoofing</li>
+<li>Packet Sniffing</li>
+<li>Logic Bomb</li>
+<li>Anonymous</li>
+<li>XSS &ndash; Cross Site Scripting</li>
+<li>Passive Wiretapping</li>
+</ul>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-08-09 21:58</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9452006" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9452006);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9452006,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/8/9 21:58:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9452006.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+</html>

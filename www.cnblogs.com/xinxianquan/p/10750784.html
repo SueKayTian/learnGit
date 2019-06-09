@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10750784.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>TLS1.3&amp;TLS1.2形式化分析 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="本博客是对下面博客连接上的原文进行梳理+自己在其他方面资料做个整理 https://blog.csdn.net/andylau00j/article/details/79269499 https://" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10750784.html">TLS1.3&amp;TLS1.2形式化分析</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>本博客是对下面博客连接上的原文进行梳理+自己在其他方面资料做个整理</p>
+<div>https://blog.csdn.net/andylau00j/article/details/79269499</div>
+<div>https://www.cnblogs.com/huanxiyun/articles/6554085.html</div>
+<div>&nbsp;&nbsp; TLS协议在网络的应用层提供功能 ：加密，认证、消息完整性。（建立一个安全的连接，对其中传输的数据加密保护，防止中间人嗅探明文；多对数据的完整性进行校验，防止传输的数据被中间人进行篡改，建立一个可信的连接，对双方的真实身份进行验证）</div>
+<div><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190422140520283-110693854.png" alt="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190422140530463-731253626.png" alt="" />
+<p>&nbsp; 一个正常的TLS1.3 握手顺序是按照下面的顺序进行：</p>
+</div>
+<div>
+<ul>
+<li>客户端发送Client Hello（CH）报文，包含有关密钥协商以及其他与TLS连接建立有关的扩展给服务端。</li>
+<li>服务端发送Server Hello（SH）报文，包含有关密钥协商的扩展返还给客户端，双方根据CH和SH的协商结果可以得出密钥材料。</li>
+<li>如果客户端发送的CH报文不满足服务端的需要（如：不包含服务端支持的DH组件），服务端会发送一个Hello Retry Request报文给客户端，要求客户端重新发送符合要求的CH报文。</li>
+<li>利用密钥材料和前两个报文的哈希值，使用HKDF可以计算出一个handshake_key，此后握手阶段的信息受该密钥保护。</li>
+<li>服务端发送Encypted Extension（EE）报文，包含其他与密钥协商无关的扩展数据给客户端。</li>
+<li>如果使用公钥证书进行身份认证，服务端发送Certificate报文（传递自己的证书信息），和Certificate Verify(CV)报文（使用自己的证书私钥对之前的报文进行HMAC签名证明自己持有该证书）给客户端。</li>
+<li>如果需要对客户端身份进行认证，服务端还需要发送Certificate Request（CR）报文给对方请求客户端发送证书。</li>
+<li>服务端发送Finished报文。表明服务端到客户端信道的握手阶段结束，理论上不得再由该信道发送任何握手报文。</li>
+<li>如果客户端收到了服务端的CR报文，返回自己的Certificate报文和CV报文。</li>
+<li>客户端发送Finished报文，表明握手阶段结束，可以正式开始会话通讯。Finished报文使用会话密钥对上述所有握手信息进行HMAC签名，校验签名可以检验握手阶段的完整性，也可以验证双方是否协商出了一致的密钥。</li>
+</ul>
+<p>TLS1.3最大的特点就是对不同的报文使用多种不同的秘钥，TLS1.2中只使用两种秘钥，一个事用于完整性校验，另一个是用于报文加密，同一个连接中不同方向的加密秘钥不一样，TLS1.3使用AEAD机制不再使用MAC_key来进行完整性校验，同时由于其他各种用途的加密需要，TLS1.3的实施过程使用一下几种key：</p>
+<p>&nbsp;&nbsp;&nbsp; handshake_key&nbsp;&nbsp;&nbsp;&nbsp; early_traffic_key&nbsp;&nbsp; resumption_key&nbsp;&nbsp;&nbsp;&nbsp; exporter_key（导出秘钥，用户自定义的其他用途）</p>
+<p>&nbsp; 这些秘钥都是由之前协商的秘钥材料计算而出，区别在于HKDF的计算次数不同，HKDF计算使用的哈希值不同，以会话秘钥application_key为例子，以整个握手阶段的报文作为输入，计算四次HKDF导出最终使用的秘钥，同时，当加密的报文长度达到一定的长度的时候，双方发送的KU报文重新计算application_key</p>
+<p>数据发送出去之后，recod层会在密报文头部加上一小段的明文信息来标识解密后明文的长度信息，对方的让recod 层收到消息之后，通过逆过程解密密文后转发给上层协议，</p>
+<p>同时TLS1.3协议版本允许在末尾添加八字节整数倍的全为0的二进制数据，对方收到该消息之后，解密从末尾开始去掉0 ，当搜索到第一个不全为0的八字节的时候结束。</p>
+<p>总的概括：&nbsp; TLS1.3协议版本 使用的更加 复杂额秘钥导出过程，增强了最终使用秘钥的安全性，同时简化了所使用的加密秘钥，删除了RC4&nbsp; 3DES&nbsp;&nbsp; SHA1&nbsp; AES-CBC 等加密算法，删除了加密前压缩，重新协商等具有的漏洞，精简了协议 内容，</p>
+<p>&nbsp;&nbsp;&nbsp; 在TLS1.2中记录协议record，占据一个TLS连接的绝大数的数据流量，</p>
+<div> Record&nbsp;协议&nbsp;&mdash;&nbsp;从应用层接受数据，并且做:<br /><br />分片，逆向是重组<br />生成序列号，为每个数据块生成唯一编号，防止被重放或被重排序<br />压缩，可选步骤，使用握手协议协商出的压缩算法做压缩<br />加密，使用握手协议协商出来的key做加密/解密<br />算HMAC，对数据计算HMAC，并且验证收到的数据包的HMAC正确性<br />发给tcp/ip，把数据发送给&nbsp;TCP/IP&nbsp;做传输(或其它ipc机制)。
+</div>
+<p>&nbsp;下面对TLS协议秘钥协商的过程的分析&nbsp; </p>
+<p>基于RSA握手和秘钥交换的客户端验证服务器为示例如下</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190424160648400-172998738.png" alt="" /></p>
+<p>下面是上网的握手过程的时序图</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190424164555997-605328624.png" alt="" /></p>
+<p>下面对上面的协商过程解释：</p>
+<p>&nbsp;（1）Client-Hello&nbsp;&nbsp; 客户端发送请求，以明文传输信息，包含版本信息，加密候选列表，候选算法列表，随机数，扩展字段等信息，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 客户端支持加密套件 cipher suite列表，注意，每一个加密条件对应前面TLS原理中的四个功能的组合，认证算法Au（身份验证），秘钥交换算法 （keyExchange 秘钥协商），对称加密算法Enc(信息加密)，信息摘要MAc（完整性验证）。在TLS1.2 中支持压缩算法，Client-Hello 中包含压缩算法列表，用于后后续的压缩阶段使用。另外还有随机数 randmo_c 用于后续秘钥的生成。最后还包括扩展字段 extension 支持协议相关算法的参数以及其他辅助信息。</p>
+<p>（2）Server-Hello +Server_cerficate+ server_hello_done </p>
+<p>&nbsp;&nbsp;&nbsp; server_hello 服务端返回协商的信息结果，包括使用的协议版本，选择的加密套件，以及使用的压缩算法 随机数（随机数用于后续的秘钥协商）</p>
+<p>&nbsp;&nbsp;&nbsp; server_certificate 服务器端配置对应的证书链，用于身份验证和秘钥交换</p>
+<p>&nbsp;&nbsp;&nbsp; server_Hellodone 通知客户端 server_hello 信息发送结束</p>
+<p>（3）证书校验</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 客户端证书的合法性，如果验证通过才会进行后续的通信，合法性验证主要包括下面的环节：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 证书链的可信任、证书是否吊销、证书是否在有效期内、域名，核实证书的域名是否是当前访问的域名相匹配。</p>
+<p>（4）Client_key_excahage+ change_chiper_spec+encrypted_handshake_message </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; client_key_exchage 合法性验证通过之后，客户端计算产生随机数 pre-master ,并用证书的Pk 加密发送给服务器。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 当客户端获取全部的计算协商秘钥需要的信息： 两个明文随机数 Radmon_c 和 Radmon-S 和自己计算产生的 pre-master 计算得到协商秘钥 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enc_key=fuc(randmo_C,randmo_s,pre-Master)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; change_chiper_spec,客户端通知服务器后续的通信都采用协商的通信加密秘钥和加密算法进行加密通信，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; encrypted_handshake_message 结合前面所有的通信参数的hash值和其相关的信生成一段数据，采用协商的 session-secret 与算法进行加密之后发送给服务器用于数据与握手验证</p>
+<p>&nbsp;5）Change_ciper_spec +encrypted_handshake_message </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 服务器使用私钥解密加密的per-master 数据，基于之前交换的两个明文随机书卷 Random_c 和 random_S 计算协商秘钥 enc_key=fuc(randmo_C,randmo_s,pre-Master)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 计算之前所接受信息的hash 值，然后解密客户端发送 encrypted_handshake_message 验证数据和秘钥的正确性</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; encrypted_handshake_message验证完之后，服务器结同样发送 change_cipher_spec以告知客户端后续的通信采用协商秘钥与算法加密通信</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; encrypted_handshake_message服务器结合当前所有的通信参数生成一段数据并采用协商秘钥 session secret 与算法加密并发到客户端</p>
+<p>（6）结束握手</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 客户端计算所有接受到的信息的hash值，并采用协商秘钥解密 encrypted_handshake_message 验证服务器发送的数据和秘钥，验证通过则完成握手。</p>
+<p>（7）加密通信</p>
+<p>&nbsp;&nbsp; 开始使用协商秘钥与算法进行加密通信</p>
+<p>对TLS协议进行形式化分析的思维导图</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190424170205203-476038035.png" alt="" /></p>
+<p>&nbsp;下面是对 论文形式化工具Scyther 优化实例分析的关于 TSL的整理</p>
+<p>&nbsp;&nbsp; 作者对TLS的形式化过程中的涉及到如何将角色模型转化成安全模型的并没有说明，&nbsp; 只是将TSL.spdl执行的结果 截图，然后说明TLS是存在安全隐患的，分别在强安全模型和DY模型下面进行了低手的攻击测试</p>
+<p>&nbsp; 另外，&nbsp; 作者对攻击的轨迹路径没有说明。对存在的多种的轨迹路径只是截了一张图来简单的说明 确实存在安全的问题 </p>
+<p>&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190425162358640-134398680.png" alt="" /></p>
+<h4>Client Hello</h4>
+<p>握手第一步是客户端向服务端发送 Client Hello 消息，这个消息里包含了一个客户端生成的随机数&nbsp;Random1、客户端支持的加密套件（Support Ciphers）和 SSL Version 等信息。通过 Wireshark 抓包，我们可以看到如下信息：</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-0bcae5de99b7d6e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-0bcae5de99b7d6e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<blockquote>
+<p>Wireshark 抓包的用法可以参考<a href="http://www.jianshu.com/p/c67baf5fce6d" target="_blank">这篇文章</a></p>
+</blockquote>
+<h4>Server Hello</h4>
+<p>第二步是服务端向客户端发送 Server Hello 消息，这个消息会从 Client Hello 传过来的 Support Ciphers 里确定一份加密套件，这个套件决定了后续加密和生成摘要时具体使用哪些算法，另外还会生成一份随机数&nbsp;Random2。注意，至此客户端和服务端都拥有了两个随机数（Random1+ Random2），这两个随机数会在后续生成对称秘钥时用到。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-aab67532c3b39353.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-aab67532c3b39353.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Certificate</h4>
+<p>这一步是服务端将自己的证书下发给客户端，让客户端验证自己的身份，客户端验证通过后取出证书中的公钥。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-86995b047bdca4fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-86995b047bdca4fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Server Key Exchange</h4>
+<p>如果是DH算法，这里发送服务器使用的DH参数。RSA算法不需要这一步。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-d490081356459e7d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-d490081356459e7d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Certificate Request</h4>
+<p>Certificate Request 是服务端要求客户端上报证书，这一步是可选的，对于安全性要求高的场景会用到。</p>
+<h4>Server Hello Done</h4>
+<p>Server Hello Done 通知客户端 Server Hello 过程结束。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-f556b00b34e1752b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-f556b00b34e1752b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Certificate Verify</h4>
+<p>客户端收到服务端传来的证书后，先从 CA 验证该证书的合法性，验证通过后取出证书中的服务端公钥，再生成一个随机数&nbsp;Random3，再用服务端公钥非对称加密&nbsp;Random3生成&nbsp;PreMaster Key。</p>
+<h4>Client Key Exchange</h4>
+<p>上面客户端根据服务器传来的公钥生成了&nbsp;PreMaster Key，Client Key Exchange 就是将这个 key 传给服务端，服务端再用自己的私钥解出这个&nbsp;PreMaster Key&nbsp;得到客户端生成的&nbsp;Random3。至此，客户端和服务端都拥有&nbsp;Random1&nbsp;+&nbsp;Random2&nbsp;+&nbsp;Random3，两边再根据同样的算法就可以生成一份秘钥，握手结束后的应用层数据都是使用这个秘钥进行对称加密。为什么要使用三个随机数呢？这是因为 SSL/TLS 握手过程的数据都是明文传输的，并且多个随机数种子来生成秘钥不容易被暴力破解出来。客户端将&nbsp;PreMaster Key&nbsp;传给服务端的过程如下图所示：</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-8644f5444f48f969.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-8644f5444f48f969.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Change Cipher Spec(Client)</h4>
+<p>这一步是客户端通知服务端后面再发送的消息都会使用前面协商出来的秘钥加密了，是一条事件消息。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-4e85e83831670580.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-4e85e83831670580.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Encrypted Handshake Message(Client)</h4>
+<p>这一步对应的是 Client Finish 消息，客户端将前面的握手消息生成摘要再用协商好的秘钥加密，这是客户端发出的第一条加密消息。服务端接收后会用秘钥解密，能解出来说明前面协商出来的秘钥是一致的。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-936e08831386ec26.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-936e08831386ec26.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Change Cipher Spec(Server)</h4>
+<p>这一步是服务端通知客户端后面再发送的消息都会使用加密，也是一条事件消息。</p>
+<h4>Encrypted Handshake Message(Server)</h4>
+<p>这一步对应的是 Server Finish 消息，服务端也会将握手过程的消息生成摘要再用秘钥加密，这是服务端发出的第一条加密消息。客户端接收后会用秘钥解密，能解出来说明协商的秘钥是一致的。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-98cd8557d2818a3a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-98cd8557d2818a3a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h4>Application Data</h4>
+<p>到这里，双方已安全地协商出了同一份秘钥，所有的应用层数据都会用这个秘钥加密后再通过 TCP 进行可靠传输。</p>
+<h3>双向验证</h3>
+<p>前面提到 Certificate Request 是可选的，下面这张图展示了双向验证的过程：</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-be900be6a37d5001.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-be900be6a37d5001.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<h3>握手过程优化</h3>
+<p>如果每次重连都要重新握手还是比较耗时的，所以可以对握手过程进行优化。从下图里我们看到 Client Hello 消息里还附带了上一次的 Session ID，服务端接收到这个 Session ID 后如果能复用就不再进行后续的握手过程。</p>
+<div class="image-package"><img src="https://upload-images.jianshu.io/upload_images/128529-0bcae5de99b7d6e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="" data-original-src="//upload-images.jianshu.io/upload_images/128529-0bcae5de99b7d6e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" /></div>
+<p>除了上述的 Session 复用，SSL/TLS 握手还有一些优化技术，例如 False Start、Session Ticket 等</p>
+<p>参考文献：</p>
+<div>[1]&nbsp;File&nbsp;O&nbsp;P.&nbsp;Network&nbsp;Infrastructure&nbsp;for&nbsp;Ethernet/IP:&nbsp;Introduction&nbsp;and&nbsp;Considerations[J].&nbsp;ODVA&nbsp;Publication&nbsp;PUB00035R0,&nbsp;2007.&nbsp;&nbsp;<br />[2]EtherNet/IP:Industrial&nbsp;Protocol&nbsp;White&nbsp;Paper&nbsp;<img src="file:///C:/Users/admin/AppData/Local/Temp/L@1XT@LN$))EO)UY0~@89FG.png" alt="" />&nbsp;Institute&nbsp;of&nbsp;Electrical&nbsp;and&nbsp;Electronic&nbsp;Engineers,<br />[3]&nbsp;File&nbsp;O&nbsp;P.&nbsp;Securing&nbsp;EtherNet/IPTM&nbsp;Networks:&nbsp;Introduction&nbsp;and&nbsp;Considerations[J].&nbsp;ODVA&nbsp;Publication&nbsp;PUB00269R1.1,&nbsp;2011.<br />[4]&nbsp;File&nbsp;O&nbsp;P.&nbsp;Common&nbsp;Industrial&nbsp;protocol&nbsp;CIPTM&nbsp;and&nbsp;the&nbsp;family&nbsp;of&nbsp;CIP&nbsp;networks:&nbsp;Introduction&nbsp;and&nbsp;Considerations[J].&nbsp;ODVA&nbsp;Publication&nbsp;PUB00123R1,2016(引用的部分是隐士和显示传输的两种方式)<br />[5]Jack&nbsp;Visoky,&nbsp;Joakim&nbsp;Wiberg,&nbsp;Nancy&nbsp;Cam-Winget.&nbsp;Presented&nbsp;at&nbsp;the&nbsp;ODVA&nbsp;2018&nbsp;Industry&nbsp;Conference&nbsp;&amp;&nbsp;18th&nbsp;Annual&nbsp;Meeting&nbsp;October&nbsp;10,&nbsp;2018&nbsp;Stone&nbsp;Mountain,&nbsp;Georgia,&nbsp;USA.&nbsp;&nbsp;&nbsp;TLS&nbsp;`1.3对CIP的影响<br />[6]Brian&nbsp;Batke,&nbsp;Joakim&nbsp;Wiberg&amp;Dennis&nbsp;Dube.CIP&nbsp;Security&nbsp;Phase1&nbsp;Secure&nbsp;Transport&nbsp;for&nbsp;EtherNet/IP.Presented&nbsp;at&nbsp;the&nbsp;ODVA&nbsp;2015&nbsp;Industry&nbsp;Conference&amp;17th&nbsp;Annual&nbsp;Meeting&nbsp;&nbsp;---TLS和DLTS安全性能的介绍<br />[7]&nbsp;A.&nbsp;Ginter,&nbsp;&ldquo;The&nbsp;Top&nbsp;20&nbsp;Cyber&nbsp;Attacks&nbsp;Against&nbsp;Industrial&nbsp;Control&nbsp;Systems,&rdquo;&nbsp;<img src="file:///C:/Users/admin/AppData/Local/Temp/%W@GJ$ACOF(TYDYECOKVDYB.png" alt="" />https://ics-cert.us-cert.gov/sites/default/files/ICSJWGArchive/&nbsp;QNL&nbsp;DEC&nbsp;17/Waterfall&nbsp;top-20-attacks-article-d2%20-&nbsp;%20Article&nbsp;S508NC.pdf.&nbsp;&nbsp;<br />[8]&nbsp;冯涛,鲁晔,方君丽.工业以太网协议脆弱性与安全防护技术综述[J].&nbsp;通信学报,&nbsp;2017(S2).<br />[9]Ryan&nbsp;Grandgenett&nbsp;,Robin&nbsp;Gandhi,William&nbsp;Mahoney.&nbsp;Exploitation&nbsp;of&nbsp;Allen&nbsp;Bradley's&nbsp;implementation&nbsp;&nbsp;of&nbsp;etherNet/IP&nbsp;for&nbsp;denial&nbsp;of&nbsp;service&nbsp;against&nbsp;industrial&nbsp;control&nbsp;systems&nbsp;&nbsp;-----漏洞<br />[10]Sheffer&nbsp;Y,&nbsp;Holz&nbsp;R,&nbsp;Saint-Andre&nbsp;P.&nbsp;Summarizing&nbsp;known&nbsp;attacks&nbsp;on&nbsp;transport&nbsp;layer&nbsp;security&nbsp;(TLS)&nbsp;and&nbsp;datagram&nbsp;TLS&nbsp;(DTLS)[R].&nbsp;2015.&nbsp;<br />[11]Sheffer&nbsp;Y,&nbsp;Holz&nbsp;R,&nbsp;Saint-Andre&nbsp;P.&nbsp;Recommendations&nbsp;for&nbsp;Secure&nbsp;Use&nbsp;of&nbsp;Transport&nbsp;Layer&nbsp;Security&nbsp;(TLS)&nbsp;and&nbsp;Datagram&nbsp;Transport&nbsp;Layer&nbsp;Security&nbsp;(DTLS)[R].&nbsp;2015.&nbsp;<br />[12]Rescorla&nbsp;E.&nbsp;The&nbsp;transport&nbsp;layer&nbsp;security&nbsp;(TLS)&nbsp;protocol&nbsp;version&nbsp;1.3[R].&nbsp;2018.&nbsp;<br />[13]&nbsp;Song&nbsp;D&nbsp;X&nbsp;.&nbsp;Athena:&nbsp;a&nbsp;New&nbsp;Efficient&nbsp;Automatic&nbsp;Checker&nbsp;for&nbsp;Security&nbsp;Protocol&nbsp;Analysis[C]//&nbsp;IEEE&nbsp;Workshop&nbsp;on&nbsp;Computer&nbsp;Security&nbsp;Foundations.&nbsp;IEEE&nbsp;Computer&nbsp;Society,&nbsp;1999.&nbsp;------&nbsp;&nbsp;算法<br />[14]&nbsp;Cremers&nbsp;C&nbsp;J&nbsp;F&nbsp;,&nbsp;Mauw&nbsp;S&nbsp;.&nbsp;Operational&nbsp;Semantics&nbsp;of&nbsp;Security&nbsp;Protocols[C]//&nbsp;International&nbsp;Conference&nbsp;on&nbsp;Scenarios:&nbsp;Models.&nbsp;Springer-Verlag,&nbsp;2005.&nbsp;&nbsp;&nbsp;------Spdl&nbsp;语言<br />[15]韩旭，陆思奇&amp;程庆丰.形式化工具Scyther优化与实例分析<br />[16]陆思奇，程庆丰&amp;赵进华.安全协议形式化分析工具比较研究<br />[17]魏成坤,&nbsp;刘向东,&nbsp;石兆军.&nbsp;OAuth2.0协议的安全性形式化分析[J].&nbsp;计算机工程与设计,&nbsp;2016,&nbsp;37(7):1746-1751.<br />[18]&nbsp;Cremers&nbsp;C&nbsp;.Scyther&nbsp;User&nbsp;manual<br />[19]&nbsp;MEMBER,&nbsp;IEEE,&nbsp;Dolev&nbsp;D&nbsp;,&nbsp;et&nbsp;al.&nbsp;On&nbsp;the&nbsp;Security&nbsp;of&nbsp;Public&nbsp;Key&nbsp;Protocols[J].&nbsp;IEEE&nbsp;Transactions&nbsp;on&nbsp;Information&nbsp;Theory,&nbsp;2003,&nbsp;29(2):198-208.&nbsp;&nbsp;&nbsp;--------Dolev&nbsp;-Yao模型<br />[19]Cremers&nbsp;C&nbsp;,HorvatM&nbsp;,&nbsp;Scott&nbsp;S&nbsp;,&nbsp;et&nbsp;al.&nbsp;Automated&nbsp;Analysis&nbsp;and&nbsp;Verification&nbsp;of&nbsp;TLS&nbsp;1.3:&nbsp;0-RTT,&nbsp;Resumption&nbsp;and&nbsp;Delayed&nbsp;Authentication[C]//&nbsp;2016&nbsp;IEEE&nbsp;Symposium&nbsp;on&nbsp;Security&nbsp;and&nbsp;Privacy&nbsp;(SP).&nbsp;IEEE&nbsp;Computer&nbsp;Society,&nbsp;2016.<br />[20]Cremers&nbsp;C&nbsp;J&nbsp;F&nbsp;.&nbsp;The&nbsp;Scyther&nbsp;Tool:&nbsp;Verification,&nbsp;Falsification,&nbsp;and&nbsp;Analysis&nbsp;of&nbsp;Security&nbsp;Protocols[C]//&nbsp;Computer&nbsp;Aided&nbsp;Verification,&nbsp;20th&nbsp;International&nbsp;Conference,&nbsp;CAV&nbsp;2008,&nbsp;Princeton,&nbsp;NJ,&nbsp;USA,&nbsp;July&nbsp;7-14,&nbsp;2008,&nbsp;Proceedings.&nbsp;Springer-Verlag,&nbsp;2008.&nbsp;-------&nbsp;&nbsp;介绍了Scyther的功能可以性能<br />[21]Krawczyk&nbsp;H&nbsp;,&nbsp;Paterson&nbsp;K&nbsp;G&nbsp;,&nbsp;Wee&nbsp;H&nbsp;.&nbsp;On&nbsp;the&nbsp;Security&nbsp;of&nbsp;the&nbsp;TLS&nbsp;Protocol:&nbsp;A&nbsp;Systematic&nbsp;Analysis[J].&nbsp;2013.&nbsp;&nbsp;<br />[23]&nbsp;Rescorla&nbsp;E,&nbsp;Modadugu&nbsp;N.&nbsp;Datagram&nbsp;transport&nbsp;layer&nbsp;security&nbsp;version&nbsp;1.2[R].&nbsp;2012.<br />
+</div>
+
+
+
+
+
+
+
+
+
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-04-23 08:39</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10750784" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10750784);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10750784,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/4/23 8:39:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10750784.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+</html>

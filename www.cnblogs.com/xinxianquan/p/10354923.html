@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10354923.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Gathering Fingerprinting - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、 Banner grabbing with Netcat Netcat is multipurpose networking tool that can be used to perform mu" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10354923.html">Gathering Fingerprinting</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、 Banner grabbing with Netcat</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Netcat is multipurpose networking tool that can be used to perform multiple information gathering an d scanning tasks with kali linux ,this specific recipe will demonstrate how to use Netcat to acquire service banners in order to identify the service banners eto indetify the service association with open ports on a target system .</p>
+<p>&nbsp;&nbsp; &nbsp; To use the Netcat to grab service banners , on must establish a socket connection to the intended port on the remote system .to quickly understand the usage of the Netcat an how it can be used for thhis purpose ,one can call upon the usage output, we can use the&nbsp;&nbsp; command&nbsp; nc -h option :&nbsp; <br />&nbsp;2、the -v opton was used to provide verbose output and the the -n option was used to connnect with the the ip address without DNS resolution ,&nbsp; we can see the banner returned by the remote host identifies the service as SSH ,the vendor as openSSH,besides , we can use the siminal scan on port 21 of the same the system ,we can easily acqurie service and the version information ot the running TFP service .</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190207203032097-2047016402.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190207203653870-201347644.png" alt="" /></p>
+<p>2、Banner grabbing with Python sockets</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the sockets mouule&nbsp; in python can be used to connect to network services running on remote ports .&nbsp;&nbsp;&nbsp;&nbsp; Once can interact directly with remote network service using the python interactive interpreter ,you&nbsp; can begin use the python interpreter by calling it driectly m in this here ,we can import any specific modules tha you wish to use ,&nbsp; the specific is as follows :</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190207210456117-214775186.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp; the AF_INET arguments is used to indicate that the socket&nbsp;&nbsp; will employed an IPV4 address and the SOCK_STREAM argument is used to indicate that TCP transport will be used ,if an attempt is made to connect to TCP port 443 on the Metasploitable2 system&nbsp; ,an error will be returned indiciate taht the&nbsp; connection was refused , because there is no service running on this remote system </p>
+<p>3、 use the python script&nbsp; to connect </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190209214739711-1048995331.png" alt="" /></p>
+<p>&nbsp;the python script&nbsp; what just i note by utilizing the socket library ,the script loops through each of the specified target port address an attempts to initialize a TCP connection with that pratical port ,if a connection is established and a banner is recived from the target service , the banner will then be printed in the output of the script ,of course ,if&nbsp; a connection cannot be established with the remote port ,the script will then move to the next port address value in the loop.</p>
+<p>4、Banner grabbing with Dmitry</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dmitry is a simple yet streamlined tool that can be used to connect to network services running on remote ports .Dmitry can be used to run a quick TCP ports scan on 150 of the remote commonly used services , this can be done using the -p option:</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190210003400436-116781484.png" alt="" /></p>
+<p>Dmitry is&nbsp; a simple command-line tool that can perform the task of banner grabbing with minimal overhead .Dmitry can streanline the process by only attempting banner grabbing on a small selection of predefined an dcommonly used ports, banners recived from services running on those port address are then returned in the terminal output of the script </p>
+<p>5、Banner&nbsp; grabbing with Nmap NES </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; nmap has an intergateed Nmap Script Engrine script that can be used to read banners from network services running on remote ports , we can use the script ,use command --script option in Nmap and then specifiying the name of the descried script , for this particular script a -sT full-connect scan shjould be used as service banners can only be collected when a full TCP conection is established , the script will be applied to the same ports that are scanned by te fellows requests:</p>
+<p>&nbsp;&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190210010554920-1630132413.png" alt="" /></p>
+<p>&nbsp;Nmap used the banner script to collect the service banner associated with the port , this same technical can be replied to a sequential range of the ports suing the --notation </p>
+<p>&nbsp;&nbsp; the example command :&nbsp;&nbsp; nmap -sT 192.168.142.182 -p 1-100 --script=banner </p>
+<p>6、Banner grabbing with Amap</p>
+<p>&nbsp;&nbsp; Amap is an application-mapping tool that can be used read banners from network services running on remote ports&nbsp; , The&nbsp; -B option in Amap can be used to run the application in banner mode , this will have it collect banners for the specific IP address and service ports ,Amap can be used to collect the banner from a single service by specifying the remote IP address and service number :</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190210011901761-941248442.png" alt="" /></p>
+<p>to remove the scan metadata ,we can&nbsp;&nbsp; use grep the optput for a phrase that is unique to specific output entries and does not exist in the scan's metadata . we can use the command :&nbsp;&nbsp; amap -B 192.168.142.182 1-65535 | grep "on" </p>
+<p>7、service identification with Nmap </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; first we can connect with the Metasploitable2 system by TCP :&nbsp;&nbsp; nc&nbsp; -nv 192.168.142.182&nbsp; 80&nbsp; then&nbsp; to execute an Nmap service scan on the same port ,we can use the -sV option in conjunction eith the IP and Port&nbsp; specification : nmap 192.168.142.182&nbsp; -p 80 -sV </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190211212102992-1172128137.png" alt="" /></p>
+<p>this service identification function can also be used against a specific sequential series of ports ,if&nbsp;&nbsp; no port specificed ,the 1000 common ports will be scanned and&nbsp; identification attempts will be made for all listening services that are identified .</p>
+<p>8、Service identification with Amap </p>
+<p>&nbsp;&nbsp;&nbsp; to perform service identification on a single port , run Amap, with the ip address and port number specifications : amap 192.168.142.182 80</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190211224359275-1950988165.png" alt="" /></p>
+<p>amap can also be used to scan a senquential servies of port numbers using dash notation .&nbsp;&nbsp; amap 192.168.142.182 20-90&nbsp;&nbsp;&nbsp;&nbsp; To supress the information about unidentified ports , the -q option can be used&nbsp;&nbsp; :&nbsp; amap&nbsp; 192.168.142.182 1-100 -q&nbsp;&nbsp; and&nbsp; the banners can be appended to the output associated with each port using -n option :</p>
+<p>&nbsp;amap 192.168.142.182&nbsp; 1-100 -qb&nbsp; </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190211233018638-1786070489.png" alt="" /></p>
+<p>but amap is not updated and well-maintained in the same way that Nmap is ,as such, Aamp is less likely to produce reliable results </p>
+<p>9、Operating system identification with Scapy </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we know windows and linux/Unix&nbsp;&nbsp; operating systems have different TTL starting values that are used by default ,this factor can be used to attempt to fingerprint the type of operating system:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; generally speaking&nbsp; the Windows TTL=128&nbsp; and&nbsp; the Linux/Unix OS TTL=64&nbsp;&nbsp; but&nbsp; TTL valus&nbsp; can modify .</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and then&nbsp;&nbsp; we create both IP and ICMP layer , we need to construct the request by stacking those layse:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; first&nbsp; construct the IP layer&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp; linux= "192.168.142.182"&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; windows= "192.168.1.101"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i=IP()</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; i.dst=linux</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; ping=ICMP()</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; request=(i/ping)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; ans=sr1(request)&nbsp; </p>
+<p>&nbsp;&nbsp; the follow figure is&nbsp; Linux TTL </p>
+<p>&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190212110242369-1406867651.png" alt="" /></p>
+<p>the follow figure is Windows TTL </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190212110733742-1362685772.png" alt="" /></p>
+<p>addination , we can&nbsp; use the python test the&nbsp; TTL&nbsp; values</p>
+<p>&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190212111534556-1348393807.png" alt="" /></p>
+<p>note&nbsp; the Scapy must use Python Version is&nbsp; 2.7&nbsp; </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190212112946792-1195834564.png" alt="" /></p>
+<p>10、Operating system identification with Nmap </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to perform an Nmap operating system identificatio&nbsp; scan , Nmap should be called with the IP adddress specificatio adn the -O option : nmap 192.168.142.182 -O </p>
+<p>the Nmap operating system identification sends a comprehensive series of probing requests and analyzes the responses to those quests in attempt to identify the undering operating system based on Os-specific signature and expected behavior,</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190212223051431-489864791.png" alt="" /></p>
+<p>11、Operating System identificatio&nbsp; with xProbe2</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; the progrm needs to be passed a single argument that consists of the IP address of the system&nbsp; to be scanned </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190212225459266-2085901124.png" alt="" /></p>
+<p>11、Passive operating system identificatio with p0f</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; the tool perform operating system identification passively and without drectly intercacting with the target system&nbsp; </p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190214200436107-569043244.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190214200504254-1229154515.png" alt="" /></p>
+<p>12、Snmp analysis with Onesixtyone </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Onesixtyone is an Snmap tool that is named for&nbsp; the UDP port upon with SNMP operate it is a very simple SNMP scanner that only requests the system description value for any specific IP address ,&nbsp;&nbsp; SNMP is a protocol that can be used to manage netwoeked device and facilitate the sharing of information across those device , the usage of&nbsp; this protocol is often necessary in enterprise network environment. </p>
+<p>&nbsp;&nbsp; additional&nbsp; we can use the SNMPwalk analysis the remote system device . SNmpwalk cycle througha series of request to gather as much&nbsp; informationas possible from the service .&nbsp; </p>
+<p>13、 Firewall&nbsp; identification&nbsp; with Scapy </p>
+<p>&nbsp;&nbsp; &nbsp; to perform an Nmap SCK scan ,Nmap shjould be called with the ip address sepcification , the destination port ,and the -sA option :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; nmap -sA&nbsp; 192.168.142.182 -p 22 </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190217231954988-1943786766.png" alt="" /></p>
+<p>notice that when we scanning a range of ports , the output only includes unfiltered ports:</p>
+<p>nmap&nbsp; -sA 83.166.169.228&nbsp;&nbsp;&nbsp; </p>
+<p>13、 to use Metasploit ACK scan module to perform firewall and filtering identification.&nbsp; for more systems , 25 threads is a fast and reasonably safe number of&nbsp; concurrent processes .</p>
+<p>&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190218002722282-872032216.png" alt="" /></p>
+<p>&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201902/1276904-20190218003155958-1587327651.png" alt="" /></p>
+<p>Metasploit offers auxiliary module that perform firewall identification through many of teh some techniques that have been discussed in the previous recipe ,however, metasploit also offers the capbility to perform this analysis with the context of a farmework that can be used for other information gathering and even exploitation ,as well .</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-02-10 01:24</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10354923" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10354923);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10354923,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/2/10 1:24:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10354923.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:33 GMT -->
+</html>

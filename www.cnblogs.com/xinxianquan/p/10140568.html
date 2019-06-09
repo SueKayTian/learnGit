@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10140568.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Burp Scanner Report - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、使用application web 漏洞平台，除此之外还有一款类似的工具 叫做mulidata,其实mulidata功能更好一点。 2、配置之前的问题处理 安装之前要确认 自己之前是否安装过 Ap" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10140568.html">Burp Scanner Report</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、使用application web 漏洞平台，除此之外还有一款类似的工具 叫做mulidata,其实mulidata功能更好一点。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181218164144430-296502144.png" alt="" /></p>
+<p>2、配置之前的问题处理</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 安装之前要确认 自己之前是否安装过 Apache或者PHP解释器或者MySQL ，如果之前安装了单个版本的软件，需要卸载，或者检查是否运行，关闭也可以。</p>
+<p>&nbsp;这里我做渗透测试使用的burp没使用如何破解</p>
+<p>&nbsp; 首先启动burploadkey,点击RUN之后，会启动 burpsuite，下面使用的版本比较低了，最新的版本到2以上了，可以在我的微云上下载&nbsp;&nbsp; 地址<a class="link" href="https://share.weiyun.com/5DQdMcP" target="_blank">https://share.weiyun.com/5DQdMcP</a></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181222103833784-1547796657.png" alt="" /></p>
+<p>&nbsp; 之后将生成的license复制到打开的burp里面，点击next ，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181222104503774-1549839090.png" alt="" /></p>
+<p>&nbsp;&nbsp; 之后选择手动激活，&nbsp; manualactivation ，将request 粘贴到&nbsp; active request ，会自动生成response 再将生成的粘贴到下面的response中，点击下一步。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181222104732304-587506537.png" alt="" /></p>
+<p>在之后的使用的时候 不需要在想这样激活，但是必须第一步加载burpsuite loadkey </p>
+<p>3、使用brupsuite</p>
+<p>&nbsp;&nbsp; 手动扫描疑点目录，首先对存在问题的目录url发送到 intruder，对要替换的URl worlds进行标准。自己可以取消自动标注，自己设置要模糊替换的单词。 然后对其设置扫描类型，天际字典进行扫描。</p>
+<p>&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181220203811023-1377087671.png" alt="" /></p>
+<p>4、report</p>
+<p><img src="data:image/png;base64,R0lGODlhpgAuANUAAOuXcUhCQFhFPXhMOPKCLuR2Q5lTM/iMMHZ3eex3LPjby/XNu5qbnPni1+JsNOJoLbhaLmpJO/78+/rVvO2eeMJcLalWMe6oh/2VMtxhKeaAUPqRMcrLzPvr4/K7ovG0l/zx7INONqNVMdnZ2steK+NxPdFfKvT19dZgKubm5k5DP++OUv318Y9RNf359/TGsOeFWP6YM/WHL+98LeiKX/asdltcX2NkZ+6GRvSXVfCJQq5XMEBAQVdYW////+BiKCH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAxODAxMTc0MDcyMDY4MTE4MDgzQ0IxNDExODk3MUU0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjAyMzU2QjRFODk3QzExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjAyMzU2QjREODk3QzExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowMTgwMTE3NDA3MjA2ODExODA4M0NCMTQxMTg5NzFFNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowMTgwMTE3NDA3MjA2ODExODA4M0NCMTQxMTg5NzFFNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAAAAAAALAAAAACmAC4AAAb/wJ9wSCwaj8ikcslsOp/QqHRKrVqv2Kx2y+16v+CweEwum8/op2/Nbrvf8Hh6TifG7/g70sHvHx8Pe0QPfXxJhQ6BSiQQFRlGKEmRRyiVlpdDGZeWj0o+Jz2hoqOjCGsrCTMzBAQyMgcHGxsYGDFrRx1vEgsFQw4gDUcwEh5CH7odHw5DDyBvLgoARRktKjzXAREWnRUBA0ciPCJCETwVP+XX6uvfEOvvJp6gpPShpj6oqqyusLK0tj6O3AHR64eGNcuKXPAR7MeCOx0KFsBTTEiGdO94RBASTsCRATy+/RAgbmTGdR4NnLwWL8mnevXu5VvV6lWsWbVuGVlDQYNP/w0UnL0QctBHQiILGz588VMDjAsufCgQMtEHjaY0HvqgICTEtRCOTFgop4IjD49GQIokOc5EhbcWrjV6G0mlgLd43y55CZMUg1OpaPK7+U9nkTU0igDw4SJQ0aNDkgp5WJEIjTUwflQtSORhsAwBeLQwQmJSx48hhbAtUuHapCF2pfDta0+C1ASB99n0lzPgTqtFNhtEaESyQx+ViTTw8UHzGs5DLhslcY2EktNpU5scR6Q1j9dCYkeZ3ffGCR8dZuDWV7MfToACgRMpWmK40eIMJyM/Qtm5D+hClLCGBibIdd1ZqK1VUneuFSEeFOTVY8MIjKGynmC7vWeYHfJF5v8DCEQRp1B+xyU3xAv7CVeEAwOaJEBL4CCYnYLcDeEdeD88qMY8fXHAkwO45dYeYb3F19NPFLDAXIj3jajUfkYs15yKRMCwRn3u8KCCBUhgV4Raqi1oY4NE6OhEhH6t8QEhQbI3GG/w/QZHA4o8ht+TJv4gnTRUDvEQiELsEFpIMA7hJRFgbscambCdxOVePNKDgG0LAALkhbq5V5hvh8UBggZMQiaEcQ8tQMOppwLgDAiBVAUAqqd6oCYRJKQTwKOGyvildqsx+J2DJxnABJr2nAdCImxiOiScGw6xBgCFaLDcsfaJ+gOpd7iQmH9xKKBImYMOAOOhQyTa65i/lnn/FgTsNtKJPPXckMIaHSxg7wQT4CDkmxpyyuG2QxSg5AXV3qnfGyy8wFlVbkjQwQXfFlHrNSqc8wO5QpgrphA3AosWhJGK4mMcM2VKZJydAjyErAsU7KR+lS3XUMDPSWFAaCo8gvEPGtfIMaPh6bqjpBwUbTQHFOKzb4abxqeyEItNZefLJUb3LBF9PpHlODv3vGi6jX48NG2iyLS0pkX+9vQPFEhlX31U9zeEAuh9m/UTIIXwQ1xlZae3or7iaGYTxMYEmJtMp52yESz/wOJWRtDdctVDFEUwVTVPUU4711iciTWjAY6u4EKfGXJfZiOONsr/FlGCklz9QDcIcAvR/7YP0lB+og8sJHR3E1kK+4M1Ebz7g1fmhOnzDx2rK7bpZJd9OIarNysET00BkEsHigyDHgA+HeM2zK5HVdHvQ5CgggohWFABI8gLYNo1AuzACEg8/C36z2AHfVdeeoFX9HpwDwXg64D4qsHJrPeDO7AAVEMAgG3c0IDayY0Ix5BAfdDHv5PchQgtOEnxhnAu/pFuJYXayelgcg84KKB6/hpCLtyQMAAZZAFRQQ/EMAi5FXWgA8toBquWUAEDRGBQZ2kBjn4AAYwIYHnl8JwQUBCAnBUhSydJ4WFWGK+jIY1eG4DhHgoRMSSUwFpiMEFplpABExivCprYBAreqMIB0v/DBvNiQQ4Sx7o6+LEMhSPbyGrAr6b98ZBkCGRf/sKcZfXrCBEQgAAisIO9SVIAIYgENSZ5jgpcciMhuCSXxoJJ61QgkgOAwA9a0MlIhuARLVAlE4V3PIuhQCSIrKMdQ8HICZiMWTEUQgAaISgStGAAbxnAN0IQgQqIIAAm2MH/ziEA91UABd3YQREhkAEVGMCZ4xjADkwQgG9G4BsDEIDORFKgv5Hgebm8HhdZGJUGsMKRhixCACYxABG04G+eHJ510GGBHWyEhJ4bCxHIaTxxKvQHJAgAz3ggLBGIRATrE8I746nLAcrrQzqg3gKD+YN9ksMC/+SYR0zKMxFIcwf/O3iEAAygzR+gAJOviUAEBsqzHVh0ijzgWQhUgIKfosMAFYMoPOOpyFFMyAcSyIHqRnqEAIQgBANQgQlagMlQjoal/dyBCpQZj0n2c4pZlSU1ypkxn4oEBUEV5wBC8FMqmuCqSuXoFu14jxqcjapGCEALWmCAeLQgAi1ga0n56dKDqkaKQrDAlmyEyZ4aFa49jegxLYkCaeZVr86aJylSJ1JgVhU8KT2sMFsygII6diSQDdRrC9RTC7BTouI8njd4FoDemmOjoJUnX6f3y0cGFrV666YqlYkCCASABAYlggAgUAmIjtMEysyABUrD1cwO864byS0VBwCaloSgBeqzZwRomyo9pU3VtEZQJxFEIDwL6A27AagfE3GJjt4GQASn7K24bkm8c4RAldLMRjwOzBFWOhYC4lKBf3GVyzWc4MIYzrCG8yCH4HqYChwOcR4+TOISm/jEKE6xilfM4ha7+MUwjrESggAAOw==" alt="" width="166" height="46" /></p>
+<h1>Burp Scanner Report</h1>
+<h1>Summary</h1>
+<p><span class="TEXT"><span class="TEXT">The table below shows the numbers of issues identified in different categories. Issues are classified according to severity as High, Medium, Low or Information. This reflects the likely impact of each issue for a typical organization. Issues are also classified according to confidence as Certain, Firm or Tentative. This reflects the inherent reliability of the technique that was used to identify the issue.<br /><br /></span></span></p>
+<table class="overview_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="70">&nbsp;</td>
+<td width="90">&nbsp;</td>
+<td class="label" colspan="4" align="center" height="40">Confidence</td>
+
+
+
+
+
+</tr>
+<tr>
+<td width="70">&nbsp;</td>
+<td width="90">&nbsp;</td>
+<td class="info" width="82" height="30">Certain</td>
+<td class="info" width="82" height="30">Firm</td>
+<td class="info" width="82" height="30">Tentative</td>
+<td class="info_end" width="82" height="30">Total</td>
+
+
+
+
+
+</tr>
+<tr>
+<td class="label" rowspan="4" valign="middle">Severity</td>
+<td class="info" height="30">High</td>
+<td class="colour_holder"><span class="colour_block high_certain">2</span></td>
+<td class="colour_holder"><span class="colour_block high_firm">0</span></td>
+<td class="colour_holder"><span class="colour_block high_tentative">0</span></td>
+<td class="colour_holder_end"><span class="colour_block row_total">2</span></td>
+
+
+
+
+
+</tr>
+<tr>
+<td class="info" height="30">Medium</td>
+<td class="colour_holder"><span class="colour_block medium_certain">0</span></td>
+<td class="colour_holder"><span class="colour_block medium_firm">0</span></td>
+<td class="colour_holder"><span class="colour_block medium_tentative">0</span></td>
+<td class="colour_holder_end"><span class="colour_block row_total">0</span></td>
+
+
+
+
+
+</tr>
+<tr>
+<td class="info" height="30">Low</td>
+<td class="colour_holder"><span class="colour_block low_certain">3</span></td>
+<td class="colour_holder"><span class="colour_block low_firm">1</span></td>
+<td class="colour_holder"><span class="colour_block low_tentative">0</span></td>
+<td class="colour_holder_end"><span class="colour_block row_total">4</span></td>
+
+
+
+
+
+</tr>
+<tr>
+<td class="info" height="30">Information</td>
+<td class="colour_holder"><span class="colour_block info_certain">2</span></td>
+<td class="colour_holder"><span class="colour_block info_firm">4</span></td>
+<td class="colour_holder"><span class="colour_block info_tentative">8</span></td>
+<td class="colour_holder_end"><span class="colour_block row_total">14</span></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<p>
+<span class="TEXT"><span class="TEXT"><br /><span class="TEXT">The chart below shows the aggregated numbers of issues identified in each category. Solid colored bars represent issues with a confidence level of Certain, and the bars fade as the confidence level falls.<br /><br /></span></span></span></p>
+<table class="overview_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="70">&nbsp;</td>
+<td width="90">&nbsp;</td>
+<td class="label" colspan="6" align="center" height="40">Number of issues</td>
+
+
+
+
+
+</tr>
+<tr>
+<td width="70">&nbsp;</td>
+<td width="90">&nbsp;</td>
+<td width="125"><span class="grad_mark">0</span></td>
+<td width="125"><span class="grad_mark">1</span></td>
+<td width="125"><span class="grad_mark">2</span></td>
+<td width="125"><span class="grad_mark">3</span></td>
+<td width="125"><span class="grad_mark">4</span></td>
+
+
+
+
+
+</tr>
+<tr>
+<td class="label" rowspan="3" valign="middle">Severity</td>
+<td class="info">High</td>
+<td colspan="5" height="30">
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP8AAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY0RDFGNDAzODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjY0RDFGNDA0ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjREMUY0MDE4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjREMUY0MDI4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="250" height="16" /></td>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP9mZgAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY0RDFGNDA3ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjY0RDFGNDA4ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjREMUY0MDU4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjREMUY0MDY4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="0" height="16" /></td>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP/MzAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjg0Q0E0ODg0ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjg0Q0E0ODg1ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjREMUY0MDk4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjREMUY0MEE4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="0" height="16" /></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+
+
+
+
+
+</td>
+<td>&nbsp;</td>
+
+
+
+
+
+</tr>
+<tr>
+<td class="info">Medium</td>
+<td colspan="5" height="30">
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP+ZAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjg0Q0E0ODg4ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjg0Q0E0ODg5ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODRDQTQ4ODY4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODRDQTQ4ODc4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="0" height="16" /></td>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP/CZgAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjg0Q0E0ODhDODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjg0Q0E0ODhEODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODRDQTQ4OEE4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODRDQTQ4OEI4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="0" height="16" /></td>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP/rzAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI1MDMwNTM3ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI1MDMwNTM4ODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODRDQTQ4OEU4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjUwMzA1MzY4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="0" height="16" /></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+
+
+
+
+
+</td>
+<td>&nbsp;</td>
+
+
+
+
+
+</tr>
+<tr>
+<td class="info">Low</td>
+<td colspan="5" height="30">
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP/uAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI1MDMwNTNCODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI1MDMwNTNDODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjUwMzA1Mzk4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjUwMzA1M0E4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="375" height="16" /></td>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP/1ZgAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI1MDMwNTNGODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI1MDMwNTQwODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjUwMzA1M0Q4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjUwMzA1M0U4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="125" height="16" /></td>
+<td><img class="bar" src="data:image/png;base64,R0lGODlhAQABAIAAAP/8zAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU2OTVBQzRBODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkU2OTVBQzRCODk3QjExRTJCMkY1QUI4QUUwNzNBMzFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTY5NUFDNDg4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTY5NUFDNDk4OTdCMTFFMkIyRjVBQjhBRTA3M0EzMUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAAQABAAACAkQBADs=" alt="" width="0" height="16" /></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+
+
+
+
+
+</td>
+<td>&nbsp;</td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h1>Contents</h1>
+<p class="TOCH0"><a href="#1">1.&nbsp;Cleartext submission of password</a></p>
+<p class="TOCH1"><a href="#1.1">1.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp</a></p>
+<p class="TOCH1"><a href="#1.2">1.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp</a></p>
+<p class="TOCH0"><a href="#2">2.&nbsp;Password field with autocomplete enabled</a></p>
+<p class="TOCH1"><a href="#2.1">2.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp</a></p>
+<p class="TOCH1"><a href="#2.2">2.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp</a></p>
+<p class="TOCH0"><a href="#3">3.&nbsp;Content type incorrectly stated</a></p>
+<p class="TOCH0"><a href="#4">4.&nbsp;Unencrypted communications</a></p>
+<p class="TOCH0"><a href="#5">5.&nbsp;Path-relative style sheet import</a></p>
+<p class="TOCH1"><a href="#5.1">5.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp</a></p>
+<p class="TOCH1"><a href="#5.2">5.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp</a></p>
+<p class="TOCH1"><a href="#5.3">5.3.&nbsp;http://www.angeldg.com/rece/CProductMain.asp</a></p>
+<p class="TOCH1"><a href="#5.4">5.4.&nbsp;http://www.angeldg.com/rece/index.asp</a></p>
+<p class="TOCH0"><a href="#6">6.&nbsp;Cross-domain Referer leakage</a></p>
+<p class="TOCH0"><a href="#7">7.&nbsp;Frameable response (potential Clickjacking)</a></p>
+<p class="TOCH1"><a href="#7.1">7.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp</a></p>
+<p class="TOCH1"><a href="#7.2">7.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp</a></p>
+<p class="TOCH1"><a href="#7.3">7.3.&nbsp;http://www.angeldg.com/rece/CProductMain.asp</a></p>
+<p class="TOCH1"><a href="#7.4">7.4.&nbsp;http://www.angeldg.com/rece/index.asp</a></p>
+<p class="TOCH0"><a href="#8">8.&nbsp;HTML does not specify charset</a></p>
+<p class="TOCH0"><a href="#9">9.&nbsp;HTML uses unrecognized charset</a></p>
+<p class="TOCH1"><a href="#9.1">9.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp</a></p>
+<p class="TOCH1"><a href="#9.2">9.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp</a></p>
+<p class="TOCH1"><a href="#9.3">9.3.&nbsp;http://www.angeldg.com/rece/CProductMain.asp</a></p>
+<p class="TOCH1"><a href="#9.4">9.4.&nbsp;http://www.angeldg.com/rece/index.asp</a></p>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><br /><span class="BODH0">1.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/00300100_cleartextsubmissionofpassword">Cleartext submission of password</a><br /><a class="PREVNEXT" href="#2">Next</a>&nbsp;<br /><br /><span class="TEXT">There are 2 instances of this issue:</span></span></span></span></span></p>
+<ul>
+<li><a href="#1.1">/Rece/UserLogin.asp</a></li>
+<li><a href="#1.2">/Rece/UserRegister.asp</a></li>
+
+
+
+
+
+</ul>
+<h2>Issue background</h2>
+<p>Some applications transmit passwords over unencrypted connections, making them vulnerable to interception. To exploit this vulnerability, an attacker must be suitably positioned to eavesdrop on the victim's network traffic. This scenario typically occurs when a client communicates with the server over an insecure connection such as public Wi-Fi, or a corporate or home network that is shared with a compromised computer. Common defenses such as switched networks are not sufficient to prevent this. An attacker situated in the user's ISP or the application's hosting infrastructure could also perform this attack. Note that an advanced adversary could potentially target any connection made over the Internet's core infrastructure.</p>
+<p>Vulnerabilities that result in the disclosure of users' passwords can result in compromises that are extremely difficult to investigate due to obscured audit trails. Even if the application itself only handles non-sensitive information, exposing passwords puts users who have re-used their password elsewhere at risk.</p>
+<h2>Issue remediation</h2>
+<p>Applications should use transport-level encryption (SSL or TLS) to protect all sensitive communications passing between the client and the server. Communications that should be protected include the login mechanism and related functionality, and any functions where sensitive data can be accessed or privileged actions can be performed. These areas should employ their own session handling mechanism, and the session tokens used should never be transmitted over unencrypted communications. If HTTP cookies are used for transmitting session tokens, then the secure flag should be set to prevent transmission over clear-text HTTP.</p>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/319.html">CWE-319: Cleartext Transmission of Sensitive Information</a></li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><br /><br /><span class="BODH1">1.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp<br /><a class="PREVNEXT" href="#1.2">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>High</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Certain</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserLogin.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT">The page contains a form with the following action URL, which is submitted over clear-text HTTP:</span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>http://www.angeldg.com/Rece/UserLoginFinish.asp</li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT">The form contains the following password field:</span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>PassWord</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserLogin.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:19 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 16583<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;table width="250" border="0" cellspacing="0" cellpadding="0" align="center" &gt;<br /><span class="HIGHLIGHT">&lt;form action="UserLoginFinish.asp" method="post" name="UserLoginForm"&gt;<br />&lt;tr&gt;<br /><strong>...[SNIP]...</strong><br />&lt;td&gt;<span class="HIGHLIGHT">&lt;input name="PassWord" type="password" id="PassWord" size="30" maxlength="20" class="InputTextD"/&gt;&lt;/td&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">1.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp<br /><a class="PREVNEXT" href="#1.1">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#2.1">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>High</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Certain</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserRegister.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The page contains a form with the following action URL, which is submitted over clear-text HTTP:</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>http://www.angeldg.com/Rece/UserRegisterfinish.asp</li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The form contains the following password fields:</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>PassWord</li>
+<li>confirmPassWord</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserRegister.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:24 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 36275<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;table width="350" border="0" cellspacing="0" cellpadding="0" align="center"&gt;<br />&nbsp;&nbsp;&nbsp;<span class="HIGHLIGHT">&lt;form action="UserRegisterfinish.asp" name="form" method="post" onsubmit="return checkdata()"&gt;<br />&lt;tr&gt;<br /><strong>...[SNIP]...</strong><br />&lt;td height="50"&gt;<span class="HIGHLIGHT">&lt;input name="PassWord" type="password" class="InputTextZ" id="PassWord" onblur="chkpwd(this)" size="30" maxlength="20" autocomplete="off"/&gt;&lt;br /&gt;<br /><strong>...[SNIP]...</strong><br />&lt;td height="50"&gt;<span class="HIGHLIGHT">&lt;input name="confirmPassWord" type="password" class="InputTextZ" id="confirmPassWord" size="30" maxlength="20"/&gt;&lt;/td&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0">2.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/00500800_passwordfieldwithautocompleteenabled">Password field with autocomplete enabled</a><br /><a class="PREVNEXT" href="#1">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#3">Next</a>&nbsp;<br /><br /><span class="TEXT">There are 2 instances of this issue:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li><a href="#2.1">/Rece/UserLogin.asp</a></li>
+<li><a href="#2.2">/Rece/UserRegister.asp</a></li>
+
+
+
+
+
+</ul>
+<h2>Issue background</h2>
+<p>Most browsers have a facility to remember user credentials that are entered into HTML forms. This function can be configured by the user and also by applications that employ user credentials. If the function is enabled, then credentials entered by the user are stored on their local computer and retrieved by the browser on future visits to the same application.</p>
+<p>The stored credentials can be captured by an attacker who gains control over the user's computer. Further, an attacker who finds a separate application vulnerability such as cross-site scripting may be able to exploit this to retrieve a user's browser-stored credentials.</p>
+<h2>Issue remediation</h2>
+<p>To prevent browsers from storing credentials entered into HTML forms, include the attribute&nbsp;<strong>autocomplete="off"</strong>&nbsp;within the FORM tag (to protect all form fields) or within the relevant INPUT tags (to protect specific individual fields).</p>
+<p>Please note that modern web browsers may ignore this directive. In spite of this there is a chance that not disabling autocomplete may cause problems obtaining PCI compliance.</p>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/200.html">CWE-200: Information Exposure</a></li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><br /><br /><span class="BODH1">2.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp<br /><a class="PREVNEXT" href="#1.2">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#2.2">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Low</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Certain</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserLogin.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT">The page contains a form with the following action URL:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>http://www.angeldg.com/Rece/UserLoginFinish.asp</li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT">The form contains the following password field with autocomplete enabled:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>PassWord</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserLogin.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:19 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 16583<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;table width="250" border="0" cellspacing="0" cellpadding="0" align="center" &gt;<br /><span class="HIGHLIGHT">&lt;form action="UserLoginFinish.asp" method="post" name="UserLoginForm"&gt;<br />&lt;tr&gt;<br /><strong>...[SNIP]...</strong><br />&lt;td&gt;<span class="HIGHLIGHT">&lt;input name="PassWord" type="password" id="PassWord" size="30" maxlength="20" class="InputTextD"/&gt;&lt;/td&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">2.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp<br /><a class="PREVNEXT" href="#2.1">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#5.1">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Low</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Certain</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserRegister.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The page contains a form with the following action URL:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>http://www.angeldg.com/Rece/UserRegisterfinish.asp</li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The form contains the following password field with autocomplete enabled:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>confirmPassWord</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserRegister.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:24 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 36275<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;table width="350" border="0" cellspacing="0" cellpadding="0" align="center"&gt;<br />&nbsp;&nbsp;&nbsp;<span class="HIGHLIGHT">&lt;form action="UserRegisterfinish.asp" name="form" method="post" onsubmit="return checkdata()"&gt;<br />&lt;tr&gt;<br /><strong>...[SNIP]...</strong><br />&lt;td height="50"&gt;<span class="HIGHLIGHT">&lt;input name="confirmPassWord" type="password" class="InputTextZ" id="confirmPassWord" size="30" maxlength="20"/&gt;&lt;/td&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0">3.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/00800400_contenttypeincorrectlystated">Content type incorrectly stated</a><br /><a class="PREVNEXT" href="#2">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#4">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Low</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Firm</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserLoginFinish.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT">The response states that the content type is&nbsp;<strong>text/html</strong>. However, it actually appears to contain&nbsp;<strong>unrecognized content</strong>.<br /><br />All browsers may interpret the response as HTML.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Issue background</h2>
+<p>If a response specifies an incorrect content type then browsers may process the response in unexpected ways. If the content type is specified to be a renderable text-based format, then the browser will usually attempt to interpret the response as being in that format, regardless of the actual contents of the response. Additionally, some other specified content types might sometimes be interpreted as HTML due to quirks in particular browsers. This behavior might lead to otherwise "safe" content such as images being rendered as HTML, enabling cross-site scripting attacks in certain conditions.</p>
+<p>The presence of an incorrect content type statement typically only constitutes a security flaw when the affected resource is dynamically generated, uploaded by a user, or otherwise contains user input. You should review the contents of affected responses, and the context in which they appear, to determine whether any vulnerability exists.</p>
+<h2>Issue remediation</h2>
+<p>For every response containing a message body, the application should include a single Content-type header that correctly and unambiguously states the MIME type of the content in the response body.</p>
+<p>Additionally, the response header "X-content-type-options: nosniff" should be returned in all responses to reduce the likelihood that browsers will interpret content in a way that disregards the Content-type header.</p>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/16.html">CWE-16: Configuration</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/436.html">CWE-436: Interpretation Conflict</a></li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">POST /Rece/UserLoginFinish.asp HTTP/1.1<br />Host: www.angeldg.com<br />Content-Length: 112<br />Cache-Control: max-age=0<br />Origin: http://www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />Content-Type: application/x-www-form-urlencoded<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/Rece/UserLogin.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br />DUserName=1214tian%40sina.com&amp;PassWord=admin%27+or+%271%27%3D%271&amp;Loginnum=7332&amp;Submit.x=126&amp;Submit.y=15&amp;ComUrl=</div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:23 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />pragma: no-cache<br />Content-Length: 147<br /><span class="HIGHLIGHT">Content-Type: text/html<br />Expires: Thu, 20 Dec 2018 13:18:23 GMT<br />Cache-control: no-cache<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&nbsp;&nbsp;&nbsp;&lt;script language="javascript"&gt;<br />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;alert('..........................');<br />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;history.back();<br />&nbsp;&nbsp;&nbsp;&lt;/script&gt;<br />&nbsp;&nbsp;&nbsp;</span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0">4.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/01000200_unencryptedcommunications">Unencrypted communications</a><br /><a class="PREVNEXT" href="#3">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#5">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Low</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Certain</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue description</h2>
+<p>The application allows users to connect to it over unencrypted connections. An attacker suitably positioned to view a legitimate user's network traffic could record and monitor their interactions with the application and obtain any information the user supplies. Furthermore, an attacker able to modify traffic could use the application as a platform for attacks against its users and third-party websites. Unencrypted connections have been exploited by ISPs and governments to track users, and to inject adverts and malicious JavaScript. Due to these concerns, web browser vendors are planning to visually flag unencrypted connections as hazardous.</p>
+<p>To exploit this vulnerability, an attacker must be suitably positioned to eavesdrop on the victim's network traffic. This scenario typically occurs when a client communicates with the server over an insecure connection such as public Wi-Fi, or a corporate or home network that is shared with a compromised computer. Common defenses such as switched networks are not sufficient to prevent this. An attacker situated in the user's ISP or the application's hosting infrastructure could also perform this attack. Note that an advanced adversary could potentially target any connection made over the Internet's core infrastructure.</p>
+<p>Please note that using a mixture of encrypted and unencrypted communications is an ineffective defense against active attackers, because they can easily remove references to encrypted resources when these references are transmitted over an unencrypted connection.</p>
+<h2>Issue remediation</h2>
+<p>Applications should use transport-level encryption (SSL/TLS) to protect all communications passing between the client and the server. The Strict-Transport-Security HTTP header should be used to ensure that clients refuse to access the server over an insecure connection.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure">Marking HTTP as non-secure</a></li>
+<li><a href="https://wiki.mozilla.org/Security/Server_Side_TLS">Configuring Server-Side SSL/TLS</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security">HTTP Strict Transport Security</a></li>
+
+
+
+
+
+</ul>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/326.html">CWE-326: Inadequate Encryption Strength</a></li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0">5.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/00200328_pathrelativestylesheetimport">Path-relative style sheet import</a><br /><a class="PREVNEXT" href="#4">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#6">Next</a>&nbsp;<br /><br /><span class="TEXT">There are 4 instances of this issue:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li><a href="#5.1">/Rece/UserLogin.asp</a></li>
+<li><a href="#5.2">/Rece/UserRegister.asp</a></li>
+<li><a href="#5.3">/rece/CProductMain.asp</a></li>
+<li><a href="#5.4">/rece/index.asp</a></li>
+
+
+
+
+
+</ul>
+<h2>Issue background</h2>
+<p>Path-relative style sheet import vulnerabilities arise when the following conditions hold:</p>
+<ol>
+<li>A response contains a style sheet import that uses a path-relative URL (for example, the page at "/original-path/file.php" might import "styles/main.css").</li>
+<li>When handling requests, the application or platform tolerates superfluous path-like data following the original filename in the URL (for example, "/original-path/file.php/extra-junk/"). When superfluous data is added to the original URL, the application's response still contains a path-relative stylesheet import.</li>
+<li>The response in condition 2 can be made to render in a browser's quirks mode, either because it has a missing or old doctype directive, or because it allows itself to be framed by a page under an attacker's control.</li>
+<li>When a browser requests the style sheet that is imported in the response from the modified URL (using the URL "/original-path/file.php/extra-junk/styles/main.css"), the application returns something other than the CSS response that was supposed to be imported. Given the behavior described in condition 2, this will typically be the same response that was originally returned in condition 1.</li>
+<li>An attacker has a means of manipulating some text within the response in condition 4, for example because the application stores and displays some past input, or echoes some text within the current URL.</li>
+
+
+
+
+
+</ol>
+<p>Given the above conditions, an attacker can execute CSS injection within the browser of the target user. The attacker can construct a URL that causes the victim's browser to import as CSS a different URL than normal, containing text that the attacker can manipulate.</p>
+<p>Being able to inject arbitrary CSS into the victim's browser may enable various attacks, including:</p>
+<ul>
+<li>Executing arbitrary JavaScript using IE's expression() function.</li>
+<li>Using CSS selectors to read parts of the HTML source, which may include sensitive data such as anti-CSRF tokens.</li>
+<li>Capturing any sensitive data within the URL query string by making a further style sheet import to a URL on the attacker's domain, and monitoring the incoming Referer header.</li>
+
+
+
+
+
+</ul>
+<h2>Issue remediation</h2>
+<p>The root cause of the vulnerability can be resolved by not using path-relative URLs in style sheet imports. Aside from this, attacks can also be prevented by implementing all of the following defensive measures:</p>
+<ul>
+<li>Setting the HTTP response header "X-Frame-Options: deny" in all responses. One method that an attacker can use to make a page render in quirks mode is to frame it within their own page that is rendered in quirks mode. Setting this header prevents the page from being framed.</li>
+<li>Setting a modern doctype (e.g. "&lt;!doctype html&gt;") in all HTML responses. This prevents the page from being rendered in quirks mode (unless it is being framed, as described above).</li>
+<li>Setting the HTTP response header "X-Content-Type-Options: no sniff" in all responses. This prevents the browser from processing a non-CSS response as CSS, even if another page loads the response via a style sheet import.</li>
+
+
+
+
+
+</ul>
+<h2>References</h2>
+<ul>
+<li><a href="http://blog.portswigger.net/2015/02/prssi.html">Detecting and exploiting path-relative stylesheet import (PRSSI) vulnerabilities</a></li>
+
+
+
+
+
+</ul>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/16.html">CWE-16: Configuration</a></li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><br /><br /><span class="BODH1">5.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp<br /><a class="PREVNEXT" href="#2.2">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#5.2">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserLogin.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT">The application may be vulnerable to path-relative style sheet import (PRSSI) attacks. The response contains a path-relative style sheet import, and so condition 1 for an exploitable vulnerability is present (see issue background). The response can also be made to render in a browser's quirks mode. Although the page contains a modern doctype directive, the response does not prevent itself from being framed. An attacker can frame the response within a page that they control, to force it to be rendered in quirks mode. (Note that this technique is IE-specific and due to P3P restrictions might sometimes limit the impact of a successful attack.) This means that condition 3 for an exploitable vulnerability is probably present if condition 2 is present.<br /><br />Burp was not able to confirm that the other conditions hold, and you should manually investigate this issue to confirm whether they do hold.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserLogin.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:19 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 16583<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;/title&gt;<br /><span class="HIGHLIGHT">&lt;link href="../Images/Css.css" rel="stylesheet" type="text/css"&gt;<br />&lt;/head&gt;<br /><strong>...[SNIP]...</strong><br /></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">5.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp<br /><a class="PREVNEXT" href="#5.1">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#5.3">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserRegister.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The application may be vulnerable to path-relative style sheet import (PRSSI) attacks. The response contains a path-relative style sheet import, and so condition 1 for an exploitable vulnerability is present (see issue background). The response can also be made to render in a browser's quirks mode. Although the page contains a modern doctype directive, the response does not prevent itself from being framed. An attacker can frame the response within a page that they control, to force it to be rendered in quirks mode. (Note that this technique is IE-specific and due to P3P restrictions might sometimes limit the impact of a successful attack.) This means that condition 3 for an exploitable vulnerability is probably present if condition 2 is present.<br /><br />Burp was not able to confirm that the other conditions hold, and you should manually investigate this issue to confirm whether they do hold.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserRegister.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:24 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 36275<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;/script&gt;<br /><span class="HIGHLIGHT">&lt;link href="../webtime/mobiscroll_002.css" rel="stylesheet" type="text/css"&gt;<br />&lt;script src="../webtime/mobiscroll.js" type="text/javascript"&gt;&lt;/script&gt;<br /><span class="HIGHLIGHT">&lt;link href="../webtime/mobiscroll_003.css" rel="stylesheet" type="text/css"&gt;<br /><br />&lt;!--[if IE 6]&gt;<br /><strong>...[SNIP]...</strong><br />&lt;![endif]--&gt;<br /><span class="HIGHLIGHT">&lt;link href="../Images/Css.css" rel="stylesheet" type="text/css"&gt;<br />&lt;/head&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">5.3.&nbsp;http://www.angeldg.com/rece/CProductMain.asp<br /><a class="PREVNEXT" href="#5.2">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#5.4">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/rece/CProductMain.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The application may be vulnerable to path-relative style sheet import (PRSSI) attacks. The response contains a path-relative style sheet import, and so condition 1 for an exploitable vulnerability is present (see issue background). The response can also be made to render in a browser's quirks mode. Although the page contains a modern doctype directive, the response does not prevent itself from being framed. An attacker can frame the response within a page that they control, to force it to be rendered in quirks mode. (Note that this technique is IE-specific and due to P3P restrictions might sometimes limit the impact of a successful attack.) This means that condition 3 for an exploitable vulnerability is probably present if condition 2 is present.<br /><br />Burp was not able to confirm that the other conditions hold, and you should manually investigate this issue to confirm whether they do hold.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Request</h2>
+<div class="rr_div">GET /rece/CProductMain.asp?MainType=1&amp;BClass=56 HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ad_play_index=70; ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:05 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 26677<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;/script&gt;<br /><span class="HIGHLIGHT">&lt;link href="../Images/Css.css" rel="stylesheet" type="text/css"&gt;<br />&lt;/head&gt;<br /><strong>...[SNIP]...</strong><br /></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">5.4.&nbsp;http://www.angeldg.com/rece/index.asp<br /><a class="PREVNEXT" href="#5.3">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#7.1">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/rece/index.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The application may be vulnerable to path-relative style sheet import (PRSSI) attacks. The response contains a path-relative style sheet import, and so condition 1 for an exploitable vulnerability is present (see issue background). The response can also be made to render in a browser's quirks mode. Although the page contains a modern doctype directive, the response does not prevent itself from being framed. An attacker can frame the response within a page that they control, to force it to be rendered in quirks mode. (Note that this technique is IE-specific and due to P3P restrictions might sometimes limit the impact of a successful attack.) This means that condition 3 for an exploitable vulnerability is probably present if condition 2 is present.<br /><br />Burp was not able to confirm that the other conditions hold, and you should manually investigate this issue to confirm whether they do hold.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Request</h2>
+<div class="rr_div">GET /rece/index.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ad_play_index=70; ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:23 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 42402<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999/x<br /><strong>...[SNIP]...</strong><br />&lt;![endif]--&gt;<br /><span class="HIGHLIGHT">&lt;link href="../Images/Css.css" rel="stylesheet" type="text/css"&gt;<br />&lt;/head&gt;<br /><strong>...[SNIP]...</strong><br />&lt;/div&gt;<br /><br /><br /><span class="HIGHLIGHT">&lt;link href="../images/16sucai_style.css" rel="stylesheet" type="text/css" /&gt;<br />&lt;script type="text/javascript" src="../Inc/16sucai.js"&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0">6.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/00500400_crossdomainrefererleakage">Cross-domain Referer leakage</a><br /><a class="PREVNEXT" href="#5">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#7">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Certain</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/rece/CProductMain.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT">The page was loaded from a URL containing a query string:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>http://www.angeldg.com/rece/CProductMain.asp</li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT">The response contains the following links to other domains:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>http://www.gsqihang.com/</li>
+<li>http://www.miitbeian.gov.cn/</li>
+
+
+
+
+
+</ul>
+<h2>Issue background</h2>
+<p>When a web browser makes a request for a resource, it typically adds an HTTP header, called the "Referer" header, indicating the URL of the resource from which the request originated. This occurs in numerous situations, for example when a web page loads an image or script, or when a user clicks on a link or submits a form.</p>
+<p>If the resource being requested resides on a different domain, then the Referer header is still generally included in the cross-domain request. If the originating URL contains any sensitive information within its query string, such as a session token, then this information will be transmitted to the other domain. If the other domain is not fully trusted by the application, then this may lead to a security compromise.</p>
+<p>You should review the contents of the information being transmitted to other domains, and also determine whether those domains are fully trusted by the originating application.</p>
+<p>Today's browsers may withhold the Referer header in some situations (for example, when loading a non-HTTPS resource from a page that was loaded over HTTPS, or when a Refresh directive is issued), but this behavior should not be relied upon to protect the originating URL from disclosure.</p>
+<p>Note also that if users can author content within the application then an attacker may be able to inject links referring to a domain they control in order to capture data from URLs used within the application.</p>
+<h2>Issue remediation</h2>
+<p>Applications should never transmit any sensitive information within the URL query string. In addition to being leaked in the Referer header, such information may be logged in various locations and may be visible on-screen to untrusted parties.</p>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/200.html">CWE-200: Information Exposure</a></li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /rece/CProductMain.asp?MainType=1&amp;BClass=56 HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ad_play_index=70; ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:05 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 26677<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;td height="50" class="white"&gt;Copyright&amp;nbsp;&amp;copy;&amp;nbsp;2018&amp;nbsp;www.angeldg.com&amp;nbsp;&amp;nbsp;All&amp;nbsp;Rights&amp;nbsp;Reserved&amp;nbsp;&amp;nbsp;................................<span class="HIGHLIGHT">&lt;a href="http://www.miitbeian.gov.cn/" target="_blank"&gt;..ICP..14000628..-1&lt;/a&gt;............<span class="HIGHLIGHT">&lt;a href="http://www.gsqihang.com" target="_blank"&gt;........&lt;/a&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0">7.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/005009a0_frameableresponsepotentialclickjacking">Frameable response (potential Clickjacking)</a><br /><a class="PREVNEXT" href="#6">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#8">Next</a>&nbsp;<br /><br /><span class="TEXT">There are 4 instances of this issue:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li><a href="#7.1">/Rece/UserLogin.asp</a></li>
+<li><a href="#7.2">/Rece/UserRegister.asp</a></li>
+<li><a href="#7.3">/rece/CProductMain.asp</a></li>
+<li><a href="#7.4">/rece/index.asp</a></li>
+
+
+
+
+
+</ul>
+<h2>Issue description</h2>
+<p>If a page fails to set an appropriate X-Frame-Options or Content-Security-Policy HTTP header, it might be possible for a page controlled by an attacker to load it within an iframe. This may enable a clickjacking attack, in which the attacker's page overlays the target application's interface with a different interface provided by the attacker. By inducing victim users to perform actions such as mouse clicks and keystrokes, the attacker can cause them to unwittingly carry out actions within the application that is being targeted. This technique allows the attacker to circumvent defenses against cross-site request forgery, and may result in unauthorized actions.</p>
+<p>Note that some applications attempt to prevent these attacks from within the HTML page itself, using "framebusting" code. However, this type of defense is normally ineffective and can usually be circumvented by a skilled attacker.</p>
+<p>You should determine whether any functions accessible within frameable pages can be used by application users to perform any sensitive actions within the application.</p>
+<h2>Issue remediation</h2>
+<p>To effectively prevent framing attacks, the application should return a response header with the name&nbsp;<strong>X-Frame-Options</strong>&nbsp;and the value&nbsp;<strong>DENY</strong>&nbsp;to prevent framing altogether, or the value&nbsp;<strong>SAMEORIGIN</strong>&nbsp;to allow framing only by pages on the same origin as the response itself. Note that the SAMEORIGIN header can be partially bypassed if the application itself can be made to frame untrusted websites.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options">X-Frame-Options</a></li>
+
+
+
+
+
+</ul>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/693.html">CWE-693: Protection Mechanism Failure</a></li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><br /><br /><span class="BODH1">7.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp<br /><a class="PREVNEXT" href="#5.4">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#7.2">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Firm</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserLogin.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserLogin.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:19 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 16583<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1">7.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp<br /><a class="PREVNEXT" href="#7.1">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#7.3">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Firm</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserRegister.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserRegister.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:24 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 36275<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1">7.3.&nbsp;http://www.angeldg.com/rece/CProductMain.asp<br /><a class="PREVNEXT" href="#7.2">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#7.4">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Firm</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/rece/CProductMain.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Request</h2>
+<div class="rr_div">GET /rece/CProductMain.asp?MainType=1&amp;BClass=56 HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ad_play_index=70; ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:05 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 26677<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1">7.4.&nbsp;http://www.angeldg.com/rece/index.asp<br /><a class="PREVNEXT" href="#7.3">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#9.1">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Firm</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/rece/index.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Request</h2>
+<div class="rr_div">GET /rece/index.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ad_play_index=70; ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:23 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 42402<br />Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999/x<br /><strong>...[SNIP]...</strong></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0">8.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/00800200_htmldoesnotspecifycharset">HTML does not specify charset</a><br /><a class="PREVNEXT" href="#7">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#9">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Certain</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserLoginFinish.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue description</h2>
+<p>If a response states that it contains HTML content but does not specify a character set, then the browser may analyze the HTML and attempt to determine which character set it appears to be using. Even if the majority of the HTML actually employs a standard character set such as UTF-8, the presence of non-standard characters anywhere in the response may cause the browser to interpret the content using a different character set. This can have unexpected results, and can lead to cross-site scripting vulnerabilities in which non-standard encodings like UTF-7 can be used to bypass the application's defensive filters.</p>
+<p>In most cases, the absence of a charset directive does not constitute a security flaw, particularly if the response contains static content. You should review the contents of affected responses, and the context in which they appear, to determine whether any vulnerability exists.</p>
+<h2>Issue remediation</h2>
+<p>For every response containing HTML content, the application should include within the Content-type header a directive specifying a standard recognized character set, for example&nbsp;<strong>charset=ISO-8859-1</strong>.</p>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/16.html">CWE-16: Configuration</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/436.html">CWE-436: Interpretation Conflict</a></li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">POST /Rece/UserLoginFinish.asp HTTP/1.1<br />Host: www.angeldg.com<br />Content-Length: 112<br />Cache-Control: max-age=0<br />Origin: http://www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />Content-Type: application/x-www-form-urlencoded<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/Rece/UserLogin.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br />DUserName=1214tian%40sina.com&amp;PassWord=admin%27+or+%271%27%3D%271&amp;Loginnum=7332&amp;Submit.x=126&amp;Submit.y=15&amp;ComUrl=</div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:23 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />pragma: no-cache<br />Content-Length: 147<br /><span class="HIGHLIGHT">Content-Type: text/html<br />Expires: Thu, 20 Dec 2018 13:18:23 GMT<br />Cache-control: no-cache<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&nbsp;&nbsp;&nbsp;&lt;script language="javascript"&gt;<br />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;alert('..........................');<br />&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;history.back();<br />&nbsp;&nbsp;&nbsp;&lt;/script&gt;<br />&nbsp;&nbsp;&nbsp;</span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0">9.&nbsp;<a href="https://portswigger.net/knowledgebase/issues/details/00800300_htmlusesunrecognizedcharset">HTML uses unrecognized charset</a><br /><a class="PREVNEXT" href="#8">Previous</a>&nbsp;<br /><br /><span class="TEXT">There are 4 instances of this issue:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li><a href="#9.1">/Rece/UserLogin.asp</a></li>
+<li><a href="#9.2">/Rece/UserRegister.asp</a></li>
+<li><a href="#9.3">/rece/CProductMain.asp</a></li>
+<li><a href="#9.4">/rece/index.asp</a></li>
+
+
+
+
+
+</ul>
+<h2>Issue background</h2>
+<p>Applications may specify a non-standard character set as a result of typographical errors within the code base, or because of intentional usage of an unusual character set that is not universally recognized by browsers. If the browser does not recognize the character set specified by the application, then the browser may analyze the HTML and attempt to determine which character set it appears to be using. Even if the majority of the HTML actually employs a standard character set such as UTF-8, the presence of non-standard characters anywhere in the response may cause the browser to interpret the content using a different character set. This can have unexpected results, and can lead to cross-site scripting vulnerabilities in which non-standard encodings like UTF-7 can be used to bypass the application's defensive filters.</p>
+<p>In most cases, the absence of a valid charset directive does not constitute a security flaw, particularly if the response contains static content. You should review the contents of affected responses, and the context in which they appear, to determine whether any vulnerability exists.</p>
+<h2>Issue remediation</h2>
+<p>For every response containing HTML content, the application should include within the Content-type header a directive specifying a standard recognized character set, for example&nbsp;<strong>charset=ISO-8859-1</strong>.</p>
+<h2>Vulnerability classifications</h2>
+<ul>
+<li><a href="https://cwe.mitre.org/data/definitions/16.html">CWE-16: Configuration</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/436.html">CWE-436: Interpretation Conflict</a></li>
+
+
+
+
+
+</ul>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><br /><br /><span class="BODH1">9.1.&nbsp;http://www.angeldg.com/Rece/UserLogin.asp<br /><a class="PREVNEXT" href="#7.4">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#9.2">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserLogin.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT">The response specifies that its MIME type is HTML. However, it specifies a charset that is not commonly recognized as standard. The following charset directive was specified:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>gb2312</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserLogin.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:19 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 16583<br /><span class="HIGHLIGHT">Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;head&gt;<br /><span class="HIGHLIGHT">&lt;meta http-equiv="Content-Type" content="text/html; charset=gb2312" /&gt;<br />&lt;link rel="shortcut icon" href="../Images/favicon.ico"&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">9.2.&nbsp;http://www.angeldg.com/Rece/UserRegister.asp<br /><a class="PREVNEXT" href="#9.1">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#9.3">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/Rece/UserRegister.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The response specifies that its MIME type is HTML. However, it specifies a charset that is not commonly recognized as standard. The following charset directive was specified:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>gb2312</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /Rece/UserRegister.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:24 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 36275<br /><span class="HIGHLIGHT">Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;head&gt;<br /><span class="HIGHLIGHT">&lt;meta http-equiv="Content-Type" content="text/html; charset=gb2312" /&gt;<br />&lt;link rel="shortcut icon" href="../Images/favicon.ico"&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">9.3.&nbsp;http://www.angeldg.com/rece/CProductMain.asp<br /><a class="PREVNEXT" href="#9.2">Previous</a>&nbsp;&nbsp;<a class="PREVNEXT" href="#9.4">Next</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/rece/CProductMain.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The response specifies that its MIME type is HTML. However, it specifies a charset that is not commonly recognized as standard. The following charset directive was specified:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>gb2312</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /rece/CProductMain.asp?MainType=1&amp;BClass=56 HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ad_play_index=70; ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:11:05 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 26677<br /><span class="HIGHLIGHT">Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999<br /><strong>...[SNIP]...</strong><br />&lt;head&gt;<br /><span class="HIGHLIGHT">&lt;meta http-equiv="Content-Type" content="text/html; charset=gb2312" /&gt;<br />&lt;link rel="shortcut icon" href="../Images/favicon.ico"&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1">9.4.&nbsp;http://www.angeldg.com/rece/index.asp<br /><a class="PREVNEXT" href="#9.3">Previous</a>&nbsp;<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2>Summary</h2>
+<table class="summary_table" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td class="icon" rowspan="4" align="center" valign="top">&nbsp;</td>
+<td>Severity:&nbsp;&nbsp;</td>
+<td><strong>Information</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Confidence:&nbsp;&nbsp;</td>
+<td><strong>Tentative</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Host:&nbsp;&nbsp;</td>
+<td><strong>http://www.angeldg.com</strong></td>
+
+
+
+
+
+</tr>
+<tr>
+<td>Path:&nbsp;&nbsp;</td>
+<td><strong>/rece/index.asp</strong></td>
+
+
+
+
+
+</tr>
+
+
+
+
+
+</tbody>
+
+
+
+
+
+</table>
+<h2>Issue detail</h2>
+<p>
+<span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH1"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT"><span class="BODH1"><span class="TEXT">The response specifies that its MIME type is HTML. However, it specifies a charset that is not commonly recognized as standard. The following charset directive was specified:</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>gb2312</li>
+
+
+
+
+
+</ul>
+<h2>Request</h2>
+<div class="rr_div">GET /rece/index.asp HTTP/1.1<br />Host: www.angeldg.com<br />Upgrade-Insecure-Requests: 1<br />User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36<br />Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br />Referer: http://www.angeldg.com/rece/index.asp<br />Accept-Language: zh-CN,zh;q=0.9<br />Cookie: ad_play_index=70; ASPSESSIONIDACTATSQC=IDNFEHIBDCCHKMMNFOCJCLOC; UM_distinctid=167cbbc80e43e8-054679a27bccff-5d1f3b1c-100200-167cbbc80e53e9; CNZZDATA5927622=cnzz_eid%3D928603540-1545311388-null%26ntime%3D1545311388<br />Connection: close<br /><br /></div>
+<h2>Response</h2>
+<div class="rr_div">HTTP/1.1 200 OK<br />Connection: close<br />Date: Thu, 20 Dec 2018 13:19:23 GMT<br />Server: WWW Server/1.1<br />X-Powered-By: ASP.NET<br />Content-Length: 42402<br /><span class="HIGHLIGHT">Content-Type: text/html<br />Cache-control: private<br />X-Safe-Firewall: zhuji.360.cn 1.0.9.47 F1W1<br /><br />&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br /><br />&lt;script src="/Inc/jquery.js"&gt;&lt;/script&gt;<br />&lt;html xmlns="http://www.w3.org/1999/x<br /><strong>...[SNIP]...</strong><br />&lt;head&gt;<br /><span class="HIGHLIGHT">&lt;meta http-equiv="Content-Type" content="text/html; charset=gb2312" /&gt;<br />&lt;link rel="shortcut icon" href="../Images/favicon.ico"&gt;<br /><strong>...[SNIP]...</strong><br /></span></span></div>
+<p>
+<span class="TEXT"><span class="TEXT"><span id="1" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="1.1" class="BODH1"><span class="TEXT"><span id="1.2" class="BODH1"><span class="TEXT"><span id="2" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="2.1" class="BODH1"><span class="TEXT"><span id="2.2" class="BODH1"><span class="TEXT"><span id="3" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="4" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="5" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="5.1" class="BODH1"><span class="TEXT"><span id="5.2" class="BODH1"><span class="TEXT"><span id="5.3" class="BODH1"><span class="TEXT"><span id="5.4" class="BODH1"><span class="TEXT"><span id="6" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="7" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="7.1" class="BODH1"><span id="7.2" class="BODH1"><span id="7.3" class="BODH1"><span id="7.4" class="BODH1"><span id="8" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="9" class="BODH0"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span class="TEXT"><span id="9.1" class="BODH1"><span class="TEXT"><span id="9.2" class="BODH1"><span class="TEXT"><span id="9.3" class="BODH1"><span class="TEXT"><span id="9.4" class="BODH1"><span class="TEXT"><span class="TEXT"><br />Report generated by Burp Suite&nbsp;<a href="https://portswigger.net/vulnerability-scanner/">web vulnerability scanner</a>&nbsp;v1.7.26, at Thu Dec 20 23:01:39 CST 2018.<br /></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-12-20 23:23</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10140568" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10140568);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10140568,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/12/20 23:23:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10140568.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+</html>

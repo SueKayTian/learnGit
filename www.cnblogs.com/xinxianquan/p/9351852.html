@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9351852.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Niagara物联网框架机制二（笔记） - 疏桐 - 博客园</title>
+    <meta property="og:description" content="一、Niagara框架 1、一个Niagara 系统中有四种典型的Programs，这些程序间的关系及其网络通讯关系可通过下面的通讯图表解释 2、 Niagara Programs station ：" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9351852.html">Niagara物联网框架机制二（笔记）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>一、Niagara框架</p>
+<p>1、一个Niagara 系统中有四种典型的Programs，这些程序间的关系及其网络通讯关系可通过下面的通讯图表解释</p>
+<p>&nbsp; <img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180722214910451-733116302.png" alt="" /></p>
+<p>&nbsp; 2、 Niagara&nbsp; Programs</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; station ： Nigara运行实例，在JavaVM上运行起来的Nigara组件应用实例。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Workbench ： 是一种Nigara工具， 意在JavaVM运行，承载Nigara插件的主机。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Daemon&nbsp; ： 是本地的一个守护进程，Daemon用来引导启动一个Station并且管理运行平台的各种配置，比如本地系统的IP配置。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; web Browser&nbsp; ：是标准的浏览器客户端，用浏览器来承载一个Nigara网页用户界面。</p>
+<p>3、&nbsp; 通讯协议 &nbsp; Protocols&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用三种铜须协议将上述四种程序结合起来：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FOX：&nbsp;&nbsp; 是一种使用专利的TCP/IP上运行的协议，用来实现Station与Station之间的通讯，也可以实现Workbench和Station间的通讯。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HTTP&nbsp; ：&nbsp; 标准协议，用来杨业浏览器和Station 的网页间通讯。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nigarad&nbsp; :&nbsp; 是一种私用专利的通讯协议，用来实现守护进程和Workbench间的通讯。</p>
+<p>4、 平台&nbsp;&nbsp; Platforms</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Niagara 可以被很多平台承载，从小的嵌入式系统到高端的服务器都可以实现：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jace&nbsp; :jace是java程序控制引擎的缩写&nbsp;&nbsp; java ApplicationControl Engine&nbsp; 他用来描述一个无显示器的嵌入式平台，通常一个jace 都运行与一个Flash（闪存）文件系统，并且提供后背电池组， jace 通常承载一个Daemon和一个Station， 不承载Workbench 。jac通常运行QNX（商用实时操作系统）或者WindowsXP版本的操作系统。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Supervisor&nbsp; ： 适用于运行了一个Station的工作站或者服务器。Supervisor特指为其他无历史或警报集合的Station提供服务的Station机器，Supervisor必须运行一个Station，但也可能运行Workbench或者daemon</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Clinet&nbsp; : 客户端嗾使运行Windows或者Linux操作系统，并使用Workbench或浏览器来访问Nigara的系统。</p>
+<p>5、站点&nbsp; Station</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Niagara 系统的构架是围绕以组件 Component 为导向的编程为核型设计的。组件Component是使用java编写、打包、部署为模块的自包含单位。多个组件通过连线构成一个应用 application 并运行在Station 上。一个Niagara 的Station的应用，会被存储在名为config.bog 的XML文件中，这个config.bog文件包含了一个包括组件及其属性的牌子的树桩的结构。并且记录。</p>
+<p>&nbsp;6、守护进程&nbsp;&nbsp; Daemon</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用本地代码写成，没有使用java，在操作做系统上有由守护进程来引导并管理Niagara平台。具体功能是，安装别备份站点数据库、启动并监视站点、配置TCP/IP、安装并升级操作系统（只针对QNX）、安装升级就javaVM、安装升级Niagara软件，安装碧迪字典管理并授权安装。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在Windows系统，Daemon是以Windows的后天服务运行的，在QNX操作系统上，Daemon是以一个守护进程方式在QNX启动的时候运行的，</p>
+<p>&nbsp;&nbsp; 使用Workbench界面访问Daemon是最常使用的方法，必须使用Openplatforms打开一个平台会话用以链接远程客户端的Daemon，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 另一种链接Daemon的方法，通过运行plat.ext启动一个命令行控制台来进行通讯。</p>
+<p>7、工作台 Workbench</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Workbench使用bajaui模块中的widget构建搭建的，而bajaui本事又是使用标准的Niagara的组件模式搭建的。Niagara提供两种客户端技术，第一种是 webWorkbench，这种方式允许Workbench运行在有java产检的浏览器上，web Workbench需要下载小的APP老人头模块wbapplet。。第二种是&ldquo;hx&rdquo; 使用Serverlet作为服务器端。</p>
+<p>&nbsp;8、FOX 通讯协议</p>
+<p>&nbsp;&nbsp; Nagara 拥有自己的通讯协议， fox FOX是一种基于TCP协议的多通道复用点对点通讯协议。FOX默认端口1911，其特点是;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 基于 TCP的Socket通讯&nbsp; 、摘要式验证方式、点对点、请求/答复、支持异步事件、基于流 Streaming &nbsp;&nbsp; 、通过频道切换多路复用技术可实现多应用同时运行。使用字符明码发送帧或信息，方便调试。统一的信息语法格式。高性能。使用Java 实现的协议栈。</p>
+<p>9、接口软件&nbsp; API Stack</p>
+<p>Niagara提供广泛的成套的java API 用来定义扩展Station和WorkBench。Niagara构架如下</p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180723161640848-1053155288.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Baja :&nbsp; Niagara 构架的基础，通过Baja模块订协议API，这些API定义可基础规则，包括模块、某快组、命名、导航、以及安全。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Horizontal&nbsp;&nbsp;&nbsp; ： Niagara包含了许多预先建好的组件库，用来支持物联网等领域，提供了基本的功能，包括 control、alarm、historical、scheduling、BQL等</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Drivers&nbsp;&nbsp; ： Niagara被设计为全面支持多协议混用，在Niagara中，使用driver farmework 标准建立的。用来和外部设备后系统同步信息的组件称为drivers，Drivers将先总所有的总线 如 BACnet 或Lonworks整合为一个体系为一个商业系统类似于关系型数据库和网络服务一样。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Human Interface ; Niagara 提供了广泛的用户界面协议栈。&ldquo;gx&rdquo;提供了地城的图像API，在GX基础上建成的bajaui模块提供了专业的工具及标准widget。在bajaui基础上建立的Workbench构架提供了插件的标准API，PX构架和工具来通过XML实现图形化界面</p>
+<p>二、Niagara Workbench启动 platforms运行出现问题解决方法</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 关闭 workbench后重新打开出现platforms运行端口出现问题。链接不上，这个时候station也是打不开的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 出现问题的原因是&nbsp; Daemon丢失，所以重新安装一些大daemon</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180723170210964-172555713.png" alt="" /><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180723170247488-1235881727.png" alt="" /></p>
+<p>现在 关闭之前的个station 从新打开一个 station</p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180723171119186-462097042.png" alt="" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180723171449812-131717756.png" alt="" /></p>
+<p>另一个问题就是 station离线的拷贝问题，只需要将 programdata中的station拷贝到userhome下 再然后在workbench下复制到本地运行。</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-07-23 17:22</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9351852" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9351852);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9351852,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/7/23 17:22:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9351852.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+</html>

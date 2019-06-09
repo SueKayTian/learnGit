@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10289541.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Discovery Scanning - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、NetDiscover you performe layer 2 the comand : netdiscover -r 192.168.2.0/24 or use netdiscover -l " />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10289541.html">Discovery Scanning</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、NetDiscover you performe layer 2</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; the comand&nbsp; : netdiscover -r 192.168.2.0/24&nbsp;&nbsp; or use&nbsp;&nbsp; netdiscover&nbsp; -l&nbsp; iplist.txt</p>
+<p>2、in fact we use ARP&nbsp; to request the system get the replay&nbsp; is Poor concealment, because we use the Broadcasting ARP request for every IP address in an entire subnet can sometimes trigger alerts or resopnses from security devices such as Intrusion Detection Systems(IDS )&nbsp; or other devices Intrusion Prevention System(IPS)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; A stealthier approach is to listen for the ARP traffic as the scanner system naturally interacts with other system on the network ,and then record the data collected from the ARP response ,this passive scanning techinque can be performed usign the -p option . the command as follow&nbsp; ,but&nbsp; we&nbsp; the rate of scanning is slower .we ofter use it to scanning the wireless network .</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; netdiscover -p&nbsp;&nbsp; [ip ]</p>
+<p>3、use the&nbsp; auxiliary in the Metasploit&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; the&nbsp; start command is&nbsp; :msfconsole&nbsp; and the use the&nbsp; auxiliary :&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp; &nbsp; use&nbsp; auxiliary/Scanner/discover/arp_sweep&nbsp;&nbsp; and use&nbsp; to show what need configuration&nbsp;&nbsp;</p>
+<p>4 、As&nbsp;&nbsp; with the ARPing request, the bytes&nbsp; from unique sting is only present in the ouput associated with live ip address ,and it is also on a line that contains this address ,in the same fashion&nbsp; ,we can extract the ip address from any successful ping request using a combination of grep and cut ,the command :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ping 192.168.1.1 -c 3 | gerp &nbsp; "butes from "&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ping&nbsp; 192.168.1.1 -c 3 | gerp " byte from" | cut -d " "&nbsp; -f 4&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ping 192.168.1.1 -c 3 | grep " bytes from " | cut -d " " -f 4 | -d ":" -f 1</p>
+<p>&nbsp;5、using Nmap to perform layer3 discovery</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IPCM&nbsp;&nbsp; scan&nbsp;&nbsp;&nbsp; command :&nbsp;&nbsp; nmap -sn [ip]&nbsp;&nbsp;&nbsp;&nbsp; ,besides ,we can use the comand :&nbsp; (nmap -iL iplist.txt&nbsp; -sn [ip] )</p>
+<p>6、 fping and hping3</p>
+<p>&nbsp; &nbsp; &nbsp; unlike the standard ping utility ,fping will stop sending ICMP echo requests after it receives a single replay ,but if a response is not received from the address ,fping will make four attempts to contact the system prior to determining that the host is unreachable .</p>
+<p>&nbsp; &nbsp; &nbsp; using the -g option to dynamically generate a list of ip address .to specify a range to scan ,pass this argument to both the first and last ip address in the&nbsp; desird sequential range&nbsp; ,,the command is :&nbsp;&nbsp; fping -g 192.168.1.0 192.168.1.11&nbsp;&nbsp; of course&nbsp;&nbsp; it can write this :&nbsp; fping -g 192.168.1.0/24&nbsp;&nbsp; ,fping&nbsp; can also used a series of address as specified by the contents of an input text file ,to use an input file ,use the -f file option and supply the filename or path of the input file； thec command is :&nbsp;&nbsp; fping -f iplist.txt&nbsp;&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; the other tool is hping3&nbsp; ,&nbsp; it is&nbsp; canable of performing discovery at both layer 3 and layer 4, the comman is : hping3 192.168.1.0 --icmp , in the linux&nbsp; use the -c option appoint should be include with an integer value that indicates the desired number of attempts .</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the command : &nbsp;&nbsp; hping3&nbsp; 192.168.1.1 --icmp&nbsp; -c&nbsp; 2 </p>
+<p>&nbsp;7、 using Scapy&nbsp; to perform layer 4 discovery&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; an ACK packet&nbsp; sent to live host on any port ,regardless of the port status ,will return an RST packet ,but on response will be received from an IP if no live host is associzted with it , so we can perform a discovery scan on a large number of system by only interacting with a single port on the each system, using Scapy in conjuction with the python , we can use the brief command , through send ACK packet to&nbsp; only the one the TCP port on the each system ,by&nbsp; eveulating the response&nbsp;&nbsp; returned by each host , so , we can easily output a list the ip address .</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eg :&nbsp; #/usr/bin/python </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; import loging </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; logging.getLogger("Scapy.runtime).setLevel(logging.ERROR)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from scapy.all import *</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if len(sys.argv)!=2:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(" Usage -./ACK_Ping.py[/24 network address]")</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(" Example -/ACK_Ping.py 192.168.1.2")</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(" Example will perform a TCP ACK ping scan of the 192.168.1.0/24 range")</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sys.exit（）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; address=src(sys.arvg[1])</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; prefix=address.split( '.')[0]+ ' .' +address.split('.')[1]+ ' .' +address.split('.')[2]+ ' .'</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; for addr in range(1,254):</p>
+<p>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; response=srl(IP(dst(prefix+str(addr))/TCP(dport=80,flag='A'),timeout=1,verbose=0)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if int (response[TCP].flags)==4:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(" "192.168.1.2"+str(addr) ")</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; except:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pass</p>
+<p>end the code&nbsp; ,we can use ./ACK_Ping.py &nbsp; perform </p>
+<p>8、using&nbsp; the nmap to perform layer 4 dissovery </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; to perform&nbsp; a discovery scan with UDP ,use the -PU in the conjuction with the port to test like with :&nbsp;&nbsp; nmap 192.168.2.1 -PU53 -sn&nbsp;&nbsp; besides we can use the command&nbsp; to perform&nbsp; scan&nbsp; use&nbsp; ip address list&nbsp; .like the command : nmap -il iplist.txt&nbsp; -sn -PU53&nbsp;&nbsp;&nbsp;&nbsp; (designated port&nbsp; 53)</p>
+<p>&nbsp;&nbsp;&nbsp; using&nbsp; -PA option&nbsp; means use the ACK packets to identify live hosts .&nbsp; the command&nbsp; :&nbsp; nmap 192.168.1.2&nbsp; -PA80 -sn&nbsp;&nbsp;&nbsp;&nbsp; ,of couse we can&nbsp; performed on a range os host using dash notation ,the command is : nmap 192.168.1.2 -192.168.1.255 -PA80 -sn&nbsp; or&nbsp; use&nbsp; 0/24</p>
+<p>9、Using hping3 to perform layer 4 discovery </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; by specifying the UDP mode with the&nbsp; --udp option ,UDP probes can&nbsp; transmisted in attempts to trigger replies from live hosts:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the command like this :&nbsp;&nbsp;&nbsp; hping3 --udp 192.168.1.2&nbsp;&nbsp;&nbsp; we can use the -c option indicated the desired number of attempts </p>
+<p>&nbsp;&nbsp;&nbsp; eg: nmap&nbsp; --udp 192.168.1.2 -c 2 </p>
+<p>&nbsp;&nbsp; we know the hping3 does not support the scanning of mulltiple system by default,&nbsp; but we can use the bush scripting.like this : </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hping3 --upd 192.168.1.2 -c 2 ;hping3 --upd 192.168.2.3 -c 2 | gerp&nbsp; " Unreachable " Hping 192.168.1.2 (eth1 192.168.1.2):udp mode set 28 headers +0 data bytes&nbsp; ICMP port Unreachable from ip=192.168.1.2 name=unknow status=0 port 2836 seq=0&nbsp;&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><audio controls="controls" style="display: none;"></audio></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-01-21 11:43</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10289541" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10289541);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10289541,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/1/21 11:43:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10289541.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+</html>

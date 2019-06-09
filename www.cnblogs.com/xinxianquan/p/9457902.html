@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9457902.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>kali linux revealed mastering the penetration testing distribution - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、本博客记载的是这本书的学习笔记，还有出现的一些不懂的单词&#160;我也将会记载这篇博客中。记载顺序是按照本书的章节顺序来记载的。最喜欢本书中的一句 you havae no idea how g" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9457902.html">kali linux revealed mastering the penetration testing distribution</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp; 1、本博客记载的是这本书的学习笔记，还有出现的一些不懂的单词&nbsp;我也将会记载这篇博客中。记载顺序是按照本书的章节顺序来记载的。最喜欢本书中的一句&nbsp; &nbsp;you havae no idea how good you have it&nbsp;哈哈哈哈</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 需要经常光顾的安全网站&nbsp; &nbsp;BugTrap&nbsp; &nbsp; AstaLaVista&nbsp; &nbsp;X-Force&nbsp;PacketStorm&nbsp; &nbsp;woowoo&nbsp; &nbsp; SecurityFocus&nbsp;&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; penetration&nbsp;渗透测试，&nbsp;洞察力&middot;&nbsp; &nbsp; &nbsp;liability&nbsp; &nbsp;责任，债务、倾向&nbsp; hovering&nbsp; &nbsp;鸟&nbsp; 徘徊，靠近，犹豫不前。&nbsp;sordid&nbsp; 肮脏的，污秽的，邋遢的&nbsp; &nbsp; &nbsp; pivot&nbsp;枢纽&nbsp;中心点&nbsp;支点&nbsp; &nbsp;wicked&nbsp;邪恶的&nbsp;淘气的&nbsp;顽皮的&nbsp;缺德的</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; Explicitly&nbsp;明确的，清晰的&nbsp; &nbsp; arsenal&nbsp;兵工厂&nbsp;军火&nbsp; &nbsp;gig&nbsp;作秀&nbsp;演出，旋转物&nbsp; &nbsp;fiffing&nbsp;无足轻重的&nbsp;摆弄 ，伪造&nbsp; correlate&nbsp;联系 ，使得相互联系&nbsp; &nbsp; ubiquitous&nbsp; 无处不在&nbsp; &nbsp; forensic&nbsp; 法院&nbsp;法庭的&nbsp;争论的&nbsp;公开辩论的&nbsp;取证</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; reserve&nbsp; 保留&nbsp; ，矜持的，预定的&nbsp; &nbsp; &nbsp;ancillary&nbsp;辅助的&nbsp;补充的&nbsp;附加的&nbsp; surprises&nbsp;意外&nbsp; &nbsp; cataloging&nbsp;编目&nbsp; &nbsp;expertise&nbsp;专业的知识&nbsp; &nbsp;专家的&nbsp;鉴定&nbsp; &nbsp; &nbsp;overwhelming&nbsp; 压倒性的&nbsp; &nbsp;methodologies&nbsp;一套方法&nbsp; full-blow&nbsp;成熟的</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;warranty&nbsp; 担保&nbsp; 保证 ，理由、根据、比准&nbsp;wrapper&nbsp;包装纸&nbsp; 包装材料&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;precaution&nbsp; &nbsp;预防、警惕、避孕措施、预先警告&nbsp; &nbsp; descendant&nbsp;衍生物&nbsp; 演变的工具&nbsp; &nbsp;modular&nbsp; 模块&nbsp;单元&nbsp; &nbsp;consolidate&nbsp; 加固的&nbsp;整理过的&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;leveraging&nbsp;促使 。。改变，杠杆式投机&nbsp;举债经营&nbsp; rolling&nbsp;旋转的，&nbsp;波动&nbsp;的&nbsp;起伏的&nbsp; &nbsp;gobble&nbsp;狼吞虎咽的吃&nbsp; &nbsp;robust&nbsp;健壮的&nbsp; discrete&nbsp;分离的&nbsp;不相关联的&nbsp;分离式&nbsp; &nbsp;deluge&nbsp; 洪水一般&nbsp;倾盆大雨&nbsp; &nbsp;alluring&nbsp;迷人的&nbsp; 诱人的</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sophistication&nbsp;老练&nbsp;精明&nbsp;强辞夺理、chuffed ，，&nbsp; 高兴的&nbsp;inadvert漫不经心的&nbsp;疏忽的&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;underpin&nbsp;加强&nbsp; 基础。&nbsp;streamline&nbsp; 流线型&nbsp;组织化的&nbsp; &nbsp; constraints&nbsp;约束&nbsp;限制&nbsp;强制&nbsp; parsing&nbsp;分析&nbsp;分解&nbsp; &nbsp;formalize&nbsp;使正式化</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pragmatic&nbsp; 实际的&nbsp;实际主义的&nbsp;好管闲事的&nbsp; &nbsp;hierarchy&nbsp; 等级制度&nbsp;层次&nbsp; &nbsp;tweak&nbsp;捏&nbsp;拧&nbsp;稍微的调整&nbsp; &nbsp;leverage&nbsp; 杠杆的作用&nbsp; &nbsp;举债经营&nbsp; &nbsp;auditing&nbsp;审计&nbsp; 查账&nbsp; vulnerability 脆弱性 漏洞&nbsp;&nbsp;auditing&nbsp; &nbsp;审计&nbsp;embedded&nbsp;嵌入&nbsp;植&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 入的&nbsp;内涵的&nbsp;robust&nbsp; 精&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;力充沛的&nbsp; kernel&nbsp;系统法人内核&nbsp; &nbsp;核心&nbsp;麦粒&nbsp; &nbsp; a&nbsp; constom&nbsp; &nbsp;Linux&nbsp;kernel&nbsp; 自定义Linux内核&nbsp; &nbsp;customize&nbsp; 定做&nbsp; 按照客户要求定制&nbsp; &nbsp; &nbsp; &nbsp;malware&nbsp;恶意软件&nbsp; irreparable&nbsp; 不可挽回的&nbsp; &nbsp;impersonate&nbsp; &nbsp; &nbsp; &nbsp;扮演&nbsp;模仿&nbsp; 人格化&nbsp; &nbsp; bloated&nbsp; 臃肿的&nbsp; &nbsp;傲慢的&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; resolved&nbsp;决定&nbsp;分解&nbsp; &nbsp;DNS&nbsp;resolution&nbsp; 域名解析服务器&nbsp; &nbsp;consistent&nbsp; 始终如一的坚持的&nbsp; &nbsp; scenario&nbsp; 方案&nbsp; 情节&nbsp; &nbsp;设想&nbsp; &nbsp;textual&nbsp; 文本的&nbsp; &nbsp;straightforward&nbsp; &nbsp;直截了当的&nbsp;坦率的&nbsp; &nbsp;简单的&nbsp; 径直的&nbsp; &nbsp;triggers&nbsp;触发器&nbsp; &nbsp;reserved&nbsp; 保留的&nbsp; 预定的&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; restrictions&nbsp; &nbsp;限制&nbsp;束缚&nbsp; &nbsp;expiration&nbsp;呼气&nbsp;终结&nbsp; 届期&nbsp;&nbsp;　　intact&nbsp; 完整的&nbsp; &nbsp; 原封不动的&nbsp;</p>
+<p>&nbsp;</p>
+<p>2、网络配置&nbsp; &nbsp;ifupdown</p>
+<p>&nbsp; &nbsp;</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-08-10 23:03</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9457902" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9457902);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9457902,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/8/10 23:03:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9457902.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+</html>

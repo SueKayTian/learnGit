@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9498453.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>802.11协议帧结构 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="本文摘自一篇博客 ，插图是链接登录路由器的流量抓包。 1. 帧控制结构(Frame Control) 1) Protocol Version: (协议版本)通常为0 2) Type: 帧类型，管理帧:" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9498453.html">802.11协议帧结构</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;&nbsp;&nbsp; 本文摘自一篇博客 ，插图是链接登录路由器的流量抓包。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201808/1276904-20180818211532716-1601190090.png" alt="" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201808/1276904-20180818211716660-953765624.png" alt="" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201808/1276904-20180818211740592-769229409.png" alt="" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201808/1276904-20180818211810593-283071485.png" alt="" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201808/1276904-20180818211846542-1951564904.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>1. 帧控制结构(Frame Control)<br />&nbsp;&nbsp;&nbsp; 1) Protocol Version: (协议版本)通常为0<br />&nbsp;&nbsp;&nbsp; 2) Type: 帧类型，管理帧: 00 <br />&nbsp;&nbsp;&nbsp; 3) Subtype: 进一步判断帧的子类型 <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1) Beacon(信标)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2) Probe Request(探测请求)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3) Probe Response(探测响应)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4) ATIM帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.5) Disassociation(解除关联)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.6) Deauthentication(解除认证)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.7) Association Request(关联请求)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.8) Reassociation Request(重新关联请求)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.9) Authentication(身份认证)帧<br />&nbsp;&nbsp;&nbsp; 4) To DS: 表明该帧是否是BSS向DS发送的帧 <br />&nbsp;&nbsp;&nbsp; 5) From DS: 表明该帧是否是DS向BSS发送的帧 <br />&nbsp;&nbsp;&nbsp; 6) More Fragment: 用于说明长帧被分段的情况，是否还有其它的帧，如果有则该值设置为1<br />&nbsp;&nbsp;&nbsp; 7) Retry(重传域): 表示该分段是先前传输分段的重发帧。 <br />&nbsp;&nbsp;&nbsp; 8) Power Management: 表示传输帧以后，站所采用的电源管理模式<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.1) 为1: STA处于power_save模式<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.2) 为0: STA处于active模式<br />&nbsp;&nbsp;&nbsp; 9) More Data: 表示有很多帧缓存到站中。即至少还有一个数据帧要发送给STA是设置为1。 <br />&nbsp;&nbsp;&nbsp; 10) Protected Frame: 表示根据WEP(Wired Equivalent Privacy)算法对帧主体进行加密。如果帧体部分包含被密钥套处理过的数据，则设置为1，否则设置为0 <br />&nbsp;&nbsp;&nbsp; 11) Order(序号域): 在长帧分段传送时，该域设置为1表示接受者应该严格按照顺序处理该帧，否则设置为0<br />2. Duration/ID(持续时间/标识)<br />表明该帧和它的确认帧将会占用信道多长时间，Duration 值用于网络分配向量(NAV)计算 <br />3. Address Fields(地址域): <br />&nbsp;&nbsp;&nbsp; 1) Destination Address<br />&nbsp;&nbsp;&nbsp; 2) Source Address<br />&nbsp;&nbsp;&nbsp; 3) BSS ID <br />4. Sequence Control(序列控制域): 用于过滤重复帧<br />&nbsp;&nbsp;&nbsp; 1) MSDU(MAC Server Data Unit), 12位序列号(Sequence Number)<br />&nbsp;&nbsp;&nbsp; 2) MMSDU(MAC Management Server Data Unit), 4位片段号(Fragment Number)组成 <br />5. Frame Body(Data): 发送或接收的信息。对于不同类型的数据帧来说，这个域的格式差别较大<br />&nbsp;&nbsp;&nbsp; 1) Beacon(信标)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1) Timestamp(时戳)位: 可用来同步 BSS 中的工作站 BSS 的主计时器会定期发送目前已作用的微秒数。当计数器到达最大值时，便会从头开始计数<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.2) Beacon interval位: AP点每隔一段时间就会发出的Beacon(信标)信号，用来宣布 802.11网络的存在。我们打开无线连接的时候之所以能看到很多Wi-Fi点就是因为它<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3) Capability information位: 发送Beacon信号的时候，它被用来通知各方，该网络具备哪种性能<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.4) SSID服务集标识(Service Set Identity): 由字节所形成的字串，用来标示所属网络的BSSID，即我们在Wi-Fi连接前看到的接入点名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.5) 跳频参数组合(PH Parameter Set): 包含了加入 802.11跳频(frequency-hopping)网络所需要的参数<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.6) 直接序列参数集合(DS Parameter Set): 指明网络所使用的信道数<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.7) 免竞争参数集合(CF Parameter Set): 出现在支持免竞争接入点所发送的 Beacon帧中，并非必须<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.8) IBSS 参数集合(IBSS Parameter Set): 指明ATIM window (数据待传指示通知信息间隔期间)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.9) TIM数据待传信息(Traffic Indication Map): 指示有哪些工作站需要接收待传数据<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.10) Country: 国家识别码<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.11) 功率限制(Power Constraint): 让网络得以向工作站传达其所允许的最大传输功率<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.12) 信道切换宣告(Channel Switch Announcement): 为了警告网络中的工作站即将变换信道<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.13) 禁声(Quiet): 为了避免与特定的军事雷达技术彼此干扰<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.14) 发射功率控制报告(TPC Report): 指明链路的衰减情况，可以帮助工作站了解该如何调整传输功率<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.15) 扩展物理层(ERP)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.16) 支持速率(Supported Rates): 无线局域网络支持数种标准速率。当移动工作站试图加入网络，会先检视该网络所使用的数据速率。有些速率是强制性的，每部工作站都必须支持<br />　　　　 ，有些则是选择性的<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.17) RSN强健安全网络(Robust Security Network)<br />&nbsp;&nbsp;&nbsp; 2) Probe Request(探测请求)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1) SSID服务集标识(Service Set Identity): 由字节所形成的字串，用来标示所属网络的BSSID，即我们在Wi-Fi连接前看到的接入点名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.2) Supported Rate(支持速率)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.3) 扩展支持速率(Extended Supported Rate)<br />&nbsp;&nbsp;&nbsp; 3) Probe Response(探测响应)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1) Timestamp(时戳)位: 可用来同步 BSS 中的工作站 BSS 的主计时器会定期发送目前已作用的微秒数。当计数器到达最大值时，便会从头开始计数<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2) Beacon interval位: AP点每隔一段时间就会发出的Beacon(信标)信号，用来宣布 802.11网络的存在。我们打开无线连接的时候之所以能看到很多Wi-Fi点就是因为它<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3) Capability information位: 发送Beacon信号的时候，它被用来通知各方，该网络具备哪种性能<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4) SSID服务集标识(Service Set Identity): 由字节所形成的字串，用来标示所属网络的BSSID，即我们在Wi-Fi连接前看到的接入点名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.5) 支持速率(Supported Rates): 无线局域网络支持数种标准速率。当移动工作站试图加入网络，会先检视该网络所使用的数据速率 <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.6) 跳频参数组合(PH Parameter Set): 包含了加入 802.11跳频(frequency-hopping)网络所需要的参数<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.7) 直接序列参数集合(DS Parameter Set): 指明网络所使用的信道数<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.8) 免竞争参数集合(CF Parameter Set): 出现在支持免竞争接入点所发送的 Beacon帧中，并非必须<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.9) IBSS 参数集合(IBSS Parameter Set): 指明ATIM window (数据待传指示通知信息间隔期间)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.10) Country: 国家识别码<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.11) FH Hopping Parameters<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.12) FH Pattern Table<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.13) 功率限制(Power Constraint): 让网络得以向工作站传达其所允许的最大传输功率<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.13) 信道切换宣告(Channel Switch Announcement): 为了警告网络中的工作站即将变换信道<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.14) 禁声(Quiet): 为了避免与特定的军事雷达技术彼此干扰<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.15) IBSS 动态选项(IBSS DFS):在 IBSS 中负责动态选频的工作站可以在管理帧中传递 IBSS DFS 信息元素<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.16) 发射功率控制报告(TPC Report): 指明链路的衰减情况，可以帮助工作站了解该如何调整传输功率<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.17) 扩展物理层(ERP)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.18) 扩展支持速率(Extended Supported Rate) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.19) RSN强健安全网络(Robust Security Network)<br />&nbsp;&nbsp;&nbsp; 4) ATIM帧<br />&nbsp;&nbsp;&nbsp; 5) Disassociation(解除关联)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.1) Beacon Code<br />&nbsp;&nbsp;&nbsp; 6) Deauthentication(解除认证)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.1) Beacon Code<br />&nbsp;&nbsp;&nbsp; 7) Association Request(关联请求)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.1) Capability information位: 发送Beacon信号的时候，它被用来通知各方，该网络具备哪种性能<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.2) Listen interval位: 为了节省电池的电力，工作站可以暂时关闭 802.11网络接口的天线。当工作站处于休眠状态，接入点必须为之暂存帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.3) SSID服务集标识(Service Set Identity): 由字节所形成的字串，用来标示所属网络的BSSID，即我们在Wi-Fi连接前看到的接入点名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.4) Supported Rate(支持速率)<br />&nbsp;&nbsp;&nbsp; 8) Reassociation Request(重新关联请求)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.1) Capability information位: 发送Beacon信号的时候，它被用来通知各方，该网络具备哪种性能<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.2) Listen interval位: 为了节省电池的电力，工作站可以暂时关闭 802.11网络接口的天线。当工作站处于休眠状态，接入点必须为之暂存帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.3) Current AP Address位: 使用Current AP Address(目前接入点的地址)位来表明目前所连接的接入点的 MAC地址<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.4) SSID服务集标识(Service Set Identity): 由字节所形成的字串，用来标示所属网络的BSSID，即我们在Wi-Fi连接前看到的接入点名称<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.5) Supported Rate(支持速率)<br />&nbsp;&nbsp;&nbsp; 9) Authentication(身份认证)帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.1) Authentication Algorithm Number: 指明认证程序所使用的认证类型<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.2) Authentication Transaction Sequence Number: 用以追踪身份认证的进度<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.3) Status Code: 状态代码用来表示某项过程成功或失败<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9.4) 质询口令(Challenge Text): 802.11所定义的共享密钥身份认证系统。会要求移动工作站必须成功解码一段加密过的质询口令。这段质询口令的发送系通过 Challenge Text<br />　　　　(质询口令)信息元素<br />6. FCS(CRC): 包括32位的循环冗余校验(CRC)，用于检错，注意是检错不是纠错</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>1. 帧控制结构(Frame Control)<br />&nbsp;&nbsp;&nbsp; 1) Protocol Version: (协议版本)通常为0<br />&nbsp;&nbsp;&nbsp; 2) Type: 帧类型，数据帧: 10 <br />&nbsp;&nbsp;&nbsp; 3) Subtype: 进一步判断帧的子类型，不同类型的数据帧这个字段的格式是不同的<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1) IBSS帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1.1) 0000: Data<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1.2) 0010: Null<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2) From AP帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.1) 0000: Data<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.2) 1000: Data+CF+ASK<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.3) 0100: Data+CF+Poll<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.4) 1100: Data+CF+ACK+CF+Poll<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.5) 1010: CF+ACK<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.6) 0110: CF+Poll<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.7) 1110: ACK+CF+Poll <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3) To AP帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3.1) 0000: Data<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3.2) 1000: Data+CF+ACK<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3.3) 0010: Null<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3.4) 1010: CF+ACK(no data)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4) WDS帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null<br />&nbsp;&nbsp;&nbsp; 4) To DS: 表明该帧是否是BSS向DS发送的帧时<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.1) IBSS: 设置为0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.2) To AP: 设置为1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.3) From AP: 设置为0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.4) WDS: 设置为1<br />&nbsp;&nbsp;&nbsp; 5) From DS: 表明该帧是否是DS向BSS发送的帧时 &nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.1) IBSS: 设置为0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.2) To AP: 设置为0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.3) From AP: 设置为1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.4) WDS: 设置为1<br />&nbsp;&nbsp;&nbsp; 6) More Fragment: 用于说明长帧被分段的情况，是否还有其它的帧，如果有则该值设置为1<br />&nbsp;&nbsp;&nbsp; 7) Retry(重传域): 表示该分段是先前传输分段的重发帧。 <br />&nbsp;&nbsp;&nbsp; 8) Power Management: 表示传输帧以后，站所采用的电源管理模式<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.1) 为1: STA处于power_save模式<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.2) 为0: STA处于active模式<br />&nbsp;&nbsp;&nbsp; 9) More Data: 表示有很多帧缓存到站中。即至少还有一个数据帧要发送给STA是设置为1。 <br />&nbsp;&nbsp;&nbsp; 10) Protected Frame: 表示根据WEP(Wired Equivalent Privacy)算法对帧主体进行加密。如果帧体部分包含被密钥套处理过的数据，则设置为1，否则设置为0 <br />&nbsp;&nbsp;&nbsp; 11) Order(序号域): 在长帧分段传送时，该域设置为1表示接受者应该严格按照顺序处理该帧，否则设置为0<br />2. Duration/ID(持续时间/标识)<br />表明该帧和它的确认帧将会占用信道多长时间，Duration 值用于网络分配向量(NAV)计算 <br />3. Address Fields(地址域): <br />这个域的具体格式和控制帧的子类型有关，不同的子类型会有一些微小的差别<br />&nbsp;&nbsp;&nbsp; 1) IBSS<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1) Destination Address<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.2) Source Address<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.3) BSSID <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每个BSS都会被赋予一个BSSID，它是一个长度为48个bit的二进制识别码，用来辨识不同的BSS<br />&nbsp;&nbsp;&nbsp; 2) From AP<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1) Destination Address <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.2) BSSID<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.3) Source Address<br />&nbsp;&nbsp;&nbsp; 3) To AP<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1) BSSID<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2) Source Address<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3) Destination Address &nbsp;<br />&nbsp;&nbsp;&nbsp; 4) WDS <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.1) BSSID<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.2) Source Address<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.3) Destination Address<br />4. Sequence Control(序列控制域): 用于过滤重复帧<br />&nbsp;&nbsp;&nbsp; 1) MSDU(MAC Server Data Unit), 12位序列号(Sequence Number)<br />&nbsp;&nbsp;&nbsp; 2) MMSDU(MAC Management Server Data Unit), 4位片段号(Fragment Number)组成<br />[SA，只有WDS中的帧有这个字段]<br />5. Frame Body(Data): 发送或接收的信息。<br />6. FCS(CRC): 包括32位的循环冗余校验(CRC)，用于检错，注意是检错不是纠错</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>1. 帧控制结构(Frame Control)<br />&nbsp;&nbsp;&nbsp; 1) Protocol Version: (协议版本)通常为0<br />&nbsp;&nbsp;&nbsp; 2) Type: 帧类型，控制帧: 01 <br />&nbsp;&nbsp;&nbsp; 3) Subtype: 进一步判断帧的子类型:&nbsp; &nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 控制帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1) 请求发送(Request To Send，RTS)数据包<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2) 清除发送(Clear To Send，CTS)数据包<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 数据帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3) ACK确认(RTS/CTS) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4) PS-Poll: 当一部移动工作站从省电模式中苏醒，便会发送一个 PS-Poll 帧给基站，以取得任何暂存帧 <br />&nbsp;&nbsp;&nbsp; 4) To DS: 表明该帧是BSS向DS发送的帧时，该值设置为1<br />&nbsp;&nbsp;&nbsp; 5) From DS: 表明该帧是DS向BSS发送的帧时，该值设置为1<br />&nbsp;&nbsp;&nbsp; 控制帧负责处理无线介质的访问，因此只能够由无线工作站产生。传输系统并不会收送控制帧，因此这两个Bit必然为0 <br />&nbsp;&nbsp;&nbsp; 6) More Fragment: 用于说明长帧被分段的情况，是否还有其它的帧，如果有则该值设置为1。<br />&nbsp;&nbsp;&nbsp; 控制帧不可能被切割，这个Bit必然为0 <br />&nbsp;&nbsp;&nbsp; 7) Retry(重传域): 表示该分段是先前传输分段的重发帧。<br />&nbsp;&nbsp;&nbsp; 控制帧不像管理或数据帧那样，必须在序列中等候重送，因此这个 Bit必然为0 <br />&nbsp;&nbsp;&nbsp; 8) Power Management: 表示传输帧以后，站所采用的电源管理模式<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.1) 为1: STA处于power_save模式<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8.2) 为0: STA处于active模式<br />&nbsp;&nbsp;&nbsp; 9) More Data: 表示有很多帧缓存到站中。即至少还有一个数据帧要发送给STA是设置为1。<br />&nbsp;&nbsp;&nbsp; More Data bit只用于管理数据帧，在控制帧中此Bit必然为0<br />&nbsp;&nbsp;&nbsp; 10) Protected Frame: 表示根据WEP(Wired Equivalent Privacy)算法对帧主体进行加密。如果帧体部分包含被密钥套处理过的数据，则设置为1，否则设置为0。<br />&nbsp;&nbsp;&nbsp; 控制帧不会经过加密。因此对控制帧而言，Protected Frame bit必然为0。<br />&nbsp;&nbsp;&nbsp; 11) Order(序号域): 在长帧分段传送时，该域设置为1表示接受者应该严格按照顺序处理该帧，否则设置为0。<br />&nbsp;&nbsp;&nbsp; 控制帧是基本帧交换程序(atomic frame exchange operation)的组成要件，因此必须依序发送。所以这个Bit必然为0<br />2. Duration/ID(持续时间/标识)<br />表明该帧和它的确认帧将会占用信道多长时间，Duration 值用于网络分配向量(NAV)计算。<br />注意: 在PS-Poll帧中不包含Duration/ID这个字段<br />3. Address Fields(地址域): <br />这个域的具体格式和控制帧的子类型有关，不同的子类型会有一些微小的差别<br />&nbsp;&nbsp;&nbsp; 3.1) RTS(请求发送帧)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1.1) Receiver Address(接收端地址)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 接收大型帧的工作站的地址<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1.2) Transmitter Address(发送端地址)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RTS帧的发送端的地址<br />&nbsp;&nbsp;&nbsp; 3.2) CTS(允许发送)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2.1) Receiver Address(接收端地址)<br />&nbsp;&nbsp;&nbsp; 3.3) ACK(应答)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3.1) Receiver Address(接收端地址)<br />&nbsp;&nbsp;&nbsp; 3.4) PS-Poll(省电模式一轮询) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4.1) AID(连接识别码 association ID)&nbsp;&nbsp; &nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 连接识别码是接入点所指定的一个数值，用以区别各个连接。将此识别码置入帧，可让接入点找出为其(移动工作站)所暂存的帧<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4.2) BSSID<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 此位包含发送端目前所在 BSS(AP)的BSSID ，此BSS 建立自目前所连接的AP<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4.3) Transmitter Address(发送端地址)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 此为PS-Poll帧之发送端的 MAC地址<br />4. FCS(CRC): 包括32位的循环冗余校验(CRC)，用于检错，注意是检错不是纠错</p>
+<p>&nbsp;</p>
+<p>WiFi认证过程</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-08-18 20:01</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9498453" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9498453);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9498453,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/8/18 20:01:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9498453.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+</html>

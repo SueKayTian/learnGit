@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9379880.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Niagara workbench   介绍文档---翻译 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="一、 发现在建立station的时候存在一些问题，所以对技术文档部分做一个详细的了解，在这之前对出现的问题总结一下 1、 在 Windows操作系统中Application Direction中可以同" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9379880.html">Niagara workbench   介绍文档---翻译</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>一、 发现在建立station的时候存在一些问题，所以对技术文档部分做一个详细的了解，在这之前对出现的问题总结一下</p>
+<p>&nbsp;&nbsp;&nbsp; 1、&nbsp; 在 Windows操作系统中Application Direction中可以同时显示几个Station。启动station之后status状态一直显示的是Starting 不能递进到Running，但是Station也能打开。首先看运行状态码，出现443端口占用问题，查看占用443端口的服务，将其关闭。复制端口进程的PID码 ，查看服务 使用命令&nbsp; tasklist|findstr&nbsp; 。直接将其关闭即可&nbsp; 使用关闭服务命令taskkill /f /t /im&nbsp; &ldquo;服务名&rdquo;&rdquo;。成出现这种情况，可能还有其他的原因应当在响应的服务中设置开启 。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180728194304627-1433742846.png" alt="" /><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180728194532943-1025079388.png" alt="" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180728193343588-687795879.png" alt="" /></p>
+<p>2、入了将离线的Station复制导入到自己的Workbench中。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 将C:\ProgramData\Niagara4.3\vykon\stations&nbsp; 中的station拷贝下来导入了另一台电脑 的相对应的目录下。打开Application Direction 直接选取拷贝进的station 运行，输入station的密码即可。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180728221724998-423802661.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>二、Niagara platform框架的名词解释</p>
+<p>1、Supervisor&nbsp; 其实就是自己的电脑安装了Niagara workbench品台&nbsp; 。</p>
+<p>&nbsp;<img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180728192501352-1141651758.png" alt="" width="734" height="411" /></p>
+<p>&nbsp;&nbsp;&nbsp; <span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Station（站点）：</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">它是Niagara的运行时程序，一个运行于Java虚拟机之上的Niagara 组件应用程序。后文还会详细介绍。</span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Workbench（工作台）:</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">它是一个可视化的Niagara编程工具，类似于一个浏览器，它也是运行在Java虚拟机上的，用户可以通过它用来访问platform和station.</span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Daemon（守护进程）:</strong></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">守护进程用来启动station并管理着platform的配置项，比如IP地址等等。</span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Web Browser（浏览器）:</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara可以通过标准的浏览器来访问。</span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>2.和Niagara 架构相关的三个Protocols</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">上一节所述的4个Niagara程序通过3种网络协议来进行交互。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Fox:</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">它是一个基于TCP/IP的私有协议，用于station和station之间的通讯以及workbench和station之间的通讯。</span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot;HTTP:</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">这里就是指标准的HTTP协议，浏览器通过http协议来访问station中的网页。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot;Niagarad:</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">它是一个私有协议，用于workbench和daemon之间的通讯。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">备注：Foxs协议和Https协议都是Niagara默认支持的协议，分别对应fox和http协议的加密版本协议。</span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>3.Platforms（Niagara可以运行的平台）</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara 可以部署的平台非常广，小到一个嵌入式设备，大到高端的服务器都可以。主要包括：</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot;Jace：</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Java ApplicationControl Engine，这个词用来指代各种没有界面的，嵌入式设备平台。Jace上通常会运行一个Station和一个daemon进程，但是没有workbench。Jace上通常运行的是QNX操作系统。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot;Supervisor：</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">通常指运行在一个工作站或服务器上运行的station。Supervisor通常是指在整个系统中给其他station提供支持服务的station，这些服务包括历史数据和报警数据的收集等。Supervisor通常用来指代一个station，但它也可以运行workbench和daemon。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot;Client：</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">通常的client是指那些运行着桌面操作系统，比如Windows或Linux，通过workbench或者浏览器来访问Niagara的设备。</span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>4.Station （站点）</strong></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara 架构是围绕着面向组件编程（Component Oriented Programming）的概念来设计的。组件（component）是用java程序编写的一个完备的部件，并通过模块（module）来部署。各个组件通过连线的方式组合在一起实现特定的应用并通过 station runtime来执行。一个Niagara应用程序就是通过station来实现的。Station是一个名字为config.bog的XML文件。Bog文件中包含了一个组件树，每个组件的属性配置，以及各个组件是如何相互连接的。有很多创建station的方法：</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;1）在现场通过workbench图形化编程工具创建</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;2）离线状态下，通过workbench图形化编程工具创建</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;3）产品设计过程中创建，并在生产过程中直接安装到设备中（针对特定领域的固定应用）</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;4）在现场，根据现场设备情况，通过&ldquo;自学习&rdquo;的方式，动态创建.</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">那些不允许通过编程更改的station，通常叫做appliance。说到一个station，它可以在Jace上，也可以在Supervisor上。它只是描述了一个组件的运行时环境，对所有platform都是一样的。Supervisor和Jace则是指明了platform的不同。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>5.Daemon （守护进程）</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Daemon是一个后台进程，它负责初始化并引导platform启动。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">它的功能包括：</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;1） 管理station安装和备份station database</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;2） 加载和监控station</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;3） 配置Platform的 TCP/IP 设置</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;4） 安装和升级操作系统(仅限于QNX系统)</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;5）安装和升级Java 虚拟机</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;6）安装和升级 Niagara 软件</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;7）安装多语言环境</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;8）安装授权文件</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">在 Windows platforms上，daemon作为一个Windows service在后台运行. 在QNX系统上，它在启动时作为daemon进程来运行。通常来说可以通过workbench访问daemon的各个功能，具体的方法是，通过&ldquo;Open Platform&rdquo;命令来建立和远程目标机的Platform会话。当会话建立起来后，PlatformSession提供一组可视化界面来呈现上面所述的各个功能。另外一种访问daemon的方式是通过命令行的plat.exe命令。通过这种方式可以完成大部分workbench所提供的功能。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>6.Workbench</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara提供了一个非常强大的工具&mdash;&mdash;workbench。Workbench是基于bajaui widget建立的，它本身也是通过Niagara的标准组件模型创建的。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Workbench是为了提供一个通用的可以呈现不同用户所开发的Niagara插件的可视化工具。最常见的插件是用来呈现Niagara组件和文件的视图。其他还包括侧边栏和工具栏。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Workbench本身允许用户通过BWbProfile API做订制化开发。Profile允许开发者基于workbench的主架构来创建自己的应用，比如可以增加或移除：部分菜单条目，工具栏，侧边栏以及视图。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>7.Web UI</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara一个重要的特性就是能够提供一个通过标准的浏览器能够访问的界面。Niagara同时提供客户端和服务器端技术来创建网页界面。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">关于服务器端，Niagara通过Station中的WebService组件来提供HTTP和HTTPS。WebService提供一个标准的servlet引擎。Servlets通过BWebServlet的一个子类来部署。还有其他基于此的类和相关API来提供高阶功能，比如BServletView。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara提供了两种针对client端的技术。第一个就是基于web的workbench。它允许标准的workbench通过Java插件运行在浏览器上。Web workbench通过一个叫做wbapplet的applet来下载客户端运行workbench所需要的java模块。这些模块被下载之后会被缓存在浏览器上。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">此外，除了web workbench，Niagara还提供了一种叫做hx的技术。Hx framework是一组包括服务端的servlet和客户端的JavaScript库。Hx支持一个不必基于Java插件的实时用户界面。Hx只基于HTML,CSS和JavaScript。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara通过Bajaux给用户提供了一个开发基于网页用户界面的环境。在Niagara4，用户界面更加偏重基于HTML5和web开放技术的用户界面。Niagara提供了大量framework和应用，就是为了让用户可以创建自己的基于网页的应用，小到一个field editor大到包含很多功能的整个页面。更多关于此的信息请参照Niagara的Building JavaScriptApplication。&nbsp;</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>8.Fox</strong></span></span></span><br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">NiagaraFramework使用一个叫做Fox的私有协议来进行Station和station之间的通讯，以及workbench和station之间的通讯。Fox协议是基于TCP协议的点对点的通讯协议。Fox协议的默认端口是1911。Foxs协议是fox协议的加密版本，它默认的端口是4911。fox协议的特性包括：</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;1）基于TCP socket连接</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;2）摘要式身份验证（用户名/密码加密）</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;3）点对点</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;4）请求/应答式</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;5）异步事件</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;6）流</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;7）通过channel&nbsp; &nbsp;&nbsp;&nbsp;multiplexing来支持基于一个socket的多个应用</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;8）基于文本的消息，便于调试</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;9）统一的消息格式</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;10）高性能</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">&nbsp;&nbsp;11）通过Java程序实现协议栈</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #0000ff;"><strong>9.API Stack</strong></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara提供了一组API允许用户自定义并扩展station和workbench。Niagara架构中各个软件层的设计请参照下图：</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><img id="aimg_1864" class="zoom" src="http://www.niagara-china.com/data/attachment/forum/201805/29/144640k2plzxxb1ia2b0ep.jpg" alt="" width="778" />&nbsp;<br /><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Baja：</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">它是整个架构的最基础部分，通过Baja moduleapi定义。这些api定义了架构基础，包括模块，组件模型，命名，导航和安全。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Base Interfaces：</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara包括了一个可扩展的组件库，这些模块包含了很多标准的组件和API，比如：alarming, historicaldata collection, scheduling, and BQL.</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Drivers：</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">Niagara的一个设计初衷就是要支持各种协议。通过driver（驱动）模型，以便和其他设备进或系统行数据同步。驱动是通过驱动框架来创建的。驱动包括各种现场总线协议，bacnent和lonworks，也包括企业级系统，比如关系型数据库和网络服务。</span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><br /></span></span></span><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;"><strong>&middot; Human Interfaces：</strong></span></span></span><br /><span style="font-family: 微软雅黑;"><span style="font-size: medium;"><span style="color: #000000;">系统提供了用户界面扩展。Gx framework为底层图形界面提供了一个标准的模型以及API。在gx之上是bajaui，它为各种的widget提供了一个专业的工具包。在bajaui之上就是workbench，workbench提供了各种插件的api。Px framework和工具用来帮助那些非程序员通过xml创建图形界面。Bajaux framework帮助Niagara实现基于网页的界面，比如应用HTML5, JavaScript以及其他web端开放技术。</span></span></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-07-28 22:19</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9379880" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9379880);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9379880,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/7/28 22:19:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9379880.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+</html>

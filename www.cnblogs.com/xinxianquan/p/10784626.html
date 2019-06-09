@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10784626.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>TLS详解 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="TLS加密通信， 开始使用协商的秘钥进行加密通信 1、服务器也可以要求验证客户端，即实现双向的验证， 2、会话缓存握手过程，为了建立握手的速度，减少协议带来的性能方面的降低和资源方面的消耗，TLS协议" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10784626.html">TLS详解</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>TLS加密通信，</p>
+<p>开始使用协商的秘钥进行加密通信</p>
+<p>&nbsp; 1、服务器也可以要求验证客户端，即实现双向的验证，</p>
+<p>&nbsp; 2、会话缓存握手过程，为了建立握手的速度，减少协议带来的性能方面的降低和资源方面的消耗，TLS协议有两类会话缓存机制，分别是会话session ID 和会话记录session titcket 。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Session ID有服务器端支持，协议中的标准字段，因此基本的所有服务都支持，服务区段保存会话 ID 以及协商的通信信息， Nginx中的IM内存约保存4000个session ID机器相关的信息，占服务器资源较多。 另一种就是Session ticket需要服务器和客户端都支持，术语一个扩展字段，将协商的通信信息加密之后发送给客户端保存，秘钥只有服务器知道，占用服务器的资源最少。这两者对比，主要是保存协商信息位置的不同，类似http中session与从cookie。二者都存在的情况下，（nginx实现）优先使用session_ticket</p>
+<p>&nbsp;&nbsp; 握手过程如下：</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190428142644718-1630693161.png" alt="" /></p>
+<p>（1）会话标识SessionID&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 如果客户端和服务器之间之前建立了连接，服务器会在握手成功之后返回SessionID ,并且保存默认的参数在服务器中</p>
+<p>&nbsp;&nbsp;&nbsp; 如果客户端再次需要和该服务器建立连接，则在Client_hello中 session_id中携带记录信息，发送给服务器。</p>
+<p>&nbsp;&nbsp;&nbsp; 服务器根据收到的session Id 检索缓存的记录，如果没有检索到缓存过期，则按照正常的握手进程进行。</p>
+<p>&nbsp;&nbsp;&nbsp; 如果检索到对应点缓存激励，则返回change_cipher_spec与 encrypted_handshake_message信息，两个信息作用类似，encrypted_handshack_messag是到当前通信参数与 master_sercet的hash值。但是如果客户能够验证通过服务器加密数据，则客户端同样发送change_spec和encrypted_handshake_message信息。服务器验证数据通过，则握手建立连接成功，开始进行征程的数据加密通信。</p>
+<p>（2）会话记录session_ticket</p>
+<p>&nbsp;&nbsp;&nbsp; 如果客户端和服务器支架之前建立可连接，服务器会在new_session_ticket数据中携带加密的session_ticket信息，客户端保存。</p>
+<p>&nbsp;&nbsp;&nbsp; 如果客户端再次需要和服务器建立连接，则在client_hello 中扩展字段session_ticket中携带加密信息，一起发送给服务器，服务器解密session_ticket数据，如果解密失败按照正常的握手进行。</p>
+<p>&nbsp;&nbsp; 如果解密成功，session-ticket则返回 change_cipher_spec和encrypted_handshake_message信息，两个信息作用于session Id中类似。</p>
+<p>&nbsp;&nbsp;&nbsp; 如果客户端能工验证通过服务器加密数据，则客户端同样发送change_cipher_spec和encrypted_handshake_message信息。</p>
+<p>&nbsp;&nbsp; 服务器验证数据通过，则我哦手建立成功，开始进行正常的数据加密通信。</p>
+<p>3、重新连接</p>
+<p>重新建立连接，就是放弃之前建立的连接，（TLS连接） 从新进行身份认证和秘钥写上个的过程，特点是不需要断开当前的数据传输就可以重新身份认证，更新秘钥和算法，因此服务端存储和缓存的信息都可以保存，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190428152520816-968231225.png" alt="" /></p>
+<p>服务器端重新建立一般情况是客户端访问受保护的数据发生，基本过程如下：</p>
+<p>&nbsp;&nbsp;&nbsp; 客户端和服务端建立了有效TLS连接 ，并开始通信。</p>
+<p>&nbsp;&nbsp; 客户端访问受保护的信息</p>
+<p>&nbsp;&nbsp; 服务器端返回helo-request信息</p>
+<p>&nbsp;&nbsp; 客户端收到hello_request 信息之后发送client-helo 信息，开始建立连接</p>
+<p>（4）秘钥计算</p>
+<p>涉及的参数 random client&nbsp;&nbsp; random_server&nbsp; Pre_master&nbsp; Master sercet&nbsp; key material 计算秘钥时，服务器和客户端都具体有这些基本的信息 ，计算流程如下：</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190428154158796-2114042169.png" alt="" /></p>
+<p>客户端使用RSA或者Diffe-Hellman等加密算法生成Pre-Master</p>
+<p>Pre-Master结合Random sercet 和Random-server 两个随机数进行迭代生成 ker material 下面是详细的内容解释：</p>
+<p>&nbsp;&nbsp; PreMaster sercet 前面两个字节是TLS的版本号，这是一个比较重要的用来核对握手数据的版本号，因为在 Client hello 阶段，客户端会发送一份加密套件列表和当前支持的TLS协议的版本号给服务端&nbsp; ，而且使用的是明文传输，如果握手数据包被破解之后，攻击者很可能篡改数据包，选择一个安全性较低的加密套件和版本给服务端，从而对数据进行破解，所以服务端要对密文中解密出来的对 PerMaster 版本号跟之前的Client hello阶段版本号进行对比， 如果版本号变低，则说明数据被篡改，则立即日内至发送任何消息。</p>
+<p>&nbsp;不管是客户端还是服务器端都要使用随机数，这样生成的随机秘钥每次都会不一样，对于RAS秘钥来说，pre-master-key 本身就是一个随机数，再加上helo消息中的随随机数三个随机数通过一个秘钥导出器最终生成一个对称秘钥。一个伪随机可能不完全是伪随机，但是三个伪随机加起来可能十分接近伪随机数，</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-04-28 16:16</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10784626" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10784626);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10784626,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/4/28 16:16:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10784626.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+</html>

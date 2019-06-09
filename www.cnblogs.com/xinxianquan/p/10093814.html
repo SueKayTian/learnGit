@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10093814.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>协议形式化分析Scyther 资料整理 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、性能分析 目前来说形式化的分析已经成为安全协议的一种很流行的方法，但是每种工具都用其不同适合的协议，Scyther软件是一种形式化分析工具，极大的促进了协议的分析和设计，scyther工具在运行界" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10093814.html">协议形式化分析Scyther 资料整理</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、性能分析</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 目前来说形式化的分析已经成为安全协议的一种很流行的方法，但是每种工具都用其不同适合的协议，Scyther软件是一种形式化分析工具，极大的促进了协议的分析和设计，scyther工具在运行界面和安全模型以及搜索等方面的综合性优势，形式化分析的方法源自于数学原理和逻辑推理，使用严格的语法和与语义，可以准确的 、迅速的证明协议的安全性，并找到协议存在的漏洞。</p>
+<p>&nbsp;&nbsp; scyther 可以针对协议的各个属性进行分析 。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181209155446197-601001641.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181209155457064-1687417878.png" alt="" />。，</p>
+<p>&nbsp;2、Scyther协议形式化分析工具原理</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用描述性语言将要分析的洗衣、、协议进行拆分多个角度</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>3、EtherNet/IP 协议框架</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308093259181-1757719443.png" alt="" /></p>
+<p>4、Scyther 在linux在安装</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提示：&nbsp; 形式化分析工具Scyther 依赖的解释器 Python 版本是2.7（不支持3.0以上），所以在ubuntu上安装的时配置Python2.7.&nbsp; 如果要在Windows上安装该工具。不仅要配置Python的环境变量还要配置Graphviz的环境，具体的参照官网上的说明文档。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 首先在GitHub上下载Scyther 源代码&nbsp; 或者直接在Scyther tools 上下载&nbsp; 地址：https://people.cispa.io/cas.cremers/scyther/install-generic.html</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 将下载的 scyther-linux-v1.1.3 进行解压</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 安装&nbsp; 图形工具&nbsp; 如果如下面文件依赖出现报错 ，按照提示的修复</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308085210925-413959216.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp; 修复安装</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308085357291-479954005.png" alt="" /></p>
+<p>&nbsp; 查看 图形文件是否存在</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308085428410-116538462.png" alt="" /></p>
+<p>&nbsp; 出现报错的时候是因为Python的图形库文件没有安装，存在依赖的dom 文件 。重新安装一次 Graphviz ，如果依赖文件存在问题&nbsp; 使用修复安装（remove 删除一次残留）</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308091652192-2082767812.png" alt="" /></p>
+<p>&nbsp;&nbsp; 现在回到解压的scyther-linux-v1.1.3 文件的个目录下 执行&nbsp; scyther-gui.py</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308092038420-1103682280.png" alt="" /></p>
+<p>&nbsp;&nbsp; 安装成功之后 显示界面如下：</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308090857991-1806382205.png" alt="" /></p>
+<p>&nbsp;分析协议的时候Scyther自身的编译语言 描述 协议的角色、执行体</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308094259678-1732930458.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>攻击向量参数的设置界面如下：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308091150108-250318616.png" alt="" /></p>
+<p>&nbsp;5、使用Scyther来分析工业以太网EtherNet/IP</p>
+<p>6、Scyther 协议安全模型的验证实例</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 第一部分：&nbsp; 打开协议模型 ，设置攻击变量的参数执行分析</p>
+<p>Scyther&nbsp; is a tool for the formal analysis o the security protocol under the perfect Cryptography , the result Window shows a summary of ths clamis in the proctol ,and the verfication results .here one can find whether the protocol is&nbsp; correct ， or false， and explanation of the possible outcomes of the verfication process ,most important ,if a protocol claim is incorrect , then&nbsp; there&nbsp; exists at&nbsp; least one attack on the protocol ,&nbsp; A button is show next to the claim .press this buttom to view&nbsp; the attacks on the claim .as show in the figure (it's not EtherNet/IP&nbsp; )&nbsp; it's&nbsp; Needham-Schroeder&nbsp;&nbsp; encryption protocol</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308164124181-366949285.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308164452664-1968713100.png" alt="" /></p>
+<p>&nbsp;&nbsp; 第二部分： Scyther 的描述性语言语法</p>
+<p>&nbsp;&nbsp;&nbsp; Scyther 使用的描述性语言基于C/Java 语法，可以使用java语法的注释形式，空白的编译的时候会被忽略（提高程序的可读性）标识符说那个字符串+数字+^ 或者 -&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 1、Scyther 核心元素是在文件中的描述的协议定义，最小的一个协议定义如下，定义了连那个协议的角色，括号中可以定义角色的行为。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; protocol ExampleProtocol(I,R) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role I { };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role R { }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };</p>
+<p>&nbsp;&nbsp;&nbsp; 很多安全协议依赖随机生成的值，我么可以在一个角色中使用 fresh 关键字声明一个类型为Nonce的随机变量 Na</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; role X (...){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fresh Na : Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_1(X, Y, Na)；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp; 代理可以使用变量来存储接收到的术语 ，列如我们收到一个临时变量 Na ,定义如下（变量一定要初始化，在发送事件中）</p>
+<p>&nbsp;&nbsp;&nbsp; role&nbsp; Y (......){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var Na&nbsp; : Nonce；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_1(X ,Y , Na)；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>任意两个可以构造成一个属于对，可以将属于&nbsp; x&nbsp; ,y&nbsp; 写成 （x, y）,亦可以使用元祖的便是方式 （x, y ,z） ，在Scyther 中可以解释成（（x ,&nbsp; y）, z）。 </p>
+<p>任意一个术语可以作为对称加密的秘钥，使用术语 kir 加密&nbsp; ni 写成&nbsp; { ni } kir&nbsp; 这样表示对称加密&nbsp; ，除非kir 被明确的定义成非对称加密术语</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-03-08 09:52</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10093814" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10093814);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10093814,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/3/8 9:52:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10093814.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:33 GMT -->
+</html>

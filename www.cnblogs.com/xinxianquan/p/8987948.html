@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8987948.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>三层交换机工作原理（转载） - 疏桐 - 博客园</title>
+    <meta property="og:description" content="路由器的三层转发主要依靠CPU进行，而三层交换机的三层转发依靠ASIC芯片完成，这就决定了两者在转发性能上的巨大差别。当然，三层交换机并不能完全替代路由器，路由器所具备的丰富的接口类型、良好的流量服务" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="8987948.html">三层交换机工作原理（转载）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;路由器的三层转发主要依靠CPU进行，而三层交换机的三层转发依靠ASIC芯片完成，这就决定了两者在转发性能上的巨大差别。当然，三层交换机并不能完全替代路由器，路由器所具备的丰富的接口类型、良好的流量服务等级控制、强大的路有能力等仍然是三层交换机的薄弱环节。目前的三层交换机一般是通过VLAN来划分二层网络并实现二层交换的，同时能够实现不同VLAN间的三层IP互访。在讨论三层交换机的转发原理之前有必要交代一下不同网络的主机之间互访时的行为：</p>
+<p>&nbsp;</p>
+<p>（1）源主机在发起通信之前，将主机的IP与目的主机的IP进行比较，如果两者位于同一个网段（用网络掩码计算后具有相同的网络号），那么源主机直接向目的主机发送ARP请求，在收到目的主机的ARP应答后获得对方的物理层（MAC）地址，然后用对方MAC作为报文的目的MAC进行报文发送。位于同一VLAN（网段）中的主机互访时属于这种情况，这时用于互连的交换机作二层交换转发；</p>
+<p>&nbsp;</p>
+<p>（2）档源主机判断目的主机与主机位于不同的网段时，它会通过网关（Gateway）来递交报文，即发送ARP请求来获取网关IP地址对应的MAC，在得到网关的ARP应答后，用网关MAC作为报文的目的MAC进行报文发送。注意，发送报文的源IP是源主机的IP，目的IP仍然是目的主机的IP。位于不同VLAN（网段）中的主机互访时属于这种情况，这时用于互连的交换机作三层交换转发。</p>
+<p>&nbsp;</p>
+<p>为了后续讨论的<em><a href="http://blog.csdn.net/shanzhizi" target="_blank">三层交换原理</a></em>便于理解，这里简单介绍一下三层交换机内部结构，如图1所示：<br />&nbsp;<br /><img src="https://img-blog.csdn.net/20140403161148968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hhbnpoaXpp/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="三层交换结构" align="middle" /><br /><br />图1 三层交换机硬件结构<br />三层交换机内部的两大部分是ASID和CPU，它们的作用分别如下：<br />1.ASIC：完成主要的二三层转发功能，内部包含用于二层转发的MAC地址表以及用于IP转发的三层转发表；<br />2.CPU：用于转发的控制，主要维护一些软件表项（包括软件路由表、软件ARP表等等），并根据软件表项的转发信息来配置ASIC的硬件三层转发表。当然，CPU本身也可以完成软件三层转发。<br />从三层交换机的结构和各部分作用可以看出，真正决定高速交换转发的是ASIC中的二三层硬件表项，而ASIC的硬件表项来源于CPU维护的软件表项。<br />下面分别以两种组网情况下主机间的通信来解释三层交换机的转发原理。<br />组网１如图2所示，通信的源、目的主机连接在同一台三层交换机上，但它们位于不同VLAN（网段）。对于三层交换机来说，这两台主机都位于它的直连网段内，它们的IP对应的路由都是直连路由。<br /><br /><img src="https://img-blog.csdn.net/20140403161229265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hhbnpoaXpp/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="路由" align="middle" /><br />图2 三层转发组网<br />图2中标明了两台主机的MAC、IP地址、网关，以及三层交换机的MAC、不同VLAN配置的三层接口IP。当PC A 向PC B 发起ICMP请求时，流程如下：（假设三层交换机上还未建立任何硬件转发表项）<br />1.PC A 首先检查出目的IP地址2.1.1.2（PC B）与自己不在同一个网段，因此它发出请求网关地址1.1.1.1对应MAC的ARP请求；<br />2.L3_SW收到PC A 的ARP请求后，检查请求报文，发现被请求IP是自己的三层接口IP，因此发送ARP应答并将自己的三层接口MAC(MAC S)包含在其中。同时它还会把PC A 的IP 地址与MAC地址对应起来（1.1.1.2&lt;==&gt;MAC A）关系记录到自己的ARP表项中去（因为ARP请求报文中包含了发送者的IP和MAC）；<br />3.PC A得到网关（L3_SW）的ARP应答后，组装ICMP请求报文并发送，报文的目的MAC = MAC S 、源MAC = MAC A 、源ＩＰ＝１.１.１.２、目的IP = 2.1.1.2；<br />4.L3_SW收到报文后，首先根据报文的源MAC+VID（即VLAN ＩＤ）更新ＭＡＣ地址表。然后，根据报文的目的MAC+VID查找MAC地址表，发现匹配了自己三层接口MAC的表项。这里说明一下，三层交换机为ＶＬＡＮ配置三层接口ＩＰ后，会在交换芯片的ＭＡＣ地址表中添加三层接口MAC+VID的表项，并且为表项的三层转发标志置位。当报文的目的MＡＣ匹配这样的表项以后，说明需要作三层转发，于是继续查找交换芯片的三层表项；<br />５.芯片根据报文的目的ＩＰ去查找其三层表项，由于之前未建立任何表项，因此查找失败，于是将报文送到CPU去进行软件处理；<br />6.ＣＰＵ根据报文的目的IP去查找其软件路由表，发现匹配了一个直连网段（PC B对应的网段），于是继续查找其软件ARP表，仍然查找失败。然后L3_SW会在目的网段对应的VLAN3的所有端口发送请求地址2.1.1.2对应MAC的ARP请求；<br />7.PC B收到L3_SW发送的ARP请求后，检查发现被请求IP是自己的IP，因此发送ARP应答并将自己的MAC（MAC B）包含在其中。同时，将L3_SW的IP与ＭＡＣ的对应关系（２.１.１.１＜＝＝＞ＭＡＣ　Ｓ）记录到自己的ＡＲＰ表中去；<br />８.Ｌ３＿ＳＷ收到PC B的ARP应答后，将其IP和MAC对应关系（2.1.1.2&lt;==&gt;MAC B）记录到自己的ＡＲＰ表中去，并将ＰＣ　Ａ的ICMP请求报文发送给PC B，报文的目的ＭＡＣ修改为PC B 的ＭＡＣ（ＭＡＣ　Ｂ），源ＭＡＣ修改为自己的ＭＡＣ（ＭＡＣ　Ｓ）。同时，在交换芯片的三层表项中根据刚才得到的三层转发信息添加表项（内容包括IP、ＭＡＣ、出口VLAN、出端口等），这样后续的PC A发送PC B的报文就可以通过该硬件三层表项直接转发了；<br />9.PC B收到L3_SW转发过来的ＩＣＭＰ请求报文以后，回应ICMP应答给PC A。ICMP应答报文的转发过程与前面类似，只是由于L3_SW在之前已经得到ＰＣ　Ａ的ＩＰ和ＭＡＣ对应关系了，也同时在交换芯片中添加了相关的三层表项，因此这个报文直接由交换芯片硬件转发给ＰＣ　Ａ；<br />这样，后续的往返报文都经过查ＭＡＣ表＝＞查三层转发表的过程由交换芯片直接进行硬件转发了。<br />从上述流程可以看书，三层交换正是充分利用了&ldquo;一次路由（首包ＣＰＵ转发并建立三层转发硬件表项）、多次交换（后续包芯片硬件转发）&rdquo;的原理实现了转发性能与三层交换的完美统一。<br />&nbsp;<br />下面介绍另一种组网情况的三层转发流程，如图３所示。<br /><img src="https://img-blog.csdn.net/20140403161304453?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hhbnpoaXpp/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="路由" align="middle" /><br /><br />如图３　三层转发组网２<br />图３中标明了两台主机的ＭＡＣ、ＩＰ地址、网关，以及两台三层交换机的ＭＡｃ、不同ＶＬＡＮ配置的三层接口ＩＰ。假设Ｌ３＿ＳＷ１上配置了静态路由：ｉｐ　ｒｏｕｔｅ２.１.１.０　２５５.２５５.２５５.０　３.１.１.２；Ｌ３＿ＳＷ２上配置了静态路由：ｉｐ　ｒｏｕｔｅ１.１.１.０　２５５.２５５.２５５.０　３.１.１.１。当然，路由信息也可以通过动态路由协议的交互来获得，有关路由的知识请查阅相关文档。<br />这种组网情况下的转发过程与图２的组网１情况是类似的，下面的流程讲解中降省略部分前面已经分析过的细节问题。当ＰＣA向ＰＣＢ发起ICMP请求时，流程如下：（假设三层交换机上还未建立任何硬件转发表项）<br />1.PC Ａ首先检查出目的ＩＰ地址２.１.１.２（ＰＣ　Ｂ）与自己不在同一个网段，因此它通过ＡＲＰ解析得到网关地址１.１.１.１对应的ＭＡＣ（ＭＡＣ　Ｓ１）。然后，ＰＣ　A组装ICMP请求报文并发送，报文的目的MAC=MAC S1、源MAC=ＭＡＣ　A、源IP=1.1.1.2、目的IP=2.1.1.2；<br />2.L3_SW1收到报文后，首先根据报文的源MAC+VID更新MAC地址表。然后，根据报文的目的MAC+VID查找MAC地址表，发现匹配了自己三层接口MAC的表项，于是继续查找芯片的三层转发表；<br />3.由于之前未建立任何表项，因此三层转发表查找失败，于是将报文送到CPU去进行软件处理；<br />4.ＣＰＵ根据报文的目的ＩＰ去查找其路由软件表，发现匹配路由２.１.１.０／２４，其下一跳ＩＰ地址为３.１.１.２，于是继续查找３.１.１.２是否有对应的ＡＲＰ，仍然查找失败。然后Ｌ３＿ＳＷ１在下一跳地址３.１.１.２对应的ＶＬＡＮ４内发起ＡＲＰ请求，并得到Ｌ３＿ＳＷ２的回应，从而得到Ｉ和ＭＡＣ对应关系（３.１.１.２＜＝＝＞ＭＡＣ　Ｓ２）；<br />５.Ｌ３＿ＳＷ１将Ｐｃ　A发出的ICMP请求报文转发给L3_Sw2，报文的目的MAC修改为L3_SW2的MAC（MAC　Ｓ２），源ＭＡｃ修改为自己的ＭＡＣ（ＭＡＣ　Ｓ１）。同时，将刚刚用到的转发信息添加到交换芯片的三成转发表中去，包括匹配的网段２.１.１.０／２４、下一跳地址的ＭＡＣ（ＭＡＣ　Ｓ２）、出口ＶＬＡＮ、出端口。这样，后续发往２.１.１.２的报文就可以直接通过交换芯片硬件转发了；<br />６.Ｌ３＿ＳＷ２收到报文后，与组网１中的处理类似，经过查ＭＡＣ表＝＞查三层转发表＝＞送ＣＰＵ＝＞匹配直连路由＝＞ＡＲＰ解析＝＞转发报文同时添加硬件表项的过程，将报文转发给ＰＣ　Ｂ，此时报文的目的ＭＡＣ修改为ＰＣ　Ｂ的ＭＡＣ（ＭＡＣ　Ｂ），源ＭＡＣ修改为Ｌ３＿ＳＷ２的ＭＡＣ（ＭＡＣ　Ｓ２）。这样后续发往２.１.１.２的报文就直接由交换芯片硬件转发了；<br />７.ＰＣ　Ｂ收到来自ＰＣ　Ａ的ＩＣＭＰ请求报文后进行ＩＣＭＰ应答。由于在ＩＣＭＰ请求报文转发的过程中，每个网段的两端节点都已经通过ＡＲＰ解析得到了对方的ＩＰ和ＭＡＣ对应关系，因此应答报文的转发完全由交换芯片完成（查ＭＡＣ表＝＞查三层转发表＝＞发送）；<br />这样，后续的往返报文都经过查ＭＡＣ表＝＞查三层转发表的过程由交换芯片直接进行硬件转发了。<br />从上述两种组网情况下的转发流程可以看出，三层交换机的转发具有以下特点：<br />１.首包通过ＣＰＵ转发，同时建立交换芯片硬件表项；后续包由交换芯片直接硬件转发，即常说的&ldquo;一次路由、多次交换&rdquo;；<br />２.交换芯片的硬件转发并不关心路由的具体下一跳ＩＰ地址是多少，硬件三层表项中只包含了目的地址（或网段）、目的ＩＰ（或下一跳ＩＰ）对应的ＭＡＣ、出口ＶＬＡＮ、出端口；（这里说明一下，并不是所有的三层交换机的硬件三层表项都会包含&ldquo;出端口&rdquo;的。）<br />３.ＩＰ报文每经过一次三层转发，它的源、目的ＭＡＣ都会变化，但是源ＩＰ、目的ＩＰ是始终不变。<br />&nbsp;<br />在三层交换转发中，交换芯片（ＡＳＩＣ）起到了至关重要的作用，因此三层交换机的性能和转发特点主要取决于交换芯片的实现机制。在三层交换原理一节中讲解的三层交换原理只是一个大致的转发流程，对于使用了不同交换芯片的三层交换机，其硬件转发过程中的一些细节内容是有所区别的。本节主要就硬件三层表项的结构和查表方式介绍几种不同的实现。<br />&nbsp;<br />从前面的描述可以看出，三层转发是必然需要路由信息的，而转发过程中的路由选择决定了报文的最终出口如何，三层交换机只是将这种路由功能整合到交换芯片中去了。路由选择存在精确匹配和最长匹配两种方式，精确匹配即目的ＩＰ地址与路由的地址信息必须完全吻合，而最长匹配则是选择所有包含了目的地址的路由中掩码最长的一条。<br />早期的三层交换机上，其交换芯片多采用精确匹配的方式，它们的硬件三层表项中只包含其目的ＩＰ地址，并不带掩码信息。比如在转发目的ＩＰ为２.１.１.２的报文时，通过软件查找匹配了非直路由２.１.１.０／２４，那么就将２.１.１.２的转发信息添加到交换芯片中去，如果继续来了目的ＩＰ为２.１.１.３的报文需要转发，则需要重新进行软件查找，并在交换芯片中为２.１.１.３增加新的表项。这样的选录方式表项结构对交换芯片的硬件资源要求很高，因为芯片中集成的表项存储空间是有限的，如果要发大量目的ＩＰ地址不同的报文那么就需要添加大量的硬件表项。曾经泛滥一时的冲击波病毒，就导致了当时大量的只支持精确匹配的三层交换机资源耗尽。因为冲击波病毒的手段之一就是发送巨数量的网段扫描报文，而多数三层交换机上都配置了缺省路由，这样所有的报文在ＣＰＵ软件查找都能够找到匹配路由，进而针对每一个病毒报文的目的ＩＰ都需要新增硬件表项并迅速将硬件资源满。这样，大部分用户的正常数据流由于转发资源耗尽而得不到高速处理了。<br />由于精确匹配方式的三层交换机的这种缺陷，后期的三层交换机增加了对最长匹配方式的支持，即硬件三层表项中可同时包含ＩＰ地址和掩码，在查找时遵循最长匹配原则。这种类型的三层交换机，一般在软件路由表建立时就将路由信息添加到硬件三层表中去，包括直连路由和非直连路由。对于直连路由，对应的硬件三层表项的&ldquo;ｔｏ　ＣＰＵ&rdquo;标志位始终置１，报文的目的ＩＰ匹配这样的表项被送往ＣＰＵ处理，ＣＰＵ软件会在直连网段发送ＡＲＰ请求，并将获取的ＡＲＰ信息作为主机路由添加到硬件表项中（对应的&ldquo;ｔｏ　ＣＰＵ&rdquo;标志位置０），这样后续的同样目的ＩＰ的报文就直接通过新添加的硬件表项转发了；对于非直连路由，当下一跳地址对应ＡＲＰ信息还未获得时，对应的硬件三层表项的&ldquo;ｔｏ　ＣＰＵ&rdquo;标志位置１，报文的目的ＩＰ匹配这样的表项以后被送往ＣＰＵ处理，ＣＰＵ软件会在下一跳地址对应的直连网段发送ＡＲＰ请求，并使用获取的ＡＲＰ信息中的下一跳ＭＡＣ、出口ＶＬＡＮ等信息更新对应的硬件三层表项，然后将其&ldquo;ｔｏ　ＣＰＵ&rdquo;标志位置０，这样后续的目的ＩＰ匹配该非直连路由的报文就能够直接通过修改后的硬件表项转发了。<br />目前，大多数的三层交换机均能够同时支持精确匹配表项和最长匹配表项，一般来说精确匹配表项对应于软件中的ＡＲＰ表，最长匹配表项对应于软件中的直连路由和非直连路由。<br />在交换机三层转发流程中，曾经提到，硬件三层表项由目的ＩＰ（或网段）、目的ＩＰ（或下一跳ＩＰ）对应ＭＡＣ、出口ＶＬＡＮ、出端口组成，采用这样表项的三层交换芯片一般直接通过查找三层转发表项就能够完成转发。这种处理机制流程简单、转发效率高，但是也使得ＣＰＵ软件对硬件表项的配置控制比较复杂，因为每当ＩＰ地址对应的ＭＡＣ和物理端口出现变化，就必须对三层转发表项进行更新。而在交换机上二层信息变化的可能性是比较大的，特别是交换机支持链路聚合、生成树等冗余机制，所以在某些应用环境中ＣＰＵ不得不经常的对三层转发表进行更新，一旦更新出现问题（特别是出端口错误）必然对转发造成严重的不利影响。<br />不过，并不是所有的三层交换机的硬件三层表项都带有出端口信息，部分交换芯片使用的硬件表项只包括目的ＩＰ（或网段）、目的ＩＰ（或下一跳ＩＰ）对应的ＭＡＣ、出口ＶＬＡＮ，从转发流程上来说有以下变化：根据报文的目的ＩＰ查找三层转发表后，只得到了目的ＩＰ（或下一跳ＩＰ）对应的ＭＡＣ和出口ＶＬＡＮ；然后继续根据ＭＡＣ＋ＶＩＤ去查找ＭＡＣ地址表，并最终获得出端口信息，如果查找ＭＡＣ表失败的话会在出口ＶＬＡＮ进行广播。这样的处理机制虽然增加了芯片处理复杂度，但是流程更加清晰合理，ＣＰＵ的处理更加简单，因为物理出口的变化只需要反映在ＭＡＣ地址表中就可以了，硬件三层表项无需频繁更新。</p>
+<p>这两种处理方式的交换芯片各有优势，不同厂商会根据成本、可靠性、产品定位等各方面因素来进行选择，这也使得不同型号的三层交换机在同一应用环境中可能有不同的表现。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-05-03 22:35</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=8987948" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(8987948);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=8987948,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/5/3 22:35:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8987948.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:41 GMT -->
+</html>

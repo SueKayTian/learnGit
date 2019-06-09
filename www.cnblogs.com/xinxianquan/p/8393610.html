@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8393610.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Linux编程学习笔记（一） - 疏桐 - 博客园</title>
+    <meta property="og:description" content="Linux的发展趋势势在必行，国内的服务器的操作系统Linux占到主导地位，不光是操作系统，还有嵌入式系统。 1、 今天就Linux的其中一个版本做一介绍，如下是Centos的版本之间的区别。 ins" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="8393610.html">Linux编程学习笔记（一）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>Linux的发展趋势势在必行，国内的服务器的操作系统Linux占到主导地位，不光是操作系统，还有嵌入式系统。</p>
+<p>&nbsp; &nbsp;1、 今天就Linux的其中一个版本做一介绍，如下是Centos的版本之间的区别。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131162154750-1898300587.png" alt="" /></p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131163021890-979197319.png" alt="" /></p>
+<p>&nbsp;install or upgrade an existing system 安装或升级现有系统，install system with basic video driver安装过程采用基本的显卡驱动，Rescue install system进入系统修复模式，Boot from local drive 从硬盘启动，memory test 内存检测</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131164649109-1730628894.png" alt="" /></p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131165029531-620649309.png" alt="" /></p>
+<p>&nbsp; 2、谈到Linux的关机设置，直接使用命令的方式，正确的流程是 sync--&gt;shutdown---&gt;reboot---&gt;halt，查看帮助借助&nbsp; man参数</p>
+<p>&nbsp; &nbsp; &nbsp;sync是将数据有内存同步到硬盘中。</p>
+<p>&nbsp; &nbsp; &nbsp; shutdown -h 10&nbsp; 表示 This server will shutdown after 10 mins'</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;shutdown -h now 表示立刻关机</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;shutdown -r now 系统立马重启&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;shutdown - r +10 系统十分钟后启动</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; reboot就是重新启动的意思，等同于 shutdown - r now&nbsp; &nbsp;&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;halt 关闭系统，等同于 shutdown -h now 和 poweroff</p>
+<p>&nbsp; &nbsp;3、Linux的系统目录</p>
+<p>输入ls你会看到如下的目录界面，其树状结构如图所示：下面分别说明每个目录的文件属性</p>
+<p>&nbsp; &nbsp; &nbsp;</p>
+<ul>
+<ul>
+<li>
+<p><strong>/bin</strong>：<br />bin是Binary的缩写, 这个目录存放着最经常使用的命令。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/boot：</strong><br />这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/dev ：</strong><br />dev是Device(设备)的缩写, 该目录下存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/etc：</strong><br />这个目录用来存放所有的系统管理所需要的配置文件和子目录。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/home</strong>：<br />用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/lib</strong>：<br />这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/lost+found</strong>：<br />这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/media</strong>：<br />linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/mnt</strong>：<br />系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/opt</strong>：<br />&nbsp;这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/proc</strong>：<br />这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。<br />这个目录的内容不在硬盘上而是在内存里，我们也可以直接修改里面的某些文件，比如可以通过下面的命令来屏蔽主机的ping命令，使别人无法ping你的机器：</p>
+<pre class="prettyprint prettyprinted"><span class="pln">echo <span class="lit">1<span class="pln"> <span class="pun">&gt;<span class="pln"> <span class="str">/proc/<span class="pln">sys<span class="pun">/<span class="pln">net<span class="pun">/<span class="pln">ipv4<span class="pun">/<span class="pln">icmp_echo_ignore_all</span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+</li>
+<li>
+<p><strong>/root</strong>：<br />该目录为系统管理员，也称作超级权限者的用户主目录。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/sbin</strong>：<br />s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/selinux</strong>：<br />&nbsp;这个目录是Redhat/CentOS所特有的目录，Selinux是一个安全机制，类似于windows的防火墙，但是这套机制比较复杂，这个目录就是存放selinux相关的文件的。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/srv</strong>：<br />&nbsp;该目录存放一些服务启动之后需要提取的数据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/sys</strong>：<br />&nbsp;这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统&nbsp;sysfs&nbsp;。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sysfs文件系统集成了下面3种文件系统的信息：针对进程信息的proc文件系统、针对设备的devfs文件系统以及针对伪终端的devpts文件系统。
+<p>&nbsp;</p>
+<p>该文件系统是内核设备树的一个直观反映。</p>
+<p>当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中被创建。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/tmp</strong>：<br />这个目录是用来存放一些临时文件的。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/usr</strong>：<br />&nbsp;这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/usr/bin：</strong><br />系统用户使用的应用程序。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/usr/sbin：</strong><br />超级用户使用的比较高级的管理程序和系统守护程序。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/usr/src：</strong>内核源代码默认的放置目录。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+<li>
+<p><strong>/var</strong>：<br />这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131170754906-107056113.png" alt="" /></p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131170850187-205615362.png" alt="" /></p>
+<p>4、用户名密码忘记后如何找回修改</p>
+<p>&nbsp; &nbsp; &nbsp; 重启系统 三秒内按回车键，输入字母e</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131172323296-2106461459.png" alt="" /></p>
+<p>在后面加上single</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131172440703-986829583.png" alt="" /></p>
+<p>按字母b启动单用户模式，</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131172533218-1381337748.png" alt="" /></p>
+<p>当进入单用户模式输入password 修改密码，之后重启系统就可以啦。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131172708921-103081930.png" alt="" /></p>
+<p>&nbsp; 5、如果系统损坏如何破解</p>
+<p>&nbsp; &nbsp; 采用系统救援模式，救援模式主要是，系统损坏无法进入，或者grub损坏，或者一个配置文件损坏出错，采用光盘启动模式，按F5进入rescue模式，</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131173100812-350079430.png" alt="" /></p>
+<p>输入 Linux rescue回车，选择语言为英语</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131173127875-718977149.png" alt="" /></p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131173144640-518373429.png" alt="" /></p>
+<p>不选择网络设置，接下来会把系统挂载在/mnt/sysimge中，会有三个选项</p>
+<p>continue 就是指挂载后继续下一步，Read_only挂载只读，Skip跳过。这里选择continue</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131173240984-1205483288.png" alt="" /></p>
+<p>系统挂载到文件中后，输入 chroot/mnt/sysimage进入管理员环境</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180131173705828-4639130.png" alt="" /></p>
+<p>输入ls 看到文件系统跟之前的一样。</p>
+<p>6、后一章节记Linux的远程登录问题</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-01-31 17:40</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=8393610" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(8393610);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=8393610,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/1/31 17:40:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8393610.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:48 GMT -->
+</html>

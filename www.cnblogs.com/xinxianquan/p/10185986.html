@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10185986.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Advanced Wlan Attacks (RADIUS) - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、查询连接到无线接入点的情况 使用命令 airodump-ng wlan0mon 可以看到 有用的信息。我们知道如果有一个客户端使用验证码成功连接到。 顺便查一下其中一个连接的设备的MAC地址的厂商" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10185986.html">Advanced Wlan Attacks (RADIUS)</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、查询连接到无线接入点的情况&nbsp;</p>
+<p>使用命令 airodump-ng&nbsp; wlan0mon&nbsp; 可以看到 有用的信息。我们知道如果有一个客户端使用验证码成功连接到。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181227151034842-1229046169.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181227151854844-349440222.png" alt="" /></p>
+<p>顺便查一下其中一个连接的设备的MAC地址的厂商信息 ，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181227151910404-2126098265.png" alt="" /></p>
+<p>2、使用kali主机攻击无线接入点 。在攻击之前 使用macchange 修改自己的MAC地址，攻击的使用无线接入点的客户端就会掉线，然后会发生重新连接的情况，使用wireshark就可以捕获到握手数据包。</p>
+<p>使用攻击的命令&nbsp;&nbsp; aireplay-ng --deauth 1 -c 自己的MAC地址 -a 无线接入点的Mac地址 wlanmon</p>
+<p>&nbsp;查询当前的MAC地址</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181227163646317-1273039670.png" alt="" /></p>
+<p>aireplay-ng --deauth 1 -c 70:f1:1c:0d:dc:4a -a FC:7C:02:3B:FF:63 wlan0mon&nbsp;&nbsp; 但是下图提示AP和kali使用的无线网卡的信道不一样，所以先要修该自己网卡的信道。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181227165139227-1065248797.png" alt="" />　　　　　　　　　　　　　　　　　　　　　　　3、配置静态IP地址</p>
+<p>&nbsp; 配置静态IP地址的原因有下面几种：</p>
+<p>&nbsp;&nbsp; step:　　 根据特殊的要求当你在一个工作区的时候不想因为网络信号的问题造成DHCP重新配置IP地址。另一个原因是单独的WLAN，使用个手动加入的方式。（这是我翻译的 有点生硬）　　</p>
+<p>4、查看开启的服务</p>
+<p>&nbsp; netstat -antp | grep &nbsp; 　</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181227222331896-1733289832.png" alt="" /></p>
+<p>&nbsp;htop&nbsp; 显示进程的</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181227224631664-1536440793.png" alt="" /></p>
+<p>&nbsp;5、开启honey攻击的原理图</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228083330269-68900219.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228083343277-245099020.png" alt="" /></p>
+<p>开启一个 使用WPA-PSK 的认证模式的接入点&nbsp; 等待羊羔 使用命令 airbase-ng -c 3 -a&nbsp; 06:69:6C:E8:88:98 -e " YaMing" -W 1 -a wlan0mon</p>
+<p>同时开启捕获数据包的命令&nbsp; airodump-ng -c 3 --bssid 06:69:6C:E8:88:98 --write AP-less-WPA-cracking wlan0mon</p>
+<p>等到数据包完全捕获之后使用 aircrack-ng 破解</p>
+<p>下图是成功捕获到一个连接到伪造的无线接入点的设备</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228095326776-1729089072.png" alt="" /></p>
+<p>下面是捕获的前两个握手的数据包，因为伪造的数据包并没有与有钱网络连接，不能上网，原理是第5中的第二幅图。</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228100225132-2127156349.png" alt="" /></p>
+<p>其实真正要破解，还是需要一个比较好的字典库，破解的密码显示如下：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228101509779-2046373142.png" alt="" /></p>
+<p>6、如何还用假扮的honeypot wlan来转发上线的客户端</p>
+<p>&nbsp; 需要设置一个连接honey pot和 和有线网络之间的桥接 保证上线的客户端可以正常的访问网络。</p>
+<p>&nbsp;&nbsp;&nbsp; 首先创建一个无线热点 使用命令&nbsp;&nbsp; airbase-ng --essid&nbsp; ZhongJianRen -c 11 waln0mon&nbsp;&nbsp;</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228140512758-1560799070.png" alt="" /></p>
+<p>创建一个桥接接口（创建接口的时候必须保证 ） 开启 无线接入点的时候会生成一个MAC地址 如下：</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228141507104-809669911.png" alt="" /></p>
+<p>后面的直接写命令。因为我的是 kali linux 上面 没有安装 brctl</p>
+<p>搭建桥接：&nbsp; brctl addr ZhongJianRen-bridge</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; brtcl addif&nbsp; ZhongJianRen-bridge eth0</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; brtcl addif ZHonJianRen at0</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ifconfig eth0 0.0.0.0 up</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ifconfig at0 0.0.0.0 up</p>
+<p>&nbsp;之后使用命令 ifconfig ZhongJianRen-bridge&nbsp; 192.168.0.199 up 给桥接配置一个IP地址 192.168.0.199</p>
+<p>最后确保介入客户端的数据流量能够转发 开启转发命令&nbsp;&nbsp;&nbsp; echo 1&gt;/proc/sys/net/ipv4/ip_forward&nbsp;&nbsp;</p>
+<p>&nbsp; 发现 没有设置加密之后&nbsp; 已经有客户端直接连接到 honey pot</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228143806666-994335198.png" alt="" /></p>
+<p>因为客户端是长时间 连接在自己的honey pot上的，那么流经客户端的所有的流量都是可以使用中间人金子那个控制的。使用 wireshark抓包</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228144123349-1112376410.png" alt="" /></p>
+<p>使用wireshark可以对一些HTTP服务上的登录或者歇一歇敏感信息分析 包括登录密码信息 账户信息等。前提是这些网站没有使用加密设置。或者使用简单的加密措施，可以被很快的破解掉。么有加密的后果就是 中间拦截后修改重放欺骗。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228145552244-1042885751.png" alt="" /></p>
+<p>在上面实验的基础上使用DNS欺骗的手段 ，dnspoof -i ZhongJianRen-bridge&nbsp;&nbsp; 但是没有开启80号端口是不能访问的，开启Apache服务</p>
+<p>&nbsp;service apache2 start&nbsp; 之后就可以访问了</p>
+<p>7、使用不同的安全认证的方式开启多个无线接入点 honeypot</p>
+<p>不适用加密&nbsp; 使用命令 airbase-ng --essid&nbsp; " you connect" -a&nbsp; aa:aa:aa:aa:aa:aa -c 3 wlan0mon</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228154714603-1651888308.png" alt="" /></p>
+<p>使用 WEP安全认证的 airbase-ng --essid "sssd" -a bb:bb:bb:bb:bb -c 4 -W 1&nbsp; wlan0mon</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228160419394-1295292228.png" alt="" /></p>
+<p>使用 WPA-PSK 安全认证的 airbase-ng --essid "love" -c 3 -a CC:CC:CC:CC:CC:CC -W 1 -z&nbsp; 2 wlan0mon</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228160718188-245979646.png" alt="" /></p>
+<p>使用 WPA2_PSK安全认证的 airbase-ng --essid "test3" -c 3 -a dd:dd:dd:dd:dd:dd -W 1 -Z 2 wlan0mon</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228161853241-1933417872.png" alt="" /></p>
+<p>一般的手机只支持两种认证机制 分别是 五加密的和使用 WPA-PSK，，另外可以看出，一个无线网卡支持同时开启多个无线接入点</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181228162339449-567382098.png" alt="" /></p>
+<p>8、企业级的无线网络设备密码破解</p>
+<p>&nbsp; 企业级的无线网络设备除了大功率之外使用的认证机制也高。但是无线网络实现认证的原理和机制都是一样的。</p>
+<p>&nbsp; 9、确保信号在无线信号频率&nbsp; 使用频率。&nbsp;&nbsp; airodump-ng --band bg --cswitch 1 wlan0mon</p>
+<p>10、信息检索</p>
+<p>&nbsp; 站内检索 （域名检索）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229101313611-368798490.png" alt="" /></p>
+<p>文章标题检索&nbsp;&nbsp; intitle&nbsp;&nbsp; 或者多个 标题检索&nbsp; 使用 allintitle</p>
+<p>网址检索&nbsp;&nbsp; inurl&nbsp; 或者多个网址 检索&nbsp;&nbsp; allinurl</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229101743181-669070697.png" alt="" /></p>
+<p>&nbsp;&nbsp; 文件类型查询&nbsp;&nbsp; filetype：pdf&nbsp; 、&nbsp; numberrage 1-10&nbsp; link</p>
+<p>&nbsp;&nbsp;&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229102122445-1875664921.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229102138744-903713655.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229102153005-1464571349.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229102204688-527082355.png" alt="" /></p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229102220183-1255276341.png" alt="" /></p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181229102235132-1250663845.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-12-27 23:31</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10185986" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10185986);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10185986,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/12/27 23:31:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10185986.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10289027.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Openvas - 疏桐 - 博客园</title>
+    <meta property="og:description" content="一、 Continue to jot down notes about the Nmap 1、nmap -sn [ip] This command will send an ARP request t" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10289027.html">Openvas</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;一、&nbsp; Continue to jot down notes about the Nmap</p>
+<p>1、nmap -sn&nbsp;&nbsp; [ip]&nbsp;&nbsp; This command will send an ARP request to the LAN broadcast address and will determine whether the host is live</p>
+<p>&nbsp;&nbsp;&nbsp; eg:&nbsp;&nbsp; we use the command to gathering system information&nbsp; (as follow ,it's mine&nbsp; windows7 system)&nbsp; ,in addition&nbsp; we combination&nbsp; of linux and others system are&nbsp; used ,I have written about install kali and Ubuntu 、Metasploitable2&nbsp; system on my previous blog .you can refer the installing on the&nbsp; Vmware . and then fire start the ubuntu system and use the same command to gathering information .</p>
+<p>&nbsp; the step one :&nbsp;&nbsp; gathering win7 system</p>
+<p>&nbsp; Starting Nmap 7.70 ( https://nmap.org ) at 2019-01-17 20:48 EST<br />Nmap scan report for 10.130.209.131<br />Host is up (0.82s latency).<br />Not shown: 986 closed ports<br />PORT&nbsp;&nbsp;&nbsp;&nbsp; STATE&nbsp;&nbsp;&nbsp; SERVICE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VERSION<br />135/tcp&nbsp; open&nbsp;&nbsp;&nbsp;&nbsp; msrpc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft Windows RPC<br />139/tcp&nbsp; open&nbsp;&nbsp;&nbsp;&nbsp; netbios-ssn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft Windows netbios-ssn<br />443/tcp&nbsp; open&nbsp;&nbsp;&nbsp;&nbsp; ssl/https<br />| fingerprint-strings: <br />|&nbsp;&nbsp; FourOhFourRequest: <br />|&nbsp;&nbsp;&nbsp;&nbsp; HTTP/1.1 404 Not Found<br />|&nbsp;&nbsp;&nbsp;&nbsp; Date: Fri, 18 Jan 2019 01:48:39 GMT<br />|&nbsp;&nbsp;&nbsp;&nbsp; Connection: close<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Type: text/plain; charset=utf-8<br />|&nbsp;&nbsp;&nbsp;&nbsp; X-Frame-Options: DENY<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Length: 0<br />|&nbsp;&nbsp; GetRequest: <br />|&nbsp;&nbsp;&nbsp;&nbsp; HTTP/1.1 403 Forbidden<br />|&nbsp;&nbsp;&nbsp;&nbsp; Date: Fri, 18 Jan 2019 01:48:39 GMT<br />|&nbsp;&nbsp;&nbsp;&nbsp; Connection: close<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Type: text/plain; charset=utf-8<br />|&nbsp;&nbsp;&nbsp;&nbsp; X-Frame-Options: DENY<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Length: 0<br />|&nbsp;&nbsp; HTTPOptions: <br />|&nbsp;&nbsp;&nbsp;&nbsp; HTTP/1.1 501 Not Implemented<br />|&nbsp;&nbsp;&nbsp;&nbsp; Date: Fri, 18 Jan 2019 01:48:39 GMT<br />|&nbsp;&nbsp;&nbsp;&nbsp; Connection: close<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Type: text/plain; charset=utf-8<br />|&nbsp;&nbsp;&nbsp;&nbsp; X-Frame-Options: DENY<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Length: 0<br />|&nbsp;&nbsp; RTSPRequest: <br />|&nbsp;&nbsp;&nbsp;&nbsp; HTTP/1.1 400 Bad Request<br />|&nbsp;&nbsp;&nbsp;&nbsp; Date: Fri, 18 Jan 2019 01:48:49 GMT<br />|&nbsp;&nbsp;&nbsp;&nbsp; Connection: close<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Type: text/html<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Length: 50<br />|&nbsp;&nbsp;&nbsp;&nbsp; &lt;HTML&gt;&lt;BODY&gt;&lt;H1&gt;400 Bad Request&lt;/H1&gt;&lt;/BODY&gt;&lt;/HTML&gt;<br />|&nbsp;&nbsp; SIPOptions: <br />|&nbsp;&nbsp;&nbsp;&nbsp; HTTP/1.1 400 Bad Request<br />|&nbsp;&nbsp;&nbsp;&nbsp; Date: Fri, 18 Jan 2019 01:49:52 GMT<br />|&nbsp;&nbsp;&nbsp;&nbsp; Connection: close<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Type: text/html<br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Length: 50<br />|_&nbsp;&nbsp;&nbsp; &lt;HTML&gt;&lt;BODY&gt;&lt;H1&gt;400 Bad Request&lt;/H1&gt;&lt;/BODY&gt;&lt;/HTML&gt;<br />|_http-title: Site doesn't have a title (text/plain; charset=utf-8).<br />| ssl-cert: Subject: commonName=VMware/countryName=US<br />| Not valid before: 2017-10-09T12:32:16<br />|_Not valid after:&nbsp; 2018-10-09T12:32:16<br />|_ssl-date: TLS randomness does not represent time<br />| vmware-version: <br />|&nbsp;&nbsp; Server version: VMware Workstation 14.1.1<br />|&nbsp;&nbsp; Build: 7528167<br />|&nbsp;&nbsp; Locale version: INTL &nbsp;<br />|&nbsp;&nbsp; OS type: win32-x86<br />|_&nbsp; Product Line ID: ws<br />445/tcp&nbsp; open&nbsp;&nbsp;&nbsp;&nbsp; microsoft-ds&nbsp;&nbsp;&nbsp;&nbsp; Windows 7 Ultimate 7601 Service Pack 1 microsoft-ds (workgroup: WorkGroup)<br />514/tcp&nbsp; filtered shell<br />902/tcp&nbsp; open&nbsp;&nbsp;&nbsp;&nbsp; ssl/vmware-auth&nbsp; VMware Authentication Daemon 1.10 (Uses VNC, SOAP)<br />912/tcp&nbsp; open&nbsp;&nbsp;&nbsp;&nbsp; vmware-auth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VMware Authentication Daemon 1.0 (Uses VNC, SOAP)<br />1025/tcp open&nbsp;&nbsp;&nbsp;&nbsp; msrpc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft Windows RPC<br />1026/tcp open&nbsp;&nbsp;&nbsp;&nbsp; msrpc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft Windows RPC<br />1027/tcp open&nbsp;&nbsp;&nbsp;&nbsp; msrpc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft Windows RPC<br />1033/tcp open&nbsp;&nbsp;&nbsp;&nbsp; msrpc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft Windows RPC<br />1055/tcp open&nbsp;&nbsp;&nbsp;&nbsp; msrpc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft Windows RPC<br />5357/tcp open&nbsp;&nbsp;&nbsp;&nbsp; http&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)<br />|_http-server-header: Microsoft-HTTPAPI/2.0<br />|_http-title: Service Unavailable<br />8082/tcp open&nbsp;&nbsp;&nbsp;&nbsp; blackice-alerts?<br />| fingerprint-strings: <br />|&nbsp;&nbsp; FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RTSPRequest, SIPOptions: <br />|&nbsp;&nbsp;&nbsp;&nbsp; HTTP/1.1 400 Error <br />|&nbsp;&nbsp;&nbsp;&nbsp; Server: QQ/1.0.0 (Tencent) <br />|&nbsp;&nbsp;&nbsp;&nbsp; Content-Length: 18<br />|&nbsp;&nbsp;&nbsp;&nbsp; Connection: close<br />|_&nbsp;&nbsp;&nbsp; unkown the request<br />2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :<br />==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============<br />SF-Port443-TCP:V=7.70%T=SSL%I=7%D=1/17%Time=5C41307C%P=x86_64-pc-linux-gnu<br />SF:%r(GetRequest,A5,"HTTP/1\.1\x20403\x20Forbidden\r\nDate:\x20Fri,\x2018\<br />SF:x20Jan\x202019\x2001:48:39\x20GMT\r\nConnection:\x20close\r\nContent-Ty<br />SF:pe:\x20text/plain;\x20charset=utf-8\r\nX-Frame-Options:\x20DENY\r\nCont<br />SF:ent-Length:\x200\r\n\r\n")%r(HTTPOptions,AB,"HTTP/1\.1\x20501\x20Not\x2<br />SF:0Implemented\r\nDate:\x20Fri,\x2018\x20Jan\x202019\x2001:48:39\x20GMT\r<br />SF:\nConnection:\x20close\r\nContent-Type:\x20text/plain;\x20charset=utf-8<br />SF:\r\nX-Frame-Options:\x20DENY\r\nContent-Length:\x200\r\n\r\n")%r(FourOh<br />SF:FourRequest,A5,"HTTP/1\.1\x20404\x20Not\x20Found\r\nDate:\x20Fri,\x2018<br />SF:\x20Jan\x202019\x2001:48:39\x20GMT\r\nConnection:\x20close\r\nContent-T<br />SF:ype:\x20text/plain;\x20charset=utf-8\r\nX-Frame-Options:\x20DENY\r\nCon<br />SF:tent-Length:\x200\r\n\r\n")%r(RTSPRequest,B3,"HTTP/1\.1\x20400\x20Bad\x<br />SF:20Request\r\nDate:\x20Fri,\x2018\x20Jan\x202019\x2001:48:49\x20GMT\r\nC<br />SF:onnection:\x20close\r\nContent-Type:\x20text/html\r\nContent-Length:\x2<br />SF:050\r\n\r\n&lt;HTML&gt;&lt;BODY&gt;&lt;H1&gt;400\x20Bad\x20Request&lt;/H1&gt;&lt;/BODY&gt;&lt;/HTML&gt;")%r<br />SF:(SIPOptions,B3,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nDate:\x20Fri,\x20<br />SF:18\x20Jan\x202019\x2001:49:52\x20GMT\r\nConnection:\x20close\r\nContent<br />SF:-Type:\x20text/html\r\nContent-Length:\x2050\r\n\r\n&lt;HTML&gt;&lt;BODY&gt;&lt;H1&gt;400<br />SF:\x20Bad\x20Request&lt;/H1&gt;&lt;/BODY&gt;&lt;/HTML&gt;");<br />==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============<br />SF-Port8082-TCP:V=7.70%I=7%D=1/17%Time=5C41307B%P=x86_64-pc-linux-gnu%r(Ge<br />SF:tRequest,6D,"HTTP/1\.1\x20400\x20Error\x20\r\nServer:\x20QQ/1\.0\.0\x20<br />SF:\(Tencent\)\x20\r\nContent-Length:\x2018\r\nConnection:\x20close\r\n\r\<br />SF:nunkown\x20the\x20request")%r(FourOhFourRequest,6D,"HTTP/1\.1\x20400\x2<br />SF:0Error\x20\r\nServer:\x20QQ/1\.0\.0\x20\(Tencent\)\x20\r\nContent-Lengt<br />SF:h:\x2018\r\nConnection:\x20close\r\n\r\nunkown\x20the\x20request")%r(Ge<br />SF:nericLines,6D,"HTTP/1\.1\x20400\x20Error\x20\r\nServer:\x20QQ/1\.0\.0\x<br />SF:20\(Tencent\)\x20\r\nContent-Length:\x2018\r\nConnection:\x20close\r\n\<br />SF:r\nunkown\x20the\x20request")%r(HTTPOptions,6D,"HTTP/1\.1\x20400\x20Err<br />SF:or\x20\r\nServer:\x20QQ/1\.0\.0\x20\(Tencent\)\x20\r\nContent-Length:\x<br />SF:2018\r\nConnection:\x20close\r\n\r\nunkown\x20the\x20request")%r(RTSPRe<br />SF:quest,6D,"HTTP/1\.1\x20400\x20Error\x20\r\nServer:\x20QQ/1\.0\.0\x20\(T<br />SF:encent\)\x20\r\nContent-Length:\x2018\r\nConnection:\x20close\r\n\r\nun<br />SF:kown\x20the\x20request")%r(SIPOptions,6D,"HTTP/1\.1\x20400\x20Error\x20<br />SF:\r\nServer:\x20QQ/1\.0\.0\x20\(Tencent\)\x20\r\nContent-Length:\x2018\r<br />SF:\nConnection:\x20close\r\n\r\nunkown\x20the\x20request");<br />Device type: general purpose<br />Running: Microsoft Windows XP|7|2012<br />OS CPE: cpe:/o:microsoft:windows_xp::sp3 cpe:/o:microsoft:windows_7 cpe:/o:microsoft:windows_server_2012<br />OS details: Microsoft Windows XP SP3, Microsoft Windows XP SP3 or Windows 7 or Windows Server 2012<br />Network Distance: 2 hops<br />Service Info: Host: NETPOLICE; OS: Windows; CPE: cpe:/o:microsoft:windows<br /><br />Host script results:<br />|_clock-skew: mean: -2h40m05s, deviation: 4h37m07s, median: -5s<br />|_nbstat: NetBIOS name: NETPOLICE, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: a4:db:30:5b:69:3a (Liteon Technology)<br />| smb-os-discovery: <br />|&nbsp;&nbsp; OS: Windows 7 Ultimate 7601 Service Pack 1 (Windows 7 Ultimate 6.1)<br />|&nbsp;&nbsp; OS CPE: cpe:/o:microsoft:windows_7::sp1<br />|&nbsp;&nbsp; Computer name: NetPolice<br />|&nbsp;&nbsp; NetBIOS computer name: NETPOLICE\x00<br />|&nbsp;&nbsp; Workgroup: WorkGroup\x00<br />|_&nbsp; System time: 2019-01-18T09:51:14+08:00<br />| smb-security-mode: <br />|&nbsp;&nbsp; account_used: guest<br />|&nbsp;&nbsp; authentication_level: user<br />|&nbsp;&nbsp; challenge_response: supported<br />|_&nbsp; message_signing: disabled (dangerous, but default)<br />| smb2-security-mode: <br />|&nbsp;&nbsp; 2.02: <br />|_&nbsp;&nbsp;&nbsp; Message signing enabled but not required<br />| smb2-time: <br />|&nbsp;&nbsp; date: 2019-01-17 20:51:14<br />|_&nbsp; start_date: 2019-01-17 19:39:29<br />TRACEROUTE (using port 3389/tcp)<br />HOP RTT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADDRESS<br />1&nbsp;&nbsp; 1.88 ms&nbsp;&nbsp;&nbsp; 192.168.142.2<br />2&nbsp;&nbsp; 1000.69 ms 10.130.209.131<br />OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br />Nmap done: 1 IP address (1 host up) scanned in 242.79 seconds<br />the&nbsp; setp two :gathering the&nbsp; Ubuntu&nbsp; information </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; eg:&nbsp;&nbsp; Ubuntu system information </p>
+<p>&nbsp;&nbsp;&nbsp; Starting Nmap 7.70 ( https://nmap.org ) at 2019-01-17 21:13 EST<br />Nmap scan report for 192.168.142.171<br />Host is up (0.00068s latency).<br />Not shown: 999 closed ports<br />PORT&nbsp;&nbsp; STATE SERVICE VERSION<br />22/tcp open&nbsp; ssh&nbsp;&nbsp;&nbsp;&nbsp; OpenSSH 7.6p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)<br />| ssh-hostkey: <br />|&nbsp;&nbsp; 2048 ac:b1:ea:b8:39:3f:c2:61:74:82:d8:a7:06:4c:57:ec (RSA)<br />|&nbsp;&nbsp; 256 9b:36:1f:ce:79:c8:04:6e:cf:96:72:2b:0a:99:a5:71 (ECDSA)<br />|_&nbsp; 256 87:06:4a:2c:f2:d9:3a:81:22:f1:fd:18:bb:f5:54:d6 (ED25519)<br />MAC Address: 00:0C:29:26:DB:DD (VMware)<br />Device type: general purpose<br />Running: Linux 3.X|4.X<br />OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4<br />OS details: Linux 3.2 - 4.9<br />Network Distance: 1 hop<br />Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br />TRACEROUTE<br />HOP RTT&nbsp;&nbsp;&nbsp;&nbsp; ADDRESS<br />1&nbsp;&nbsp; 0.68 ms 192.168.142.171<br />OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br />Nmap done: 1 IP address (1 host up) scanned in 15.10 seconds</p>
+<p>2、if we don't know the host ip is livewe can use the dash-notation to scan teh LAN network&nbsp; ,&nbsp;&nbsp;&nbsp; but we use the command to scan another LAN ,it's means&nbsp; permormed against remoter hosts on a different LAN ,the response will not include system the MAC address ..</p>
+<p>&nbsp;&nbsp;&nbsp; the command is :&nbsp;&nbsp; namp&nbsp; -sn&nbsp; 192.168.5.0-255&nbsp; &nbsp;&nbsp; or&nbsp; we can use the command&nbsp; 192.168.5.0/24 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; another if we want to scan a table list ip address&nbsp; the we can use&nbsp; the command&nbsp; iL&nbsp; like as : nmap -iL &nbsp;&nbsp; ipList.txt&nbsp;&nbsp; -sn (ipList.txt&nbsp;&nbsp; is a note write down some ip address )</p>
+<p>&nbsp; eg :&nbsp;&nbsp;&nbsp; nmap -iL&nbsp; /home/iplist.txt&nbsp;&nbsp; -sn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (note :&nbsp;&nbsp; in fact we can't make sure the correct that the host is live through only in this scan )</p>
+<p>&nbsp;besides this wiget we can use&nbsp; the Netdisocover&nbsp;&nbsp;&nbsp; to gathering the&nbsp; system information&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp; </p>
+<p>3、 tracert&nbsp;&nbsp; the route&nbsp; ,we use the tracert to&nbsp; track the abroad ip address&nbsp; .</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201901/1276904-20190118112420116-814087600.png" alt="" /></p>
+<p>4、use&nbsp; openvas&nbsp; to scan the website</p>
+<p>&nbsp;&nbsp;&nbsp; step one&nbsp; how to install the openvas&nbsp; in the kali linux .&nbsp;&nbsp; if we forget the account and password we can use the command to change the account :&nbsp;&nbsp;&nbsp; openvasmd --user=admin&nbsp; --new-password=[password]&nbsp;&nbsp; ,you can also add a new account for openvas use the command :</p>
+<p>&nbsp;&nbsp; {openvasmd&nbsp; --create-user=name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 创建一个新的账户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; openvasmd --delete-user=name&nbsp;&nbsp;&nbsp; 删除一个账户}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; now&nbsp; at present we look the openvas install on the kali linux&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; if you want change the default configpage&nbsp; we can&nbsp; Modify configuration:&nbsp;&nbsp;&nbsp; general used information in the&nbsp;&nbsp; greenbone-security-assistant&nbsp; ,the locate in : &nbsp;vi /etc/default/greenbone-security-assistant/ &nbsp;&nbsp; in the page we can change the host ip&nbsp; "GSA_ADDRESS=127.0.0.1--------&gt; eg&nbsp; you &nbsp; host ip address .</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201901/1276904-20190118171521480-1424229529.png" alt="" /></p>
+<p>use the command to update OPenvas&nbsp;&nbsp; , in the procress .the page will&nbsp; prompt you will upgrade two database .so you decide youself </p>
+<p>&nbsp;&nbsp; the upgrade command&nbsp; :&nbsp;&nbsp;&nbsp; openvas-feed-update </p>
+<p>when the openvas&nbsp; start&nbsp;&nbsp; will open listening port 939*&nbsp;&nbsp; ,we make sure&nbsp; whether the port is open or close&nbsp; use the command&nbsp; :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; netstat -antp | grep 939*&nbsp;&nbsp; </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201901/1276904-20190118205142433-628957010.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp; </p>
+<p>&nbsp;</p>
+<p></p>
+<p><audio controls="controls" style="display: none;"></audio></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-01-18 17:49</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10289027" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10289027);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10289027,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/1/18 17:49:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10289027.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+</html>

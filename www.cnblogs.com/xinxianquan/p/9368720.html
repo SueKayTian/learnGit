@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9368720.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>黑客基础知识 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、常见的黑客攻击方式 网络报文嗅探，IP地址欺骗，拒绝服务攻击，应用层攻击。 端口的划分： 常见的端份为三类： 公认端口、注册端口、动态和私有端口。 安州协议分为TCP端口和UDP端口。 公认端口：" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9368720.html">黑客基础知识</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、常见的黑客攻击方式</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 网络报文嗅探，IP地址欺骗，拒绝服务攻击，应用层攻击。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 端口的划分： 常见的端份为三类： 公认端口、注册端口、动态和私有端口。 安州协议分为TCP端口和UDP端口。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 公认端口：0-1023&nbsp; 。23 Telnet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SMTP 25&nbsp;&nbsp;&nbsp; POP3 110&nbsp; DNS 53&nbsp; SNMP 161</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 注册端口 ： 1024-4915&nbsp;&nbsp; 松散的绑定一些服务，没有确切的固定。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 动态/私有端口 ： 4952- 65535</p>
+<p>&nbsp;&nbsp; 端口也可以按照协议划分，UDP和TCP是两种不同的协议，所以可以使用相同的端口，互不干扰。检查开放的端口号&nbsp; 使用 netstat&nbsp;&nbsp; ip&nbsp;&nbsp;&nbsp; -a -n</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; LIstening 表示处于监听状态，表示该端口是开放的 等待链接。只有TCP才有。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725203250270-2049432182.png" alt="" /></p>
+<p>2、响应时间的系统区别划分</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Windows的&nbsp; TTL一般在&nbsp;&nbsp; 100-130&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNIX/linux 的 TTL一般在 240-255&nbsp; 但是&nbsp; TTL的值是可以修改的。&nbsp; netstat -r 显示路由表信息</p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725205245360-363356415.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp; 使用 net use 建立连接&nbsp;&nbsp; net use \\192.168.1.1\IPC$ "密码&rdquo; /user：&ldquo;用户名&rdquo;</p>
+<p>&nbsp; 退出链接 使用命令&nbsp;&nbsp; net usee \\192.168.1.1\IPC$ /del&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; 资源共享&nbsp; ： net share&nbsp; sharename=driver:path/users:number/unlimit/remark: "text"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eg、&nbsp;&nbsp; net share D=D:/unlimited</p>
+<p>创建 一个账户 和删除账户</p>
+<p>&nbsp;<img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725212058669-241188038.png" alt="" /><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725212140918-155667774.png" alt="" /></p>
+<p>详细&nbsp; 的net&nbsp; 命令 、、下面对NET命令的不同参数的使用技巧介绍如下： 转自&nbsp;&nbsp;&nbsp;&nbsp; https://blog.csdn.net/ccfxue/article/details/53159896<br /><br />　　1、Net ViewI<br />　　作用：显示域列表、计算机列表或指定计算机的共享资源列表。<br />　　命令格式：Net view [\\computername | /domain[:domainname]]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net view显示当前域的计算机列表<br />　　&middot;\\computername 指定要查看其共享资源的计算机<br />　　&middot;/domain[:domainname]指定要查看其可用计算机的域<br />　　例如：Net view&nbsp;\\GHQ查看GHQ计算机的共享资源列表。<br />　　　　　Net view /domain:XYZ 查看XYZ域中的机器列表。<br /><br />　　2、Net User<br />　　作用：添加或更改用户帐号或显示用户帐号信息。<br />　　命令格式：Net user [username [password | *] [options]] [/domain]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net user查看计算机上的用户帐号列表<br />　　&middot;username添加、删除、更改或查看用户帐号名<br />　　&middot;password为用户帐号分配或更改密码<br />　　&middot;提示输入密码<br />　　&middot;/domain在计算机主域的主域控制器中执行操作。该参数仅在 Windows NT Server 域成员的 Windows NT Workstation 计算机上可用。默认情况下，Windows NT Server 计算机在主域控制器中执行操作。注意：在计算机主域的主域控制器发生该动作。它可能不是登录域。<br />　　例如：Net user ghq123查看用户GHQ123的信息。<br /><br />　　3、Net Use<br />　　作用：连接计算机或断开计算机与共享资源的连接，或显示计算机的连接信息。<br />　　命令格式：Net use [devicename | *] [\\computername\sharename[\volume]] [password|*]][/user:[domainname\]username][[/delete]| [/persistent:{yes | no}]]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net use列出网络连接<br />　　&middot;devicename指定要连接到的资源名称或要断开的设备名称<br />　　&middot;\\computername\sharename服务器及共享资源的名称<br />　　&middot;password访问共享资源的密码<br />　　&middot;*提示键入密码<br />　　&middot;/user指定进行连接的另外一个用户<br />　　&middot;domainname指定另一个域<br />　　&middot;username指定登录的用户名<br />　　&middot;/home将用户连接到其宿主目录<br />　　&middot;/delete取消指定网络连接<br />　　&middot;/persistent控制永久网络连接的使用。<br />　　例如：Net use f:&nbsp;\\GHQ\TEMP&nbsp;将\\GHQ\TEMP目录建立为F盘<br />　　　　　Net use f: \GHQ\TEMP /delete 断开连接。<br /><br />　　4、Net Time<br />　　作用：使计算机的时钟与另一台计算机或域的时间同步。<br />　　命令格式：Net time [\\computername | /domain[:name]] [/set]<br />　　有关参数说明：<br />　　&middot;\\computername要检查或同步的服务器名<br />　　&middot;/domain[:name]指定要与其时间同步的域<br />　　&middot;/set使本计算机时钟与指定计算机或域的时钟同步。<br /><br />　　5、Net Start<br />　　作用：启动服务，或显示已启动服务的列表。<br />　　命令格式：Net start service<br /><br />　　6、Net Pause<br />　　作 用：暂停正在运行的服务。<br />　　命令格式：Net pause service<br /><br />　　7、Net Continue<br />　　作 用：重新激活挂起的服务。<br />　　命令格式：Net continue service 　　<br /><br />　　8、Net Stop<br />　　作 用：停止 Windows NT/2000/2003 网络服务。<br />　　命令格式：Net stop service<br />　　下面我们来看看上面四条命令里服务包含哪些服务：<br /><br />　　(1)alerter(警报)；<br />　　(2)client service for Netware(Netware 客户端服务)<br />　　(3)clipbook server(剪贴簿服务器)<br />　　(4)computer browser(计算机浏览器)<br />　　(5)directory replicator(目录复制器)<br />　　(6)ftp publishing service (ftp )(ftp 发行服务)<br />　　(7)lpdsvc<br />　　(8)Net logon(网络登录)<br />　　(9)Network dde(网络 dde)<br />　　(10)Network dde dsdm(网络 dde dsdm)<br />　　(11)Network monitor agent(网络监控代理)<br />　　(12)ole(对象链接与嵌入)<br />　　(13)remote access connection manager(远程访问连接管理器)<br />　　(14)remote access isnsap service(远程访问 isnsap 服务)<br />　　(15)remote access server(远程访问服务器)<br />　　(16)remote procedure call (rpc) locator(远程过程调用定位器)<br />　　(17)remote procedure call (rpc) service(远程过程调用服务)<br />　　(18)schedule(调度)<br />　　(19)server(服务器)<br />　　(20)simple tcp/ip services(简单 TCP/IP 服务)<br />　　(21)snmp<br />　　(22)spooler(后台打印程序)<br />　　(23)tcp/ip Netbios helper(TCP/IP NETBIOS 辅助工具)<br />　　(24)ups<br />　　(25)workstation(工作站)<br />　　(26)messenger(信使)<br />　　(27)dhcp client<br /><br />　　9、Net Statistics<br />　　作用：显示本地工作站或服务器服务的统计记录。<br />　　命令格式：Net statistics [workstation | server]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net statistics列出其统计信息可用的运行服务<br />　　&middot;workstation显示本地工作站服务的统计信息<br />　　&middot;server显示本地服务器服务的统计信息<br />　　例如：Net statistics server | more显示服务器服务的统计信息。<br /><br />　　10、Net Share<br />　　作用：创建、删除或显示共享资源。<br />　　命令格式：Net share sharename=drive:path [/users:number | /unlimited] [/remark:"text"]<br />　　有关参数说明：<br />　　&middot; 键入不带参数的Net share显示本地计算机上所有共享资源的信息<br />　　&middot; sharename是共享资源的网络名称<br />　　&middot; drive:path指定共享目录的绝对路径<br />　　&middot; /users:number设置可同时访问共享资源的最大用户数<br />　　&middot; /unlimited不限制同时访问共享资源的用户数<br />　　&middot; /remark:"text "添加关于资源的注释，注释文字用引号引住<br />　　例如： Net share yesky=c:\temp /remark:"my first share"<br />　　以yesky为共享名共享C:\temp<br />　　Net share yesky /delete停止共享yesky目录<br /><br />　　11、Net Session<br />　　作用：列出或断开本地计算机和与之连接的客户端的会话。<br />　　命令格式：Net session [\\computername] [/delete]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net session显示所有与本地计算机的会话的信息。<br />　　&middot;\\computername标识要列出或断开会话的计算机。<br />　　&middot;/delete结束与 \computername 计算机会话并关闭本次会话期间计算机的所有打开文件。如果省略\computername 参数，将取消与本地计算机的所有会话。<br />　　例如：Net session&nbsp;[url=file://\\GHQ]\\GHQ[/url]要显示计算机名为GHQ的客户端会话信息列表。<br /><br />　12、Net Send<br />　　作用：向网络的其他用户、计算机或通信名发送消息。<br />　　命令格式：Net send {name | * | /domain[:name] | /users} message<br />　　有关参数说明：<br />　　&middot;name要接收发送消息的用户名、计算机名或通信名<br />　　&middot;* 将消息发送到组中所有名称<br />　　&middot;/domain[:name]将消息发送到计算机域中的所有名称<br />　　&middot;/users将消息发送到与服务器连接的所有用户<br />　　&middot;message作为消息发送的文本<br />　　例如：Net send /users server will shutdown in 10 minutes.给所有连接到服务器的用户发送消息。<br /><br />　　13、Net Print<br />　　作用：显示或控制打印作业及打印队列。<br />　　命令格式：Net print [\\computername ] job# [/hold | /release | /delete]<br />　　有关参数说明：<br />　　&middot;computername共享打印机队列的计算机名<br />　　&middot;sharename打印队列名称<br />　　&middot;job#在打印机队列中分配给打印作业的标识号<br />　　&middot;/hold使用 job# 时，在打印机队列中使打印作业等待<br />　　&middot;/release释放保留的打印作业<br />　　&middot;/delete从打印机队列中删除打印作业<br />　　例如：Net print&nbsp;\\GHQ\HP8000列出[url=file://\\GHQ]\\GHQ[/url]计算机上HP8000打印机队列的目录。<br /><br />　　14、Net Name<br />　　作用：添加或删除消息名（有时也称别名），或显示计算机接收消息的名称列表。<br />　　命令格式：Net name [name [/add | /delete]]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net name列出当前使用的名称<br />　　&middot;name指定接收消息的名称<br />　　&middot;/add将名称添加到计算机中<br />　　&middot;/delete从计算机中删除名称<br /><br />　　15、Net Localgroup<br />　　作 用：添加、显示或更改本地组。<br />　　命令格式：Net localgroup groupname {/add [/comment:"text "] | /delete} [/domain]<br />　　有关参数说明：<br /><br />　　&middot;键入不带参数的Net localgroup显示服务器名称和计算机的本地组名称<br />　　&middot;groupname要添加、扩充或删除的本地组名称<br />　　&middot;/comment: "text "为新建或现有组添加注释<br />　　&middot;/domain在当前域的主域控制器中执行操作，否则仅在本地计算机上执行操作<br />　　&middot;name [ ...]列出要添加到本地组或从本地组中删除的一个或多个用户名或组名<br />　　&middot;/add将全局组名或用户名添加到本地组中<br />　　&middot;/delete从本地组中删除组名或用户名<br />　　例如：Net localgroup ggg /add 将名为ggg的本地组添加到本地用户帐号数据库；<br />　　Net localgroup ggg 显示ggg本地组中的用户。<br /><br />　　16、Net Group<br />　　作 用：在 Windows NT/2000/2003 Server 域中添加、显示或更改全局组。<br />　　命令格式：Net group groupname {/add [/comment:"text "] | /delete} [/domain]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net group显示服务器名称及服务器的组名称<br />　　&middot;groupname要添加、扩展或删除的组<br />　　&middot;/comment:"text "为新建组或现有组添加注释<br />　　&middot;/domain在当前域的主域控制器中执行该操作，否则在本地计算机上执行操作<br />　　&middot;username[ ...]列表显示要添加到组或从组中删除的一个或多个用户<br />　　&middot;/add添加组或在组中添加用户名<br />　　&middot;/delete删除组或从组中删除用户名<br />　　例如：Net group ggg GHQ1 GHQ2 /add将现有用户帐号GHQ1和GHQ2添加到本地计算机的ggg组。<br /><br />　　17、Net File<br />　　作用：显示某服务器上所有打开的共享文件名及锁定文件数。<br />　　命令格式：Net file [id [/close]]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net file获得服务器上打开文件的列表<br />　　&middot;id文件标识号<br />　　&middot;/close关闭打开的文件并释放锁定记录<br /><br />　　18、Net Config<br />　　作用：显示当前运行的可配置服务，或显示并更改某项服务的设置。<br />　　命令格式：Net config [service [options]]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net config显示可配置服务的列表<br />　　&middot;service通过Net config命令进行配置的服务(server或workstation)<br />　　&middot;options服务的特定选项<br /><br />　　19、Net Computer<br />　　作用：从域数据库中添加或删除计算机。<br />　　命令格式：Net computer&nbsp;\\computername&nbsp;{/add | /del}<br />　　有关参数说明：<br />　　&middot;\\computername指定要添加到域或从域中删除的计算机<br />　　&middot;/add将指定计算机添加到域<br />　　&middot;/del将指定计算机从域中删除<br />　　例如：Net computer&nbsp;\\js&nbsp;/add将计算机js 添加到登录域。<br /><br />　　20、Net Accounts<br />　　作用：更新用户帐号数据库、更改密码及所有帐号的登录要求。<br />　　命令格式：Net accounts [/forcelogoff:{minutes | no}] [/minpwlen:length] [/maxpwage:{days | unlimited}] [/minpwage:days] [/uniquepw:number] [/domain]<br />　　有关参数说明：<br />　　&middot;键入不带参数的Net accounts显示当前密码设置、登录时限及域信息<br />　　&middot;/forcelogoff:{minutes | no}设置当用户帐号或有效登录时间过期时<br />　　&middot;/minpwlen:length设置用户帐号密码的最少字符数<br />　　&middot;/maxpwage:{days | unlimited}设置用户帐号密码有效的最大天数<br />　　&middot;/minpwage:days设置用户必须保持原密码的最小天数<br />　　&middot;/uniquepw:number要求用户更改密码时，必须在经过number次后才能重复使用与之相同的密码<br />　　&middot;/domain在当前域的主域控制器上执行该操作<br />　　&middot;/sync当用于主域控制器时，该命令使域中所有备份域控制器同步<br />　　例如：Net accounts /minpwlen:8 将用户帐号密码的最少字符数设置为8。<br />　　当然Net命令具体在Win98/NT/2000/XP/2003环境中使用，可能会存在一些差异，请大家参考有关的资料说明，在此就不多说了。<br />　　下面是一个将Net、ping 和ipconfig 命令组合起来使用，测试局域网的连通性，判定远程计算机Microsoft 网络服务的文件和打印机有无共享的实际例子。仅供同志们在学习操作Net网络命令做参考，具体步骤如下：<br />　　1）首先我们要使用 Ping 命令测试 TCP/IP 的连接性，然后用 ipconfig 命令的显示，以确保网卡不处于&ldquo;媒体已断开&rdquo;状态。<br />　　2）打开DOS命令提示符，然后使用IP地址对所需主机进行 Ping 命令测试。<br />　　如果 Ping 命令失败，出现&ldquo;Request timed out&rdquo;消息，请验证主机 IP 地址是否正确，主机是否运行，以及该计算机和主机之间的所有网关（路由器）是否运行。<br />　　3）要使用 Ping 命令测试主机名称解析功能，请使用主机名称 ping 所需的主机。<br />如果 Ping 命令失败，出现&ldquo;Unable to resolve target system name&rdquo;消息，请验证主机名称是否正确，以及主机名称是否能被 DNS 服务器解析。<br />　　4）要使用Net view 命令测试 TCP/IP 连接，请打开命令提示符，然后键入 Net view\\计算机名称。Net view 命令将通过建立临时连接，列出使用 Windows XP/NT/2000/2003 的计算机上的文件和打印共享。如果在指定的计算机上没有文件或打印共享， Net view 命令将显示&ldquo;There are no entries in the list&rdquo;消息。<br />如果 Net view 命令失败，出现&ldquo;System error 53 has occurred&rdquo;消息，请验证计算机名称是否正确，使用 Windows XP/NT/2000/2003 的计算机是否运行，以及该计算机和使用 Windows XP/NT/2000/2003 的计算机之间的所有网关（路由器）是否运行。<br />　　如果Net view 命令失败，出现&ldquo;System error 5 has occurred.Access is denied.&rdquo;消息，请验证您登录所用的帐户是否具有查看远程计算机上共享的权限。<br />　　要进一步解决连通性问题，请执行以下操作：<br />　　a)使用 Ping 命令 ping 计算机名称。<br />　　如果 Ping 命令失败，出现&ldquo;Unable to resolve target system name&rdquo;消息，则计算机名称无法解析为 IP 地址。<br />　　b)使用Net view 命令和运行 Windows XP/NT/2000/2003 的计算机的 IP 地址，如下所示：<br />　　Net view&nbsp;\\IP&nbsp;地址；如果Net view 命令成功，那么计算机名称解析成错误的 IP 地址。<br />　　如果Net view 命令失败，出现&ldquo;System error 53 has occurred&rdquo;消息，则说明远程计算机可能没有运行 Microsoft 网络服务的文件和打印机共享。</p>
+<div>远程桌面连接： 开始&mdash;&mdash;运行&mdash;&mdash;mstsc</div>
+<p>&nbsp;2、常见的一些命令DOS&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; md&nbsp;&nbsp;&nbsp; 创建一个目录&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; rd&nbsp;&nbsp; 删除</p>
+<p>&nbsp;&nbsp; 远程登录命令&nbsp; telnet&nbsp; 192.168.1.1&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725212914286-907998113.png" alt="" /><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725212938399-890849265.png" alt="" /><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725214144099-1698329727.png" alt="" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1276904/201807/1276904-20180725214502855-984290043.png" alt="" /></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-07-25 22:26</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9368720" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9368720);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9368720,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/7/25 22:26:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9368720.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10989828.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:16:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Git笔记整理 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="GitHub的创始人是Linus，使用C语言编写，也是最初的Linux开发发起人。 集中式和分布式的版本控制不同: 集中式：版本库是放在中央服务器中的，工作的时候要从服务器取得最新版本之后才开始工作，" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10989828.html">Git笔记整理</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>GitHub的创始人是Linus，使用C语言编写，也是最初的Linux开发发起人。</p>
+<p><strong>集中式和分布式的版本控制不同</strong>:&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; 集中式：版本库是放在中央服务器中的，工作的时候要从服务器取得最新版本之后才开始工作，工作完之后，在提交的中央服务器。必须要有网络。</p>
+<p>&nbsp; &nbsp; 分布式： 没有中央控制系统，每个人的电脑都有完整的版本库，中央服务器只有来大家交换修改的文件，</p>
+<p>&nbsp; &nbsp; git在不同系统上的安装，自行百度。（我现在觉得Kali 系统做的越来越好了，之前在物理机上安装的时候兼容性不是很好）&nbsp;</p>
+<p>&nbsp;&nbsp; git - config 命令的 --config 参数，表示这台机器上的所有的仓库都使用这个配置，当然也可以对某个仓库指定不同的用户名和Email</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608012330090-987485611.png" alt="" /></p>
+<p>&nbsp; 创建一个空的仓库 我实在 opt目录下创建了一个叫做learnGit的仓库&nbsp;&nbsp; （pwd是用来显示当前的目录） 注：创建完后当前目录下生成一个 .git文件&nbsp;&nbsp; 通过命令：ls -ah 可以查看隐藏文件</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608013120768-2095856511.png" alt="" /></p>
+<p>注：Git只能跟踪文本文件的控制，没有办法控制图像视频文件。另外一点 Word文件时Microsoft的一种二进制文件，因此没有办法跟踪Word上的改动文件。这里也不推荐使用记事本来写代码，最好使用notepad++（默认编码设置是UTF-8.）</p>
+<p>将新建的文本添加到仓库中：&nbsp; 使用 git add 提交文件&nbsp; ，使用&nbsp; git commit -m "备注&ldquo;&rdquo;&nbsp; 提交的跟踪信息&nbsp;&nbsp;</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608015021336-1545398587.png" alt="" /></p>
+<p>git&nbsp; status 命令可以帮助我们时刻掌握仓库当前的状态， 下载我们先将readme文件修改 ，然后使用该命令&nbsp; git status （这个命令跟 linux 下 service status&nbsp; 类似）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608015804793-1020845380.png" alt="" /></p>
+<p>上面的显示 readme文件修改了但是没有提交&nbsp; ，如果我们不知道修改了什么地方 可以使用git diff 来查看修改的地方</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608020138958-365900310.png" alt="" /></p>
+<p>可以看我们之前添加了一行，知道修改了之后我们就就将它提交一遍（为了放心，我们在 git commit之前再次&nbsp; git status一下）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608020446533-2056060165.png" alt="" /></p>
+<p>最后提交 备注一下</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608020723780-978682737.png" alt="" /></p>
+<p>可以使用&nbsp; git log 命令查看版本的历史记录</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608021351648-1572776750.png" alt="" /></p>
+<p>现在来看斑斑的回退&nbsp; 使用命令&nbsp; git reset&nbsp;&nbsp; -- hard&nbsp; 参数&nbsp;&nbsp; （在 Git 很重 HEAD 表示当前的版本， 上一个版本是 HEAD^&nbsp; ，上上一个版本是 HEAD^^ ，如果回退的较多可以写成这样&nbsp; HEAD ~100 表示第一百个版本）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608022211375-1131453128.png" alt="" /></p>
+<p>使用 git log 看看，发现之前的一个记录没有了，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608022439446-611500835.png" alt="" /></p>
+<p>&nbsp;如果想撤销之前的操作，不要关闭窗口，继续 git reset --hard 加上前面的 一串记录数据</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608022832987-685195833.png" alt="" /></p>
+<p>git 提供了一个记录每次使用命令 命令 ：&nbsp;&nbsp; git reflog</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608023258004-459782670.png" alt="" /></p>
+<p>总结&nbsp;&nbsp; 使用 git 回退版本&nbsp; 使用命令&nbsp; ：&nbsp;&nbsp; git reset --hard commit_id</p>
+<p><strong>git的目录理解：</strong></p>
+<p>&nbsp;&nbsp; 工作区： 就是我们刚才建立的一个文件 leanGit。在之前我们创建仓库的时候就产生了一个&nbsp; .git 文件， 他是git的版本控制文件， git版本仓库中有很多东西，其中最重要的是称为stage的暂存区，还有git创建的第一个master，以及master的一个指针 HEAD，（这里我使用廖老师的图）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608024501834-184569978.png" alt="" /></p>
+<p>在前面回顾一下&nbsp; ： 把文件添加到仓库分成了两步：第一步第 使用 git&nbsp; add 把文件添加进去I（实际上是将文件修改添加到暂存区）--------第二步git commit&nbsp; 将暂存区的所有文件添加到当前分支，因为我们在git版本库的时候创建了唯一的一个master分支，所以 git commit就是往 master分支上提交更改。具体的提交变换工程图解</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608025726805-873429050.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608025736750-1033370172.png" alt="" /></p>
+<p>git管理的是修改，而不是文件 ，为了说明这个做一个实验：</p>
+<p>首先对readme问价添加一行 ，然后将他添加到仓库暂存区 ，查看</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608030444506-156295257.png" alt="" /></p>
+<p>可以看到gitcommit 只负责对暂存区的修改，</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608030744947-618549947.png" alt="" /></p>
+<p>&nbsp;所以再次提交之后才会看到结果，更新</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608031048622-1904392206.png" alt="" /></p>
+<p>如何撤销修改：在文件提交的的时候发现，文件出现错误，为了及时修改，git提示使用 git checkout -- file 可以丢弃修改工作区的修改。</p>
+<p>&nbsp;&nbsp; 廖雪峰说 一种是 readme自自改之后还没有放到暂存取，现在撤销修改就回到和版本库一模一样的状态，一种是readme已经次该添加到暂存区后，又做了修改，撤销修改就回到添加暂存区后的状态，总之就是让这个文件回到最近一次&nbsp; gitcommit或者 git add的状态 。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608094719868-415466214.png" alt="" /></p>
+<p>下面的 使用 git commit 之后使用 git checkout&nbsp; 但是发现一旦使用 该命令 就不能撤销，只能使用 git reset -- hard HEAD参数来进行版本的回退</p>
+<p>root@kali:/opt/learnGit# cat readme.txt<br />readme here <br />learn github git is a version control system <br />&nbsp;git is free software<br />&nbsp;&nbsp; tianyaming <br />&nbsp;&nbsp;&nbsp; add a new line<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add a new line "&nbsp; my boss is stupid"<br />root@kali:/opt/learnGit# git commit -m "have use the git checkout"<br /><br />[master 26aa3fd] have use the git checkout<br />&nbsp;1 file changed, 1 insertion(+)<br />root@kali:/opt/learnGit# <br />root@kali:/opt/learnGit# cat readme.txt<br />readme here <br />learn github git is a version control system <br />&nbsp;git is free software<br />&nbsp;&nbsp; tianyaming <br />&nbsp;&nbsp;&nbsp; add a new line<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add a new line "&nbsp; my boss is stupid"<br />root@kali:/opt/learnGit# git checkout -- readme.txt<br />root@kali:/opt/learnGit# cat readme.txt<br />readme here <br />learn github git is a version control system <br />&nbsp;git is free software<br />&nbsp;&nbsp; tianyaming <br />&nbsp;&nbsp;&nbsp; add a new line<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add a new line "&nbsp; my boss is stupid"<br />root@kali:/opt/learnGit# <br />如果使用了git add提交了暂存区，庆幸的是你么有使用commit提交&nbsp; ，可以使用 git reset HEAD 《file》来回退&nbsp; 之后在使用 git checkout清除工作区</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608095916994-838986959.png" alt="" /></p>
+<p>来一个总结&nbsp; ，场景一：当你改乱了工作区的某哟个内容，想直接丢掉工作区使用&nbsp;&nbsp; git checkout -- file&nbsp;&nbsp;&nbsp; ，场景二：当你改乱了某一个文件的内容，还添加到了暂存区，想丢弃修改，第一步使用 git reset HEAD&nbsp; file 回到场景一 ，之后在使用 git checkout --file 丢掉</p>
+<p>git 中还有一种操作就是删除文件：</p>
+<p>先添加一个新的文件&nbsp;&nbsp; test.txt&nbsp; 之后使用 git add&nbsp;&nbsp; 、git&nbsp; commit 提交 到版本控制库 </p>
+<p>之后使用rm 命令删除文件&nbsp; test ，删除之后版本库中的并没有删除，所以使用&nbsp; 命令&nbsp;&nbsp; git rm test 删除版本库 之后使用 git commit 提交版本库&nbsp; （注：git checkout 的作用就是用版本库替换工作区版本）</p>
+<p><strong>远程仓库的操作</strong>：</p>
+<p>&nbsp;首先就是在本地使用ssh创建密钥对，&nbsp; 才用户仓库目录下面看看，有没有 .ssh 目录&nbsp; ，如果有在看下面有木有id_rsa和 id_rsa.pub两个文件，如果存在直接跳转下一步</p>
+<p>&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608170151883-1160868325.png" alt="" /></p>
+<p>使用 ssh 创建 邮箱GitHub账户的秘钥对&nbsp; 命令：&nbsp; ssh-keygen -t rsa -C " 1214tian@sina.com"&nbsp;&nbsp; 之后会在用户占下面产生秘钥对，复制 公钥到GitHub上</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608171605042-70161022.png" alt="" /></p>
+<p>现在我们需要将我们的本地仓库和GitHub上的仓库关联起来，首先登陆GitHub账户创建以个git仓库 learnGit</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608175057834-445581331.png" alt="" /></p>
+<p>现在将本地仓库关联到GitHub上，使用命令：&nbsp;&nbsp; git remote add origin git@github.com:SueKayTian/learnGit.git </p>
+<p>关联之后将本地仓库的文件全部推送的远程GitHub上 使用命令&nbsp; ：&nbsp;&nbsp; git push -u origin master </p>
+<p>本地内容推送到远程，实际上是将当前分支master推送到远程， 由于远程是空的，我们第一次推送的master的时候，加上了参数 -u， 这样GIt 不但会将本地的master分支内容推送到远程master分支，还会将本地的master和远程的master关联起来，在以后的推送和拉取中简化命令</p>
+<p>第一次关联后推送的时候会弹出SSH警告 ，在这之后只要本地做了提交就可以使用&nbsp; git&nbsp; push origin master 来推送</p>
+<p>&nbsp; 分支管理： </p>
+<p>&nbsp; 创建一个分支使用命令：&nbsp;&nbsp; git checkout -b （分支名字）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190608235536733-1125747062.png" alt="" /></p>
+<p>git checkout 命令后面加上-b 参数表示创建并切换，相当于下面的命令&nbsp; ：</p>
+<p>&nbsp;git branch dev </p>
+<p>git checkout dev </p>
+<p>之后使用git branch命令查看列出所有分支，当前的分支结构后面会显示一个 *&nbsp; </p>
+<p>那么如何将 dev 的工作合并到master上面， 下面使用命令 将 dev 合并到master 分支上面，&nbsp; git merge命令用于价格制定分支合并到当前分支下面，&nbsp; 合并之后就可以放心的删除之前的 Dev 分支</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190609000724282-29836748.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190609000932731-267594433.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190609001025334-166014495.png" alt="" /></p>
+<p>小结：</p>
+<p>&nbsp;&nbsp; 查看分支 使用命令：&nbsp; git&nbsp; branch</p>
+<p>&nbsp; 创建分支：&nbsp; git branch &lt;name&gt;</p>
+<p>&nbsp; 切换分支：&nbsp; git&nbsp; checkout &lt;name&gt;</p>
+<p>&nbsp;创建加上切换分支 ： git checkout -b &lt;nmae&gt;</p>
+<p>&nbsp; 合并分支&nbsp; ： git merge &lt;name&gt;</p>
+<p>&nbsp; 删除分支 ： git branch -d &lt;name&gt;</p>
+<p>解决冲突问题： 其实很多时候在合并的时候会出现冲突，该如何解决了&nbsp; ？</p>
+<p>首先我们创建一个分支并迁移到当前分支之下，&nbsp; </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190609004416903-879416795.png" alt="" /></p>
+<p>git&nbsp; 自动提示我们当前master分支比远程的master分支超前一个提交。这时我们在当前master分支下修改 readme文件 ，现在 master和 featurel上都有了自己的型的提交。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201906/1276904-20190609004836469-923620819.png" alt="" /></p>
+<p>这种情况下git无法进行快速的合并，只能视图将各自的修改合并，但是会出现冲突，</p>
+<p>&nbsp;当git无法自动合并分支的时候，就必须首先解决冲突问题，提提交在合并。结局冲突的办法就是使用手动编辑的方法合并成我们想要的内容，再次提交&nbsp; 可以使用&nbsp; 命令 git log --graph 查看分支合并图</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-06-08 03:15</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10989828" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10989828);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10989828,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/6/8 3:15:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10989828.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:16:53 GMT -->
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10581911.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:18:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Scyther spdl（比较准确的翻译） - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、协议的主要的核心是定义一个协议在协议中声明角色： Protocol ExampleProtocol(I,R){ role I{ }; role R{ }；//在角色中一开始我们没有定义角色的行为 " />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10581911.html">Scyther spdl（比较准确的翻译）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、协议的主要的核心是定义一个协议在协议中声明角色：</p>
+<p>&nbsp;Protocol&nbsp; ExampleProtocol(I,R){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role I{&nbsp;&nbsp; };</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role R{&nbsp;&nbsp; }；//在角色中一开始我们没有定义角色的行为</p>
+<p>&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp; ////在协议中声明两个角色，分别是 I 和&nbsp;&nbsp; R</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 很多安全协议依赖生成一个随机的值，他们可以在一个角色中使用 fresh 声明一个临时的值，列如下面 在角色X中 使用 fresh 声明一个Nonce 类型的临时值 ：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role X(.....){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fresh Na：Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_1(X,Y,Na)；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>代理可以使用变量存储接受的值（术语），列如，使用 Na 接受一个临时变量：</p>
+<p>&nbsp;&nbsp; roel&nbsp; Y(.....){</p>
+<p>&nbsp;&nbsp;&nbsp; var Na:Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; recv_1(X,Y,Na)；</p>
+<p>}</p>
+<p>&nbsp; 对于局部变量，对于新生成的值以及变量像Na ,对于角色 都是局部变量。这样我们可以指定一个新生成的临时变量Na 在一个角色中，另一个Na在另一个Na 中不会出现冲突。变量必须出现在接受事件中，不允许未初始化的变量出现在发送事件中。第一次接受事件之后触发执行 ，分配一个值，之后再不能改变。</p>
+<p>&nbsp; 任何两个术语可以结合成一个术语对，可以写成N个术语对，例如： （x,y,z）再Scyther 中解释成 （（x,y）,z）</p>
+<p>2、对称秘钥</p>
+<p>&nbsp;&nbsp;&nbsp; 任何术语都可以作为堆成加密的秘钥，使用术语 kir 加密&nbsp; ni 可以表示成&nbsp;&nbsp; {ni }kir&nbsp; ，除非将 kir 明确的制定为非对称秘钥的一部分，不然除此之外解释为对称加密。</p>
+<p>&nbsp;对称秘钥： &nbsp; 对称秘钥的基本结构&nbsp;&nbsp; 定义形式 k （X,Y） 表示长期的对称秘钥共享 X和 Y之间。</p>
+<p>3、非对称秘钥</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 公钥基础的结构是预定义的（PKI）， sk(X) 表示 X 的长期私钥， pk(X)表示对应的公钥，随机数数 ni 在触发者&nbsp; I 中使用公钥 pk(I) 加密，接受者只能使用私钥 skI(I) 解密。</p>
+<p>4、预先定义类型</p>
+<p>&nbsp;&nbsp;&nbsp; Nonce&nbsp; 标准类型（经常使用），因此定义在角色内部</p>
+<p>&nbsp;&nbsp;&nbsp; Ticket&nbsp; 变量类型（可以被任何术语替代）</p>
+<p>5、用户定义类型</p>
+<p>&nbsp;&nbsp; 使用关键字&nbsp; usertypes&nbsp;</p>
+<p>usertypes MyAtomicMessages;</p>
+<p>&nbsp;protocol X (X,R){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role I{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; var y:MyAtomicMessage;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; recv_1(I,R, y) &nbsp;&nbsp; }</p>
+<p>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 这中新申明的类型实例化只能使用自身的类型来实例化，</p>
+<p>在事件中，每个接受事件和发送事件都是配套的，但是如果我们仅仅想模拟向对手发送或者接受（单向事件）的时候 Scyther 工具就会提示错误，可以使用标签提前对事件进行标注，如下面：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_!1(I ,I&nbsp; LeakToAdversary );</p>
+<p>&nbsp;事件申明在角色规范中建模特定的安全属性，例如下面的声明事件模型中 Ni 表示 秘密</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim (I,Secret ,Ni) ;</p>
+<p>下面事件中的匹配事件中Y&nbsp; 由 hash (X,Y,R )替代,但是这种规则避免复制</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; var X : Nonce ；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; var Y ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; recv(R,I,X);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; match (Y,hash（X,I，R）);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send(I,R,Y，{Y}sk(I) );</p>
+<p>另外，说明匹配事件match(pt,m) ,存在一个 &part;使得 &nbsp;&part;pt=m才会执行，相反不匹配事件表示 mot match(pt,m)&nbsp; 不存在替代 &part; 使得 &part;pt=m 成立才会执行</p>
+<p>角色定义就是时间的序列声明，包括定义、发送、接受、或许和事件申明，而协议定义的在协议体内会用一系列的角色定义</p>
+<p>6、使用scyther 建立协议安全模型的时需要掌握的技能</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 逻辑消息组件以及在协议中的预期功能、 消息结构 、消息流</p>
+<p>7、使用Scyther形式化分析协议注意的关键步骤</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 协议中的逻辑消息组件和内部的功能（公钥和私钥，每次运行或者 不变的常量）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 消息结构 ： 配对&nbsp; 加密&nbsp;&nbsp; 签名&nbsp; 散列</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 消息流 顺序 ， 涉及的事件</p>
+<p>8、在做实验之前首先要弄懂scyther 的已经验证过得几个简单的例子，从中首先弄清楚 scyther 验证的&nbsp; 协议&nbsp; Needham-Schroeder protocol&nbsp; ,,协议有由角色定义，角色反过来由事件定义, scyther 输入文件中最为核心的是 协议的定义</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role I {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fresh ni: Nonce ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var nr:&nbsp;&nbsp; Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_1(I,R ,{I,ni}pk(R));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_2(R,I,{ni,nr}pk(I));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_3(I,R, {nr}pk(R));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i1(I,secret ,ni);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i2(I,Secret,nr);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i3(I,Niagree);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i4(I,Nisynch);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role R{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var ni: Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fresh nr: Nonce ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_1(I,R,{I,ni}pk(R) );</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_2(R,I,{ni,nr}pk(I));</p>
+<p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; recv_3(I,R,{nr}pk(R));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clamin_r1(R,Secret,ni);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_r2(R,Secret,nr);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_r3(R,Niagree);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_r4(R,Nisynch);</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>9、协议</p>
+<p>// The protocol description<br />protocol ns3(I,R)<br />{<br />role I<br />{<br />fresh ni: Nonce;<br />var nr: Nonce;<br />send_1(I,R, {I,ni}pk(R) );<br />recv_2(R,I, {ni,nr}pk(I) );<br />claim(I,Running,R,ni,nr);<br />send_3(I,R, {nr}pk(R) );<br />claim_i1(I,Secret,ni);<br />claim_i2(I,Secret,nr);<br />claim_i3(I,Alive);<br />claim_i4(I,Weakagree);<br />claim_i5(I,Commit,R,ni,nr);<br />claim_i6(I,Niagree);<br />claim_i7(I,Nisynch);<br />}</p>
+<p>role R<br />{<br />var ni: Nonce;<br />fresh nr: Nonce;<br />recv_1(I,R, {I,ni}pk(R) );</p>
+<p>claim(R,Running,I,ni,nr);<br />send_2(R,I, {ni,nr}pk(I) );<br />recv_3(I,R, {nr}pk(R) );<br />claim_r1(R,Secret,ni);<br />claim_r2(R,Secret,nr);<br />claim_r3(R,Alive);<br />claim_r4(R,Weakagree);<br />claim_r5(R,Commit,I,ni,nr);<br />claim_r6(R,Niagree);<br />claim_r7(R,Nisynch);<br />&nbsp;&nbsp;&nbsp; }<br />}</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190406215738113-112334589.png" alt="" /></p>
+<p>对上面的标签做一个说明，第三例表示唯一标识符，第四列表示标签。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190406220946575-1315344059.png" alt="" /></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-04-05 17:54</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10581911" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10581911);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10581911,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/4/5 17:54:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10581911.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:18:00 GMT -->
+</html>

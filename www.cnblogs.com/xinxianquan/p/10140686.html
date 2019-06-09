@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10140686.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>kali linux 更新问题 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、使用一次更新和升级软件替换 apt-get install &amp;&amp; apt -y full -upgrade 之后使用 reboot重启 系统，重启之后 再次使用命令 apt -y " />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10140686.html">kali linux 更新问题</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;1、使用一次更新和升级软件替换</p>
+<p>&nbsp;&nbsp; apt-get install &amp;&amp; apt -y full -upgrade</p>
+<p>&nbsp;&nbsp; 之后使用 reboot重启&nbsp;&nbsp;&nbsp; 系统，重启之后 再次使用命令&nbsp;&nbsp; apt -y install open -vm -tools -desktop fuse</p>
+<p>&nbsp;&nbsp; 之后使用 reboot ，</p>
+<p>&nbsp;&nbsp;&nbsp; 2、在设备虚拟机的文件夹共享的时候，即便是你将vmtools成功的安装到了客户机，后面发现文件夹还是不能共享的，使用脚本对 共享的文件夹进行挂载到系统</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181218224214206-1568331725.png" alt="" /></p>
+<p>&nbsp; 说明文件共享的挂载的脚本代码&nbsp;&nbsp; ，前面的vmtools的安装百度。</p>
+<p>&nbsp;&nbsp; cat &lt;EOF &gt;/usr./local/sbin/mount -shared -folders</p>
+<p>&nbsp;&nbsp;&nbsp; #!/bin/bash</p>
+<p>&nbsp;&nbsp;&nbsp; vmware-hgfsclient | while read folder; do</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; vmwpath="/mnt/hgfs/\${folder}"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "[i]Mounting \${folder}&nbsp; (\${vmwpath})"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; makdir -p "\${vmwpath}"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; umount -f "\%{vmwpath}" 2&gt;dev/null</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vmhgfs-fuse -o allow_other -o auto_mount ".host:/\${folder}" "\${vmnwpath}"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; done</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; sleep 2s</p>
+<p>&nbsp;&nbsp; EOF&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; chmod +x /usr/local/sbin/mount-shared-folders</p>
+<p>&nbsp;</p>
+<p>&nbsp; 这里可以使用简单的方法，使用一个脚本创建一个快捷键的方式执行。代码：</p>
+<p>&nbsp;&nbsp; ln -sf /usr/local/sbin/mount -shared-floders /root/desktop/mount-shared -folders.sh</p>
+<p>&nbsp;&nbsp; gettings set org.gnome.nautilus.preference executable -text-activation 'ask</p>
+<p>3、如果使用的虚拟机不是VM，二是visualBox 在安装的使用导入的kali linux的镜像包是存在区别的，下载的时候在官网上的界面上下载专门的镜像</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181219093528174-1937595478.png" alt="" /></p>
+<p>安装完之后使用下面的代码进行更新</p>
+<p>&nbsp;&nbsp; apt-get update&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; apt-get install -y virtualbox-guest-xll</p>
+<p>reboot</p>
+<p>4、虚拟机的网络设置形式（桥接模式、NAT模式，Internal&nbsp; network）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181219101841694-412147804.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181219101918439-1273192284.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181219101937231-1117492915.png" alt="" /></p>
+<p>5、发现很多初级使用kali linux 的人在配置国内镜像源的时候将很多开放的源 全部粘贴到自己的etc/apt sources.list文件中，其实这样&nbsp; 每次进行更新的时候会出现不能成功更新的问题，建议大家使用的时候选择一个更新源就可以了，我使用的是阿里的源。</p>
+<p>6、kali linux 的文件系统的组织结构，我现在看的资料是英文的,所以说的不是很准确，大家可以参考中文的版本翻译 bin(文件系统评包括基本的命令，所有的用户二进制文件，与Windows中的WindowsSystem32一样 ）&nbsp;</p>
+<p>7、apt dist-upgrade -y&nbsp; reboot</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; git&nbsp; clone&nbsp;</p>
+<p>&nbsp;8、gedit 编辑文档命令，一些人使用vim 虽然编辑高大尚一些但是，效率低，程序嘛，达到自己想到的结果就行了，没必要使用过多的语言，简单为止。</p>
+<p>9、开启服务ssh</p>
+<p>&nbsp;&nbsp;&nbsp; service&nbsp; ssh start&nbsp;&nbsp; 检查服务是否开启 使用命令 netstart -antp/grep sshd 或者使用 service ssh status .如果要使得服务在引导时候启动 使用命令&nbsp;&nbsp; systemctl enable ssh&nbsp; 停止服务&nbsp;&nbsp; 直接使用 service ssh stop,&nbsp;&nbsp; 使用远程的ssh服务 ssh [usernmae@IP] 如果不是使用固定的22号端口可以使用 命令&nbsp;&nbsp; ssh -p [port number]&nbsp;&nbsp;</p>
+<p>10、配置静态地址。或使用桥接的模式的时候需要配置IP地址，以及将kali linux 安装到 物理机上的时候也需要将IP地址进行重新配配置。</p>
+<p>执行命令&nbsp;&nbsp; gedit&nbsp; /etc/ntework/interfaces&nbsp;&nbsp;</p>
+<p>11、查询进程</p>
+<p>&nbsp;&nbsp;&nbsp; netstat -antp</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181219225347889-637657638.png" alt="" /></p>
+<p>&nbsp;10 、kali linux 中一款管理进程的tools 叫做htop</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181219225853227-779798187.png" alt="" /></p>
+<p>若果只是片面的查看系统的进程 可以使用简单的命令 查看部分想要的信息 进程的。</p>
+<p>To display all active processes, execute the following command:<br />ps<br />The ps command is very useful if you have a remote shell to a Linux box, and you want to list<br />all of the current processes for privilege escalation.<br />To display all running processes, use the following:<br />top<br />To kill a process with an ID (PID), use the following:<br />kill [PID Number]<br />To kill all processes named hello, use the following:<br />killall hello<br />To force killing a process, use the following:<br />kill -9 [PID Number]</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201812/1276904-20181219231313692-1547062837.png" alt="" /></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-12-19 23:16</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10140686" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10140686);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10140686,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/12/19 23:16:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10140686.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:34 GMT -->
+</html>

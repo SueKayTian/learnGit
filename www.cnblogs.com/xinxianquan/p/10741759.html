@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10741759.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Scyther-Semantics and verification of Security Protocol - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1 、本书前一节主要是介作者自己的生平经历（读完感觉作者是个神童），目标明确作者13岁代码已经写的很溜了。自己也开了网络公司，但是后面又专注于自己的计算机基础理论，修了哲学的博士学位（不得不说很多专业" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10741759.html">Scyther-Semantics and verification of Security Protocol</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;1 、本书前一节主要是介作者自己的生平经历（读完感觉作者是个神童），目标明确作者13岁代码已经写的很溜了。自己也开了网络公司，但是后面又专注于自己的计算机基础理论，修了哲学的博士学位（不得不说很多专业的交叉真的可以创造新的起点），但是任何领域的开辟都是来自自己不辞辛苦的决心和坚韧不拔的毅力。</p>
+<p>&nbsp;&nbsp; 本来之前一直是在看渗透测试的方面资料，但是后面加上实习的事，论文View&ldquo;&rdquo;被&ldquo;&rdquo;选择成工业网络协议的形式化分析，没有人指导该怎么去做，迷茫应该往哪个方向上分析，先是对EtherNet/IP 协议ODVA发布的规范文档的阅读，（刚开始看的的时候感觉看不到头，没有自己期望的相关资料或者越看越复杂）就好像一棵藤，自己独自摸索着向前，每一个枝节会有新的问题或者概念蹦出，然后在返回去找相关的资料。（这种情况像是叠罗汉），但是这中间我感觉自己走了很多弯路（磕磕碰碰），因为急切的想要找到期望的，切中要点的idea ，这样我就很多时候半途而废（太摧残），就像漫画上一个人挖井，挖到一般看不到希望就放弃另寻锚点挖。有个之前寻求帮助的博士说&ldquo;你四处询问的所需要的东西往往就在你眼前&rdquo;所以真的要静下心来，坚持下去。就是觉得自己在计算机方面的能力真的有待提高，所以尴尬的近况就是真的害怕自己做不出来，现在还有论文方面还存在两个困难。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 一是EtherNet/IP协议中应用层CIP协议中使用的安全传输机制TLS协议和DTLS协议自身的问题（TLS1.3版本已经更新，但是ODVA中的支持的芯片未来3-6年才能更新支持），如果对EtherNet/IP协议形式化分析，拿现有的TLS1.2作为分析，还是使用TLS1.3,1.3的版本在协议内容上存在较大的改变。但是如果使用TLS1.3做形式化分析，本身CIP中的所有密码套件不支持，在回溯到EtherNet/IP 协议的自身安全的时候就会无法进行下去。考虑到此所以对CIP协议分析的采用目前使用的TLS1.2版本，分析完之后对其中的漏洞和安全问题以及攻击路径做整理回溯到CIP安全，在回溯到EtherNet/IP协议的安全，这里加上比较TLS1.2和TLS1.3存在的差异，（后面扩展视时间而定）。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 二是Scyther 形式化分析工具的手册和语义分析的资料书目前还是没有看懂，Scyther user manual 已经看完，但是由于里面的内容是基于Scyther-Semantics and verification of Security Protocol 的，所以必须先吃透这本书的内容。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 现在第一个问题具体部署完成，预计周末完成比较和分析的梳理。现在对第二个问题进行分篇章的整理。</p>
+<p>2、Scyther-Semantics and verification of Security Protocol（整理）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 内容：</p>
+<p>&nbsp; 第一节：Dolev-Yao模型 （假设基础， 要分析的密码算法是完美的，消息是抽象的术语，网络完全可由入侵者控制）</p>
+<p>&nbsp;&nbsp; 安全模型的术语定义： 首先安全协议区分了很多行为，每个这样的协议行为成为角色，</p>
+<p>&nbsp;&nbsp; 协议规范描述了协议中的每个角色的行为，将协议规范视为语义的参数，定义抽象的语法制定安全协议，将安全协议中的角色指定为一系列的事件，挑战响应机制（通常成为Nonce 随机数）或者会话秘钥，在整个协议中有重要的作用，按照协议提出一个抽象的语法和静态要求，代理模型：代理执行协议的角色，可以并行执行多次，是封闭的假设（诚实的代理不会对外泄露分类消息），代理模型描述了如何解释角色的运行，代理按照顺序执行角色的描述，等待读取时间，</p>
+<p>通信模型：通信模型描述了消息之间的关系代理商的交换，我们选择异步模型通讯。使用缓冲区（暂）</p>
+<p>威胁模型： 参见 Dolev-Yao</p>
+<p>密码 原语： 密码原语是理想化的数学结构，例如加密，在对加密原语的处理中，使用了所谓黑盒测试，只是知道密码算法的相关属性，只考虑非对称和对称算法，并且假设要分析的协议使完美的。</p>
+<p>&nbsp;本章使用NS协议（Needham-Scroeder）,使用消息序列图（MSC）来说明安全协议的攻击：&nbsp;&nbsp; 首先 发起者 i&nbsp; 拥有公钥pk(r)和私钥sk(i) ,同时接受者也同样拥有公钥pk(i)和私钥sk(r) ,发起者向接受者发送个个随机变量 ni 同时加上自己的身份 i ，使用 公钥 pk(r)进行加密，接受者 r 接收到消息之后向发送者发送一个随机变量 nr 加上之前的随机变量 ni 使用自己的公钥 pk(i)进行加密。接受者收到消息之后，解密出nr 发送给 接受者，并使用自己的公钥进pk(r)行加密,这样发送者和接受者都声称自己有安全认证的属性 ni-synch 的拥有者。</p>
+<p>&nbsp;&nbsp;&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190421153858342-1740713269.png" alt="" /></p>
+<p>&nbsp;<strong>角色术语： 定义基本的角色术语</strong></p>
+<p>&nbsp;&nbsp;&nbsp; Var : 表示用于存储接受消息的变量&nbsp;&nbsp;&nbsp;&nbsp; 、&nbsp;&nbsp;&nbsp; Const&nbsp; :表示角色的每个实例化新生成的常量，被认为是局部常量。&nbsp; 、&nbsp; Role ：定义角色&nbsp;&nbsp; 、&nbsp;&nbsp; Func :表示函数的名字</p>
+<p>&nbsp;&nbsp; 我们将角色术语集定义为基本术语套，使用构造函数进行扩展以进行配对和加密，并且假设配对是右关联的。</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190421221907549-1953752468.png" alt="" /></p>
+<p>&nbsp; 当我们想要使用个函数的 f 的时候，其定义域是 X，可以这样标记&nbsp; ：-------&gt;&nbsp; {f(x)| x &isin;X}</p>
+<p>这里我们定义一个术语的逆 使用函数：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190421224515666-744237834.png" alt="" />我们规定 &mdash; <sup>-1</sup>是自己的逆， （rt <sup>-1</sup>）<sup>-1</sup>=rt &nbsp;</p>
+<p>&nbsp;&nbsp; 在整片论文中我们假设公钥pk 和私钥映射到非对称秘钥的元素函数中，我们使用pk 表示i代理的公钥，使用sk表示代理的私钥</p>
+<p>&nbsp;&nbsp;&nbsp; （补充数学量词&nbsp;&nbsp; &forall;R&isin;Role ：pk(R)<sup>-1</sup>=sk(R)^sk(R)-1=pk(R) 表示 对任意的R 属于 Role均成立右面的等式。）</p>
+<p>例子： 我们建立角色R的私钥模型 sk(R)和对应公钥的逆 pk(R),使用公钥模型加密消息 m 表示模型为&nbsp; ： {/m/}pk(R) ,&nbsp; 对消息进行签名，并不是直接使用秘钥进行加密，而是被称为：消息摘要&rdquo;加密，</p>
+<p>为了使私钥正确的签名消息 m 模型，我们需要一个函数&nbsp; h , 签署消息 m 之后的的术语是&nbsp; （m, {/h(m)/}sk(R)）</p>
+<p><strong>定义：描述角色</strong>，（协议是由角色组成的，而角色又是由角色事件组成的）。</p>
+<p>&nbsp;&nbsp;&nbsp; 我们定义一组事件集，RoleEvent 使用两个新的组，标签 Labe 和安全声称 Claims</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423105758745-856296492.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 上面的事件集解释如下： 事件 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423100753912-339921386.png" alt="" />表示发送的消息 rt&nbsp; 绑定到代理 R上 ，打算用于绑定代理 R' ,同样的<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423102120222-361393506.png" alt="" /> 指明消息&nbsp; rt 被代理 R &rsquo; 绑定，显然是由代理 R发送过来的，事假声明<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423102410303-714474537.png" alt="" />表达，执行此事件时 R 期望安全目标&nbsp; c 与可选参数&nbsp; rt 保持一致。声称事件仅仅表示涉及本地代理R 并不是其他任何人的期望的代理。标签<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423105326722-1454768071.png" alt="" />标记事件来消除协议规范中相同事件的类似避免发生歧义，第二层含义是表达发送事件和接受事件的之间的关系，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>定义次运算符</strong>：&nbsp;<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423105819550-1484053773.png" alt="" /> 定义子术语，其中包括用于加密的秘钥，注意术语形如 f(rt)的术语没有子句，因为被认为是非组合型术语。除了发送和接受术语之外，角色规范还定义了执行角色的初始知识，也是一组术语。</p>
+<p>&nbsp;&nbsp;&nbsp; 定义如下：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423105853541-432961248.png" alt="" /></p>
+<p>&nbsp;&nbsp; 定义 角色知识： 我们定义角色知识，将角色知识集RoleKnow定义为不包含变量作为子项的所有角色术语的集合。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423111117698-251160445.png" alt="" />作为结果，我们有这样的表达式 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423111235626-2106943970.png" alt="" />因为角色事件完全描述角色的行为。&nbsp;&nbsp;&nbsp; 没有必要声明局部常量和变量，协议的执行不需要角色知识，这里引入角色知识有两个原因，首先他允许静态角色的一致性测试，在给定初始知识集的情况下查看角色是否可以执行，第二，他将使我们能够系统的推导出文章末尾的初始入侵者。</p>
+<p>&nbsp;&nbsp; <strong>定义角色规范</strong>： 角色规范包含一系列的事件，一些事初步知识，因此我们定义了角色规范集合 像&nbsp; ： RoleSpec=RoleKnow&times;RoleEvent*</p>
+<p>&nbsp;我们写成[&epsilon;1,&epsilon;2]指定 两个事件列表，&epsilon;1和&epsilon;2 ，我们写&nbsp;[&epsilon;1,&epsilon;2]<sup>.</sup>[&epsilon;3] 去指定两个列表的级联，&nbsp; 经常在书写单个事假的时候我们会省略括号直接写成,&epsilon;1<sup>.</sup>&epsilon;2 表示 [&epsilon;1,&epsilon;2]。</p>
+<p>&nbsp; 我们书写&nbsp; A <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423135946412-216641248.png" alt="" />B指定一个局部函数，他将A的元素映射到元素B上，&nbsp;&nbsp;</p>
+<p>&nbsp;<strong>定义2.8&nbsp;</strong> 一个协议规范角色行为通过设置协议的部分功能，如此我们有这样的表达式&nbsp; ： Protocol=Role<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423135946412-216641248.png" alt="" />RoleSpec&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; 我们使用 MR<sup>P</sup>(R)作为协议规范 P中角色 R的初始知识简写。在很多情况下我们省略 参数 P 在协议上下文很清楚的情况之下。符号&nbsp; MR是M的缩写，之后我们将用作表示知识，R 用作表示角色。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 角色事件在协议中的描述必须是唯一的，可以通过标签事件进行强制执行，者允许我们定义一个角色函数:&nbsp;&nbsp; RoleEvent ------&gt; Role ,鉴于角色事件，角色函数也是事件中的一个。我们将协议作为一个隐式的参数，当协议上下文清楚的时候。</p>
+<p>定义 2.9&nbsp; 下面的角色描述模拟了NeedHam-Schroeder 协议的发起者角色，没有任何的安全要求。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423143817785-1852922945.png" alt="" /></p>
+<p>&nbsp;</p>
+<p><strong>&nbsp;2.2.2 事件顺序</strong></p>
+<p>&nbsp; &nbsp; &nbsp; 事件的每个角色对应于事件列表，换句话说， 一个结构顺序加到属于角色R的协议事件中，这个总数的排序指定 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423144828992-1783127565.png" alt="" /> ，如此 对于任何角色R&isin;Role 和 &epsilon;1，&epsilon;2 &isin;RoleEvent ,这样 role(&epsilon;1)=R 和role(&epsilon;2)=R 我么有这样的表达式 ：<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423145226175-1706497399.png" alt="" /> 我么认为有个抽象的安全协议 P作为通信序列结合，每一个顺序组件由特定的角色承担。通信由装饰事件的标签管理，标签直接定义沟通（通信）关系： <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423145634800-844947636.png" alt="" /></p>
+<p>&nbsp;<strong>定义2.10&nbsp; 通信关联</strong></p>
+<p>&nbsp;&nbsp;&nbsp; 对于所有的 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423145805814-1719267019.png" alt="" />&isin; Label&nbsp; 以及 m1 ,m2 &isin; Role &times;Role &times;RoleTerm ,通信关系<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423145634800-844947636.png" alt="" />定义为： <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423150010028-1578196762.png" alt="" /> 这个关系规范了发送事假和接受事件如何对应。</p>
+<p>&nbsp;Example 2.11&nbsp; 事假顺序和通信关系：&nbsp; 对于示例协议 NS&nbsp; 角色排序 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423150417813-463266568.png" alt="" />和<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423150425028-762416968.png" alt="" />关于角色 i 和 r ,分别表示如下：</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423150707757-8692587.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp; 通信关系表示如下：</p>
+<p>&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423150738670-1022321023.png" alt="" /></p>
+<p>2.2.3 静态要求</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在上一节中我们已经解释了协议规范的抽象的语法，适当的协议规范还应当满足很多完好性的要求，并不是任何有发送、接受、和声明的事件被认为是安全的协议，列如，我们要求代理能够构建出他发送的条款，并且他不能检查条款的内容和加密的秘钥。</p>
+<p>&nbsp;&nbsp;&nbsp; 良好的角色，&nbsp; 对于每一个角色，我们要求有自己确定的标准，这些标注的范围是相当明确的，列如，协议角色定义中的每个时间都是具有执行它的相同的角色（事件参与者和执行者），对于消息，我们要求发送者能够实际构造这些消息，对于变量应该首先出现在接受事件中，在实例化之前可以出现在发送时间中。对于接受事件，从上的协议的列子中可以看出， 在我们描述Needham-Schroeder protocol</p>
+<p>&nbsp;&nbsp;&nbsp; 我们定义一个 预测 WF 表达一个角色定可以的一致性要求，&nbsp; 使用辅助定义RD （可读性）和一个推理知识的关系，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423162213187-999577927.png" alt="" />&nbsp;&nbsp; 角色可以撰写和分解术语对，如果代理指导加密秘钥，则可以加密术语，如果代理知道响应的解密秘钥，则可以解密加密的术语。</p>
+<p>定义 2.12 推理运算法</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 使用M作为 一个角色知识集，&nbsp; 知识推理关系<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423162735745-1113533780.png" alt="" /> 归纳如下： 所有的角色术语 rt ,rt1 ,rt2&nbsp; ,k :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423163106768-1471132262.png" alt="" /></p>
+<p>Example 2.13 推理和加密&nbsp; 从术语集 组成 术语 term{/m/}k ，但是不是&nbsp; k <sup>-1</sup> 无法推断 是m 或者 k&nbsp; i e</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423163531233-31105870.png" alt="" />&nbsp; 给定 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423163630486-1501496081.png" alt="" />和 k <sup>-1 </sup>我们能够推断出 m , 如果 k 是非对称秘钥 （如此 k <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423163932946-211625473.png" alt="" />k <sup>-1 </sup>），并且给定{/m/}k 和k <sup>-1&nbsp;&nbsp; </sup>无法推断 K</p>
+<p>&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423164115239-1957038953.png" alt="" /></p>
+<p>Example 2,1,4 推断和子句&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 给定术语&nbsp; m1 和m2 以及 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423164749091-1662415810.png" alt="" /> 一般情况之下，m2 不是 <img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423164906497-1455656948.png" alt="" />，一个反例给出 m1=(rt1, rt2) 和 m2=(rt2 ,rt 1) 当 rt 1不等于rt2 ，反之则不然。比如，因为给定术语 k 和 m 以及<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423165222182-1362247605.png" alt="" /> 我们有 k<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423165257696-1246238685.png" alt="" /> 但是<img src="https://img2018.cnblogs.com/blog/1276904/201904/1276904-20190423165327738-1751607286.png" alt="" /></p>
+<p>Example 2.1.5 推断和函数&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-04-20 17:31</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10741759" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10741759);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10741759,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/4/20 17:31:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10741759.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:57 GMT -->
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10762284.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>《OAuth2.0协议安全形式化分析-》----论文摘抄整理 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="恢复内容开始 本篇论文发表在计算机工程与设计，感觉写的还是很有水准的。实验部分交代的比较清楚 本篇论文的创新点： 使用Scyther工具 主要是在 DY模型下面 形式化分析了 OAuth2.0协议的安" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10762284.html">《OAuth2.0协议安全形式化分析-》----论文摘抄整理</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"><p>---恢复内容开始---</p>
+<p>本篇论文发表在计算机工程与设计，感觉写的还是很有水准的。实验部分交代的比较清楚<br />
+本篇论文的创新点： 使用Scyther工具 主要是在 DY模型下面 形式化分析了 OAuth2.0协议的安全性。<br />
+首先 OAuth2.0协议定义了四种角色分别是： 资源拥有者、资源服务器、客户端、授权服务器、<br />
+原文指出，根据应用环境的不同，OAuth2.0协议定义了四种授权模式： 授权码模式、简化模式、客户端模式、密码模式。<br />
+其次本篇论文知识讨论了OAuth2.0的中的授权码模型，<br />
+<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190529152537344-71666411.png" /><br />
+本论文中作者将认证服务器和资源服务器作为同一个服务器（方便实验操作） 。给出了顺序图，形象的展示授权码模式下各个参数信息的传递情况：<br />
+<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190529153424607-1853467846.png" /></p>
+<pre><code> 角色中需要定义的是本角色中使用的数据类型，（变量和常量的声明-------本作者在原文中没有说明）：从图中可以看到 User角色中包括5个事件，</code></pre>
+<p>我下面将协议关于授权码模式的 形式化描述过程 重新写了一遍<br />
+<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190529163529102-593052439.png" /></p>
+<p>根据作者的解释如下：在用户角色描述 User ：------<br />
+User ：------ 第一行为User角色定义，程序在实例化的时候会根据 U角色实例化 User运行实例，角色中首先需要定义的是本角色中使用到的数据类型，就是变量和常量。User 角色中主要包括5个事件，第3行使用用户和客户端的共享秘钥由用户（user）向客户端（client）发送数据req ，第4行表示表示使用共享秘钥加密接受从客户端到用户的消息，第5行表示使用共享秘钥加密客户端（user）向服务器（server）发送授权码请求，并向服务器出示必要的参数信息如：已注册的重定向 uri 、状态码等。 第6行表示接受服务器端的授权码响应，第7行表示授权码重定向客户端。<br />
+接下来讨论安全属性的问题：</p>
+<pre><code> Scyther 定义一对属性  （Running ,Commit）用来表示谢意双方对传输数据的认可，如果角色 I 认可角色 R的数据  （随机数 ni  和 nr），则在角色 I 的定义末尾插入语句 Claim （I，Commit， R ，ni, nr）;同样在 R中send 事件之前插入语句  claim（R，Running，ni ,nr）&lt;p&gt;---恢复内容结束---&lt;/p&gt;本篇论文发表在计算机工程与设计，感觉写的还是很有水准的。实验部分交代的比较清楚
+本篇论文的创新点：  使用Scyther工具 主要是在  DY模型下面  形式化分析了 OAuth2.0协议的安全性。
+  首先 OAuth2.0协议定义了四种角色分别是：    资源拥有者、资源服务器、客户端、授权服务器、
+  原文指出，根据应用环境的不同，OAuth2.0协议定义了四种授权模式： 授权码模式、简化模式、客户端模式、密码模式。
+   其次本篇论文知识讨论了OAuth2.0的中的授权码模型，</code></pre>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190529152537344-71666411.png" /><br />
+本论文中作者将认证服务器和资源服务器作为同一个服务器（方便实验操作） 。给出了顺序图，形象的展示授权码模式下各个参数信息的传递情况：<br />
+<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190529153424607-1853467846.png" /></p>
+<pre><code> 角色中需要定义的是本角色中使用的数据类型，（变量和常量的声明-------本作者在原文中没有说明）：从图中可以看到 User角色中包括5个事件，</code></pre>
+<p>我下面将协议关于授权码模式的 形式化描述过程 重新写了一遍<br />
+<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190529163529102-593052439.png" /></p>
+<p>根据作者的解释如下：在用户角色描述 User ：------<br />
+User ：------ 第一行为User角色定义，程序在实例化的时候会根据 U角色实例化 User运行实例，角色中首先需要定义的是本角色中使用到的数据类型，就是变量和常量。User 角色中主要包括5个事件，第3行使用用户和客户端的共享秘钥由用户（user）向客户端（client）发送数据req ，第4行表示表示使用共享秘钥加密接受从客户端到用户的消息，第5行表示使用共享秘钥加密客户端（user）向服务器（server）发送授权码请求，并向服务器出示必要的参数信息如：已注册的重定向 uri 、状态码等。 第6行表示接受服务器端的授权码响应，第7行表示授权码重定向客户端。<br />
+接下来讨论安全属性的问题：</p>
+<pre><code> Scyther 定义一对属性  （Running ,Commit）用来表示谢意双方对传输数据的认可，如果角色 I 认可角色 R的数据  （随机数 ni  和 nr），则在角色 I 的定义末尾插入语句 Claim （I，Commit， R ，ni, nr）;同样在 R中send 事件之前插入语句  claim（R，Running，ni ,nr）
+ 现在对实验结果解释：
+ 通过实验分析得到实验结果，Scyther本身采用的是黑盒的验证思想，各个角色从自己的角度考虑观察问题，是否能够满足安全目标和安全属性，如果安全属性不满足则可能存在攻击路径，（实验输出攻击路径图），分别从三个角色出发分析攻击：‘
+ 首先是  User 端角色观察到的攻击图。</code></pre>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190530150440843-2031433697.png" /><br />
+对上面的如做解释:-------- 只有User端认为自己是和攻击者进行通信的，User端认为通信三方分别是： 角色U 为自己 ，角色C 为 Eve（攻击者），角色S为 Server；<br />
+客户端 Client 端认为通信三方 ：----角色 U为 Uer ，角色 C 为自己， 角色 S为 Server<br />
+Server 端认为 ，角色 U 为 User， 角色 C 为 Client， 角色 S为自己 ，<br />
+攻击者可以破坏用户的DNS服务，将信息重定向到恶意的客户端，然后将信息修改没发送给正常的客户端和服务器，一单获得授权码，可以将授权码发送给正常客户端只是监听用户和客户端的通信，或者攻击者可以将信息修改将授权码发送给恶意的客户端，那么恶意的客户端就可以获得用户的受保护的资源实现资源的窃取。<br />
+其次是 Client 端角色观察攻击路径图如下：<br />
+<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190530152031198-1697727345.png" /><br />
+解释如下： 只有客户端认为自己是和攻击者通信的，<br />
+User端认为通信三方为：角色 U为自己 ，角色C为 Client ，角色 S为 Server<br />
+Client端认为通信三方 ： 角色U为 User，同时可能存在另一个User进程 Eve（攻击者），角色C为自己 ，角色S为 Server<br />
+Server 端认为： 角色U为User ，角色C为Client ，角色S为自己 ，此项攻击为中间人攻击，首先攻击者监听到用户向Client端发送授权码信息，如果这个通信信道未受到保护户，攻击者将原有的信息截获、原有的通道阻塞，保证授权码的有效性，之后攻击者以User的身份发起另一个会话，使用监听到的授权码嘻嘻获取资源。<br />
+Server端观察到的攻击路径如下：<br />
+<img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190530154258186-133511205.png" /><br />
+解释如下： 只有Server端认为自己是和攻击者进行通信的，<br />
+User端认为通信三方为 ：角色 U为自己 ，角色C为Client ，角色 S为Server<br />
+Client端认为通信三方为： 角色U为 User ，角色C为自己 ，角色S为Server，<br />
+Sever端认为：角色U为Eve（攻击者），角色C为Client ，角色S为自己 ， 首先监听者User发送到Server的授权码请求消息，然后对信息进行修改，转发给Server，Server做出授权码响应，将授权码转发给攻击者Eve。</p>
+<p>’</p>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-05-30 15:53</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10762284" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10762284);return false;">收藏</a></div>
+	</div>
+	<script src="http://common.cnblogs.com/highlight/9.12.0/highlight.min.js"></script><script>markdown_highlight();</script><script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10762284,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/5/30 15:53:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=true;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10762284.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:09 GMT -->
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10901176.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>TLS1.3&amp;TLS1.2形式化分析（二） - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、下面是TLS1.2和TLS1.3握手协议过程 ，明显的可以看出存在不同 。 我们先说TLS1.2的握手过程明显是比TLS1.3的握手过多了一次。在TLS1.3中舍弃了之前RSA的协商过程，然后基于" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10901176.html">TLS1.3&amp;TLS1.2形式化分析（二）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;1、下面是TLS1.2和TLS1.3握手协议过程 ，明显的可以看出存在不同 。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190521162006244-335682181.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190521162011995-954428756.png" alt="" /></p>
+<p>&nbsp;我们先说TLS1.2的握手过程明显是比TLS1.3的握手过多了一次。在TLS1.3中舍弃了之前RSA的协商过程，然后基于ECDH算法优化了整个过程，下面说明 ECDH算法的含义：</p>
+<p>&nbsp;当然TLS1.3不光光是优化了者一点，在连接恢复过程中TLS1.3做到了 0-RTT 的过程。&nbsp; &nbsp;</p>
+<p>&nbsp; 在TLS1.2中原有的大量的特性被删除，包括下面的特性：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; RSA秘钥传输--------不支持向前安全</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; RSA密钥传输&mdash;&mdash;不支持前向安全性<br />&nbsp;&nbsp;&nbsp;&nbsp; CBC模式密码&mdash;&mdash;易受BEAST和Lucky 13攻击<br />&nbsp;&nbsp;&nbsp;&nbsp; RC4流密码&mdash;&mdash;在HTTPS中使用并不安全<br />&nbsp;&nbsp;&nbsp;&nbsp; SHA-1哈希函数&mdash;&mdash;建议以SHA-2取而代之<br />&nbsp;&nbsp;&nbsp;&nbsp; 任意Diffie-Hellman组&mdash;&mdash;CVE-2016-0701漏洞<br />&nbsp;&nbsp;&nbsp;&nbsp; 输出密码&mdash;&mdash;易受FREAK和LogJam攻击 <br />同时 TLS 1.3版本还存在工作方式的修改：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 新的密码套件仅在TLS1.3下支持， 一些旧的密码套件不再支持。与 TLS1.2相比&nbsp; TLS1.3加密了更多的握手，减少额握手延迟并采用AEAD 方案，TLS1.3新的握手模式包括初始化的1-RTT （EC）DHE，（预共享秘钥）PSK模式和PSK-DHE模式。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 新的密码套件定Tamarin 义方式不同，并且没有详细规定证书类型（RSA、DSA、ECDSA）或者秘钥交换机制，（如DHE、或者ECHDE），这对密码套件的配置会存在影响。在TLS1.3中客户端提供的key_sahre会对&ldquo;组&rdquo;配置产生影响。另外在新的版本中不再使用DSA证书。</p>
+<p>2、作者对TSL1.3的形式化安全分析和证明（使用的是Tamarin&nbsp; 工具）</p>
+<p>&nbsp;&nbsp;&nbsp; 根据作者官网上的披露的信息，原作者并没有使用 Scyther工具对 TLS1.3做形式化分析，而是使用了Tamarin&nbsp; 这个工具 （功能更加强大，适用于高级分析）可以自动分析安全协议的工具。</p>
+<p>&nbsp;&nbsp;&nbsp; 作者使用的TLS1.3第十版本的协议作为研究的对象。那me作者的主要贡献是通过扩展修订版10的模型合并所需客户端的延迟机制，发现了一种潜在的攻击，其中攻击者能够在PSK回复握手期间成功的模仿客户端，作者由此强调了客户签名内容中包含更多信息的严格的必要性。在之后的发布的TLS1.3草案中更新了这部分。其中重要的一点就是作者说可以将10 版本的草案的模型进行扩展到以后的版本模型。这将是长期的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tramarin-proved工具的多字节重写非常适合用于对TLS1.3协议规范所暗示的复杂转换系统进行建模，可以允许分析无线数量的并发的TLS会话的交互。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 作者使用本工具进行分析额时候，首先第一步是构造TLS握手和记录协议的抽象。然后将其编码成 Tramarin的规则（也就是使用SPDL语言进行描述形式化协议的一个过程）。规则捕获忠诚的党和对手行为，在合法的客户端和服务端下，构建的模型规则通常适用于各个消息传输相关联的所有动作，例如我们的第一个客户端规则捕获客户端生成并发送所必要参数作为（EC）DHE握手的第一次飞行的一部分，以及在本客户端中跟踪，此规则可以在下面的C_1可以看见这种机制，该图表示客户端在不同执行中具有所有选项的并集。（下图是TLS1.3草案10版本的部分客户端状态机制的模型分析）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201905/1276904-20190524165453740-1591592248.png" alt="" /></p>
+<p>接下来作者证明TLS1.3（第十版）中声明的目标和安全属性</p>
+<p>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 分析的第二步涉及将所需要的安全属性编码为 Termarin&nbsp; lemmas.TLS握手协议的目标是允许通信方的单方或者可选方的相互实体认证，以建立可以将自己置于连接中间的窃听者和攻击者不可用的共享秘钥。TLS记录协议旨在提供应用程序数据的机密性和完整性，因此，我们将定义编码下面属性作为引理：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 单方面认证服务器，</p>
+<p>&nbsp;&nbsp; &nbsp; &nbsp; 相互认证（可选）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 会话秘钥和秘钥的机密性和完善性和完善性的向前保密性。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 握手消息的向前保密性。</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; </p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-05-24 17:12</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10901176" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10901176);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10901176,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/5/24 17:12:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10901176.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:17:29 GMT -->
+</html>

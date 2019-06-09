@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10506950.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Scyther-manual  ------BNF - 疏桐 - 博客园</title>
+    <meta property="og:description" content="1、Scyther 协议安全模型的验证实例 第一部分： 打开协议模型 ，设置攻击变量的参数执行分析 Scyther is a tool for the formal analysis o the se" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="10506950.html">Scyther-manual  ------BNF</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>1、Scyther 协议安全模型的验证实例</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 第一部分：&nbsp; 打开协议模型 ，设置攻击变量的参数执行分析</p>
+<p>Scyther&nbsp; is a tool for the formal analysis o the security protocol under the perfect Cryptography , the result Window shows a summary of ths clamis in the proctol ,and the verfication results .here one can find whether the protocol is&nbsp; correct ， or false， and explanation of the possible outcomes of the verfication process ,most important ,if a protocol claim is incorrect , then&nbsp; there&nbsp; exists at&nbsp; least one attack on the protocol ,&nbsp; A button is show next to the claim .press this buttom to view&nbsp; the attacks on the claim .as show in the figure (it's not EtherNet/IP&nbsp; )&nbsp; it's&nbsp; Needham-Schroeder&nbsp;&nbsp; encryption protocol&nbsp; 。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308164124181-366949285.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190308164452664-1968713100.png" alt="" /></p>
+<p>&nbsp;&nbsp; 第二部分： Scyther 的描述性语言语法</p>
+<p>&nbsp;&nbsp;&nbsp; Scyther 使用的描述性语言基于C/Java 语法，可以使用java语法的注释形式，空白的编译的时候会被忽略（提高程序的可读性）标识符说那个字符串+数字+^ 或者 -&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 1、Scyther 核心元素是在文件中的描述的协议定义，最小的一个协议定义如下，定义了连那个协议的角色，括号中可以定义角色的行为。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; protocol ExampleProtocol(I,R) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role I { };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role R { }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 很多安全协议依赖随机生成的值，我么可以在一个角色中使用 fresh 关键字声明一个类型为Nonce的随机变量 Na</p>
+<p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; role X (...){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fresh Na : Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_1(X, Y, Na)；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 代理可以使用变量来存储接收到的术语 ，列如我们收到一个临时变量 Na ,定义如下（变量一定要初始化，在发送事件中）</p>
+<p>&nbsp;&nbsp;&nbsp; role&nbsp; Y (......){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var Na&nbsp; : Nonce；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_1(X ,Y , Na)；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>2、任意两个可以构造成一个属于对，可以将属于&nbsp; x&nbsp; ,y&nbsp; 写成 （x, y）,亦可以使用元祖的便是方式 （x, y ,z） ，在Scyther 中可以解释成（（x ,&nbsp; y）, z）。 </p>
+<p>
+对称秘钥：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 任意一个术语可以作为对称加密的秘钥，使用术语 kir 加密&nbsp; ni 写成&nbsp; { ni } kir&nbsp; 这样表示对称加密&nbsp; ，除非kir 被明确的定义成非对称加密术语</p>
+<p>&nbsp;&nbsp; 一个对称秘钥的基础是之前定义的 k ( x ， y) , 表示 长期在&nbsp; X 和 Y 之间 同步秘钥</p>
+<p>非对称秘钥：</p>
+<p>&nbsp;&nbsp;&nbsp; 公钥基础 PKI 是预先定义的，&nbsp; sk( X ) 指定一个长期的私钥 X ，同时 pk (X) 指定 表示对应的公钥</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 比方说： 考虑到&nbsp;&nbsp;&nbsp; {ni }pk (I)&nbsp; 术语， 表示使用随机变量 ni 被公钥加密 ，只有拥有 私钥 sk (I) 的代理才能解密</p>
+<p>哈希函数：</p>
+<p>&nbsp;&nbsp;&nbsp; 哈希函数式最基本的加密函数，通常使用标识符 hashfunction 定义 一个哈希函数 ： hashfunction H1 ;&nbsp;&nbsp; 哈希函数声明是全局的，定义在所有函数的外部。声明之后可以在协议中使用 加密消息&nbsp;&nbsp; ： H1（ni）</p>
+<p>3、预先定义类型</p>
+<p>&nbsp;&nbsp;&nbsp; agent : 表示用来代理的类型 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; function ： 表示特殊函数，类型与哈希函数 h(x) ,h 代表一种类型的函数体 </p>
+<p>&nbsp;&nbsp; Nonce:&nbsp;&nbsp; 一种标准类型， 在 Scyther 中被定义</p>
+<p>&nbsp; Ticket :&nbsp;&nbsp; 类型变量，可以被任何术语替换</p>
+<p>4、用户类型</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 可以定义一个新的用户类型 ，使用关键字 usertype </p>
+<p>&nbsp;&nbsp;&nbsp; usertype&nbsp; MyatomicMessage; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; protocol&nbsp;&nbsp; X (X, R){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role I {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var y :MyAtomicMessage;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_1(I, R , y);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp; }</p>
+<p>&nbsp; 新声明的类型只能使用该类型的消息变量进行实例化。通过定义一个用户类型，建模这可以通知工具变量只能使用该类型的术语进行实例化，而不能使用Nonce 的类型，</p>
+<p>&nbsp; 5、事件</p>
+<p>&nbsp;&nbsp;&nbsp; 接受和发送事件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 关键字&nbsp; recv&nbsp; 和&nbsp;&nbsp; send&nbsp; 分别标记接受和发送消息&nbsp; （在一些协议中存在 read 关键字，这是过时的语法，可以用recv安全的替代，通常情况，每一个send 事件都会有一个recv 事件匹配，指定每个事件相同的标签</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在某些协议中，我们可能希望直接模拟发送或者接受对手，在这种情况之下没有相对应的事件，如果send或者recv事件 没有响应的事件，Scyther会输出警告，为了抑制警告使用标签进行预处理：如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_! 1( I ,I , LeakToAdversary) ;</p>
+<p>6、声明事件和安全属性</p>
+<p>&nbsp;&nbsp; 声明事件在角色规范中用于建模的预期安全属性。 下面的 Ni 表示被加密 ：claim&nbsp; ( I , Secret ，Ni)&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; 一下是预定义的几个关键字：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Secret&nbsp; :&nbsp;&nbsp; 此种声明需要参数术语，可以在文档1 中找到资料</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SKR：&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alive :&nbsp;&nbsp;&nbsp; 所有角色的活动 在文件4 中定义</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; weakagree :&nbsp;&nbsp;&nbsp; 协议的（所有的角色）在文件 4中定义</p>
+<p>7、事假</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Empty :&nbsp;&nbsp; 此声明不会被验证，会被忽略，只有当Scyther 用作其他验证的后端的后端是才会被弃用。</p>
+<p>8、内部计算/模式匹配事件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在文档1 中定义了两个基本事件，可以模拟 内部计算</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新事件匹配事件，指定模型 ： match (pt ,m)&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在操作的时候，如果存在很好的类型的替换 ，该事假可以执行，后续的执行过程中将会替换</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190311105311575-739067928.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 此事件可以模拟各种模型构造，如等量测试，延迟解密、会话检测、除此之外还能用在内部模型计算指定：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Var X: NOnce；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Var Y;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv(R，I, X);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; match(Y, hash(X，I,R));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send（I,R，Y {Y}sk（I））;</p>
+<p>在上面的列子中，我们使用&nbsp;&nbsp; hash (X,I,R)替换了 Y ，</p>
+<p>9、不匹配事件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 第二种事件是不匹配事件&nbsp;&nbsp; ，表达方式： not match（pt，m）,不匹配事件和前面的匹配事件正好相反，如果么有可以替代的 如下替换的变量，则事件可以执行。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190311105311575-739067928.png" alt="" /></p>
+<p>这种事件可以用来建模，例如，不平等约束、执行模型通过代理执行会话，在一些情况下，我们希望执行这种行为，但是协议不允许。列如：</p>
+<p>&nbsp;&nbsp;&nbsp; role&nbsp; A {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; not match(A&nbsp; B);</p>
+<p>&nbsp;&nbsp; &nbsp;&nbsp; send (A,B, m1);</p>
+<p>&nbsp; &nbsp;&nbsp; }</p>
+<p>模拟一个角色，其实例向其他代理发送消息，最高级的用法就是 匹配和不匹配同时在两个角色中一起使用，常见的实例是模拟 if&nbsp; ....then......else 构造中。</p>
+<p> 10、角色定义</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 角色定义事件序列：声明、发送、接受、或者生声明事件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role Server {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var&nbsp;&nbsp; x ,y z ：Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fresh n,m:&nbsp;&nbsp;&nbsp; Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_1(Server, Init,&nbsp; m&nbsp; , n);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_2(Init, Server, x, y { z}pk(Server)&nbsp; );</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;11、协议定义</p>
+<p>&nbsp;&nbsp;&nbsp; 协议定义将一系列的角色作为参数，在协议体中定义</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Protocol MyPrrot(Init, Resp， Server){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; role Init&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ........</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; role Resp {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ............</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role Server {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..........</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>12、帮助协议 </p>
+<p>&nbsp;&nbsp;&nbsp; 在相应的协议前面加上@符号表示&nbsp; 渲染输出图的时候使用，目的是将协议标注为 &ldquo;helper protocol &rdquo;, 此类协议通常用于描述对手能力，在渲染输出的时候，Scyther 收拢实例角色帮助协议折叠成单个节点，这样能够使得图像更加具有可读性。</p>
+<p>&nbsp;13、对称---角色 协议</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 协议注释成对称协议角色，这样指导Scyther工具使用适当的伙伴关系</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; symmetric-role protocol MyProt( Init ,Resp)</p>
+<p>{</p>
+<p>role Init&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ........</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; role Resp {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ............</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role Server {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..........</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>}</p>
+<p>13、全局声明</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在很多应中使用全局常量， 包括 字符串常量、标签、协议标识符，他们的建模和使用方式如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usertype&nbsp; String ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const&nbsp; HelloWorld ： String；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Protocol hello (I, R){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role I {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_1(I,R, Helloworld);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role R{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_1（I,R,HelloWorld);</p>
+<p>}</p>
+<p>}</p>
+<p>14、宏定义</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 使用缩略对特定的术语，语法如下：</p>
+<p>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; macro&nbsp; MyShortcut=LargeTerm; </p>
+<p>比方说一个协议中存在复杂的消息或者大量重复的元素，宏定义可以简化协议规范</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hashfunction h;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; protocol&nbsp; macro-exmaple-one (I, R){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; role I{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; fresh nI: Nonce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; macro m1=h(I,ni);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; send_1(I,R {m1}pk(R));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; claim(I,Select, m1);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; role R{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; var X: Ticket;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; recv_1(I,R,{X}pk(R));</p>
+<p>&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp; }</p>
+<p>宏具有全局范围， 并在语法级处理，这也允许协议消息的全局缩写：</p>
+<p>&nbsp;&nbsp;&nbsp; hashfunction&nbsp; h;</p>
+<p>&nbsp; macro m1={I,R,nI,h(nI,R)} pk(R);</p>
+<p>&nbsp; protocol marco-example-two(I,R){</p>
+<p>&nbsp;&nbsp;&nbsp; role I {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; fresh nI:Nonce；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; send_1(I,R,m1);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Role R{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; var nI: Noce;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_1(I,R,m1);</p>
+<p>}</p>
+<p>}</p>
+<p>&nbsp;在上面的代码中 nI 是角色&nbsp; I 中一个新生成的nonce ，角色R&nbsp; 中的一个变量，因为宏定义在语法上展开，相同的宏可以涉及两个术语。</p>
+<p>14、include 导入外部文件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; include "filename" </p>
+<p>15、one-role-per-agent</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 操作语义允许代理执行任何角色，甚至可以并行执行多个不同的角色。 此建模选择对应于最糟糕的情况，其中攻击者可以利用最多的选项。 但是，在许多具体设置中，代理只执行一个角色。 例如，该组服务器可以与该组客户端不相交，或者该组RFID标签可以与该组读取器不相交。 在这种情况下，我们不需要考虑利用代理可以执行多个角色的攻击。 这可以通过以下方式建模:</p>
+<p>&nbsp;&nbsp;&nbsp; option "--one-role-per-agent"；// disallow agent in mutiple roles </p>
+<p>&nbsp;这将会引起Scyther 工具忽略代理执行多个角色的攻击，换句话说，这对一个每个角色由一组专用的代理执行情况。</p>
+<p>16、语言 BNF</p>
+<p>&nbsp;&nbsp;&nbsp; -------&nbsp; 输入文件：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 一个输入文件时一系列spdl 结构， 是一种全局定义护着协议描述</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;spdlcomplete&gt;::==&lt;&gt;spdl{';' &lt;spdl&gt;}</p>
+<p> &nbsp;&nbsp;&nbsp; &lt;spdl&gt;::=&lt;globaldeclaration&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &lt;protocol&gt;</p>
+<p>&nbsp;&nbsp; -------- 协议定义：使用基于角色的方法描述一个角色， 比方说 一个协议 n3&nbsp; 现在在协议中定义一个角色&nbsp; I 。我们可以使用 n3.I&nbsp; 调用该角色</p>
+<p>&nbsp;&lt;protocol&gt;::='protocol' &lt;id&gt;'(&lt;termlist&gt;') '{'&lt;roles&gt;'}' ['; ']</p>
+<p>&nbsp;&nbsp; ...............角色</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;roles&gt;::=&lt;role&gt;[&lt;roles&gt;]</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &lt;declaration&gt;[&lt;roles&gt;]</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;role&gt;::=['singular']'role'&lt;id&gt;'{' &lt;roledef&gt;'}' [';']</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;roledef&gt;::=&lt;event&gt;[&lt;roledef&gt;]</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &lt;declaration&gt; [&lt;roledef&gt;]&nbsp; </p>
+<p>---------------事件</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;event&gt;::'recv'&lt;alble&gt;'('&lt;front&gt;','&lt;termlist&gt;')' ';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |' send' &lt;lable&gt; '(' &lt;front&gt; ',' &lt;termlist&gt; ')' ';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'claim' [&lt;lable&gt;] '(' &lt;from&gt; ',' &lt;claim&gt; [ ',' &lt;&gt;trmlist] ')' ';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;lable&gt;::='_' &lt;term&gt; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;form&gt;::=&lt;id&gt; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;to&gt;:==&lt;id&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;claim&gt;:==&lt;id&gt;</p>
+<p>------------------------------声明</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;globaldeclatration&gt;::=&lt;declaration&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'untrusted'&nbsp; &lt;termlist&gt; ';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'usertype'&lt; termlist&gt; ';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;declaration&gt;::=['secret'] 'const' &lt;termlist&gt;[':'&lt;type&gt;]';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [secret'] 'fresh' &lt;termlist&gt; [';'&lt;'termlist&gt;]';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'secret' 'var' &lt;termlist&gt; [';' &lt;termlist&gt;]';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |'inversekeys' '(' &lt;termlist&gt;';' &lt;termlist&gt;')' ';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |' compromised' &lt;termlist&gt;';'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;type&gt;::=&lt;id&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tupelist&gt;::=&lt;type&gt;{'.' &lt;type&gt;}</p>
+<p>...........................条款(Trerms)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;term&gt;::=&lt;id&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |'{' &lt;termlist&gt; '}' &lt;key&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | '(' &lt;termlist&gt; ')'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &lt;id&gt; '(' &lt;termlist&gt; ')'</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;key&gt;::=&lt;term&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;termlist&gt;::=&lt;term&gt;{',' &lt;term&gt;} </p>
+<p>17、安全协议建模</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 介绍：在Scyther工具直接破那个分析正确的安全协议要掌握基本的模型符号：在文档1中有详细的说明， 符号分析主要集中在下面的几个方面：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp; ： 协议中的逻辑消息组件以及预期功能 （公共对抗秘钥，每次运行的新生成的，或者常亮）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *： 消息结构&nbsp;&nbsp; （配对 加密&nbsp; 签名&nbsp;&nbsp; 哈希）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *：&nbsp; 消息流&nbsp;&nbsp; （顺序、 参与代理）</p>
+<p>18、 Needham-Schroeder public Key&nbsp;&nbsp;&nbsp; 协议形式化安全分析</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 首先添加描述这个协议&nbsp;&nbsp; 采用注释的方式 描述这个协议：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; /*******</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp; Needham -Schroeder&nbsp; protocol </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ******&nbsp; *****/</p>
+<p>&nbsp;&nbsp; 这个协议用两个角色，触发角色I&nbsp; 和响应角色&nbsp; R&nbsp; , 使用单独的一行进行简单的备注</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; // the&nbsp; Protocol&nbsp; description &nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; protocol &nbsp; ns3(I,R）{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //// Scyther 的工作是基于角色的描述，首先建立发出（触发）角色，这个角色有两个值， 临时创建两个&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role&nbsp; I {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; fresh&nbsp; ni:Nonce ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var&nbsp;&nbsp;&nbsp; nr: Nonce;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ////此处为协议通信建模&nbsp;&nbsp; 该协议存在三个消息，发起者发送第一条和最后一条消息，send 和recv 关键字末尾的标签，这些仅用于消息序列图中；链接箭头的信息。</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; send_1(I,R,{I, ni}pk(R) );</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; send_2(R,I{ni,nr}pk(I) );</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; send_3(I,R,{nr}pk(R) );</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /// &nbsp;&nbsp; 这里检查生成和接受到的 nonce ，着这里我们检查协议的保密性而非同步性</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i1(I,Secret,ni);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i2( I,Secret ,nr);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i3(I,Niagree);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_i4(I,Nisynch)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; } /////综上完成冷发起角色的规范</p>
+<p>&nbsp;&nbsp; /// 下面是消息接受者的角色，不同于发起者角色的是：</p>
+<p>////&nbsp; 第一 ： 关键子&nbsp; var和 fresh 交换位置 ,&nbsp; ni 是由 I 创建的，并创建值，但是对R来说 接受到的是一个变量，</p>
+<p>/////第二：&nbsp;&nbsp; 关键 send 和 recv 交换了位置&nbsp; </p>
+<p>//////第三&nbsp; :&nbsp; 声明必须有唯一的标签，因为想现在已经改变，所以执行声明的角色是R不是 I</p>
+<p>//////响应者完整角色描述如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; role R{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var ni : Nonce ；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fresh nr: Nonce ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_1( I,R {I ,ni}pk(R) ) ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; send_2(R,I,{ni,nr}pk(I) );</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; recv_3(I ,R.{nr}pk(R) );</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_ri(R,Secret,ni );</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; claim_r2(R,Secret,nr );</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; claim_r3(R,Niagaree);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; claim_r4(R,Nisynch);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } ///Needham-Schroeder 全部的协议会在&nbsp; 附录1 中给出</p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190312143506276-1704803460.png" alt="" /></p>
+<p>&nbsp;第八章、使用Scyther 工具的 GUI界面</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scyther工具有两种主要的方式，图形界面和命令的形式，下面说明使用Scyther 的GUI 如何输出，验证 Needham-Schroeder 公钥协议结果如下图所示，&nbsp; 发起角色 n3 ，I&nbsp; 对 无限次的运行时正确的。这个响应的声明都是错误的， Scyther 报告在思想声明中，至少存在一个错误，在下面的结果图分成几列，</p>
+<p>第一例表示声明的协议，</p>
+<p>第二列显示的角色，</p>
+<p>第三例显示唯一的声称表示，</p>
+<p>第四列显示声称的类型和声明的参数，</p>
+<p>第五列显示给出了验证过程的实际结果，当声称是错误的他显示Fail ，声称是正确的显示 OK。</p>
+<p>第六列完善了前面的陈述，如果显示verified 这个声明是正确的，如果显示Falsified ,则声明是错误的，如果这个列显示是空 的，这时声明 fail/OK 取决于指定的边界设定</p>
+<p>第七列 用于进一步解释结果的状态，每个包含一个句子：详细解释如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *** at least X attacks&nbsp; -------状态空间中找到攻击，因为不可判定性原因，或者搜索的分支或者结构，不能够确定时候还存在其他攻击</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190312203645752-830675454.png" alt="" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Finger&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scyther results for the Needham-Schroeder protocol</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ***在默认的设置下 Scyther找到攻击后会 停止验证进程，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ****** Exactly X attacks : 在状态空间内，存在确定的几个攻击变量 ，没有其他攻击</p>
+<p>&nbsp;&nbsp;&nbsp; ******* At least X pattern </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ******* Exactly X pattern :状态抵达，发生在不可达声称中，发现的状态不是真正的攻击 ，而是抵达状态</p>
+<p>&nbsp;&nbsp;&nbsp; ******* NO attacks within bounds ：在绑定的状态空间没有发现攻击，但是约束空间外可能存在攻击</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ****** NO attacks ：在绑定的状态空间没有发现攻击，并且可以构造证明即使在状态空间外，这样就证明的协议的安全属性。</p>
+<p>注意的是：由于算法的性质，即使在有界的状态也能得到这样的结果</p>
+<p>第&nbsp;&nbsp; 8.2 限制状态空间</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 验证时间通常会随着最大运行的数量呈现指数的增长形式。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 8.3 攻击图</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每个垂直轴表示一个运行（一个协议实例角色）&nbsp; ,如此图，我们看到涉及到两个运行，每一个运行的开始都是从一个菱形的方框开始，这代表了一个确定的运行，用于提供相关的运行信息，在运行的左手边是攻击信息，</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 每次运行都分配一个标识符 （此处是1），这个编号随意的，为了区分不同的运行，此处协议中的R角色,，通过Agent1代理执行，认为在和Agent2 进行通信，但是要注意的是，运行 2 由 Agent2 代理，但是&nbsp; 这个代理并不认为他和Agent1进行通信。&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在右边的运行中可以看到这个运行的实例角色是 I ,从第二行可以看出哪个代理正在运行，以及正在和哪个通信，在这例子中，运行执行代理是 Agent2&nbsp; ,认为响应角色被执行被不信任的代理&nbsp; Agent3</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 除此之外，运行头包含新生成的值（run 1&nbsp; 生成了值&nbsp; nr#1）和信息在实例上局部变量（run&nbsp; 1 实例 的变量&nbsp; ni&nbsp; 和 Nonce&nbsp; ni#2 或者 run2 ）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190313090147005-1765538311.png" alt="" /></p>
+<p>&nbsp;&nbsp; 8.2.3&nbsp; 事件信息通信</p>
+<p>&nbsp;&nbsp;&nbsp; Sned 事件表示发送消息，第一个send&nbsp; 发生在攻击中是第一次发送事件想 run2 ,&nbsp; send_1(Eve ,{Agent#0 ,ni#2}pk(Eve) )</p>
+<p>&nbsp;&nbsp;&nbsp; 每次当消息发送的时候，攻击者都可以有效的获得，在这种情况之下，因为攻击者一已经知道了代理 Eve 的私钥 sk(Eve)&nbsp;&nbsp; ，能解码消息同时学习 nonce&nbsp;&nbsp; ni#2的值,</p>
+<p>&nbsp;&nbsp;&nbsp; 接受事件对应着成功接受消息。第一个接受事件能够发生在攻击中是第一个接受到的事件。recv_1(Agent#0,{Agent#9\0,ni#2)pk{Agent#1)) </p>
+<p>&nbsp;&nbsp;&nbsp; 传入箭头不表示发送消息，相反表示一个排序的约束，只有在发生其他事情的时候才会接受到消息，在种情况之下，我们看到当&nbsp; run 2 发送初始化消息的时候信息才会被接受。原因是 这个nonce ni#2&nbsp;&nbsp; ,攻击者不能预测这个nonce&nbsp; ，这样只能等到&nbsp; run 2 产生 它.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在图中，链接箭头是红色的，并且有一个标签匹配，这是由于发送的消息和接受的消息不匹配的缘故造成。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>第九章： 使用Scyther 的命令形式</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 所用 Scyther GUI 能够提供的功能&nbsp; Scyther 的命令行形式也可以实现，除此之外，命令行形式提供额一些功能当前不能使用GUI 来实现，&nbsp;&nbsp;&nbsp; 取决于你是用的操作系统，&nbsp; Scyther的工具的米目录包含下面的执行文件 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scyther/scyther-linux </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scyther/ scyther-win32</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scyther/scyther-mac</p>
+<p>在上面的列举中，我们假设linux版本的使用，如果你想使用不同的版本，</p>
+<p>&nbsp;</p>
+<p>第十章&nbsp;&nbsp; 高级主题</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ******* &nbsp; 非对称秘钥典型的模型有两种在哪个函数，一个函数映射代理到公钥，另一个函数映射代理到私钥，一般来说，每一个代理都有一个密钥对&nbsp;&nbsp; public / private&nbsp; pair（排课（x）,sk(x)）,建立非对称秘钥，首先定义两个函数，pk2 加密公钥，sk2加密私钥。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const pk2：Function ; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sercet sk2： function; </p>
+<p>也可以声称这个函数代表非对称密钥对&nbsp;&nbsp; inversekeys(pk2,sk2) ，如果按照这种方式定义，使用pk2（X）加密的术语只能使用sk（x）解密</p>
+<p>&nbsp;&nbsp; ********近似等式理论</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scyther </p>
+<p>建模时间戳和全局计数器</p>
+<p>&nbsp;&nbsp;&nbsp; Scyther的底层协议模型目前不支持在代理运行之间共享的变量。</p>
+<p>Scyther 界面汉化</p>
+<p>&nbsp;&nbsp;&nbsp; <img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190314104418821-106273165.png" alt="" /><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190318165001298-714076850.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp; &nbsp; Scyther 工具的有事之一是可以有针对性的对目标属性进行形式化藐视，无论是某一个变量的机密性，还是某主题对另一个主体的认证性，用户可以灵活的对目标属性进行描述，Scyther工具还可以针对用户感兴趣的安全属性进行分析和验证， 目标属性的藐视吧通过该claim事件完成，利用claim事件可以对角色的认证性、变量的机密性进行描述</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190318105034731-65336729.png" alt="" /></p>
+<p>&nbsp;</p>
+<p><img src="https://img2018.cnblogs.com/blog/1276904/201903/1276904-20190318104003997-991765897.png" alt="" /></p>
+<p>&nbsp;</p>
+<p><br /> </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2019-03-12 14:39</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=10506950" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(10506950);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=10506950,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2019/3/12 14:39:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/10506950.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:33 GMT -->
+</html>

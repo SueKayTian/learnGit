@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9499125.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>tail -f -n 0 /var/log/messages - 疏桐 - 博客园</title>
+    <meta property="og:description" content="&lt;pre&gt;&lt;font color=&quot;#CC0000&quot;&gt;&lt;b&gt;root@kali&lt;/b&gt;&lt;/font&gt;:&lt;font " />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="9499125.html">tail -f -n 0 /var/log/messages</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&lt;pre&gt;&lt;font color="#CC0000"&gt;&lt;b&gt;root@kali&lt;/b&gt;&lt;/font&gt;:&lt;font color="#3465A4"&gt;&lt;b&gt;~&lt;/b&gt;&lt;/font&gt;# tail -f -n 0 /var/log/messages<br />Aug 18 22:19:42 kali kernel: [24663.263601] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:19:42 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601982.6057] sup-iface[0x7f08a001c170,wlan0]: supports 4 scan SSIDs<br />Aug 18 22:19:42 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601982.6075] device (wlan0): supplicant interface state: starting -&amp;gt; ready<br />Aug 18 22:19:42 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601982.6076] device (wlan0): state change: unavailable -&amp;gt; disconnected (reason &amp;apos;supplicant-available&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:42 kali kernel: [24663.316884] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:19:48 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601988.7399] device (wlan0): supplicant interface state: ready -&amp;gt; inactive<br />Aug 18 22:19:49 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601989.2006] policy: auto-activating connection &amp;apos;Gx-miwifi-renew&amp;apos;<br />Aug 18 22:19:49 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601989.2345] device (wlan0): Activation: starting connection &amp;apos;Gx-miwifi-renew&amp;apos; (504f85f7-186e-4597-a38d-3a98b3bc282c)<br />Aug 18 22:19:49 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601989.2377] device (wlan0): state change: disconnected -&amp;gt; prepare (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:50 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601990.2048] device (wlan0): set-hw-addr: reset MAC address to 70:F1:1C:0D:DC:4A (preserve)<br />Aug 18 22:19:54 kali kernel: [24675.401249] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.7267] device (wlan0): state change: prepare -&amp;gt; config (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.7275] device (wlan0): Activation: (wifi) access point &amp;apos;Gx-miwifi-renew&amp;apos; has security, but secrets are required.<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.7275] device (wlan0): state change: config -&amp;gt; need-auth (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.7468] device (wlan0): supplicant interface state: inactive -&amp;gt; disconnected<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.7663] device (wlan0): supplicant interface state: disconnected -&amp;gt; inactive<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.7905] device (wlan0): state change: need-auth -&amp;gt; prepare (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.7945] device (wlan0): state change: prepare -&amp;gt; config (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.8024] device (wlan0): Activation: (wifi) connection &amp;apos;Gx-miwifi-renew&amp;apos; has security, and secrets exist.&nbsp; No new secrets needed.<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.8030] Config: added &amp;apos;ssid&amp;apos; value &amp;apos;Gx-miwifi-renew&amp;apos;<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.8032] Config: added &amp;apos;scan_ssid&amp;apos; value &amp;apos;1&amp;apos;<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.8035] Config: added &amp;apos;key_mgmt&amp;apos; value &amp;apos;WPA-PSK&amp;apos;<br />Aug 18 22:19:54 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601994.8037] Config: added &amp;apos;psk&amp;apos; value &amp;apos;&amp;lt;hidden&amp;gt;&amp;apos;<br />Aug 18 22:19:54 kali kernel: [24675.557664] wlan0: authenticate with f0:b4:29:22:8e:41<br />Aug 18 22:19:55 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601995.3609] device (wlan0): supplicant interface state: inactive -&amp;gt; authenticating<br />Aug 18 22:19:55 kali kernel: [24676.067955] wlan0: send auth to f0:b4:29:22:8e:41 (try 1/3)<br />Aug 18 22:19:55 kali kernel: [24676.573219] wlan0: send auth to f0:b4:29:22:8e:41 (try 2/3)<br />Aug 18 22:19:55 kali kernel: [24676.611084] wlan0: authenticated<br />Aug 18 22:19:55 kali kernel: [24676.614608] wlan0: associate with f0:b4:29:22:8e:41 (try 1/3)<br />Aug 18 22:19:55 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601995.9097] device (wlan0): supplicant interface state: authenticating -&amp;gt; associating<br />Aug 18 22:19:55 kali kernel: [24676.655583] wlan0: RX AssocResp from f0:b4:29:22:8e:41 (capab=0xc11 status=0 aid=1)<br />Aug 18 22:19:56 kali kernel: [24676.833292] wlan0: associated<br />Aug 18 22:19:56 kali kernel: [24676.833419] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.1330] device (wlan0): supplicant interface state: associating -&amp;gt; 4-way handshake<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.1663] device (wlan0): supplicant interface state: 4-way handshake -&amp;gt; completed<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.1664] device (wlan0): Activation: (wifi) Stage 2 of 5 (Device Configure) successful.&nbsp; Connected to wireless network &amp;apos;Gx-miwifi-renew&amp;apos;.<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.1666] device (wlan0): state change: config -&amp;gt; ip-config (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.1672] dhcp4 (wlan0): activation: beginning transaction (timeout in 45 seconds)<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.1824] dhcp4 (wlan0): dhclient started with pid 11469<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2517] dhcp4 (wlan0):&nbsp;&nbsp; address 192.168.1.143<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2518] dhcp4 (wlan0):&nbsp;&nbsp; plen 24 (255.255.255.0)<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2518] dhcp4 (wlan0):&nbsp;&nbsp; gateway 192.168.1.1<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2518] dhcp4 (wlan0):&nbsp;&nbsp; lease time 43200<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2518] dhcp4 (wlan0):&nbsp;&nbsp; hostname &amp;apos;MiWiFi-R1CL-srv&amp;apos;<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2519] dhcp4 (wlan0):&nbsp;&nbsp; nameserver &amp;apos;192.168.1.1&amp;apos;<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2519] dhcp4 (wlan0): state changed unknown -&amp;gt; bound<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2603] device (wlan0): state change: ip-config -&amp;gt; ip-check (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2768] device (wlan0): state change: ip-check -&amp;gt; secondaries (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2800] device (wlan0): state change: secondaries -&amp;gt; activated (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:19:56 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534601996.2929] device (wlan0): Activation: successful, device activated.<br />Aug 18 22:21:01 kali kernel: [24742.653980] usb 1-1: USB disconnect, device number 4<br />Aug 18 22:21:01 kali kernel: [24742.674024] wlan0: deauthenticating from f0:b4:29:22:8e:41 by local choice (Reason: 3=DEAUTH_LEAVING)<br />Aug 18 22:21:01 kali NetworkManager[508]: &amp;lt;warn&amp;gt;&nbsp; [1534602061.9732] sup-iface[0x7f08a001c170,wlan0]: connection disconnected (reason -3)<br />Aug 18 22:21:01 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602061.9988] device (wlan0): state change: activated -&amp;gt; unmanaged (reason &amp;apos;removed&amp;apos;, internal state &amp;apos;removed&amp;apos;)<br />Aug 18 22:21:02 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602062.0177] dhcp4 (wlan0): canceled DHCP transaction, DHCP client pid 11469<br />Aug 18 22:21:02 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602062.0177] dhcp4 (wlan0): state changed bound -&amp;gt; done<br />Aug 18 22:21:02 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602062.0506] radio killswitch /sys/devices/pci0000:00/0000:00:11.0/0000:02:03.0/usb1/1-1/1-1:1.0/ieee80211/phy2/rfkill3 disappeared<br />Aug 18 22:21:02 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602062.0513] devices removed (path: /sys/devices/pci0000:00/0000:00:11.0/0000:02:03.0/usb1/1-1/1-1:1.0/net/wlan0, iface: wlan0)<br />Aug 18 22:21:05 kali kernel: [24746.070133] usb 1-1: new high-speed USB device number 5 using ehci-pci<br />Aug 18 22:21:05 kali kernel: [24746.471701] usb 1-1: New USB device found, idVendor=148f, idProduct=3070<br />Aug 18 22:21:05 kali kernel: [24746.471706] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3<br />Aug 18 22:21:05 kali kernel: [24746.471708] usb 1-1: Product: 802.11 n WLAN<br />Aug 18 22:21:05 kali kernel: [24746.471711] usb 1-1: Manufacturer: Ralink<br />Aug 18 22:21:05 kali kernel: [24746.471713] usb 1-1: SerialNumber: 1.0<br />Aug 18 22:21:06 kali kernel: [24746.889207] usb 1-1: reset high-speed USB device number 5 using ehci-pci<br />Aug 18 22:21:06 kali kernel: [24747.355720] ieee80211 phy3: rt2x00_set_rt: Info - RT chipset 3070, rev 0201 detected<br />Aug 18 22:21:07 kali kernel: [24748.076623] ieee80211 phy3: rt2x00_set_rf: Info - RF chipset 0005 detected<br />Aug 18 22:21:07 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602067.3874] wifi-nl80211: (wlan0): using nl80211 for WiFi device control<br />Aug 18 22:21:07 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602067.3876] device (wlan0): driver supports Access Point (AP) mode<br />Aug 18 22:21:07 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602067.3895] manager: (wlan0): new 802.11 WiFi device (/org/freedesktop/NetworkManager/Devices/6)<br />Aug 18 22:21:07 kali mtp-probe: checking bus 1, device 5: &amp;quot;/sys/devices/pci0000:00/0000:00:11.0/0000:02:03.0/usb1/1-1&amp;quot;<br />Aug 18 22:21:07 kali mtp-probe: bus: 1, device: 5 was not an MTP device<br />Aug 18 22:21:07 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602067.4398] rfkill4: found WiFi radio killswitch (at /sys/devices/pci0000:00/0000:00:11.0/0000:02:03.0/usb1/1-1/1-1:1.0/ieee80211/phy3/rfkill4) (driver rt2800usb)<br />Aug 18 22:21:07 kali kernel: [24748.178165] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:21:07 kali kernel: [24748.178237] ieee80211 phy3: rt2x00lib_request_firmware: Info - Loading firmware file &amp;apos;rt2870.bin&amp;apos;<br />Aug 18 22:21:07 kali kernel: [24748.178281] rt2800usb 1-1:1.0: firmware: direct-loading firmware rt2870.bin<br />Aug 18 22:21:07 kali kernel: [24748.178285] ieee80211 phy3: rt2x00lib_request_firmware: Info - Firmware detected - version: 0.36<br />Aug 18 22:21:07 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602067.4743] devices added (path: /sys/devices/pci0000:00/0000:00:11.0/0000:02:03.0/usb1/1-1/1-1:1.0/net/wlan0, iface: wlan0)<br />Aug 18 22:21:07 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602067.4744] device added (path: /sys/devices/pci0000:00/0000:00:11.0/0000:02:03.0/usb1/1-1/1-1:1.0/net/wlan0, iface: wlan0): no ifupdown configuration found.<br />Aug 18 22:21:07 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602067.4746] device (wlan0): state change: unmanaged -&amp;gt; unavailable (reason &amp;apos;managed&amp;apos;, internal state &amp;apos;external&amp;apos;)<br />Aug 18 22:21:11 kali kernel: [24752.701164] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:21:12 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602072.5757] device (wlan0): set-hw-addr: set MAC address to AA:D0:A1:B0:A4:3C (scanning)<br />Aug 18 22:21:17 kali kernel: [24757.795096] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:21:17 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602077.1568] sup-iface[0x5598a2d80290,wlan0]: supports 4 scan SSIDs<br />Aug 18 22:21:17 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602077.1587] device (wlan0): supplicant interface state: starting -&amp;gt; ready<br />Aug 18 22:21:17 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602077.1588] device (wlan0): state change: unavailable -&amp;gt; disconnected (reason &amp;apos;supplicant-available&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:17 kali kernel: [24757.861884] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:21:23 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602083.1769] device (wlan0): supplicant interface state: ready -&amp;gt; inactive<br />Aug 18 22:21:23 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602083.6501] policy: auto-activating connection &amp;apos;Gx-miwifi-renew&amp;apos;<br />Aug 18 22:21:23 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602083.6520] device (wlan0): Activation: starting connection &amp;apos;Gx-miwifi-renew&amp;apos; (504f85f7-186e-4597-a38d-3a98b3bc282c)<br />Aug 18 22:21:23 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602083.6526] device (wlan0): state change: disconnected -&amp;gt; prepare (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:24 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602084.6601] device (wlan0): set-hw-addr: reset MAC address to 70:F1:1C:0D:DC:4A (preserve)<br />Aug 18 22:21:29 kali kernel: [24769.845619] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2045] device (wlan0): supplicant interface state: inactive -&amp;gt; disconnected<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2205] device (wlan0): supplicant interface state: disconnected -&amp;gt; inactive<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2314] device (wlan0): state change: prepare -&amp;gt; config (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2327] device (wlan0): Activation: (wifi) access point &amp;apos;Gx-miwifi-renew&amp;apos; has security, but secrets are required.<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2332] device (wlan0): state change: config -&amp;gt; need-auth (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2867] device (wlan0): state change: need-auth -&amp;gt; prepare (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2948] device (wlan0): state change: prepare -&amp;gt; config (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2961] device (wlan0): Activation: (wifi) connection &amp;apos;Gx-miwifi-renew&amp;apos; has security, and secrets exist.&nbsp; No new secrets needed.<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2966] Config: added &amp;apos;ssid&amp;apos; value &amp;apos;Gx-miwifi-renew&amp;apos;<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2968] Config: added &amp;apos;scan_ssid&amp;apos; value &amp;apos;1&amp;apos;<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2970] Config: added &amp;apos;key_mgmt&amp;apos; value &amp;apos;WPA-PSK&amp;apos;<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.2976] Config: added &amp;apos;psk&amp;apos; value &amp;apos;&amp;lt;hidden&amp;gt;&amp;apos;<br />Aug 18 22:21:29 kali kernel: [24770.023645] wlan0: authenticate with f0:b4:29:22:8e:41<br />Aug 18 22:21:29 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602089.7978] device (wlan0): supplicant interface state: inactive -&amp;gt; authenticating<br />Aug 18 22:21:29 kali kernel: [24770.498381] wlan0: send auth to f0:b4:29:22:8e:41 (try 1/3)<br />Aug 18 22:21:30 kali kernel: [24771.006564] wlan0: send auth to f0:b4:29:22:8e:41 (try 2/3)<br />Aug 18 22:21:30 kali kernel: [24771.044487] wlan0: authenticated<br />Aug 18 22:21:30 kali kernel: [24771.048120] wlan0: associate with f0:b4:29:22:8e:41 (try 1/3)<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.3496] device (wlan0): supplicant interface state: authenticating -&amp;gt; associating<br />Aug 18 22:21:30 kali kernel: [24771.091369] wlan0: RX AssocResp from f0:b4:29:22:8e:41 (capab=0xc11 status=0 aid=1)<br />Aug 18 22:21:30 kali kernel: [24771.245563] wlan0: associated<br />Aug 18 22:21:30 kali kernel: [24771.245684] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.5510] device (wlan0): supplicant interface state: associating -&amp;gt; 4-way handshake<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.5913] device (wlan0): supplicant interface state: 4-way handshake -&amp;gt; completed<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.5914] device (wlan0): Activation: (wifi) Stage 2 of 5 (Device Configure) successful.&nbsp; Connected to wireless network &amp;apos;Gx-miwifi-renew&amp;apos;.<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.5915] device (wlan0): state change: config -&amp;gt; ip-config (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.5920] dhcp4 (wlan0): activation: beginning transaction (timeout in 45 seconds)<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6043] dhcp4 (wlan0): dhclient started with pid 11769<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6835] dhcp4 (wlan0):&nbsp;&nbsp; address 192.168.1.143<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6836] dhcp4 (wlan0):&nbsp;&nbsp; plen 24 (255.255.255.0)<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6836] dhcp4 (wlan0):&nbsp;&nbsp; gateway 192.168.1.1<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6836] dhcp4 (wlan0):&nbsp;&nbsp; lease time 43200<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6836] dhcp4 (wlan0):&nbsp;&nbsp; hostname &amp;apos;MiWiFi-R1CL-srv&amp;apos;<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6837] dhcp4 (wlan0):&nbsp;&nbsp; nameserver &amp;apos;192.168.1.1&amp;apos;<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6837] dhcp4 (wlan0): state changed unknown -&amp;gt; bound<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.6888] device (wlan0): state change: ip-config -&amp;gt; ip-check (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.7083] device (wlan0): state change: ip-check -&amp;gt; secondaries (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.7114] device (wlan0): state change: secondaries -&amp;gt; activated (reason &amp;apos;none&amp;apos;, internal state &amp;apos;managed&amp;apos;)<br />Aug 18 22:21:30 kali NetworkManager[508]: &amp;lt;info&amp;gt;&nbsp; [1534602090.7265] device (wlan0): Activation: successful, device activated.<br />&lt;/pre&gt;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-08-18 22:52</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=9499125" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(9499125);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=9499125,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/8/18 22:52:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/9499125.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:39 GMT -->
+</html>

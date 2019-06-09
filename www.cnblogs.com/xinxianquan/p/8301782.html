@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8301782.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>个人私有云盘搭建 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="随着商业利润的填补式挖坑，一些防护设备的高昂代价仍不能铲除网上毒瘤，很多企业云盘已经存在支付审查成本高昂的资金困境随之而来的是各个企业云盘的关闭，增加客户旁带责任权重或者缩减存储空间。所以架设自己的私" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="8301782.html">个人私有云盘搭建</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>随着商业利润的填补式挖坑，一些防护设备的高昂代价仍不能铲除网上毒瘤，很多企业云盘已经存在支付审查成本高昂的资金困境随之而来的是各个企业云盘的关闭，增加客户旁带责任权重或者缩减存储空间。所以架设自己的私有云，在以后的发展中必定是一种趋势，对一些小型公司，企业以及个人都是既安全又经济的选择。</p>
+<p>下面就如何应用简单的设备搭建部署自己的私有云盘第一个方案：</p>
+<p>方案一：模拟Dropbox 形式的同步型<a href="https://www.iplaysoft.com/tag/网盘" target="_blank"><br /></a></p>
+<p>&nbsp; &nbsp; &nbsp;设备 PC 一台 （迷你小型）天虹和戴尔的巴掌大小。SSD硬盘（16Gb，可以扩充并联）,win10系统，USB3.0硬盘盒</p>
+<p>&nbsp; &nbsp; &nbsp;软件支持， 在Linux系统平台下需要安装python3.6 server端用的，Windows10版不需要，下载安装Seafile 设置存储盘做私有云盘，手机安装色案发Seafile客户端。这样就可以内网进行上传资料保存备份。</p>
+<p>&nbsp; &nbsp; &nbsp;外网上传资料需要动态的域名。这里就使用&ldquo;花生壳&rdquo;进行局域网映射IP</p>
+<p>&nbsp; &nbsp; 这里介绍Seafile软件：</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;<a class="selflink" href="https://www.iplaysoft.com/seafile.html">Seafile</a>&nbsp;的服务器端支持&nbsp;<a href="https://www.iplaysoft.com/os/linux-platfolrm" target="_blank">Linux</a>&nbsp;、Windows 以及<a href="https://www.iplaysoft.com/go/raspberrypi" target="_blank">树莓派</a>平台，客户端除了网页版之外，还支持&nbsp;<a href="https://www.iplaysoft.com/os/mac-platform" target="_blank">Mac</a>、Linux、Windows 三个桌面平台以 &nbsp; &nbsp;及&nbsp;<a href="https://www.iplaysoft.com/os/android-platform" target="_blank">Android</a>&nbsp;和&nbsp;<a href="https://www.iplaysoft.com/os/ios-platform" target="_blank">iOS</a>&nbsp;两个移动平台，Seafile 支持用户同时使用多个同步服务器，而且能够在不同<a href="https://www.iplaysoft.com/tag/服务器" target="_blank">服务器</a>之间切换</p>
+<p>方案二：路由器外挂型</p>
+<p>步骤1：</p>
+<p>把U盘或者移动硬盘接在路由器的USB接口，在PC端输入&ldquo;192.168.1.1&rdquo;进入路由器主页，点击USB管理，如下图所示：</p>
+<p><img id="14833731" src="http://upload.chinaz.com/2016/1207/201612071044322897.jpg" alt="" width="567" height="303" /></p>
+<p>（需要共享的文件夹）</p>
+<p><img id="14833732" src="http://upload.chinaz.com/2016/1207/201612071044324717.jpg" alt="" width="567" height="330" /></p>
+<p>（路由器管理界面）</p>
+<p>步骤2：</p>
+<p>进入到USB管理界面后，在目录下，选择磁盘管理：主要用于管理路由器 USB 接口下挂载的存储设备，如查看存储设备的分区信息、新建或者删除文件夹等操作。设置页面如下图所示。</p>
+<p><img id="14833733" src="http://upload.chinaz.com/2016/1207/201612071044325428.jpg" alt="" width="673" height="345" /></p>
+<p>（USB管理界面）</p>
+<p>步骤3：</p>
+<p>文件共享：可以实现USB存储设备中资源的共享。使用文件共享，需先打开</p>
+<p>此功能，默认是开启的。工作组名称：路由器所属的局域网组名称，建议和计算机组名称一致，一般为 WORKGROUP。NetBIOS 名称：路由器的 NetBIOS 名称，用于标识路由器在局域网中的名称。设置页面如下图所示。</p>
+<p><img id="14833734" src="http://upload.chinaz.com/2016/1207/201612071044325998.jpg" alt="" width="673" height="345" /></p>
+<p>（文件共享设置界面）</p>
+<p>在前期共享硬盘或者文件夹资料设置正确后，接下来就是如何使用PC端和</p>
+<p>移动端进行&ldquo;私有云&rdquo;共享文件的操作使用。</p>
+<p>二、PC端访问共享文件。</p>
+<p>方法1：通过我的电脑或者计算机地址栏直接访问。</p>
+<p>操作说明：输入\\192.168.1.1（默认管理IP）,输入用户名：admin，密码：保存空白，确认后即可打开查看共享文件。操作页面如上图所示。</p>
+<p>方法2：通过网络工作组进行访问</p>
+<p>操作说明:（WIN7系统）双击网络-----找到对应路由器的NetBIOS名称（一般为产品型号）注：必须让电脑的工作组名称和之前路由器文件共享&mdash;共享设置里面的工作组名称一样。点击后便可进入到登录界面，默认用户名：admin，密码默认是没有的，保存空白即可，如果路由器设置了登陆密码，那么此处输入登陆密码即可，输入后便进入USB共享文件夹，可以快捷的读取、复制、粘贴等。</p>
+<p>PC端访问方法1：</p>
+<p><img id="14833735" src="http://upload.chinaz.com/2016/1207/201612071044327418.jpg" alt="" width="567" height="286" /></p>
+<p>（用户登录界面）</p>
+<p><img id="14833736" src="http://upload.chinaz.com/2016/1207/201612071044327988.jpg" alt="" width="567" height="386" /></p>
+<p>（共享文件）</p>
+<p>PC端访问方法2：</p>
+<p><img id="14833737" src="http://upload.chinaz.com/2016/1207/201612071044329578.jpg" alt="" width="567" height="312" /></p>
+<p>（电脑工作组）</p>
+<p><img id="14833738" src="http://upload.chinaz.com/2016/1207/201612071044329908.jpg" alt="" width="567" height="383" /></p>
+<p>（用户登录界面）</p>
+<p><img id="14833739" src="http://upload.chinaz.com/2016/1207/201612071044330288.jpg" alt="" width="567" height="314" /></p>
+<p>（共享文件）</p>
+<p>三、移动端访问共享文件。</p>
+<p>1、安卓手机访问共享文件的操作</p>
+<p>安卓：安卓手机要想访问路由器USB接口磁盘里面的共享文件，需安装对应的APP软件才能访问，常用软件有ES文件浏览器、X-plore等，用户可直接去应用市场下载，安装，本操作以ES文件浏览器为例。</p>
+<p>步骤1：</p>
+<p>打开安卓手机，首先通过ES文件浏览器的菜单栏增加局域网的共享服务器，操作如下图所示：</p>
+<p><img id="14833740" src="http://upload.chinaz.com/2016/1207/201612071044330538.jpg" alt="" width="567" height="314" /></p>
+<p>（ES文件浏览器界面）</p>
+<p>步骤2：</p>
+<p>进入到局域网界面，通过&ldquo;新建&rdquo;功能进行相关设置。服务器设置路由器的默认网关192.168.1.1，输入用户和密码，注：在此局域网内访问USB共享文件。</p>
+<p><img id="14833741" src="http://upload.chinaz.com/2016/1207/201612071044330908.jpg" alt="" width="265" height="319" /></p>
+<p><img id="14833742" src="http://upload.chinaz.com/2016/1207/201612071044331018.jpg" alt="" width="265" height="320" /></p>
+<p><img id="14833743" src="http://upload.chinaz.com/2016/1207/201612071044331348.jpg" alt="" width="265" height="426" /></p>
+<p><img id="14833744" src="http://upload.chinaz.com/2016/1207/201612071044331838.jpg" alt="" width="265" height="424" /></p>
+<p>（访问设置界面）</p>
+<p>1）如何从USB共享文件下载资料到安卓手机上面？</p>
+<p>步骤1：</p>
+<p>通过ES文件浏览器共享文件，点击USB共享文件里面要下载的文件（长按文件直到出现菜单栏为止），然后点击手机文件夹，选择要存放文件的地方，操作如下图所示：</p>
+<p><img id="14833745" src="http://upload.chinaz.com/2016/1207/201612071044332258.jpg" alt="" width="265" height="396" /></p>
+<p><img id="14833746" src="http://upload.chinaz.com/2016/1207/201612071044332858.jpg" alt="" width="265" height="396" /></p>
+<p>（共享文件夹）</p>
+<p>步骤2：</p>
+<p>选择手机本地文件夹，把要下载的文件粘贴到指定的文件夹里面。</p>
+<p><img id="14833747" src="http://upload.chinaz.com/2016/1207/201612071044333038.jpg" alt="" width="189" height="324" /></p>
+<p><img id="14833748" src="http://upload.chinaz.com/2016/1207/201612071044333218.jpg" alt="" width="171" height="323" /></p>
+<p><img id="14833749" src="http://upload.chinaz.com/2016/1207/201612071044333348.jpg" alt="" width="175" height="324" /></p>
+<p>（手机文件夹）</p>
+<p>2）如何把安卓手机本地的文件上传到USB共享文件里面？</p>
+<p>步骤：</p>
+<p>打开手机文件夹，选择手机文件里面要上传的文件（长按文件到出现菜单栏为止），然后点击选择局域网，选择要上传的目的文件夹，进行粘贴，即上传成功。</p>
+<p><img id="14833750" src="http://upload.chinaz.com/2016/1207/201612071044333488.jpg" alt="" width="171" height="302" /></p>
+<p><img id="14833751" src="http://upload.chinaz.com/2016/1207/201612071044333888.jpg" alt="" width="171" height="301" /></p>
+<p><img id="14833752" src="http://upload.chinaz.com/2016/1207/201612071044334108.jpg" alt="" width="171" height="302" /></p>
+<p>（上传操作）</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><img src="https://images2017.cnblogs.com/blog/1276904/201801/1276904-20180117104730349-1915111451.png" alt="" /></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-01-17 11:11</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=8301782" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(8301782);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=8301782,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/1/17 11:11:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8301782.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:49 GMT -->
+</html>

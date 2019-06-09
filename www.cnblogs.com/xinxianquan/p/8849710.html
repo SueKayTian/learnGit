@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8849710.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>线程池 - 疏桐 - 博客园</title>
+    <meta property="og:description" content="转载：http://blog.csdn.net/evankaka 进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1--n个线程。（进程是资源分配的最小单" />
+    <link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/bundles/blog-common.css?v=KOZafwuaDasEedEenI5aTy8aXH0epbm6VUJ0v3vsT_Q1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight.css?v=U277U0wIYS14CMa8eCm6JCKf6HhAx4Z-aYITTLKh93g1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="https://www.cnblogs.com/skins/UnlimitedSunlight/bundle-UnlimitedSunlight-mobile.css?v=4ln6fqVq4L4pRmW24O2dfYf_4JqJC33CU4WevG-lN0o1"/>
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/blog/u/395031/rss"/>
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="../rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="../wlwmanifest.xml"/>
+    <script src="http://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script>var currentBlogId=395031;var currentBlogApp='xinxianquan',cb_enable_mathjax=true;var isLogined=false;</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, 
+            extensions: ['extpfeil.js'],
+            Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="http://mathjax.cnblogs.com/2_7_2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://www.cnblogs.com/bundles/blog-common.js?v=smtcUT5dhdu_5eEO8CKHYoVc7DPLgEBGzp6zKkstlzg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="../index.html"><img id="blogLogo" src="https://www.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="../index.html">疏桐</a></h1>
+<h2>疏桐不懈的渗透测试之路</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="../index.html">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/疏桐">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://feed.cnblogs.com/blog/u/395031/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/xinxianquan/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 287&nbsp; </span>
+<span id="stats_article_count">文章 - 13&nbsp; </span>
+<span id="stats-comment_count">评论 - 2</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="8849710.html">线程池</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><div id="post_detail">
+<div id="post" class="post">
+<div class="entry">
+<div id="cnblogs_post_body" class="blogpost-body">
+<p><strong>转载：<a href="http://blog.csdn.net/evankaka" target="_blank">http://blog.csdn.net/evankaka</a></strong></p>
+<p><strong>进程：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1--n个线程。（进程是资源分配的最小单位）</strong></p>
+<p><strong>　　线程：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位）</strong></p>
+<p>　　线程和进程一样分为五个阶段：创建、就绪、运行、阻塞、终止。</p>
+<p>　　多进程是指操作系统能同时运行多个任务（程序）。</p>
+<p>　　多线程是指在同一程序中有多个顺序流在执行。</p>
+<p>在<span lang="EN-US">java中要想实现多线程，有两种手段，一种是继续<span lang="EN-US">Thread类，另外一种是实现<span lang="EN-US">Runable接口.(<strong>其实准确来讲，应该有三种，还有一种是实现Callable接口</strong>，并与Future、线程池结合使用，此文这里不讲这个，有兴趣看这里<a name="51610635" href="http://blog.csdn.net/evankaka/article/details/51610635" target="_blank">Java并发编程与技术内幕:Callable、Future、FutureTask、CompletionService</a>&nbsp;)<br /></span></span></span></p>
+<h1><a name="t0"></a>一、扩展java.lang.Thread类</h1>
+<p>这里继承Thread类的方法是比较常用的一种，如果说你只是想起一条线程。没有什么其它特殊的要求，那么可以使用Thread.（<strong>笔者推荐使用Runable，后头会说明为什么</strong>）。下面来看一个简单的实例</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt"><span class="keyword">package&nbsp;com.multithread.learning;&nbsp;&nbsp;</span></li>
+<li><span class="comment">/**&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*@functon&nbsp;多线程学习&nbsp;</span></li>
+<li><span class="comment">&nbsp;*@author&nbsp;林炳文&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*@time&nbsp;2015.3.9&nbsp;</span></li>
+<li><span class="comment">&nbsp;*/&nbsp;&nbsp;</span></li>
+<li class="alt"><span class="keyword">class&nbsp;Thread1&nbsp;<span class="keyword">extends&nbsp;Thread{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private&nbsp;String&nbsp;name;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;Thread1(String&nbsp;name)&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this.name=name;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">void&nbsp;run()&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for&nbsp;(<span class="keyword">int&nbsp;i&nbsp;=&nbsp;<span class="number">0;&nbsp;i&nbsp;&lt;&nbsp;<span class="number">5;&nbsp;i++)&nbsp;{&nbsp;&nbsp;</span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name&nbsp;+&nbsp;<span class="string">"运行&nbsp;&nbsp;:&nbsp;&nbsp;"&nbsp;+&nbsp;i);&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sleep((<span class="keyword">int)&nbsp;Math.random()&nbsp;*&nbsp;<span class="number">10);&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+<li><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;Main&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread1&nbsp;mTh1=<span class="keyword">new&nbsp;Thread1(<span class="string">"A");&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread1&nbsp;mTh2=<span class="keyword">new&nbsp;Thread1(<span class="string">"B");&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh1.start();&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh2.start();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;</li>
+<li>}&nbsp;&nbsp;</li>
+
+
+</ol></div>
+<p>输出：</p>
+<p>&nbsp;</p>
+<p>A运行&nbsp; :&nbsp; 0<br />B运行&nbsp; :&nbsp; 0<br />A运行&nbsp; :&nbsp; 1<br />A运行&nbsp; :&nbsp; 2<br />A运行&nbsp; :&nbsp; 3<br />A运行&nbsp; :&nbsp; 4<br />B运行&nbsp; :&nbsp; 1<br />B运行&nbsp; :&nbsp; 2<br />B运行&nbsp; :&nbsp; 3<br />B运行&nbsp; :&nbsp; 4</p>
+<p>再运行一下：</p>
+<p>A运行&nbsp; :&nbsp; 0<br />B运行&nbsp; :&nbsp; 0<br />B运行&nbsp; :&nbsp; 1<br />B运行&nbsp; :&nbsp; 2<br />B运行&nbsp; :&nbsp; 3<br />B运行&nbsp; :&nbsp; 4<br />A运行&nbsp; :&nbsp; 1<br />A运行&nbsp; :&nbsp; 2<br />A运行&nbsp; :&nbsp; 3<br />A运行&nbsp; :&nbsp; 4</p>
+<div>说明：</div>
+<div>程序启动运行main时候，java虚拟机启动一个进程，主线程main在main()调用时候被创建。随着调用MitiSay的两个对象的start方法，另外两个线程也启动了，这样，整个应用就在多线程下运行。</div>
+<div>&nbsp;</div>
+<div>注意：start()方法的调用后并不是立即执行多线程代码，而是使得该线程变为可运行态（Runnable），什么时候运行是由操作系统决定的。</div>
+<div>从程序运行的结果可以发现，多线程程序是乱序执行。因此，只有乱序执行的代码才有必要设计为多线程。</div>
+<div>Thread.sleep()方法调用目的是不让当前线程独自霸占该进程所获取的CPU资源，以留出一定时间给其他线程执行的机会。</div>
+<div>实际上所有的多线程代码执行顺序都是不确定的，每次执行的结果都是随机的。</div>
+<p>&nbsp;</p>
+<p>但是start方法重复调用的话，会出现java.lang.IllegalThreadStateException异常。</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt">Thread1&nbsp;mTh1=<span class="keyword">new&nbsp;Thread1(<span class="string">"A");&nbsp;&nbsp;</span></span></li>
+<li>Thread1&nbsp;mTh2=mTh1;&nbsp;&nbsp;</li>
+<li class="alt">mTh1.start();&nbsp;&nbsp;</li>
+<li>mTh2.start();&nbsp;&nbsp;</li>
+
+
+</ol></div>
+<p><br />输出：</p>
+<p>&nbsp;</p>
+<p>Exception in thread "main" java.lang.IllegalThreadStateException<br />&nbsp;&nbsp; &nbsp;at java.lang.Thread.start(Unknown Source)<br />&nbsp;&nbsp; &nbsp;at com.multithread.learning.Main.main(Main.java:31)<br />A运行&nbsp; :&nbsp; 0<br />A运行&nbsp; :&nbsp; 1<br />A运行&nbsp; :&nbsp; 2<br />A运行&nbsp; :&nbsp; 3<br />A运行&nbsp; :&nbsp; 4</p>
+<h1><a name="t1"></a>二、实现java.lang.Runnable接口</h1>
+<p>采用Runnable也是非常常见的一种，我们只需要重写run方法即可。下面也来看个实例。</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt"><span class="comment">/**&nbsp;</span></li>
+<li><span class="comment">&nbsp;*@functon&nbsp;多线程学习&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*@author&nbsp;林炳文&nbsp;</span></li>
+<li><span class="comment">&nbsp;*@time&nbsp;2015.3.9&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*/&nbsp;&nbsp;</span></li>
+<li><span class="keyword">package&nbsp;com.multithread.runnable;&nbsp;&nbsp;</span></li>
+<li class="alt"><span class="keyword">class&nbsp;Thread2&nbsp;<span class="keyword">implements&nbsp;Runnable{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private&nbsp;String&nbsp;name;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;Thread2(String&nbsp;name)&nbsp;{&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this.name=name;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">void&nbsp;run()&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for&nbsp;(<span class="keyword">int&nbsp;i&nbsp;=&nbsp;<span class="number">0;&nbsp;i&nbsp;&lt;&nbsp;<span class="number">5;&nbsp;i++)&nbsp;{&nbsp;&nbsp;</span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name&nbsp;+&nbsp;<span class="string">"运行&nbsp;&nbsp;:&nbsp;&nbsp;"&nbsp;+&nbsp;i);&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try&nbsp;{&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep((<span class="keyword">int)&nbsp;Math.random()&nbsp;*&nbsp;<span class="number">10);&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+<li><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;Main&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new&nbsp;Thread(<span class="keyword">new&nbsp;Thread2(<span class="string">"C")).start();&nbsp;&nbsp;</span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new&nbsp;Thread(<span class="keyword">new&nbsp;Thread2(<span class="string">"D")).start();&nbsp;&nbsp;</span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+
+
+</ol></div>
+<p>输出：</p>
+<p>&nbsp;</p>
+<p>C运行&nbsp; :&nbsp; 0<br />D运行&nbsp; :&nbsp; 0<br />D运行&nbsp; :&nbsp; 1<br />C运行&nbsp; :&nbsp; 1<br />D运行&nbsp; :&nbsp; 2<br />C运行&nbsp; :&nbsp; 2<br />D运行&nbsp; :&nbsp; 3<br />C运行&nbsp; :&nbsp; 3<br />D运行&nbsp; :&nbsp; 4<br />C运行&nbsp; :&nbsp; 4</p>
+<p>&nbsp;</p>
+<div>说明：</div>
+<div>Thread2类通过实现Runnable接口，使得该类有了多线程类的特征。run（）方法是多线程程序的一个约定。所有的多线程代码都在run方法里面。Thread类实际上也是实现了Runnable接口的类。</div>
+<div>在启动的多线程的时候，需要先通过Thread类的构造方法Thread(Runnable target) 构造出对象，然后调用Thread对象的start()方法来运行多线程代码。</div>
+<div>实际上所有的多线程代码都是通过运行Thread的start()方法来运行的。因此，不管是扩展Thread类还是实现Runnable接口来实现多线程，最终还是通过Thread的对象的API来控制线程的，熟悉Thread类的API是进行多线程编程的基础。</div>
+<div>
+<h1><a name="t2"></a>三、Thread和Runnable的区别</h1>
+<p>如果一个类继承Thread，则不适合资源共享。但是如果实现了Runable接口的话，则很容易的实现资源共享。</p>
+
+
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>总结：<br /></strong></p>
+<p><strong>实现Runnable接口比继承Thread类所具有的优势：</strong></p>
+<p><strong>1）：适合多个相同的程序代码的线程去处理同一个资源</strong></p>
+<p><strong>2）：可以避免java中的单继承的限制</strong></p>
+<p><strong>3）：增加程序的健壮性，代码可以被多个线程共享，代码和数据独立</strong></p>
+<p><strong>4）：线程池只能放入实现Runable或callable类线程，不能直接放入继承Thread的类</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>提醒一下大家：main方法其实也是一个线程。在java中所以的线程都是同时启动的，至于什么时候，哪个先执行，完全看谁先得到CPU的资源。</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>在java中，每次程序运行至少启动2个线程。一个是main线程，一个是垃圾收集线程。因为每当使用java命令执行一个类的时候，实际上都会启动一个ＪＶＭ，每一个ｊＶＭ实习在就是在操作系统中启动了一个进程。</strong></p>
+<p><strong>&nbsp;</strong></p>
+<h1><a name="t3"></a>四、线程状态转换</h1>
+<div>下面的这个图非常重要！你如果看懂了这个图，那么对于多线程的理解将会更加深刻！</div>
+<p align="center"><img src="http://img.blog.csdn.net/20150309140927553" alt="" /></p>
+<p>&nbsp;</p>
+<div>1、新建状态（New）：新创建了一个线程对象。</div>
+<div>2、就绪状态（Runnable）：线程对象创建后，其他线程调用了该对象的start()方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。</div>
+<div>3、运行状态（Running）：就绪状态的线程获取了CPU，执行程序代码。</div>
+<div><strong>4、阻塞状态（Blocked）：阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪状态，才有机会转到运行状态。阻塞的情况分三种：</strong></div>
+<div><strong>（一）、等待阻塞：运行的线程执行wait()方法，JVM会把该线程放入等待池中。(wait会释放持有的锁)</strong></div>
+<div><strong>（二）、同步阻塞：运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。</strong></div>
+<div><strong>（三）、其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。（注意,sleep是不会释放持有的锁）</strong></div>
+<div>5、死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</div>
+<h1><a name="t4"></a>五、线程调度</h1>
+<p>线程的调度</p>
+<div>1、调整线程优先级：Java线程有优先级，优先级高的线程会获得较多的运行机会。</div>
+<div>&nbsp;</div>
+<div>Java线程的优先级用整数表示，取值范围是1~10，Thread类有以下三个静态常量：</div>
+<div>static int MAX_PRIORITY</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 线程可以具有的最高优先级，取值为10。</div>
+<div>static int MIN_PRIORITY</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 线程可以具有的最低优先级，取值为1。</div>
+<div>static int NORM_PRIORITY</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 分配给线程的默认优先级，取值为5。</div>
+<div>&nbsp;</div>
+<div>Thread类的setPriority()和getPriority()方法分别用来设置和获取线程的优先级。</div>
+<div>&nbsp;</div>
+<div>每个线程都有默认的优先级。主线程的默认优先级为Thread.NORM_PRIORITY。</div>
+<div>线程的优先级有继承关系，比如A线程中创建了B线程，那么B将和A具有相同的优先级。</div>
+<div>JVM提供了10个线程优先级，但与常见的操作系统都不能很好的映射。如果希望程序能移植到各个操作系统中，应该仅仅使用Thread类有以下三个静态常量作为优先级，这样能保证同样的优先级采用了同样的调度方式。</div>
+<div>&nbsp;</div>
+<div>2、线程睡眠：Thread.sleep(long millis)方法，使线程转到阻塞状态。millis参数设定睡眠的时间，以毫秒为单位。当睡眠结束后，就转为就绪（Runnable）状态。sleep()平台移植性好。</div>
+<div>&nbsp;</div>
+<div>3、线程等待：Object类中的wait()方法，导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 唤醒方法。这个两个唤醒方法也是Object类中的方法，行为等价于调用 wait(0) 一样。</div>
+<div>&nbsp;</div>
+<div>4、线程让步：Thread.yield() 方法，暂停当前正在执行的线程对象，把执行机会让给相同或者更高优先级的线程。</div>
+<div>&nbsp;</div>
+<div>5、线程加入：join()方法，等待其他线程终止。在当前线程中调用另一个线程的join()方法，则当前线程转入阻塞状态，直到另一个进程运行结束，当前线程再由阻塞转为就绪状态。</div>
+<div>&nbsp;</div>
+<div>6、线程唤醒：Object类中的notify()方法，唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。选择是任意性的，并在对实现做出决定时发生。线程通过调用其中一个 wait 方法，在对象的监视器上等待。 直到当前的线程放弃此对象上的锁定，才能继续执行被唤醒的线程。被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争；例如，唤醒的线程在作为锁定此对象的下一个线程方面没有可靠的特权或劣势。类似的方法还有一个notifyAll()，唤醒在此对象监视器上等待的所有线程。</div>
+<div>&nbsp;注意：Thread中suspend()和resume()两个方法在JDK1.5中已经废除，不再介绍。因为有死锁倾向。<br />
+<h1><a name="t5"></a>六、常用函数说明</h1>
+
+
+<strong>①sleep(long millis):&nbsp;在指定的毫秒数内让当前正在执行的线程休眠（暂停执行）<br /><br />②join():指等待t线程终止。</strong><br />
+<h3><a name="t6"></a>使用方式。</h3>
+<p>join是Thread类的一个方法，启动线程后直接调用，即join()的作用是：&ldquo;等待该线程终止&rdquo;，这里需要理解的就是该线程是指的主线程等待子线程的终止。也就是在子线程调用了join()方法后面的代码，只有等到子线程结束了才能执行。</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt">Thread&nbsp;t&nbsp;=&nbsp;<span class="keyword">new&nbsp;AThread();&nbsp;t.start();&nbsp;t.join();&nbsp;&nbsp;</span></li>
+
+
+</ol></div>
+<p>&nbsp;</p>
+<h3><a name="t7"></a>为什么要用join()方法</h3>
+<p>在很多情况下，主线程生成并起动了子线程，如果子线程里要进行大量的耗时的运算，主线程往往将于子线程之前结束，但是如果主线程处理完其他的事务后，需要用到子线程的处理结果，也就是主线程需要等待子线程执行完成之后再结束，这个时候就要用到join()方法了。</p>
+
+
+不加join。<br />
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt"><span class="comment">/**&nbsp;</span></li>
+<li><span class="comment">&nbsp;*@functon&nbsp;多线程学习,join&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*@author&nbsp;林炳文&nbsp;</span></li>
+<li><span class="comment">&nbsp;*@time&nbsp;2015.3.9&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*/&nbsp;&nbsp;</span></li>
+<li><span class="keyword">package&nbsp;com.multithread.join;&nbsp;&nbsp;</span></li>
+<li class="alt"><span class="keyword">class&nbsp;Thread1&nbsp;<span class="keyword">extends&nbsp;Thread{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private&nbsp;String&nbsp;name;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;Thread1(String&nbsp;name)&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super(name);&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this.name=name;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">void&nbsp;run()&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Thread.currentThread().getName()&nbsp;+&nbsp;<span class="string">"&nbsp;线程运行开始!");&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for&nbsp;(<span class="keyword">int&nbsp;i&nbsp;=&nbsp;<span class="number">0;&nbsp;i&nbsp;&lt;&nbsp;<span class="number">5;&nbsp;i++)&nbsp;{&nbsp;&nbsp;</span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"子线程"+name&nbsp;+&nbsp;<span class="string">"运行&nbsp;:&nbsp;"&nbsp;+&nbsp;i);&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sleep((<span class="keyword">int)&nbsp;Math.random()&nbsp;*&nbsp;<span class="number">10);&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Thread.currentThread().getName()&nbsp;+&nbsp;<span class="string">"&nbsp;线程运行结束!");&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt"><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;Main&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Thread.currentThread().getName()+<span class="string">"主线程运行开始!");&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread1&nbsp;mTh1=<span class="keyword">new&nbsp;Thread1(<span class="string">"A");&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread1&nbsp;mTh2=<span class="keyword">new&nbsp;Thread1(<span class="string">"B");&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh1.start();&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh2.start();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Thread.currentThread().getName()+&nbsp;<span class="string">"主线程运行结束!");&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+
+
+</ol></div>
+
+
+输出结果：<br />main主线程运行开始!<br />main主线程运行结束!<br />B 线程运行开始!<br />子线程B运行 : 0<br />A 线程运行开始!<br />子线程A运行 : 0<br />子线程B运行 : 1<br />子线程A运行 : 1<br />子线程A运行 : 2<br />子线程A运行 : 3<br />子线程A运行 : 4<br />A 线程运行结束!<br />子线程B运行 : 2<br />子线程B运行 : 3<br />子线程B运行 : 4<br />B 线程运行结束!<br />发现主线程比子线程早结束<br /><br />加join<br />
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt"><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;Main&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Thread.currentThread().getName()+<span class="string">"主线程运行开始!");&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread1&nbsp;mTh1=<span class="keyword">new&nbsp;Thread1(<span class="string">"A");&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread1&nbsp;mTh2=<span class="keyword">new&nbsp;Thread1(<span class="string">"B");&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh1.start();&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh2.start();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh1.join();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try&nbsp;{&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTh2.join();&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(Thread.currentThread().getName()+&nbsp;<span class="string">"主线程运行结束!");&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+
+
+</ol></div>
+
+
+<br />运行结果：<br />main主线程运行开始!<br />A 线程运行开始!<br />子线程A运行 : 0<br />B 线程运行开始!<br />子线程B运行 : 0<br />子线程A运行 : 1<br />子线程B运行 : 1<br />子线程A运行 : 2<br />子线程B运行 : 2<br />子线程A运行 : 3<br />子线程B运行 : 3<br />子线程A运行 : 4<br />子线程B运行 : 4<br />A 线程运行结束!<br />主线程一定会等子线程都结束了才结束<br /><br /><strong>③yield():暂停当前正在执行的线程对象，并执行其他线程。</strong><br />
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thread.yield()方法作用是：暂停当前正在执行的线程对象，并执行其他线程。</div>
+<div>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;<strong>&nbsp;yield()应该做的是让当前运行线程回到可运行状态，以允许具有相同优先级的其他线程获得运行机会。</strong>因此，使用yield()的目的是让相同优先级的线程之间能适当的轮转执行。但是，实际中无法保证yield()达到让步目的，因为让步的线程还有可能被线程调度程序再次选中。</div>
+<div>&nbsp;</div>
+<div>结论：yield()从未导致线程转到等待/睡眠/阻塞状态。在大多数情况下，yield()将导致线程从运行状态转到可运行状态，但有可能没有效果。可看上面的图。<br />
+<div class="dp-highlighter bg_cpp">
+<div class="bar">
+<div class="tools"><strong>[cpp]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-cpp" start="1">
+<li class="alt"><span class="comment">/**&nbsp;</span></li>
+<li><span class="comment">&nbsp;*@functon&nbsp;多线程学习&nbsp;yield&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*@author&nbsp;林炳文&nbsp;</span></li>
+<li><span class="comment">&nbsp;*@time&nbsp;2015.3.9&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*/&nbsp;&nbsp;</span></li>
+<li>package&nbsp;com.multithread.yield;&nbsp;&nbsp;</li>
+<li class="alt"><span class="keyword">class&nbsp;ThreadYield&nbsp;extends&nbsp;Thread{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;ThreadYield(String&nbsp;name)&nbsp;{&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(name);&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;@Override&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">void&nbsp;run()&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for&nbsp;(<span class="datatypes">int&nbsp;i&nbsp;=&nbsp;1;&nbsp;i&nbsp;&lt;=&nbsp;50;&nbsp;i++)&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">""&nbsp;+&nbsp;<span class="keyword">this.getName()&nbsp;+&nbsp;<span class="string">"-----"&nbsp;+&nbsp;i);&nbsp;&nbsp;</span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;当i为30时，该线程就会把CPU时间让掉，让其他或者自己的线程执行（也就是谁先抢到谁执行）&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if&nbsp;(i&nbsp;==30)&nbsp;{&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this.yield();&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>}&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt"><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;Main&nbsp;{&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThreadYield&nbsp;yt1&nbsp;=&nbsp;<span class="keyword">new&nbsp;ThreadYield(<span class="string">"张三");&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThreadYield&nbsp;yt2&nbsp;=&nbsp;<span class="keyword">new&nbsp;ThreadYield(<span class="string">"李四");&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yt1.start();&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yt2.start();&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;</li>
+
+
+</ol></div>
+
+
+<br />运行结果：</div>
+<p>第一种情况：李四（线程）当执行到30时会CPU时间让掉，这时张三（线程）抢到CPU时间并执行。</p>
+<p>第二种情况：李四（线程）当执行到30时会CPU时间让掉，这时李四（线程）抢到CPU时间并执行。</p>
+
+
+<strong>sleep()和yield()的区别</strong><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sleep()和yield()的区别):sleep()使当前线程进入停滞状态，所以执行sleep()的线程在指定的时间内肯定不会被执行；yield()只是使当前线程重新回到可执行状态，所以执行yield()的线程有可能在进入到可执行状态后马上又被执行。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sleep&nbsp;方法使当前运行中的线程睡眼一段时间，进入不可运行状态，这段时间的长短是由程序设定的，yield&nbsp;方法使当前线程让出&nbsp;CPU&nbsp;占有权，但让出的时间是不可设定的。实际上，yield()方法对应了如下操作：先检测当前是否有相同优先级的线程处于同可运行状态，如有，则把&nbsp;CPU&nbsp;&nbsp;的占有权交给此线程，否则，继续运行原来的线程。所以yield()方法称为&ldquo;退让&rdquo;，它把运行机会让给了同等优先级的其他线程<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 另外，sleep&nbsp;方法允许较低优先级的线程获得运行机会，但&nbsp;yield()&nbsp;&nbsp;方法执行时，当前线程仍处在可运行状态，所以，不可能让出较低优先级的线程些时获得&nbsp;CPU&nbsp;占有权。在一个运行系统中，如果较高优先级的线程没有调用&nbsp;sleep&nbsp;方法，又没有受到&nbsp;I\O&nbsp;阻塞，那么，较低优先级线程只能等待所有较高优先级的线程运行结束，才有机会运行。&nbsp;<br /><br /><strong>④setPriority():&nbsp;更改线程的优先级。</strong>
+<p>　　　　MIN_PRIORITY = 1<br />&nbsp; 　　&nbsp;&nbsp;&nbsp;NORM_PRIORITY = 5<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;MAX_PRIORITY = 10</p>
+
+
+用法：<br />
+<pre>Thread4 t1 = new Thread4("t1");
+Thread4 t2 = new Thread4("t2");
+t1.setPriority(Thread.MAX_PRIORITY);
+t2.setPriority(Thread.MIN_PRIORITY);</pre>
+<br /><strong>⑤interrupt():不要以为它是中断某个线程！它只是线线程发送一个中断信号，让线程在无限等待时（如死锁时）能抛出抛出，从而结束线程，但是如果你吃掉了这个异常，那么这个线程还是不会中断的！</strong></div>
+<div>
+<p>⑥wait()</p>
+<p>Obj.wait()，与Obj.notify()必须要与synchronized(Obj)一起使用，也就是wait,与notify是针对已经获取了Obj锁进行操作，从语法角度来说就是Obj.wait(),Obj.notify必须在synchronized(Obj){...}语句块内。从功能上来说wait就是说线程在获取对象锁后，主动释放对象锁，同时本线程休眠。直到有其它线程调用对象的notify()唤醒该线程，才能继续获取对象锁，并继续执行。相应的notify()就是对对象锁的唤醒操作。但有一点需要注意的是notify()调用后，并不是马上就释放对象锁的，而是在相应的synchronized(){}语句块执行结束，自动释放锁后，JVM会在wait()对象锁的线程中随机选取一线程，赋予其对象锁，唤醒线程，继续执行。这样就提供了在线程间同步、唤醒的操作。Thread.sleep()与Object.wait()二者都可以暂停当前线程，释放CPU控制权，主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制。</p>
+<p>&nbsp;&nbsp;&nbsp; 单单在概念上理解清楚了还不够，需要在实际的例子中进行测试才能更好的理解。对Object.wait()，Object.notify()的应用最经典的例子，应该是三线程打印ABC的问题了吧，这是一道比较经典的面试题，题目要求如下：</p>
+<p>&nbsp;&nbsp;&nbsp; 建立三个线程，A线程打印10次A，B线程打印10次B,C线程打印10次C，要求线程同时运行，交替打印10次ABC。这个问题用Object的wait()，notify()就可以很方便的解决。代码如下：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt"><span class="comment">/**&nbsp;</span></li>
+<li><span class="comment">&nbsp;*&nbsp;wait用法&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*&nbsp;@author&nbsp;DreamSea&nbsp;&nbsp;</span></li>
+<li><span class="comment">&nbsp;*&nbsp;@time&nbsp;2015.3.9&nbsp;&nbsp;</span></li>
+<li class="alt"><span class="comment">&nbsp;*/&nbsp;&nbsp;</span></li>
+<li><span class="keyword">package&nbsp;com.multithread.wait;&nbsp;&nbsp;</span></li>
+<li class="alt"><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;MyThreadPrinter2&nbsp;<span class="keyword">implements&nbsp;Runnable&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private&nbsp;String&nbsp;name;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private&nbsp;Object&nbsp;prev;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private&nbsp;Object&nbsp;self;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private&nbsp;MyThreadPrinter2(String&nbsp;name,&nbsp;Object&nbsp;prev,&nbsp;Object&nbsp;self)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this.name&nbsp;=&nbsp;name;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this.prev&nbsp;=&nbsp;prev;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this.self&nbsp;=&nbsp;self;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">void&nbsp;run()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int&nbsp;count&nbsp;=&nbsp;<span class="number">10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while&nbsp;(count&nbsp;&gt;&nbsp;<span class="number">0)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">synchronized&nbsp;(prev)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">synchronized&nbsp;(self)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(name);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count--;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.notify();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prev.wait();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;<span class="keyword">throws&nbsp;Exception&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;a&nbsp;=&nbsp;<span class="keyword">new&nbsp;Object();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;b&nbsp;=&nbsp;<span class="keyword">new&nbsp;Object();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;c&nbsp;=&nbsp;<span class="keyword">new&nbsp;Object();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyThreadPrinter2&nbsp;pa&nbsp;=&nbsp;<span class="keyword">new&nbsp;MyThreadPrinter2(<span class="string">"A",&nbsp;c,&nbsp;a);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyThreadPrinter2&nbsp;pb&nbsp;=&nbsp;<span class="keyword">new&nbsp;MyThreadPrinter2(<span class="string">"B",&nbsp;a,&nbsp;b);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyThreadPrinter2&nbsp;pc&nbsp;=&nbsp;<span class="keyword">new&nbsp;MyThreadPrinter2(<span class="string">"C",&nbsp;b,&nbsp;c);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new&nbsp;Thread(pa).start();&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep(<span class="number">100);&nbsp;&nbsp;<span class="comment">//确保按顺序A、B、C执行&nbsp;&nbsp;</span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new&nbsp;Thread(pb).start();&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep(<span class="number">100);&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new&nbsp;Thread(pc).start();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep(<span class="number">100);&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>}&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+
+</ol></div>
+
+
+<br />输出结果：
+<p>&nbsp;</p>
+<p>ABCABCABCABCABCABCABCABCABCABC</p>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先来解释一下其整体思路，从大的方向上来讲，该问题为三线程间的同步唤醒操作，主要的目的就是ThreadA-&gt;ThreadB-&gt;ThreadC-&gt;ThreadA循环执行三个线程。为了控制线程执行的顺序，那么就必须要确定唤醒、等待的顺序，所以每一个线程必须同时持有两个对象锁，才能继续执行。一个对象锁是prev，就是前一个线程所持有的对象锁。还有一个就是自身对象锁。主要的思想就是，为了控制执行的顺序，必须要先持有prev锁，也就前一个线程要释放自身对象锁，再去申请自身对象锁，两者兼备时打印，之后首先调用self.notify()释放自身对象锁，唤醒下一个等待线程，再调用prev.wait()释放prev对象锁，终止当前线程，等待循环结束后再次被唤醒。运行上述代码，可以发现三个线程循环打印ABC，共10次。程序运行的主要过程就是A线程最先运行，持有C,A对象锁，后释放A,C锁，唤醒B。线程B等待A锁，再申请B锁，后打印B，再释放B，A锁，唤醒C，线程C等待B锁，再申请C锁，后打印C，再释放C,B锁，唤醒A。看起来似乎没什么问题，但如果你仔细想一下，就会发现有问题，就是初始条件，三个线程按照A,B,C的顺序来启动，按照前面的思考，A唤醒B，B唤醒C，C再唤醒A。但是这种假设依赖于JVM中线程调度、执行的顺序。<br /><strong>&nbsp;&nbsp;&nbsp; wait和sleep区别<br />共同点：&nbsp;</strong><br />1. 他们都是在多线程的环境下，都可以在程序的调用处阻塞指定的毫秒数，并返回。&nbsp;<br />2. wait()和sleep()都可以通过interrupt()方法 打断线程的暂停状态 ，从而使线程立刻抛出InterruptedException。&nbsp;<br />&nbsp;&nbsp; 如果线程A希望立即结束线程B，则可以对线程B对应的Thread实例调用interrupt方法。如果此刻线程B正在wait/sleep /join，则线程B会立刻抛出InterruptedException，在catch() {} 中直接return即可安全地结束线程。&nbsp;<br />&nbsp;&nbsp; 需要注意的是，InterruptedException是线程自己从内部抛出的，并不是interrupt()方法抛出的。对某一线程调用 interrupt()时，如果该线程正在执行普通的代码，那么该线程根本就不会抛出InterruptedException。但是，一旦该线程进入到 wait()/sleep()/join()后，就会立刻抛出InterruptedException 。&nbsp;<br /><strong>不同点：&nbsp;</strong><br />1. Thread类的方法：sleep(),yield()等&nbsp;<br />&nbsp;&nbsp; Object的方法：wait()和notify()等&nbsp;<br />2. 每个对象都有一个锁来控制同步访问。Synchronized关键字可以和对象的锁交互，来实现线程的同步。&nbsp;<br />&nbsp;&nbsp; sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以使用同步控制块或者方法。&nbsp;<br />3. wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用&nbsp;<br />4. sleep必须捕获异常，而wait，notify和notifyAll不需要捕获异常<br />所以sleep()和wait()方法的最大区别是：<br />　　　　sleep()睡眠时，保持对象锁，仍然占有该锁；<br />　　　　而wait()睡眠时，释放对象锁。<br />　　但是wait()和sleep()都可以通过interrupt()方法打断线程的暂停状态，从而使线程立刻抛出InterruptedException（但不建议使用该方法）。<br />sleep（）方法<br />sleep()使当前线程进入停滞状态（阻塞当前线程），让出CUP的使用、目的是不让当前线程独自霸占该进程所获的CPU资源，以留一定时间给其他线程执行的机会;<br />　　 sleep()是Thread类的Static(静态)的方法；因此他不能改变对象的机锁，所以当在一个Synchronized块中调用Sleep()方法是，线程虽然休眠了，但是对象的机锁并木有被释放，其他线程无法访问这个对象（即使睡着也持有对象锁）。<br />　　在sleep()休眠时间期满后，该线程不一定会立即执行，这是因为其它线程可能正在运行而且没有被调度为放弃执行，除非此线程具有更高的优先级。&nbsp;<br />wait（）方法<br />wait()方法是Object类里的方法；当一个线程执行到wait()方法时，它就进入到一个和该对象相关的等待池中，同时失去（释放）了对象的机锁（暂时失去机锁，wait(long timeout)超时时间到后还需要返还对象锁）；其他线程可以访问；<br />　　wait()使用notify或者notifyAlll或者指定睡眠时间来唤醒当前等待池中的线程。<br />　　wiat()必须放在synchronized block中，否则会在program runtime时扔出&rdquo;java.lang.IllegalMonitorStateException&ldquo;异常。</div>
+<div>
+<h1><a name="t8"></a>七、常见线程名词解释</h1>
+
+
+</div>
+<div>主线程：JVM调用程序main()所产生的线程。</div>
+<div>当前线程：这个是容易混淆的概念。一般指通过Thread.currentThread()来获取的进程。</div>
+<div>后台线程：指为其他线程提供服务的线程，也称为守护线程。JVM的垃圾回收线程就是一个后台线程。<strong>用户线程和守护线程的区别在于，是否等待主线程依赖于主线程结束而结束</strong></div>
+<div>前台线程：是指接受后台线程服务的线程，其实前台后台线程是联系在一起，就像傀儡和幕后操纵者一样的关系。傀儡是前台线程、幕后操纵者是后台线程。由前台线程创建的线程默认也是前台线程。可以通过isDaemon()和setDaemon()方法来判断和设置一个线程是否为后台线程。</div>
+<p><strong>线程类的一些常用方法：&nbsp;<br /><br />　　sleep(): 强迫一个线程睡眠Ｎ毫秒。&nbsp;<br />　　isAlive(): 判断一个线程是否存活。&nbsp;<br />　　join(): 等待线程终止。&nbsp;<br />　　activeCount(): 程序中活跃的线程数。&nbsp;<br />　　enumerate(): 枚举程序中的线程。&nbsp;<br />&nbsp;&nbsp;&nbsp; currentThread(): 得到当前线程。&nbsp;<br />　　isDaemon(): 一个线程是否为守护线程。&nbsp;<br />　　setDaemon(): 设置一个线程为守护线程。(用户线程和守护线程的区别在于，是否等待主线程依赖于主线程结束而结束)&nbsp;<br />　　setName(): 为线程设置一个名称。&nbsp;<br />　　wait(): 强迫一个线程等待。&nbsp;<br />　　notify(): 通知一个线程继续运行。&nbsp;<br />　　setPriority(): 设置一个线程的优先级。<br /></strong></p>
+<p>&nbsp;</p>
+<h1><a name="t9"></a>八、线程同步</h1>
+<p>1、synchronized关键字的作用域有二种：&nbsp;<br />1）是某个对象实例内，synchronized aMethod(){}可以防止多个线程同时访问这个对象的synchronized方法（如果一个对象有多个synchronized方法，只要一个线程访问了其中的一个synchronized方法，其它线程不能同时访问这个对象中任何一个synchronized方法）。这时，不同的对象实例的synchronized方法是不相干扰的。也就是说，其它线程照样可以同时访问相同类的另一个对象实例中的synchronized方法；&nbsp;<br />2）是某个类的范围，synchronized static aStaticMethod{}防止多个线程同时访问这个类中的synchronized static 方法。它可以对类的所有对象实例起作用。&nbsp;<br /><br />2、除了方法前用synchronized关键字，synchronized关键字还可以用于方法中的某个区块中，表示只对这个区块的资源实行互斥访问。用法是: synchronized(this){/*区块*/}，它的作用域是当前对象；&nbsp;<br /><br />3、synchronized关键字是不能继承的，也就是说，基类的方法synchronized f(){} 在继承类中并不自动是synchronized f(){}，而是变成了f(){}。继承类需要你显式的指定它的某个方法为synchronized方法；&nbsp;</p>
+<p>&nbsp;</p>
+<p>Java对多线程的支持与同步机制深受大家的喜爱，似乎看起来使用了synchronized关键字就可以轻松地解决多线程共享数据同步问题。到底如何？――还得对synchronized关键字的作用进行深入了解才可定论。</p>
+<p>总的说来，synchronized关键字可以作为函数的修饰符，也可作为函数内的语句，也就是平时说的同步方法和同步语句块。如果再细的分类，synchronized可作用于instance变量、object reference（对象引用）、static函数和class literals(类名称字面常量)身上。</p>
+<p>在进一步阐述之前，我们需要明确几点：</p>
+<p>A．无论synchronized关键字加在方法上还是对象上，它取得的锁都是对象，而不是把一段代码或函数当作锁――而且同步方法很可能还会被其他线程的对象访问。</p>
+<p>B．每个对象只有一个锁（lock）与之相关联。</p>
+<p>C．实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制。</p>
+<p>&nbsp;</p>
+<p>接着来讨论synchronized用到不同地方对代码产生的影响：</p>
+<p>&nbsp;</p>
+<p>假设P1、P2是同一个类的不同对象，这个类中定义了以下几种情况的同步块或同步方法，P1、P2就都可以调用它们。</p>
+<p>&nbsp;</p>
+<p>1．&nbsp; 把synchronized当作函数修饰符时，示例代码如下：</p>
+<p>Public synchronized void methodAAA()</p>
+<p>{</p>
+<p>//&hellip;.</p>
+<p>}</p>
+<p>这也就是同步方法，那这时synchronized锁定的是哪个对象呢？它锁定的是调用这个同步方法对象。也就是说，当一个对象P1在不同的线程中执行这个同步方法时，它们之间会形成互斥，达到同步的效果。但是这个对象所属的Class所产生的另一对象P2却可以任意调用这个被加了synchronized关键字的方法。</p>
+<p>上边的示例代码等同于如下代码：</p>
+<p>public void methodAAA()</p>
+<p>{</p>
+<p>synchronized (this)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp; (1)</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&hellip;..</p>
+<p>}</p>
+<p>}</p>
+<p>&nbsp;(1)处的this指的是什么呢？它指的就是调用这个方法的对象，如P1。可见同步方法实质是将synchronized作用于object reference。――那个拿到了P1对象锁的线程，才可以调用P1的同步方法，而对P2而言，P1这个锁与它毫不相干，程序也可能在这种情形下摆脱同步机制的控制，造成数据混乱：（</p>
+<p>2．同步块，示例代码如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void method3(SomeObject so)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; synchronized(so)</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&hellip;..</p>
+<p>}</p>
+<p>}</p>
+<p>这时，锁就是so这个对象，谁拿到这个锁谁就可以运行它所控制的那段代码。当有一个明确的对象作为锁时，就可以这样写程序，但当没有明确的对象作为锁，只是想让一段代码同步时，可以创建一个特殊的instance变量（它得是一个对象）来充当锁：</p>
+<p>class Foo implements Runnable</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; private byte[] lock = new byte[0];&nbsp; // 特殊的instance变量</p>
+<p>&nbsp;&nbsp;&nbsp; Public void methodA()</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; synchronized(lock) { //&hellip; }</p>
+<p>}</p>
+<p>//&hellip;..</p>
+<p>}</p>
+<p>注：零长度的byte数组对象创建起来将比任何对象都经济――查看编译后的字节码：生成零长度的byte[]对象只需3条操作码，而Object lock = new Object()则需要7行操作码。</p>
+<p>3．将synchronized作用于static 函数，示例代码如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Class Foo</p>
+<p>{</p>
+<p>public synchronized static void methodAAA()&nbsp;&nbsp; // 同步的static 函数</p>
+<p>{</p>
+<p>//&hellip;.</p>
+<p>}</p>
+<p>public void methodBBB()</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; synchronized(Foo.class)&nbsp;&nbsp; //&nbsp; class literal(类名称字面常量)</p>
+<p>}</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp; 代码中的methodBBB()方法是把class literal作为锁的情况，它和同步的static函数产生的效果是一样的，取得的锁很特别，是当前调用这个方法的对象所属的类（Class，而不再是由这个Class产生的某个具体对象了）。</p>
+<p>记得在《Effective Java》一书中看到过将 Foo.class和 P1.getClass()用于作同步锁还不一样，不能用P1.getClass()来达到锁这个Class的目的。P1指的是由Foo类产生的对象。</p>
+<p>可以推断：如果一个类中定义了一个synchronized的static函数A，也定义了一个synchronized 的instance函数B，那么这个类的同一对象Obj在多线程中分别访问A和B两个方法时，不会构成同步，因为它们的锁都不一样。A方法的锁是Obj这个对象，而B的锁是Obj所属的那个Class。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div>1、线程同步的目的是为了保护多个线程反问一个资源时对资源的破坏。</div>
+<div>2、线程同步方法是通过锁来实现，每个对象都有切仅有一个锁，这个锁与一个特定的对象关联，线程一旦获取了对象锁，其他访问该对象的线程就无法再访问该对象的其他非同步方法。</div>
+<div>3、对于静态同步方法，锁是针对这个类的，锁对象是该类的Class对象。静态和非静态方法的锁互不干预。一个线程获得锁，当在一个同步方法中访问另外对象上的同步方法时，会获取这两个对象锁。</div>
+<div>4、对于同步，要时刻清醒在哪个对象上同步，这是关键。</div>
+<div>5、编写线程安全的类，需要时刻注意对多个线程竞争访问资源的逻辑和安全做出正确的判断，对&ldquo;原子&rdquo;操作做出分析，并保证原子操作期间别的线程无法访问竞争资源。</div>
+<div>6、当多个线程等待一个对象锁时，没有获取到锁的线程将发生阻塞。</div>
+<div>7、死锁是线程间相互等待锁锁造成的，在实际中发生的概率非常的小。真让你写个死锁程序，不一定好使，呵呵。但是，一旦程序发生死锁，程序将死掉。</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1><a name="t10"></a>九、线程数据传递</h1>
+<p>在传统的同步开发模式下，当我们调用一个函数时，通过这个函数的参数将数据传入，并通过这个函数的返回值来返回最终的计算结果。但在多线程的异步开发模式下，数据的传递和返回和同步开发模式有很大的区别。由于线程的运行和结束是不可预料的，因此，在传递和返回数据时就无法象函数一样通过函数参数和return语句来返回数据。</p>
+<p>9.1、通过构造方法传递数据&nbsp;<br />在创建线程时，必须要建立一个Thread类的或其子类的实例。因此，我们不难想到在调用start方法之前通过线程类的构造方法将数据传入线程。并将传入的数据使用类变量保存起来，以便线程使用(其实就是在run方法中使用)。下面的代码演示了如何通过构造方法来传递数据：&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt">&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">package&nbsp;mythread;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt"><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;MyThread1&nbsp;<span class="keyword">extends&nbsp;Thread&nbsp;&nbsp;&nbsp;</span></span></span></li>
+<li>{&nbsp;&nbsp;&nbsp;</li>
+<li class="alt"><span class="keyword">private&nbsp;String&nbsp;name;&nbsp;&nbsp;&nbsp;</span></li>
+<li><span class="keyword">public&nbsp;MyThread1(String&nbsp;name)&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">{&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">this.name&nbsp;=&nbsp;name;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">}&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">public&nbsp;<span class="keyword">void&nbsp;run()&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">{&nbsp;&nbsp;&nbsp;</li>
+<li>System.out.println(<span class="string">"hello&nbsp;"&nbsp;+&nbsp;name);&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">}&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;&nbsp;&nbsp;</span></span></span></li>
+<li class="alt">{&nbsp;&nbsp;&nbsp;</li>
+<li>Thread&nbsp;thread&nbsp;=&nbsp;<span class="keyword">new&nbsp;MyThread1(<span class="string">"world");&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">thread.start();&nbsp;&nbsp;&nbsp;</li>
+<li>}&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;&nbsp;</li>
+
+
+</ol></div>
+<p>由于这种方法是在创建线程对象的同时传递数据的，因此，在线程运行之前这些数据就就已经到位了，这样就不会造成数据在线程运行后才传入的现象。如果要传递更复杂的数据，可以使用集合、类等数据结构。使用构造方法来传递数据虽然比较安全，但如果要传递的数据比较多时，就会造成很多不便。由于Java没有默认参数，要想实现类似默认参数的效果，就得使用重载，这样不但使构造方法本身过于复杂，又会使构造方法在数量上大增。因此，要想避免这种情况，就得通过类方法或类变量来传递数据。&nbsp;</p>
+<p>&nbsp;</p>
+<p>9.2、通过变量和方法传递数据&nbsp;<br />向对象中传入数据一般有两次机会，第一次机会是在建立对象时通过构造方法将数据传入，另外一次机会就是在类中定义一系列的public的方法或变量（也可称之为字段）。然后在建立完对象后，通过对象实例逐个赋值。下面的代码是对MyThread1类的改版，使用了一个setName方法来设置 name变量：&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_java">
+<div class="bar">
+<div class="tools"><strong>[java]</strong>&nbsp;<a class="ViewSource" title="view plain" href="http://blog.csdn.net/evankaka/article/details/44153709#">view plain</a><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168">&nbsp;<a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/evankaka/article/details/44153709#">copy</a></span></span></span>
+<div>&nbsp;</div>
+
+
+<span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_168"><span data-mod="popu_169">&nbsp;<span class="tracking-ad" data-mod="popu_167"><a title="在CODE上查看代码片" href="https://code.csdn.net/snippets/619227" target="_blank"><img src="https://code.csdn.net/assets/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12" /></a><span class="tracking-ad" data-mod="popu_170"><a title="派生到我的代码片" href="https://code.csdn.net/snippets/619227/fork" target="_blank"><img src="https://code.csdn.net/assets/ico_fork.svg" alt="派生到我的代码片" width="12" height="12" /></a></span></span></span></span></span></span></div>
+
+
+</div>
+<ol class="dp-j" start="1">
+<li class="alt">&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">package&nbsp;mythread;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt"><span class="keyword">public&nbsp;<span class="keyword">class&nbsp;MyThread2&nbsp;<span class="keyword">implements&nbsp;Runnable&nbsp;&nbsp;&nbsp;</span></span></span></li>
+<li>{&nbsp;&nbsp;&nbsp;</li>
+<li class="alt"><span class="keyword">private&nbsp;String&nbsp;name;&nbsp;&nbsp;&nbsp;</span></li>
+<li><span class="keyword">public&nbsp;<span class="keyword">void&nbsp;setName(String&nbsp;name)&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">{&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">this.name&nbsp;=&nbsp;name;&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">}&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">public&nbsp;<span class="keyword">void&nbsp;run()&nbsp;&nbsp;&nbsp;</span></span></li>
+<li class="alt">{&nbsp;&nbsp;&nbsp;</li>
+<li>System.out.println(<span class="string">"hello&nbsp;"&nbsp;+&nbsp;name);&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">}&nbsp;&nbsp;&nbsp;</li>
+<li><span class="keyword">public&nbsp;<span class="keyword">static&nbsp;<span class="keyword">void&nbsp;main(String[]&nbsp;args)&nbsp;&nbsp;&nbsp;</span></span></span></li>
+<li class="alt">{&nbsp;&nbsp;&nbsp;</li>
+<li>MyThread2&nbsp;myThread&nbsp;=&nbsp;<span class="keyword">new&nbsp;MyThread2();&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">myThread.setName(<span class="string">"world");&nbsp;&nbsp;&nbsp;</span></li>
+<li>Thread&nbsp;thread&nbsp;=&nbsp;<span class="keyword">new&nbsp;Thread(myThread);&nbsp;&nbsp;&nbsp;</span></li>
+<li class="alt">thread.start();&nbsp;&nbsp;&nbsp;</li>
+<li>}&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">}&nbsp;&nbsp;&nbsp;</li>
+
+
+</ol></div>
+<p>9.3、通过回调函数传递数据&nbsp;</p>
+<p>&nbsp;</p>
+<p>上面讨论的两种向线程中传递数据的方法是最常用的。但这两种方法都是main方法中主动将数据传入线程类的。这对于线程来说，是被动接收这些数据的。然而，在有些应用中需要在线程运行的过程中动态地获取数据，如在下面代码的run方法中产生了3个随机数，然后通过Work类的process方法求这三个随机数的和，并通过Data类的value将结果返回。从这个例子可以看出，在返回value之前，必须要得到三个随机数。也就是说，这个 value是无法事先就传入线程类的。&nbsp;</p>
+<p>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2018-04-15 21:58</span> <a href='../index.html'>疏桐</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=8849710" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(8849710);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=395031,cb_entryId=8849710,cb_blogApp=currentBlogApp,cb_blogUserGuid='98a452d3-9c6b-41c0-b8f3-08d523685c8c',cb_entryCreatedDate='2018/4/15 21:58:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id='cnblogs_c1' class='c_ad_block'>
+    <div id='div-gpt-ad-1546353474406-0' style='height:250px; width:300px;'></div>
+</div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'>
+    <div id='div-gpt-ad-1539008685004-0' style='height:60px; width:468px;'></div>
+</div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2019 疏桐
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<script>
+ 
+!function(){
+ 
+ function n(n,e,t){
+ 
+ return n.getAttribute(e)||t
+ 
+ }
+ 
+ function e(n){
+ 
+ return document.getElementsByTagName(n)
+ 
+ }
+ 
+ function t(){
+ 
+ var t=e("script"),o=t.length,i=t[o-1];
+ 
+ return{
+ 
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+ 
+ }
+ 
+ }
+ 
+ function o(){
+ 
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+ 
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+ 
+ }
+ 
+ function i(){
+ 
+ r.clearRect(0,0,a,c);
+ 
+ var n,e,t,o,m,l;
+ 
+ s.forEach(function(i,x){
+ 
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+ 
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+ 
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+ 
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+ 
+ }),
+
+ x(i)
+ 
+ }
+ 
+ var a,c,u,m=document.createElement("canvas"),
+ 
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+ 
+ function(n){
+
+ window.setTimeout(n,1e3/45)
+ 
+ },
+ 
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+ 
+ window.onmousemove=function(n){
+ 
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+ 
+ },
+ 
+ window.onmouseout=function(){
+ 
+ y.x=null,y.y=null
+ 
+ };
+ 
+ for(var s=[],f=0;d.n>f;f++){
+ 
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+ 
+ }
+ 
+ u=s.concat([y]),
+ 
+ setTimeout(function(){i()},100)
+ 
+ }();
+ 
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+
+<!-- Mirrored from www.cnblogs.com/xinxianquan/p/8849710.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Jun 2019 01:25:43 GMT -->
+</html>
