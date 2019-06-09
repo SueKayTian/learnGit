@@ -1,0 +1,16 @@
+HTTrack3.49-2 launched on Sun, 09 Jun 2019 09:15:27 at https://www.cnblogs.com/xinxianquan/ /home/website/
+(httrack https://www.cnblogs.com/xinxianquan/ -o /home/website/ )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+09:25:49	Error: 	"Not Found" (404) at link https://www.cnblogs.com/xinxianquan/p/moz-extension://bf35e6be-fd2f-4d64-947f-df5fd9df0537/speech.png (from https://www.cnblogs.com/xinxianquan/p/10300499.html)
+09:25:49	Error: 	"Not Found" (404) at link https://www.cnblogs.com/xinxianquan/p/"mov_nnn.mp4" (from https://www.cnblogs.com/xinxianquan/p/8476214.html)
+09:25:49	Error: 	"Not Found" (404) at link https://www.cnblogs.com/xinxianquan/p/"frame_a." (from https://www.cnblogs.com/xinxianquan/p/8469755.html)
+09:25:49	Error: 	"Bad Request" (400) at link https://www.cnblogs.com/xinxianquan/p/"http:www.baidu.com">This (from https://www.cnblogs.com/xinxianquan/p/8463634.html)
+09:25:49	Error: 	"Not Found" (404) at link https://www.cnblogs.com/xinxianquan/p/"" (from https://www.cnblogs.com/xinxianquan/p/8463634.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 10 minutes 22 seconds : 519 links scanned, 513 files written (17061298 bytes overall) [7431178 bytes received at 11947 bytes/sec], 17060879 bytes transferred using HTTP compression in 512 files, ratio 40%, 29.2 requests per connection
+(5 errors, 0 warnings, 0 messages)
